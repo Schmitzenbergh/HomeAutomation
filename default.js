@@ -30,7 +30,7 @@ var myInit = function() {
     //sensor.fetchInfo();
     //light.fetchInfo();
 
-    sensor.setInfo(2);
+    sensor.setInfo(4);
   }
 
 
@@ -45,7 +45,7 @@ var myInit = function() {
   process.stdout.write('.');
   setTimeout(myInit, 1000);
 };
-setTimeout(myInit, 8000);
+setTimeout(myInit, 2000);
 
 
 
