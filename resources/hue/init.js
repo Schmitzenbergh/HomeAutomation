@@ -5,6 +5,7 @@ function VariablesHue(){
   process.stdout.write( '\n' + " initialize Resources-Hue ");
   
   hue = require('hue-sdk');
+  //hue = require( pathresources + './hue-sdk/lib/hue.js');
   client = new hue.Hue(require( pathconfig + './.credentials.json' ));
   
   pathhuebridge = pathhue + './bridge/';

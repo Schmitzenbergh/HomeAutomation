@@ -7,7 +7,8 @@ function VariablesLight(){
   pathhuelightvalues = pathhuelight + './_values/';
   module.exports = require( pathhuelightvalues + './init.js');
 
-  light = require('./light.js');      //module.exports = light = require( pathlight + './light.js');
+  light = require( './light.js' );      //module.exports = light = require( pathlight + './light.js');
+  //light = require( pathhuelight + './light.js');      //module.exports = light = require( pathlight + './light.js');
 
   /***************
   *    Lights    *

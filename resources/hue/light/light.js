@@ -99,26 +99,38 @@ exports.setInfoAll = function(){
 /** getValue **/
 //get attribute from a single light
 //###############################################################################################################################################################################
-exports.getManufacturerName = function( iLightNumber ){ client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.manufacturername !== undefined ){ return err;} return result.manufacturername; }); };
-exports.getProductName = function( iLightNumber ){      client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.productname !== undefined      ){ return err;} return result.productname;      }); };   
-exports.getModelId = function( iLightNumber ){          client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.modelid !== undefined          ){ return err;} return result.modelid;          }); };   
-exports.getName = function( iLightNumber ){             client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.name !== undefined             ){ return err;} return result.name;             }); };   
-exports.getSwVersion = function( iLightNumber ){        client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.swversion !== undefined        ){ return err;} return result.swversion;        }); };   
-exports.getType = function( iLightNumber ){             client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.type !== undefined             ){ return err;} return result.type;             }); };   
-exports.getUniqueid = function( iLightNumber ){         client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.uniqueid !== undefined         ){ return err;} return result.uniqueid;         }); };   
-exports.getOn = function( iLightNumber ){               client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.on !== undefined         ){ return err;} return result.state.on;         }); };   
-exports.getBri = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.bri !== undefined        ){ return err;} return result.state.bri;        }); };   
-exports.getHue = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.hue !== undefined        ){ return err;} return result.state.hue;        }); };   
-exports.getSat = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.sat !== undefined        ){ return err;} return result.state.sat;        }); };   
-exports.getEffect = function( iLightNumber ){           client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.effect !== undefined     ){ return err;} return result.state.effect;     }); };   
-exports.getXy = function( iLightNumber ){               client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.xy !== undefined         ){ return err;} return result.state.xy;         }); };   
-exports.getXyX = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.xy[0] !== undefined      ){ return err;} return result.state.xy[0];      }); };   
-exports.getXyY = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.xy[1] !== undefined      ){ return err;} return result.state.xy[1];      }); };   
-exports.getCt = function( iLightNumber ){               client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.ct !== undefined         ){ return err;} return result.state.ct;         }); };   
-exports.getAlert = function( iLightNumber ){            client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.alert !== undefined      ){ return err;} return result.state.alert;      }); };   
-exports.getColormode = function( iLightNumber ){        client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.colormode !== undefined  ){ return err;} return result.state.colormode;  }); };   
-exports.getReachable = function( iLightNumber ){        client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.reachable !== undefined  ){ return err;} return result.state.reachable;  }); };   
 
+
+exports.getManufacturerName = function(iLightNumber, in_result){
+  client.getLight( iLightNumber, function( err, result ){
+      if (err) throw err;
+      return result.state.on;
+  });
+};
+
+//exports.statusLightGetOn = function(iLightNumber, callback){  client.get('/lights/1/', function (err, result) { if (err) throw err; this.callback = result.state.on;  }); return this.callback; }; console.log( statusLightGetOn(1) );
+//function statusLightGetOn(iLightNumber, callback){  client.get('/lights/1/', function (err, result) { if (err) throw err; this.callback = result.state.on;  }); return this.callback; }; console.log( statusLightGetOn(1) );
+//exports.statusLightGetOn = function( iLightNumber, retVal){ client.get('/lights/' + iLightNumber + '/', function (err, result) { if (err) throw err; this.retVal = result.state.on; }); return this.retVal; };
+
+exports.getProductName = function( iLightNumber ){      client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.productname === undefined      ){ return err;} return result.productname;      }); };   
+exports.getModelId = function( iLightNumber ){          client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.modelid === undefined          ){ return err;} return result.modelid;          }); };   
+exports.getName = function( iLightNumber ){             client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.name === undefined             ){ return err;} return result.name;             }); };   
+exports.getSwVersion = function( iLightNumber ){        client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.swversion === undefined        ){ return err;} return result.swversion;        }); };   
+exports.getType = function( iLightNumber ){             client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.type === undefined             ){ return err;} return result.type;             }); };   
+exports.getUniqueid = function( iLightNumber ){         client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.uniqueid === undefined         ){ return err;} return result.uniqueid;         }); };   
+exports.getOn = function( iLightNumber ){               client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.on === undefined         ){ return err;} return result.state.on;         }); };   
+exports.getBri = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.bri === undefined        ){ return err;} return result.state.bri;        }); };   
+exports.getHue = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.hue === undefined        ){ return err;} return result.state.hue;        }); };   
+exports.getSat = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.sat === undefined        ){ return err;} return result.state.sat;        }); };   
+exports.getEffect = function( iLightNumber ){           client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.effect === undefined     ){ return err;} return result.state.effect;     }); };   
+exports.getXy = function( iLightNumber ){               client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.xy === undefined         ){ return err;} return result.state.xy;         }); };   
+exports.getXyX = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.xy[0] === undefined      ){ return err;} return result.state.xy[0];      }); };   
+exports.getXyY = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.xy[1] === undefined      ){ return err;} return result.state.xy[1];      }); };   
+exports.getCt = function( iLightNumber ){               client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.ct === undefined         ){ return err;} return result.state.ct;         }); };   
+exports.getAlert = function( iLightNumber ){            client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.alert === undefined      ){ return err;} return result.state.alert;      }); };   
+exports.getColormode = function( iLightNumber ){        client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.colormode === undefined  ){ return err;} return result.state.colormode;  }); };   
+exports.getReachable = function( iLightNumber ){        client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.reachable === undefined  ){ return err;} return result.state.reachable;  }); };   
+exports.getOnShow = function( iLightNumber ){           client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.on === undefined         ){ return err;} console.log(result.state.on);   }); };   
 
 /** setValue **/
 //set attribute for a single light
