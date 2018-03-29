@@ -21,22 +21,59 @@ function VariablesDefault(){
   process.stdout.write( '\n' + " initialize Done!.. " + '\n' );
 };
 module.exports = VariablesDefault();
+
 //Everything runs from this function
 
 var myInit = function() {
 
   counter++;
-    
+
   if ( counter == 1 ){
     light.getInfoAll();
     sensor.getInfoAll();
+
+  }
+  
+  if ( counter == 10 ){
+    //light.saveInfoAll();
+    //light.loadInfoAll();
   }
 
   if ( ( counter % 10 ) == 0 ){
-    light.getInfoAll();
-    sensor.getInfoAll();
-    light.loadInfoAll();
+    //light.setEffect(2, 'colorloop');
   }
+
+  if ( ( counter % 8 ) == 0 ) {
+    console.log("       " + counter + " "); //process.stdout.write(counter + " ");
+    light.getHue(2, console.log);
+
+  }
+
+
+  
+
+  setTimeout(myInit, 250);
+};  setTimeout(myInit, 2000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   //if ( ( counter % 3 ) == 0 ){
   //  if ( sArrayLightManufacturerName[1] !== undefined) { 
@@ -81,10 +118,3 @@ var myInit = function() {
   //light.getManufacturerName(1);
   //process.stdout.write('.');
   //}
-
-  setTimeout(myInit, 1000);
-};
-setTimeout(myInit, 2000);
-
-
-
