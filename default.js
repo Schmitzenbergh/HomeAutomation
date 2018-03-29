@@ -24,24 +24,34 @@ var myInit = function() {
 
   counter++;
   
-  if ( ( counter % 25 ) == 0 ){
-    light.getInfoAll();
-    sensor.getInfoAll();
-  }
   if ( ( counter % 20 ) == 0 ){
-
-    //console.log( "ArrayLight: " + sArrayLightManufacturerName[1]);
-    //console.log( "ArraySensor: " + sArraySensorManufacturerName[1]);
-    //console.log( '\n' )
-
+    //  light.getInfoAll();
+    //  sensor.getInfoAll();
   }
 
-  if ( ( counter % 5 ) == 0 ){
+  //if ( ( counter % 3 ) == 0 ){
+//
+  //  if ( sArrayLightManufacturerName[1] !== undefined) { 
+  //    console.log( "ArrayLight: " + sArrayLightManufacturerName[1] + '\n' );
+  //  }
+  //}
+
+  if ( ( counter % 3 ) == 0 ){
       //console.log ( "Function: " + light.getManufacturerName(1) );
       //console.log( "endval: " + light.getManufacturerName(1) );
       //console.log( "endval: " + light.getManufacturerName(1, result ) );
       
   }
+
+
+  //TEST
+  if ( ( counter % 5 ) == 0 ){
+    //console.log( "Test0: " + light.getManufacturerName(console.log) );
+    light.getManufacturerName(console.log)
+  }
+
+
+  
 
 
   //  Hue.prototype.get = function get(opts, cb) {
@@ -56,30 +66,61 @@ var myInit = function() {
   
   
   //function statusLightGetOn(iLightNumber){ client.get('/lights/' + iLightNumber + '/', function (err, result) { if (err) throw err; this.retVal = result.state.on; }); return this.retVal; };
-  //statusLightGetOn = function( iLightNumber, retVal){ client.get('/lights/' + iLightNumber + '/', function (err, result) { if (err) throw err; this.retVal = result.state.on; }); return this.retVal; };
+  //statusLightGetOn = function( iLightNumber){ client.get('/lights/' + iLightNumber + '/', function (err, result) { if (err) throw err; this.retVal = result.state.on; }); return this.retVal; };
 
 
 
 
-  console.log( statusLightGetOn(1) );
+  //console.log( light.statusLightGetOn(1) );
   //light.statusLightGetOn(1);
   //light.getManufacturerName(1);
-  process.stdout.write('.');
+  //process.stdout.write('.');
   setTimeout(myInit, 1000);
 };
-setTimeout(myInit, 2000);
+setTimeout(myInit, 4000);
 
 
-//var getLightOn = function(callback) {
-//  client.get('/lights/1/', function (err, result) {
-//    callback(result.state.on);
-//  });
-//};
-//
-//
-//var myCallback = function(data) {
-//  console.log(data);
-//};
-//getLightOn(myCallback)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

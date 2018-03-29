@@ -100,18 +100,34 @@ exports.setInfoAll = function(){
 //get attribute from a single light
 //###############################################################################################################################################################################
 
+//    function blockingIO(callback) {
+//    	setTimeout(function() { callback("The blocking task has been completed"); }, 3000); }
+//    // A demo callback function
+//    function doThisWhenFinished(message) { console.log(message) };
+//    // Calling our simulated I/O function
+//    blockingIO(doThisWhenFinished);
+//    // The event loop continues 
+//    console.log("Prints before the IO tasks finishes");
+//return callback(null, result.state.bri)
 
-exports.getManufacturerName = function(iLightNumber, in_result){
-  client.getLight( iLightNumber, function( err, result ){
-      if (err) throw err;
-      return result.state.on;
-  });
-};
+//TESTED
+exports.getManufacturerName = function (callback){ client.get('/lights/1/', function (err, result) { callback(result.state.bri) } )}
+
+
+//light.getManufacturerName(console.log)
+
+
+
+//console.log( light.getManufacturerName(1) );
 
 //exports.statusLightGetOn = function(iLightNumber, callback){  client.get('/lights/1/', function (err, result) { if (err) throw err; this.callback = result.state.on;  }); return this.callback; }; console.log( statusLightGetOn(1) );
 //function statusLightGetOn(iLightNumber, callback){  client.get('/lights/1/', function (err, result) { if (err) throw err; this.callback = result.state.on;  }); return this.callback; }; console.log( statusLightGetOn(1) );
 //exports.statusLightGetOn = function( iLightNumber, retVal){ client.get('/lights/' + iLightNumber + '/', function (err, result) { if (err) throw err; this.retVal = result.state.on; }); return this.retVal; };
 
+//exports.statusLightGetOn = function( iLightNumber, retVal){ client.get('/lights/' + iLightNumber + '/', function (err, result) { if (err) throw err; this.retVal = result.state.on; }); return this.retVal; };
+
+//function statusLightGetOn( iLightNumber){ client.get('/lights/' + iLightNumber + '/', function (err, result) { if (err) throw err; this.retVal = result.state.on; }); return this.retVal; };
+exports.statusLightGetOn = function( iLightNumber){     client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err ){ console.log(err)} this.retVal = result.state.on; }); return this.retVal; };
 exports.getProductName = function( iLightNumber ){      client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.productname === undefined      ){ return err;} return result.productname;      }); };   
 exports.getModelId = function( iLightNumber ){          client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.modelid === undefined          ){ return err;} return result.modelid;          }); };   
 exports.getName = function( iLightNumber ){             client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.name === undefined             ){ return err;} return result.name;             }); };   
