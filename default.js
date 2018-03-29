@@ -4,11 +4,14 @@ function VariablesDefault(){
   
   process.stdout.write( '\n' + "initialize HomeAutomation");
   
+  exec = require('child_process').exec;
+  
+
   pathroot = '/root/scripts/HomeAutomation/';
   pathconfig = pathroot + './config/';
   pathresources = pathroot + './resources/';
   pathlib = pathroot + './lib/';
-  module.exports = pathsrc = pathroot + './src/';
+  pathsrc = pathroot + './src/';
   
   module.exports = require( pathconfig + './init.js');
   module.exports = require( pathlib + './init.js');
@@ -25,33 +28,30 @@ var myInit = function() {
   counter++;
   
   if ( ( counter % 20 ) == 0 ){
-    //  light.getInfoAll();
-    //  sensor.getInfoAll();
+    light.getInfoAll();
+    sensor.getInfoAll();
+    light.saveInfoAll();
   }
-
-  //if ( ( counter % 3 ) == 0 ){
-//
-  //  if ( sArrayLightManufacturerName[1] !== undefined) { 
-  //    console.log( "ArrayLight: " + sArrayLightManufacturerName[1] + '\n' );
-  //  }
-  //}
 
   if ( ( counter % 3 ) == 0 ){
-      //console.log ( "Function: " + light.getManufacturerName(1) );
-      //console.log( "endval: " + light.getManufacturerName(1) );
-      //console.log( "endval: " + light.getManufacturerName(1, result ) );
-      
+    if ( sArrayLightManufacturerName[1] !== undefined) { 
+      console.log( "ArrayLight: " + sArrayLightManufacturerName[1] + '\n' );
+    }
   }
+
+//  if ( ( counter % 3 ) == 0 ){
+//      //console.log ( "Function: " + light.getManufacturerName(1) );
+//      console.log( "endval: " + light.getManufacturerName(1) );
+//      //console.log( "endval: " + light.getManufacturerName(1, result ) );
+//      
+//  }
 
 
   //TEST
   if ( ( counter % 5 ) == 0 ){
-    //console.log( "Test0: " + light.getManufacturerName(1, console.log) );
-    light.getManufacturerName(1, console.log)
-  }
 
-
-  
+    //fs.writeFile("test4", "Hey there!", function(err) { if(err) { return console.log(err); } console.log("The file was saved!"); }); };
+    //fs.writeFile( pathhuelightvalues + "1" + "/manufacturername",  sArrayLightManufacturerName[1], function(err) { if(err) { return console.log(err); } console.log("The file was saved!"); }); };
 
 
   //  Hue.prototype.get = function get(opts, cb) {
@@ -75,52 +75,11 @@ var myInit = function() {
   //light.statusLightGetOn(1);
   //light.getManufacturerName(1);
   //process.stdout.write('.');
+  }
+  
   setTimeout(myInit, 1000);
 };
 setTimeout(myInit, 4000);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
