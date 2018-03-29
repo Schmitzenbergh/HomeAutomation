@@ -26,18 +26,23 @@ module.exports = VariablesDefault();
 var myInit = function() {
 
   counter++;
-  
-  if ( ( counter % 20 ) == 0 ){
+    
+  if ( counter == 1 ){
     light.getInfoAll();
     sensor.getInfoAll();
-    light.saveInfoAll();
   }
 
-  if ( ( counter % 3 ) == 0 ){
-    if ( sArrayLightManufacturerName[1] !== undefined) { 
-      console.log( "ArrayLight: " + sArrayLightManufacturerName[1] + '\n' );
-    }
+  if ( ( counter % 10 ) == 0 ){
+    light.getInfoAll();
+    sensor.getInfoAll();
+    light.loadInfoAll();
   }
+
+  //if ( ( counter % 3 ) == 0 ){
+  //  if ( sArrayLightManufacturerName[1] !== undefined) { 
+  //    console.log( "ArrayLight: " + sArrayLightManufacturerName[1] + '\n' );
+  //  }
+  //}
 
 //  if ( ( counter % 3 ) == 0 ){
 //      //console.log ( "Function: " + light.getManufacturerName(1) );
@@ -48,7 +53,7 @@ var myInit = function() {
 
 
   //TEST
-  if ( ( counter % 5 ) == 0 ){
+  //if ( ( counter % 5 ) == 0 ){
 
     //fs.writeFile("test4", "Hey there!", function(err) { if(err) { return console.log(err); } console.log("The file was saved!"); }); };
     //fs.writeFile( pathhuelightvalues + "1" + "/manufacturername",  sArrayLightManufacturerName[1], function(err) { if(err) { return console.log(err); } console.log("The file was saved!"); }); };
@@ -75,11 +80,11 @@ var myInit = function() {
   //light.statusLightGetOn(1);
   //light.getManufacturerName(1);
   //process.stdout.write('.');
-  }
-  
+  //}
+
   setTimeout(myInit, 1000);
 };
-setTimeout(myInit, 4000);
+setTimeout(myInit, 2000);
 
 
 
