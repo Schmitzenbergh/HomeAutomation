@@ -110,43 +110,25 @@ exports.setInfoAll = function(){
 //    console.log("Prints before the IO tasks finishes");
 //return callback(null, result.state.bri)
 
-//TESTED
-exports.getManufacturerName = function (callback){ client.get('/lights/1/', function (err, result) { callback(result.state.bri) } )}
-
-
-//light.getManufacturerName(console.log)
-
-
-
-//console.log( light.getManufacturerName(1) );
-
-//exports.statusLightGetOn = function(iLightNumber, callback){  client.get('/lights/1/', function (err, result) { if (err) throw err; this.callback = result.state.on;  }); return this.callback; }; console.log( statusLightGetOn(1) );
-//function statusLightGetOn(iLightNumber, callback){  client.get('/lights/1/', function (err, result) { if (err) throw err; this.callback = result.state.on;  }); return this.callback; }; console.log( statusLightGetOn(1) );
-//exports.statusLightGetOn = function( iLightNumber, retVal){ client.get('/lights/' + iLightNumber + '/', function (err, result) { if (err) throw err; this.retVal = result.state.on; }); return this.retVal; };
-
-//exports.statusLightGetOn = function( iLightNumber, retVal){ client.get('/lights/' + iLightNumber + '/', function (err, result) { if (err) throw err; this.retVal = result.state.on; }); return this.retVal; };
-
-//function statusLightGetOn( iLightNumber){ client.get('/lights/' + iLightNumber + '/', function (err, result) { if (err) throw err; this.retVal = result.state.on; }); return this.retVal; };
-exports.statusLightGetOn = function( iLightNumber){     client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err ){ console.log(err)} this.retVal = result.state.on; }); return this.retVal; };
-exports.getProductName = function( iLightNumber ){      client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.productname === undefined      ){ return err;} return result.productname;      }); };   
-exports.getModelId = function( iLightNumber ){          client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.modelid === undefined          ){ return err;} return result.modelid;          }); };   
-exports.getName = function( iLightNumber ){             client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.name === undefined             ){ return err;} return result.name;             }); };   
-exports.getSwVersion = function( iLightNumber ){        client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.swversion === undefined        ){ return err;} return result.swversion;        }); };   
-exports.getType = function( iLightNumber ){             client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.type === undefined             ){ return err;} return result.type;             }); };   
-exports.getUniqueid = function( iLightNumber ){         client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.uniqueid === undefined         ){ return err;} return result.uniqueid;         }); };   
-exports.getOn = function( iLightNumber ){               client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.on === undefined         ){ return err;} return result.state.on;         }); };   
-exports.getBri = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.bri === undefined        ){ return err;} return result.state.bri;        }); };   
-exports.getHue = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.hue === undefined        ){ return err;} return result.state.hue;        }); };   
-exports.getSat = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.sat === undefined        ){ return err;} return result.state.sat;        }); };   
-exports.getEffect = function( iLightNumber ){           client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.effect === undefined     ){ return err;} return result.state.effect;     }); };   
-exports.getXy = function( iLightNumber ){               client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.xy === undefined         ){ return err;} return result.state.xy;         }); };   
-exports.getXyX = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.xy[0] === undefined      ){ return err;} return result.state.xy[0];      }); };   
-exports.getXyY = function( iLightNumber ){              client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.xy[1] === undefined      ){ return err;} return result.state.xy[1];      }); };   
-exports.getCt = function( iLightNumber ){               client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.ct === undefined         ){ return err;} return result.state.ct;         }); };   
-exports.getAlert = function( iLightNumber ){            client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.alert === undefined      ){ return err;} return result.state.alert;      }); };   
-exports.getColormode = function( iLightNumber ){        client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.colormode === undefined  ){ return err;} return result.state.colormode;  }); };   
-exports.getReachable = function( iLightNumber ){        client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.reachable === undefined  ){ return err;} return result.state.reachable;  }); };   
-exports.getOnShow = function( iLightNumber ){           client.getLight( iLightNumber, function( err, result ){ if ( err || typeof result.state.on === undefined         ){ return err;} console.log(result.state.on);   }); };   
+exports.getManufacturerName = function (iLightNumber, callback ){ client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.manufacturername === undefined ){ return err;} callback(result.manufacturername ) } )}
+exports.getProductName = function (iLightNumber, callback ){      client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.productname === undefined      ){ return err;} callback(result.productname      ) } )}
+exports.getModelId = function (iLightNumber, callback ){          client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.modelid === undefined          ){ return err;} callback(result.modelid          ) } )}
+exports.getName = function (iLightNumber, callback ){             client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.name === undefined             ){ return err;} callback(result.name             ) } )}
+exports.getSwVersion = function (iLightNumber, callback ){        client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.swversion === undefined        ){ return err;} callback(result.swversion        ) } )}
+exports.getType = function (iLightNumber, callback ){             client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.type === undefined             ){ return err;} callback(result.type             ) } )}
+exports.getUniqueid = function (iLightNumber, callback ){         client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.uniqueid === undefined         ){ return err;} callback(result.uniqueid         ) } )}
+exports.getOn = function (iLightNumber, callback ){               client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.on === undefined         ){ return err;} callback(result.state.on         ) } )}
+exports.getBri = function (iLightNumber, callback ){              client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.bri === undefined        ){ return err;} callback(result.state.bri        ) } )}
+exports.getHue = function (iLightNumber, callback ){              client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.hue === undefined        ){ return err;} callback(result.state.hue        ) } )}
+exports.getSat = function (iLightNumber, callback ){              client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.sat === undefined        ){ return err;} callback(result.state.sat        ) } )}
+exports.getEffect = function (iLightNumber, callback ){           client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.effect === undefined     ){ return err;} callback(result.state.effect     ) } )}
+exports.getXy = function (iLightNumber, callback ){               client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.xy === undefined         ){ return err;} callback(result.state.xy         ) } )}
+exports.getXyX = function (iLightNumber, callback ){              client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.xy[0] === undefined      ){ return err;} callback(result.state.xy[0]      ) } )}
+exports.getXyY = function (iLightNumber, callback ){              client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.xy[1] === undefined      ){ return err;} callback(result.state.xy[1]      ) } )}
+exports.getCt = function (iLightNumber, callback ){               client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.ct === undefined         ){ return err;} callback(result.state.ct         ) } )}
+exports.getAlert = function (iLightNumber, callback ){            client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.alert === undefined      ){ return err;} callback(result.state.alert      ) } )}
+exports.getColormode = function (iLightNumber, callback ){        client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.colormode === undefined  ){ return err;} callback(result.state.colormode  ) } )}
+exports.getReachable = function (iLightNumber, callback ){        client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.reachable === undefined  ){ return err;} callback(result.state.reachable  ) } )}
 
 /** setValue **/
 //set attribute for a single light

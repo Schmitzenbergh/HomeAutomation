@@ -46,8 +46,8 @@ var myInit = function() {
 
   //TEST
   if ( ( counter % 5 ) == 0 ){
-    //console.log( "Test0: " + light.getManufacturerName(console.log) );
-    light.getManufacturerName(console.log)
+    //console.log( "Test0: " + light.getManufacturerName(1, console.log) );
+    light.getManufacturerName(1, console.log)
   }
 
 
