@@ -1,7 +1,0 @@
-function read(err, data) { 
-    if(err) { 
-      return console.log(err); 
-    }
-    content = data;
-    console.log("Read Light " + iLightNumber + " - /manufacturername     " + data );
-  }
