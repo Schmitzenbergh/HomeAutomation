@@ -4,12 +4,12 @@ debug = false;
 
 //# Situation:                # Function:
 //###############################################################################################################################################################################
-//# Hue To Scriptvar          # getInfo, getInfoAll
-//# Scriptvar to Hue          # setInfo, setInfoAll
-//# From Hue                  # get[Variable], get[Variable]]All
-//# To Hue                    # set[Variable], set[Variable]]All
-//# From disk                 # loadInfo, loadInfoALL
-//# To disk                   # saveInfo, saveInfoAll
+//# Hue To Scriptvar          # getInfo, getInfoAll               
+//# Scriptvar to Hue          # setInfo, setInfoAll                 
+//# From Hue                  # get[Variable]
+//# To Hue                    # set[Variable]
+//# From disk                 # loadInfo, loadInfoALL             
+//# To disk                   # saveInfo, saveInfoAll             
 
 //# From/To script            # not needed
 
@@ -247,6 +247,7 @@ exports.saveInfo = function(iLightNumber){
 
 };
 
+
 /** setInfo - ALL**/
 //saves all variables from all lights to disk
 // Example: light.saveInfoAll()
@@ -262,3 +263,4 @@ exports.saveInfoAll = function(){
     setTimeout(saveInfoAllDo, 10);
   }
 }
+

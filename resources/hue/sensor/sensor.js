@@ -4,13 +4,13 @@ debug = false;
 
 //# Situation:                # Function:
 //###############################################################################################################################################################################
-//# Hue To Scriptvar          # getInfo, getInfoAll                 Ready
-//# Scriptvar to Hue          # setInfo, setInfoAll                 Ready
-//# From Hue                  # get[Variable], get[Variable]]All    
-//# To Hue                    # set[Variable], set[Variable]]All    
-//# From disk                 # loadInfo, loadInfoALL               Ready
-//# To disk                   # saveInfo, saveInfoAll               Ready
-//# From/To script            # not needed                        
+//# Hue To Scriptvar          # getInfo, getInfoAll                 
+//# Scriptvar to Hue          # setInfo, setInfoAll                 
+//# From Hue                  # get[Variable]                       
+//# To Hue                    # set[Variable]                       
+//# From disk                 # loadInfo, loadInfoALL               
+//# To disk                   # saveInfo, saveInfoAll               
+//# From/To script            # not needed                          
 
 
 /** getInfo **/
@@ -59,6 +59,8 @@ exports.getInfo = function( iSensorNumber,sValue){
     if ( typeof result.recycle !== undefined               ){ bArraySensorRecycle[iSensorNumber] = result.recycle;                      };
   });
 };
+
+
 /** getInfo - ALL**/
 //get all attributes for all sensors from hue to script-variables
 // Example: sensor.getInfoAll()
@@ -76,20 +78,36 @@ exports.getInfoAll = function(){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 /** setInfo **/
 //sets all attributes from 1 srnsor from script-variables to hue
 // Example: sensor.setInfo( iSensorNumber,sValue )
+//###############################################################################################################################################################################
+exports.setInfo = function( iSensorNumber,sValue ){
+  client.setLight( iSensorNumber, function( err, result ){
+  
+    if ( err || result === undefined || result.state === undefined ){ return err;}
+    
+    //State: 
+    if ( bArrayLightOn[iSensorNumber]              !== undefined ){   client.setLightState( iSensorNumber, { "on": bArrayLightOn[iSensorNumber] },                          function( err, result ){ if ( err ) return err; }); };              
+    if ( iArrayLightBriCur[iSensorNumber]          !== undefined ){   client.setLightState( iSensorNumber, { "bri": iArrayLightBriCur[iSensorNumber] },                     function( err, result ){ if ( err ) return err; }); };              
+    if ( iArrayLightHueCur[iSensorNumber]          !== undefined ){   client.setLightState( iSensorNumber, { "hue": iArrayLightHueCur[iSensorNumber] },                     function( err, result ){ if ( err ) return err; }); };              
+    if ( iArrayLightSatCur[iSensorNumber]          !== undefined ){   client.setLightState( iSensorNumber, { "sat": iArrayLightSatCur[iSensorNumber] },                     function( err, result ){ if ( err ) return err; }); };              
+    if ( sArrayLightEffect[iSensorNumber]          !== undefined ){   client.setLightState( iSensorNumber, { "effect": sArrayLightEffect[iSensorNumber] },                  function( err, result ){ if ( err ) return err; }); };           
+    if ( fArrayLightXyCur[iSensorNumber]           !== undefined ){   client.setLightState( iSensorNumber, { "xy": fArrayLightXyCur[iSensorNumber] },                       function( err, result ){ if ( err ) return err; }); };      
+    if ( fArrayLightXyXCur[iSensorNumber]          !== undefined ){   client.setLightState( iSensorNumber, { "xy[0]": fArrayLightXyXCur[iSensorNumber] },                   function( err, result ){ if ( err ) return err; }); };          
+    if ( fArrayLightXyYCur[iSensorNumber]          !== undefined ){   client.setLightState( iSensorNumber, { "xy[1]": fArrayLightXyYCur[iSensorNumber] },                   function( err, result ){ if ( err ) return err; }); };          
+    if ( iArrayLightCtCur[iSensorNumber]           !== undefined ){   client.setLightState( iSensorNumber, { "ct": iArrayLightCtCur[iSensorNumber] },                       function( err, result ){ if ( err ) return err; }); };      
+    if ( sArrayLightAlert[iSensorNumber]           !== undefined ){   client.setLightState( iSensorNumber, { "alert": sArrayLightAlert[iSensorNumber] },                    function( err, result ){ if ( err ) return err; }); };         
+    if ( sArrayLightColorMode[iSensorNumber]       !== undefined ){   client.setLightState( iSensorNumber, { "colormode": sArrayLightColorMode[iSensorNumber] },            function( err, result ){ if ( err ) return err; }); };
+    if ( bArrayLightReachable[iSensorNumber]       !== undefined ){   client.setLightState( iSensorNumber, { "reachable": bArrayLightReachable[iSensorNumber] },            function( err, result ){ if ( err ) return err; }); };   
+    if ( iArrayLightTransitionTime[iSensorNumber]  !== undefined ){   client.setLightState( iSensorNumber, { "transitiontime": iArrayLightTransitionTime[iSensorNumber] },  function( err, result ){ if ( err ) return err; }); }; 
+  
+  });
+}
+
+
+/** setInfo **/
+//sets all attributes from 1 sensor from script-variables to hue
 //###############################################################################################################################################################################
 exports.setInfo = function( iSensorNumber ){
   var result;
@@ -150,10 +168,6 @@ exports.setInfoAll = function(){
 }
 
 
-
-
-
-
 /** getValue **/
 //get attribute from a single sensor
 // Example: sensor.getManufacturerName(1, console.log)
@@ -166,7 +180,7 @@ exports.getName = function (iSensorNumber, callback ){             client.get('/
 exports.getSwVersion = function (iSensorNumber, callback ){        client.get('/sensors/' + iSensorNumber + '/', function (err, result) { if ( err || typeof result.swversion             === undefined ){ return err;} callback(result.swversion            ) } )}
 exports.getType = function (iSensorNumber, callback ){             client.get('/sensors/' + iSensorNumber + '/', function (err, result) { if ( err || typeof result.type                  === undefined ){ return err;} callback(result.type                 ) } )}
 exports.getUniqueid = function (iSensorNumber, callback ){         client.get('/sensors/' + iSensorNumber + '/', function (err, result) { if ( err || typeof result.uniqueid              === undefined ){ return err;} callback(result.uniqueid             ) } )}
-exports.getRecycle = function (iSensorNumber, callback ){          client.get('/sensors/' + iSensorNumber + '/', function (err, result) { if ( err || typeof result.recycle               === undefined ){ return err;} callback(result.recycle              ) } )}                                                                                                                                                                                                                                                                                                   
+exports.getUniqueid = function (iSensorNumber, callback ){         client.get('/sensors/' + iSensorNumber + '/', function (err, result) { if ( err || typeof result.recycle               === undefined ){ return err;} callback(result.recycle              ) } )}                                                                                                                                                                                                                                                                                                   
 exports.getButtonevent = function (iSensorNumber, callback ){      client.get('/sensors/' + iSensorNumber + '/', function (err, result) { if ( err || typeof result.state.buttonevent     === undefined ){ return err;} callback(result.state.buttonevent    ) } )}
 exports.getLightLevel = function (iSensorNumber, callback ){       client.get('/sensors/' + iSensorNumber + '/', function (err, result) { if ( err || typeof result.state.lightlevel      === undefined ){ return err;} callback(result.state.lightlevel     ) } )}
 exports.getDark = function (iSensorNumber, callback ){             client.get('/sensors/' + iSensorNumber + '/', function (err, result) { if ( err || typeof result.state.dark            === undefined ){ return err;} callback(result.state.dark           ) } )}
@@ -191,41 +205,13 @@ exports.getUnriseoffset = function (iSensorNumber, callback ){     client.get('/
 exports.getPending = function (iSensorNumber, callback ){          client.get('/sensors/' + iSensorNumber + '/', function (err, result) { if ( err || typeof result.config.pending        === undefined ){ return err;} callback(result.config.pending       ) } )}
 
 
-
 /** setValue **/
-//set attribute for a single light
-// Example: light.getManufacturerName(iLightNumber, Value)
+//set attribute for a single sensor
+// Example: sensor.getManufacturerName(iSensorNumber, Value)
 //###############################################################################################################################################################################
-//exports.setManufacturerName = function ( iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 0:; result=true;default:if (!result) break;                                                  if ( sArraySensorManufacturerName[iSensorNumber] !== undefined ){ client.changeSensorConfig( iSensorNumber, { "manufacturername": sArraySensorManufacturerName[iSensorNumber]    }, function( err, result ){ if ( err) return err; }); };         //Read-Only       
-//exports.setProductNam = function (       iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 0:; result=true;default:if (!result) break;                                                  if ( sArraySensorManufacturerName[iSensorNumber] !== undefined ){ client.changeSensorConfig( iSensorNumber, { "manufacturername": sArraySensorManufacturerName[iSensorNumber]    }, function( err, result ){ if ( err) return err; }); };         //Read-Only       
-//exports.setModelId = function (          iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 0:; result=true;default:if (!result) break;                                                  if ( sArraySensorModelId[iSensorNumber]          !== undefined ){ client.changeSensorConfig( iSensorNumber, { "modelid": sArraySensorModelId[iSensorNumber]                      }, function( err, result ){ if ( err) return err; }); };         //Read-Only       
-//exports.setName = function (             iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 0:; result=true;default:if (!result) break;                                                  if ( sArraySensorName[iSensorNumber]             !== undefined ){ client.changeSensorConfig( iSensorNumber, { "name": sArraySensorName[iSensorNumber]                            }, function( err, result ){ if ( err) return err; }); };         //Read-Only       
-//exports.setSwVersion = function (        iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 0:; result=true;default:if (!result) break;                                                  if ( sArraySensorSwVersion[iSensorNumber]        !== undefined ){ client.changeSensorConfig( iSensorNumber, { "swversion": sArraySensorSwVersion[iSensorNumber]                  }, function( err, result ){ if ( err) return err; }); };         //Read-Only       
-//exports.setType = function (             iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 0:; result=true;default:if (!result) break;                                                  if ( sArraySensorType[iSensorNumber]             !== undefined ){ client.changeSensorConfig( iSensorNumber, { "type": sArraySensorType[iSensorNumber]                            }, function( err, result ){ if ( err) return err; }); };         //Read-Only       
-//exports.setUniqueid = function (         iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 0:; result=true;default:if (!result) break;                                                  if ( sArraySensorUniqueId[iSensorNumber]         !== undefined ){ client.changeSensorConfig( iSensorNumber, { "uniqueid": sArraySensorUniqueId[iSensorNumber]                    }, function( err, result ){ if ( err) return err; }); };         //Read-Only       
-//exports.setRecycle = function (          iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 2:;case 9:;case 10:;case 11:; result=true;default:if (!result) break;                        if ( bArraySensorRecycle[iSensorNumber]          !== undefined ){ client.changeSensorConfig( iSensorNumber, { "recycle": bArraySensorRecycle[iSensorNumber]                      }, function( err, result ){ if ( err) return err; }); }; };      //Read-Only       
-//exports.setButtonevent = function (      iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 5:; result=true;default:if (!result) break;                                                  if ( iArraySensorButtonEvent[iSensorNumber]      !== undefined ){ client.changeSensorConfig( iSensorNumber, { "buttonevent": iArraySensorButtonEvent[iSensorNumber]              }, function( err, result ){ if ( err) return err; }); }; };      //Read-Only Config
-//exports.setLightLevel = function (       iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 8:; result=true;default:if (!result) break;                                                  if ( iArraySensorLightLevel[iSensorNumber]       !== undefined ){ client.changeSensorConfig( iSensorNumber, { "lightlevel": iArraySensorLightLevel[iSensorNumber]                }, function( err, result ){ if ( err) return err; }); }; };      //Read-Only Config
-//exports.setDark = function (             iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 8:; result=true;default:if (!result) break;                                                  if ( bArraySensorDark[iSensorNumber]             !== undefined ){ client.changeSensorConfig( iSensorNumber, { "dark": bArraySensorDark[iSensorNumber]                            }, function( err, result ){ if ( err) return err; }); }; };      //Read-Only Config
-//exports.setDaylight = function (         iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 8:; result=true;default:if (!result) break;                                                  if ( bArraySensorDaylight[iSensorNumber]         !== undefined ){ client.changeSensorConfig( iSensorNumber, { "daylight": bArraySensorDaylight[iSensorNumber]                    }, function( err, result ){ if ( err) return err; }); }; };      //Read-Only Config
-  exports.setStatus = function (           iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 2:;case 9:;result=true;default:if (!result) break;                                           if ( iArraySensorStatus[iSensorNumber]           !== undefined ){ client.changeSensorState(  iSensorNumber, { "status": iArraySensorStatus[iSensorNumber]                        }, function( err, result ){ if ( err) return err; }); }; };      //Enabled State   
-//exports.setLastupdated = function (      iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 0:; result=true;default:if (!result) break;                                                  if ( sArraySensorLastupdated[iSensorNumber]      !== undefined ){ client.changeSensorConfig( iSensorNumber, { "lastupdated": sArraySensorLastupdated[iSensorNumber]              }, function( err, result ){ if ( err) return err; }); }; };      //Read-Only Config
-//exports.setPresence = function (         iSensorNumber, Value )  result = false; switch (iSensorNumber) {  case 7:;case 10:; case 11:; result=true;default:if (!result) break;                              if ( bArraySensorPresence[iSensorNumber]         !== undefined ){ client.changeSensorConfig( iSensorNumber, { "presence": bArraySensorPresence[iSensorNumber]                    }, function( err, result ){ if ( err) return err; }); }; };      //Read-Only Config
-//exports.setTemperature = function (      iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 6:; result=true;default:if (!result) break;                                                  if ( iArraySensorTemperature[iSensorNumber]      !== undefined ){ client.changeSensorConfig( iSensorNumber, { "temperature": iArraySensorTemperature[iSensorNumber]              }, function( err, result ){ if ( err) return err; }); }; };      //Read-Only Config
-  exports.setOn = function (               iSensorNumber, Value )                                                                                                                                             if ( bArraySensorOn[iSensorNumber]               !== undefined ){ client.changeSensorState(  iSensorNumber, { "on": bArraySensorOn[iSensorNumber]                                }, function( err, result ){ if ( err) return err; }); ;}         //Enabled State   
-  exports.setBattery = function (          iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 2:;case 6:;case 7:;case 8:;result=true;default:if (!result) break;                           if ( iArraySensorBattery[iSensorNumber]          !== undefined ){ client.changeSensorConfig( iSensorNumber, { "battery": iArraySensorBattery[iSensorNumber]                      }, function( err, result ){ if ( err) return err; }); ;} };      //Enabled State   
-//exports.setConfigured = function (       iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 1:;result=true;default:if (!result) break;                                                   if ( bArraySensorConfigured[iSensorNumber]       !== undefined ){ client.changeSensorState(  iSensorNumber, { "configured": bArraySensorConfigured[iSensorNumber]                }, function( err, result ){ if ( err) return err; }); }; };      //Read-Only state 
-//exports.setReachable = function (        iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 2:;case 6:;case 7:;case 8:;case 9:;case 10:;case 11:;result=true;default:if (!result) break; if ( bArraySensorReachable[iSensorNumber]        !== undefined ){ client.changeSensorState(  iSensorNumber, { "reachable": bArraySensorReachable[iSensorNumber]                  }, function( err, result ){ if ( err) return err; }); }; };      //Read-Only state 
-  exports.setAlert = function (            iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 6:;case 7:;case 8:;result=true;default:if (!result) break;                                   if ( sArraySensorAlert[iSensorNumber]            !== undefined ){ client.changeSensorConfig( iSensorNumber, { "alert": sArraySensorAlert[iSensorNumber]                          }, function( err, result ){ if ( err) return err; }); }; };      //Enabled State   
-  exports.setTholdDark = function (        iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 8:;result=true;default:if (!result) break;                                                   if ( iArraySensorTholdDark[iSensorNumber]        !== undefined ){ client.changeSensorConfig( iSensorNumber, { "tholddark": iArraySensorTholdDark[iSensorNumber]                  }, function( err, result ){ if ( err) return err; }); }; };      //Enabled State   
-  exports.setTholdOffset = function (      iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 8:;result=true;default:if (!result) break;                                                   if ( iArraySensorTholdOffset[iSensorNumber]      !== undefined ){ client.changeSensorConfig( iSensorNumber, { "tholdoffset": iArraySensorTholdOffset[iSensorNumber]              }, function( err, result ){ if ( err) return err; }); }; };      //Enabled State   
-  exports.setLedindication = function (    iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 6:;case 7:;case 8:;result=true;default:if (!result) break;                                   if ( bArraySensorLedindication[iSensorNumber]    !== undefined ){ client.changeSensorConfig( iSensorNumber, { "ledindication": bArraySensorLedindication[iSensorNumber]          }, function( err, result ){ if ( err) return err; }); }; };      //Enabled State   
-  exports.setUsertest = function (         iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 6:;case 7:;case 8:;result=true;default:if (!result) break;                                   if ( bArraySensorUsertest[iSensorNumber]         !== undefined ){ client.changeSensorConfig( iSensorNumber, { "usertest": bArraySensorUsertest[iSensorNumber]                    }, function( err, result ){ if ( err) return err; }); }; };      //Enabled State   
-  exports.setSensitivity = function (      iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 7:;result=true;default:if (!result) break;                                                   if ( iArraySensorSensitivity[iSensorNumber]      !== undefined ){ client.changeSensorConfig( iSensorNumber, { "sensitivity": iArraySensorSensitivity[iSensorNumber]              }, function( err, result ){ if ( err) return err; }); }; };      //Enabled State   
-//exports.setSensitivitymax = function (   iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 7:;result=true;default:if (!result) break;                                                   if ( iArraySensorSensitivityMax[iSensorNumber]   !== undefined ){ client.changeSensorConfig( iSensorNumber, { "sensitivitymax": iArraySensorSensitivityMax[iSensorNumber]        }, function( err, result ){ if ( err) return err; }); }; };      //Read-Only state 
-  exports.setSunsetoffset = function (     iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 1:;result=true;default:if (!result) break;                                                   if ( iArraySensorSunriseoffset[iSensorNumber]    !== undefined ){ client.changeSensorConfig( iSensorNumber, { "sunriseoffset": iArraySensorSunriseoffset[iSensorNumber]          }, function( err, result ){ if ( err) return err; }); }; };      //Enabled State   
-  exports.setUnriseoffset = function (     iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 1:;result=true;default:if (!result) break;                                                   if ( iArraySensorSunsetoffset[iSensorNumber]     !== undefined ){ client.changeSensorConfig( iSensorNumber, { "sunsetoffset": iArraySensorSunsetoffset[iSensorNumber]            }, function( err, result ){ if ( err) return err; }); }; };      //Enabled State   
-  exports.setPending = function (          iSensorNumber, Value )  result = false; switch (iSensorNumber) { case 6:;case 7:;case 8:;result=true;default:if (!result) break;                                   if ( sArraySensorPending[iSensorNumber]          !== undefined ){ client.changeSensorConfig( iSensorNumber, { "pending": sArraySensorPending[iSensorNumber]                      }, function( err, result ){ if ( err) return err; }); }; };      //Enabled State   
+
+
+
 
 
 
@@ -268,6 +254,7 @@ exports.loadInfo = function(iSensorNumber){
 
 };
 
+
 /** loadInfo All**/
 //loads all variables from all sensors from disk
 // Example: sensor.loadInfoAll()
@@ -283,6 +270,7 @@ exports.loadInfoAll = function(){
     setTimeout(loadInfoAllDo, 10);
   }
 }
+
 
 /** saveInfo **/
 // saves all variables from 1 sensor to disk
