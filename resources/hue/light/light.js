@@ -16,6 +16,7 @@ debug = false;
 
 /** getInfo **/
 //get all attributes for 1 light from hue to script-variables
+//Example: light.getInfo(iLightNumber, Value)
 //###############################################################################################################################################################################
 exports.getInfo = function( iLightNumber,sValue){
   client.getLight( iLightNumber, function( err, result ){ 
@@ -44,13 +45,13 @@ exports.getInfo = function( iLightNumber,sValue){
     if ( typeof result.state.alert !== undefined        ){ sArrayLightAlert[iLightNumber] = result.state.alert;                   };  //light.getAlert( iLightNumber );    
     if ( typeof result.state.colormode !== undefined    ){ sArrayLightColorMode[iLightNumber] = result.state.colormode;           };  //light.getColormode( iLightNumber );
     if ( typeof result.state.reachable !== undefined    ){ bArrayLightReachable[iLightNumber] = result.state.reachable;           };  //light.getReachable( iLightNumber );
-
   });
-}
+};
 
 
 /** getInfo - ALL**/
 //get all attributes for all lights from hue to script-variables
+// Example: light.getInfoAll()
 //###############################################################################################################################################################################
 exports.getInfoAll = function(){
   //process.stdout.write('\n' + " Fetch Light Info...");
@@ -67,8 +68,9 @@ exports.getInfoAll = function(){
 
 /** setInfo **/
 //sets all attributes from 1 light from script-variables to hue
+// Example: light.setInfo( iLightNumber,sValue )
 //###############################################################################################################################################################################
-exports.setInfo = function( iLightNumber,sValue){
+exports.setInfo = function( iLightNumber,sValue ){
   client.setLight( iLightNumber, function( err, result ){
   
     if ( err || result === undefined || result.state === undefined ){ return err;}
@@ -94,6 +96,7 @@ exports.setInfo = function( iLightNumber,sValue){
 
 /** setInfo - ALL**/
 //sets all attributes for all lights from script-variables to hue
+// Example: light.setInfoAll()
 //###############################################################################################################################################################################
 exports.setInfoAll = function(){
   //process.stdout.write('\n' + " Push Light Info...");
@@ -110,6 +113,8 @@ exports.setInfoAll = function(){
 
 /** getValue **/
 //get attribute from a single light
+// Example: light.getManufacturerName(1, console.log)
+//          light.getManufacturerName(1, output)
 //###############################################################################################################################################################################
 exports.getManufacturerName = function (iLightNumber, callback ){ client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.manufacturername === undefined      ){ return err;} callback(result.manufacturername      ) } )}
 exports.getProductName = function (iLightNumber, callback ){      client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.productname === undefined           ){ return err;} callback(result.productname           ) } )}
@@ -135,6 +140,7 @@ exports.getTransisitonTime = function (iLightNumber, callback ){  client.get('/l
 
 /** setValue **/
 //set attribute for a single light
+// Example: light.getManufacturerName(iLightNumber, Value)
 //###############################################################################################################################################################################
 exports.setOn = function( iLightNumber,bValue){             client.setLightState( iLightNumber, { "on": bValue },                    function( err, result ){ if ( err ) return err; }); };     // true/false
 exports.setOff = function( iLightNumber ){                  client.setLightState( iLightNumber, { "on": false },                     function( err, result ){ if ( err ) return err; }); };     // none                          
@@ -161,8 +167,9 @@ exports.setReachable = function( iLightNumber,bValue){      client.setLightState
 exports.setTransitionTime = function( iLightNumber,iValue){ client.setLightState( iLightNumber, { "transitiontime": iValue },        function( err, result ){ if ( err ) return err; }); };     // a multiple of 100 milliseconds, e.g. 4 means 400ms
 
 
-/** loadValue **/
+/** loadInfo **/
 //load variables from 1 light from disk
+// Example: light.loadInfo(iLightNumber)
 //###############################################################################################################################################################################
 exports.loadInfo = function(iLightNumber){
   //if (!fs.existsSync(pathhuelightvalues + iLightNumber + "/state"))
@@ -194,6 +201,7 @@ exports.loadInfo = function(iLightNumber){
 
 /** loadInfo All**/
 //loads all variables from all lights from disk
+// Example: light.loadInfoAll()
 //###############################################################################################################################################################################
 exports.loadInfoAll = function(){
   //process.stdout.write('\n' + " Push Light Info...");
@@ -208,9 +216,9 @@ exports.loadInfoAll = function(){
 }
 
 
-/** saveValue **/
+/** saveInfo **/
 //saves all variables from 1 light to disk
-// Example: light.getManufacturerName(1, console.log)
+// Example: light.saveInfo(iLightNumber)
 //###############################################################################################################################################################################
 exports.saveInfo = function(iLightNumber){
 
@@ -241,6 +249,8 @@ exports.saveInfo = function(iLightNumber){
 
 /** setInfo - ALL**/
 //saves all variables from all lights to disk
+// Example: light.saveInfoAll()
+//###############################################################################################################################################################################
 exports.saveInfoAll = function(){
   //process.stdout.write('\n' + " Fetch Light Info...");
   var x = 0;
@@ -252,4 +262,3 @@ exports.saveInfoAll = function(){
     setTimeout(saveInfoAllDo, 10);
   }
 }
-
