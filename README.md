@@ -10,7 +10,7 @@ Just some home project... :)
 
 ## Raspberry Pi
 
-- `add later some **content...**
+- `add later some **content...**`
 
 
 ## HK avr171s
@@ -19,11 +19,13 @@ Just some home project... :)
 
 # Test
 ## Test
-### Test
-#### Test
 
-Some other test:
+Maybe add a link [GitHub](https://github.com/dannyvanlierop/HomeAutomation)
 
-  Test
-  Test
+    component_name {
+        name            instance_name
+        settingA        valueA
+        settingB        valueB
+    }
 
+    
