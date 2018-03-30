@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+http = require('http');
 
 function VariablesDefault(){
   
@@ -39,9 +40,11 @@ var myInit = function() {
     light.loadInfoAll();
   }
 
-  if ( ( counter % 10 ) == 0 ){
-    //light.setEffect(2, 'colorloop');
-  }
+  if ( ( counter % 20 ) == 0 ){
+
+    http.get('http://192.168.0.214/HKAPI/doVolumeDown.php', (resp) => { var data = ''; resp.on('data', (chunk) => { }); resp.on('end', () => { }); }).on("error", (err) => { }); 
+    
+  };
 
   setTimeout(myInit, 100);
 };  setTimeout(myInit, 2000);

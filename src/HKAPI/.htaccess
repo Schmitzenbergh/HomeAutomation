@@ -1,0 +1,5 @@
+#Include /etc/httpd/sites-enabled/*.conf
+
+Options +Indexes
+
+
