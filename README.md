@@ -22,10 +22,19 @@ Just some home project... :)
 
 Maybe add a link [GitHub](https://github.com/dannyvanlierop/HomeAutomation)
 
-    component_name {
-        name            instance_name
-        settingA        valueA
-        settingB        valueB
+    test {
+
     }
 
+    {
+
+    }
+
+    
+    
+    
+    dsfsadfasdf
+    asdfasdfasdf
+    asdfasdfasdf
+    
     
