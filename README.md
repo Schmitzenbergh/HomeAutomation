@@ -26,9 +26,8 @@ Maybe add a link [GitHub](https://github.com/dannyvanlierop/HomeAutomation)
 
     }
 
-    {
 
-    }
+test
 
     
     
