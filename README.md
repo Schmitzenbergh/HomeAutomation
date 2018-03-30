@@ -1,36 +1,31 @@
 # HomeAutomation
+    
+Just some home project... :)
 
-    
-    Just some home project... :)
-    
-    
+
 ## Philips Hue
 
-    - add later some content...
-    
-    
-    
-    
+- Bridges
+- Lights
+- Sensors
+
+
 ## Raspberry Pi
 
-  - add later some `**content...**`
-  
-  
-  
-  
-## HK avr171s
+- Ledstrip
 
-    - add later some `content`...
-    
-    
-    
-    
+
+## Harman Kardon
+
+- avr171s
+
+
 ## Test
 
     TextBlock
     
-    Maybe add a link [GitHub](https://github.com/dannyvanlierop/HomeAutomation)
-    
-    
-
-
+[Link](https://github.com/dannyvanlierop/HomeAutomation)
+`***content...***`    
+`**content...**`
+`*content...*`
+`content`...
