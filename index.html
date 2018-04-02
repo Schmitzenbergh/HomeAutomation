@@ -1,0 +1,86 @@
+<!DOCTYPE HTMT>
+<html>
+	<head>
+    <title>TestScriptPagina</title>
+    <script src="default.js"></script>
+    <script type="text/javascript">
+      var counter = 0;
+      var xReturnValue="empty";  
+      setInterval(clientGetUpdate, 1000);
+
+    </script>
+
+    <meta charset="UTF-8">
+	</head>
+	<body>
+    <p>test1: Random <a id="demo1">Value</a></p>
+    <p>test2: counter <a id="demo2">Value</a></p>
+    <p>test3: <a id="demo3">Value</a></p>
+    <p>test4: <a id="demo4">Value</a></p>
+    <p>test5: <a id="demo5">Value</a></p>
+    <p>test6: <a id="demo6">Value</a></p>
+  </body>
+</html>
+<!--
+  <p>Light 1</p>  <span id="Light1">0</span>
+  <p>Light 2</p>  <span id="Light2">0</span>
+  <p>Light 3</p>  <span id="Light3">0</span>
+  <p>Light 4</p>  <span id="Light4">0</span>
+  <p>Light 5</p>  <span id="Light5">0</span>
+  <p>Light 6</p>  <span id="Light6">0</span>
+
+  <h1>{{ counter }} </h1>
+  <h1><%= counter %></h1>
+
+  <h1>Output1</h1>	<button onClick="myFunction()">Go</button> <p id="demo"></p>
+		<h1>Output2</h1>	<button onClick="getLightValue()">Go</button><p id="iValueRed"></p><p id="iValueGreen"></p><p id="iValueBlue"></p>
+		
+		<h1>Colors</h1>
+
+
+		<p>Red: <button onclick="RedDecrease()">-</button><button onclick="RedIncrease()">+</button>
+		<span id="Red">:</span></p>
+		<p>Green: <button onclick="GreenDecrease()">-</button><button onclick="GreenIncrease()">+</button>
+		<span id="Green">:</span></p>
+		<p>Blue: <button onclick="BlueDecrease()">-</button><button onclick="BlueIncrease()">+</button>
+		<span id="Blue">:</span></p>
+		
+		<script>
+		
+		var d = 1;
+		
+		var Red = 10;
+		var Green = 20;
+		var Blue = 30;
+		
+		var exec = require('child_process').exec;
+		
+		function RedIncrease() {
+		Red++; document.getElementById("Red").innerHTML = Red.toString();
+			};
+		function GreenIncrease() {
+			Green++;
+			document.getElementById("Green").innerHTML = Green.toString();
+			};
+		function BlueIncrease() {
+			Blue++;
+			document.getElementById("Blue").innerHTML = Blue.toString();
+			};
+			
+		function RedDecrease() {
+			Red--;
+			document.getElementById("Red").innerHTML = Red.toString();
+			};
+		function GreenDecrease() {
+			Green--;
+			document.getElementById("Green").innerHTML = Green.toString();
+			};
+		function BlueDecrease() {
+			Blue--;
+			document.getElementById("Blue").innerHTML = Blue.toString();
+			};
+
+		</script>
+		
+  </body>
+-->

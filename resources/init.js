@@ -6,9 +6,11 @@ function VariablesResources(){
   
   pathhue = pathresources + './hue/';
   pathrpi = pathresources + './RPi/';
+  pathavr = pathresources + './avr/';
   
   module.exports = require( pathhue + './init.js');
   module.exports = require( pathrpi + './init.js');
+  //module.exports = require( pathavr + './init.js');
     
 };
 VariablesResources();

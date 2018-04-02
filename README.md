@@ -25,7 +25,11 @@ Just some home project... :)
     TextBlock
     
 [Link](https://github.com/dannyvanlierop/HomeAutomation)
-`***content...***`    
-`**content...**`
-`*content...*`
-`content`...
+
+  `***content...***`    
+
+  `**content...**`
+
+  `*content...*`
+
+  `content...`
