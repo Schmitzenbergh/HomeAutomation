@@ -1,0 +1,2 @@
+  //if ( ( counter % 20 ) == 0 ){ http.get('http://192.168.0.214/HKAPI/doVolumeDown.php', (resp) => { var data = ''; resp.on('data', (chunk) => { }); resp.on('end', () => { }); }).on("error", (err) => { }); };
+  //if ( ( counter % 20 ) == 0 ){ exec("/usr/bin/php /root/scripts/HomeAutomation/resources/avr/control/doSelectSourceMHL.php"); };

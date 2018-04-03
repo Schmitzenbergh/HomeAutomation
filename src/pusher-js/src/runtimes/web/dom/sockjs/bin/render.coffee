@@ -104,7 +104,7 @@ main = ->
     content = for filename in filenames
         render(filename, '', options)
     content.push('\n')
-    process.stdout.write(
+    //process.stdout.write(
         stringify_unicode(array_flatten(content).join('')),
         'utf8')
 

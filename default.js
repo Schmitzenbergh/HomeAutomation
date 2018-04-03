@@ -1,180 +1,178 @@
 
-function VariablesDefault(){
-        
-  process.stdout.write( '\n' + "initialize HomeAutomation");
-  
-  exec = require('child_process').exec;
 
-  pathroot = '/root/scripts/HomeAutomation/';
-  pathconfig = pathroot + './config/';
-  pathresources = pathroot + './resources/';
-  pathlib = pathroot + './lib/';
-  pathsrc = pathroot + './src/';
-  
-  module.exports = require( pathconfig + './init.js');
-  module.exports = require( pathlib + './init.js');
-  module.exports = require( pathresources + './init.js');
-  module.exports = require( pathsrc + './init.js');
-
-  process.stdout.write( '\n' + " initialize Done!.. " + '\n' );
-
-  //index = require( './default.js' ); 
-
-  
-
-};
-module.exports = VariablesDefault();
-
-//global.retValueInit = function(){
-//  console.log("Init: Length:" + retValueContent.length + " Content:" + retValueContent);
-//
-//  for (i = 0; i < retValueContent.length; i++){
-//      console.log( i + " " + retValueContent[i]);
-//  };
-//  console.log("End")
-//  for (i = 0; i < retValueContent.length; i++){
-//    if ( retValueContent.length === undefined){
-//      console.log("Init: Found:" +  i);
-//      return i;
-//    }
-//  };
-//
-//  return retValueContent.length;
-//}
-//
-//global.retValueSet = function(loc, input){
-//  console.log("Set:" + " loc:" + loc + " Input:" + input);
-//  if (input !== null && input !== undefined){   //Set from input
-//    retValueContent[loc] = input;               //saveResult to an global var
-//  }
-//}
-//
-//global.retValueGet = function(loc){
-//  var tmpVar = retValueContent[loc];           //getResult from the global var
-//  retValueContent[loc] = null;                 //resetResult
-//  console.log("Get:" + loc + " tmpVar:" + tmpVar);
-//  return tmpVar;                               //returnResult
-//}
+counter = 1;
 
 
+pathroot = '/root/scripts/HomeAutomation/';
+    
+    pathconfig = pathroot + './config/';
 
+    pathresources = pathroot + './resources/';
+    
+        pathavr = pathresources + './avr/';
 
-//    console.log("New: " + retValueInit());
-//    retValueContent[retValueContent.length] = "test";
+        pathhue = pathresources + './hue/';
+            
+            pathhuebridge = pathhue + './bridge/';                 //  pathbridge = pathhue + './bridge/';
+            pathhuebridgevalues = pathhuebridge + './_values/';
 
-//
-////Everything runs from this function
-//
+            pathhuesensor = pathhue + './sensor/';                 //  pathsensor = pathhue + './sensor/';
+            pathhuesensorvalues = pathhuesensor + './_values/';
 
-////var myInit = function() {
-function myInit() {
-       console.log("       " + counter++ + " " );
+            pathhuelight = pathhue + './light/';                   //  pathlight = pathhue + './light/';
+            pathhuelightvalues = pathhuelight + './_values/';
 
-       if ( counter == 1 || ( counter % 20 ) == 0 ){
-         light.getInfoAll();
-         sensor.getInfoAll();
-     
-       }
-       
-       if ( ( counter % 100 ) == 1 ){
-         //light.saveInfoAll();
-         //light.loadInfoAll();
-       }
-     
-       //apt-get updatenode updateif ( ( counter % 20 ) == 0 ){ http.get('http://192.168.0.214/HKAPI/doVolumeDown.php', (resp) => { var data = ''; resp.on('data', (chunk) => { }); resp.on('end', () => { }); }).on("error", (err) => { }); };
-       //if ( ( counter % 20 ) == 0 ){ exec("/usr/bin/php /root/scripts/HomeAutomation/resources/avr/control/doSelectSourceMHL.php"); };
+        pathrpi = pathresources + './RPi/';  
+
+    pathlib = pathroot + './lib/';
+
+    pathsrc = pathroot + './src/';
     
 
-//        getOn = function(iLightNumber){
-//          client.get('/lights/' + iLightNumber + '/', function (err, result) {
-//            if ( err || typeof result === undefined){ return err;}
-//            retValue(result.state.on);
-//          })
-//          return retValue();
-//       }
-        //console.log("Status: " + light.getOn(1));
-        //var NewResult = light.getBri(1);
-        //console.log("NewResult:" + NewResult);
 
-        //console.log("EndResult: " + light.getOn(1));
+ /***************
+  *    Lights    *
+  ***************/
+ iArrayLightConnected = [1, 2, 3, 4, 5, 6];
+  
+ //General attributes 
+ sArrayLightManufacturerName = [''];   //                                                  //if ( typeof sArrayLightManufacturerName[i]     !== undefined){ process.stdout.write(" " + sArrayLightManufacturerName[i] ); };  
+ sArrayLightProductname = [''];        //                                                  //if ( typeof sArrayLightProductname[i]          !== undefined){ process.stdout.write(" " + sArrayLightProductname[i]        ); }; 
+ sArrayLightModelid = [''];            //                                                  //if ( typeof sArrayLightModelid[i]              !== undefined){ process.stdout.write(" " + sArrayLightModelid[i]             ); };
+ sArrayLightName = ['', 'LightName'];  //                                                  //if ( typeof sArrayLightName[i]                 !== undefined){ process.stdout.write(" " + sArrayLightName[i]                ); };
+ sArrayLightSwversion = [''];          //                                                  //if ( typeof sArrayLightSwversion[i]            !== undefined){ process.stdout.write(" " + sArrayLightSwversion[i]           ); };
+ sArrayLightType = [''];               //                                                  //if ( typeof sArrayLightType[i]                 !== undefined){ process.stdout.write(" " + sArrayLightType[i]                ); };
+ sArrayLightUniqueid = [''];           //                                                  //if ( typeof sArrayLightUniqueid[i]             !== undefined){ process.stdout.write(" " + sArrayLightUniqueid[i]            ); };
+ bArrayLightOn = [''];                 // true, false                                      //if ( typeof bArrayLightOn[i]                   !== undefined){ process.stdout.write(" " + bArrayLightOn[i]                ); };
+ bArrayLightReachable = [''];          // true, false                                      //if ( typeof bArrayLightReachable[i]            !== undefined){ process.stdout.write(" " + bArrayLightReachable[i]        ); }; 
+ sArrayLightAlert = [''];              // none, select, lselect                            //if ( typeof sArrayLightAlert[i]                !== undefined){ process.stdout.write(" " + sArrayLightAlert[i]            ); }; 
+ sArrayLightColorMode = [''];          // hs, xy, ct                                       //if ( typeof sArrayLightColorMode[i]            !== undefined){ process.stdout.write(" " + sArrayLightColorMode[i]        ); }; 
+ sArrayLightEffect = [''];             // none, colorloop                                  //if ( typeof sArrayLightEffect[i]               !== undefined){ process.stdout.write(" " + sArrayLightEffect[i]            ); };
+ iArrayLightTransitionTime = [''];     // multiple of 100ms and defaults to 4 (400ms)      //if ( typeof iArrayLightTransitionTime[i]       !== undefined){ process.stdout.write(" " + iArrayLightTransitionTime[i]   ); };
 
-        console.log(light.getOn(1));
-        //light.sometest();
+ 
+ //Color attributes (Currrent)            // Color attributes (New)            // Color attributes (Old)             // xy > ct > hs
+ fArrayLightXyCur = [''];                 fArrayLightXyNew = [''];             fArrayLightXyOld = [''];          // 0.000 - 1.000          //if ( typeof fArrayLightXyCur[i]             !== undefined){ process.stdout.write(" " + fArrayLightXyCur[i]            ); };         
+ fArrayLightXyXCur = [''];                fArrayLightXyXNew = [''];            fArrayLightXyXOld = [''];          // 0.000 - 1.000         //if ( typeof fArrayLightXyXCur[i]            !== undefined){ process.stdout.write(" " + fArrayLightXyXCur[i]            ); };     
+ fArrayLightXyYCur = [''];                fArrayLightXyYNew = [''];            fArrayLightXyYOld = [''];          // 0.000 - 1.000         //if ( typeof fArrayLightXyYCur[i]            !== undefined){ process.stdout.write(" " + fArrayLightXyYCur[i]            ); };     
+ iArrayLightCtCur = [''];                 iArrayLightCtNew = [''];             iArrayLightCtOld = [''];           // 153 - 500             //if ( typeof iArrayLightCtCur[i]             !== undefined){ process.stdout.write(" " + iArrayLightCtCur[i]            ); };     
+ iArrayLightHueCur = [''];                iArrayLightHueNew = [''];            iArrayLightHueOld = [''];          // 0 - 65535             //if ( typeof iArrayLightHueCur[i]            !== undefined){ process.stdout.write(" " + iArrayLightHueCur[i]            ); };     
+ iArrayLightSatCur = [''];                iArrayLightSatNew = [''];            iArrayLightSatOld = [''];          // 0 - 254               //if ( typeof iArrayLightSatCur[i]            !== undefined){ process.stdout.write(" " + iArrayLightSatCur[i]            ); };     
+ iArrayLightBriCur = [''];                iArrayLightBriNew = [''];            iArrayLightBriOld = [''];          // 1-254                 //if ( typeof iArrayLightBriCur[i]            !== undefined){ process.stdout.write(" " + iArrayLightBriCur[i]            ); };     
+ iArrayLightRgbRedCur = [''];             iArrayLightRgbRedNew = [''];         iArrayLightRgbRedOld = [''];       // 0 - 254               //if ( typeof iArrayLightRgbRedCur[i]         !== undefined){ process.stdout.write(" " + iArrayLightRgbRedCur[i]        ); };     
+ iArrayLightRgbGreenCur = [''];           iArrayLightRgbGreenNew = [''];       iArrayLightRgbGreenOld = [''];     // 0 - 254               //if ( typeof iArrayLightRgbGreenCur[i]       !== undefined){ process.stdout.write(" " + iArrayLightRgbGreenCur[i]        ); }; 
+ iArrayLightRgbBlueCur = [''];            iArrayLightRgbBlueNew = [''];        iArrayLightRgbBlueOld = [''];                               //if ( typeof iArrayLightRgbBlueCur[i]        !== undefined){ process.stdout.write(" " + iArrayLightRgbBlueCur[i]        ); };  
 
 
-  setTimeout(myInit, 1000);
+  /***************
+  *    Sensors   *
+  ***************/
+ iArraySensorConnected = [1, 2, 5, 6, 7, 8, 9, 10, 11];        //i++; if ( i == 3 ){ i = 5; } else if ( i == 11 ){ i = 1; } sensor.getInfo(i);
+ 
+ //sensor.getLightLevel(8);
+ //sensor.getTemperature(6);
+ //sensor.getButtonevent(5);
+ //sensor.getLastupdated(5);
+
+ sArraySensorName = [''];                  //if (typeof sArraySensorName[i]               !== undefined){ process.stdout.write(" " + sArraySensorName[i]); };
+ sArraySensorType = [''];                  //if (typeof sArraySensorType[i]               !== undefined){ process.stdout.write(" " + sArraySensorType[i]); };
+ sArraySensorModelId = [''];               //if (typeof sArraySensorModelId[i]            !== undefined){ process.stdout.write(" " + sArraySensorModelId[i]); };
+ sArraySensorManufacturerName = [''];      //if (typeof sArraySensorManufacturerName[i]   !== undefined){ process.stdout.write(" " + sArraySensorManufacturerName[i]); };
+ sArraySensorSwVersion = [''];             //if (typeof sArraySensorSwVersion[i]          !== undefined){ process.stdout.write(" " + sArraySensorSwVersion[i]); };
+ sArraySensorUniqueId = [''];              //if (typeof sArraySensorUniqueId[i]           !== undefined){ process.stdout.write(" " + sArraySensorUniqueId[i]); };
+ bArraySensorRecycle = [''];               //if (typeof bArraySensorRecycle[i]            !== undefined){ process.stdout.write(" " + bArraySensorRecycle[i]); };
+
+ iArraySensorButtonEvent = [''];           //if (typeof iArraySensorButtonEvent[i]       !== undefined){ process.stdout.write(" " + iArraySensorButtonEvent[i]); };
+ iArraySensorLightLevel = [''];            //if (typeof iArraySensorLightLevel[i]        !== undefined){ process.stdout.write(" " + iArraySensorLightLevel[i]); };    
+ bArraySensorDark = [''];                  //if (typeof bArraySensorDark[i]              !== undefined){ process.stdout.write(" " + bArraySensorDark[i]); };  
+ bArraySensorDaylight = [''];              //if (typeof bArraySensorDaylight[i]          !== undefined){ process.stdout.write(" " + bArraySensorDaylight[i]); };  
+ iArraySensorStatus = [''];                //if (typeof iArraySensorStatus[i]            !== undefined){ process.stdout.write(" " + iArraySensorStatus[i]); };    
+ sArraySensorLastupdated = [''];           //if (typeof sArraySensorLastupdated[i]       !== undefined){ process.stdout.write(" " + sArraySensorLastupdated[i]); };  
+ bArraySensorPresence = [''];              //if (typeof bArraySensorPresence[i]          !== undefined){ process.stdout.write(" " + bArraySensorPresence[i]); };  
+ iArraySensorTemperature = [''];           //if (typeof iArraySensorTemperature[i]       !== undefined){ process.stdout.write(" " + iArraySensorTemperature[i]); };  
+
+ bArraySensorOn = [''];                    //if (typeof bArraySensorOn[i]                !== undefined){ process.stdout.write(" " + bArraySensorOn[i]); };
+ iArraySensorBattery = [''];               //if (typeof iArraySensorBattery[i]           !== undefined){ process.stdout.write(" " + iArraySensorBattery[i]); };
+ bArraySensorConfigured = [''];            //if (typeof bArraySensorConfigured[i]        !== undefined){ process.stdout.write(" " + bArraySensorConfigured[i]); };
+ bArraySensorReachable = [''];             //if (typeof bArraySensorReachable[i]         !== undefined){ process.stdout.write(" " + bArraySensorReachable[i]); };
+ sArraySensorAlert = [''];                 //if (typeof sArraySensorAlert[i]             !== undefined){ process.stdout.write(" " + sArraySensorAlert[i]); };
+ iArraySensorTholdDark = [''];             //if (typeof iArraySensorTholdOffset[i]       !== undefined){ process.stdout.write(" " + iArraySensorTholdOffset[i]); };
+ iArraySensorTholdOffset = [''];           //if (typeof iArraySensorTholdOffset[i]       !== undefined){ process.stdout.write(" " + iArraySensorTholdOffset[i]); };
+ iArraySensorStatus = [''];                //if (typeof iArraySensorStatus[i]            !== undefined){ process.stdout.write(" " + iArraySensorStatus[i]); };
+ iArraySensorTholdOffset = [''];           //if (typeof iArraySensorTholdOffset[i]       !== undefined){ process.stdout.write(" " + iArraySensorTholdOffset[i]); };
+ bArraySensorLedindication = [''];         //if (typeof bArraySensorLedindication[i]     !== undefined){ process.stdout.write(" " + bArraySensorLedindication[i]); };
+ bArraySensorUsertest = [''];              //if (typeof bArraySensorUsertest[i]          !== undefined){ process.stdout.write(" " + bArraySensorUsertest[i]); };
+ iArraySensorSensitivity = [''];           //if (typeof iArraySensorSensitivity[i]       !== undefined){ process.stdout.write(" " + iArraySensorSensitivity[i]); };
+ iArraySensorSensitivityMax = [''];        //if (typeof iArraySensorSensitivityMax[i]    !== undefined){ process.stdout.write(" " + iArraySensorSensitivityMax[i]); };
+ iArraySensorSunsetoffset = [''];          //if (typeof iArraySensorSunsetoffset[i]      !== undefined){ process.stdout.write(" " + iArraySensorSunsetoffset[i]); };
+ iArraySensorSunriseoffset = [''];         //if (typeof iArraySensorSunriseoffset[i]     !== undefined){ process.stdout.write(" " + iArraySensorSunriseoffset[i]); };
+ sArraySensorPending = [''];               //if (typeof sArraySensorPending[i]           !== undefined){ process.stdout.write(" " + sArraySensorPending[i]); };    
+
+
+//****************************************************************************************************************************************/
+if (typeof document !== 'undefined'){        // When browser
+//****************************************************************************************************************************************/
+  function clientGetUpdate(){
+
+    document.getElementById("demo1").innerHTML = Math.floor((Math.random() * 10) + 1);
+    document.getElementById("demo2").innerHTML = pathresources;
+    document.getElementById("demo3").innerHTML = pathroot;
+    document.getElementById("demo4").innerHTML = pathconfig;
+    document.getElementById("demo5").innerHTML = pathsrc;
+    document.getElementById("demo6").innerHTML = pathsrc;
+    document.getElementById("demo7").innerHTML = pathsrc;
+    document.getElementById("demo8").innerHTML = pathsrc;
+    document.getElementById("demo9").innerHTML = pathsrc;
+    document.getElementById("demo0").innerHTML = counter++;
+
+  }
+  setInterval(clientGetUpdate, 1000);
+//****************************************************************************************************************************************/  
+} else if (typeof document === 'undefined'){  //When console
+//****************************************************************************************************************************************/
+
+  hue = require('hue-sdk');
+  //hue = require( pathresources + './hue-sdk/lib/hue.js');
+  client = new hue.Hue(require( pathconfig + './.credentials.json' ));
+  fs = require('fs');
+  exec = require('child_process').exec;
+  light = require( pathhuelight + './light.js' );
+  sensor = require( pathhuesensor + './sensor.js');
+
+  setInterval(myInit, 1000);
 };
-setTimeout(myInit, 3000);
+
+function myInit() {
+  console.log("       " + counter++ + " " );
+  
+  if ( counter == 1 || ( counter % 20 ) == 0 ){
+    light.getInfoAll();
+    //sensor.getInfoAll();
+  }
+
+  if ( ( counter % 1000) == 1 ){
+    //light.saveInfoAll();
+    //light.loadInfoAll();
+  }
+
+
+
+   console.log(light.getOn(1));
+   //light.sometest();
+  
+  setTimeout(myInit, 1000);
+  };
+  
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//function sometestfunction(msg){
-//  console.log(msg);
-//}
-
-//function setReturnValue(sValue){
-//  xReturnValue = sValue;
-//  return xReturnValue;
-//};
-//
-//function clientGetUpdate(){
-//  
-//  function doConsolelog(msg){
-//    xReturnValue = msg;
-//    console.log(xReturnValue + "test");
-//    document.getElementById("demo3").innerHTML = xReturnValue;
-//  }
-//  light.getOn(1, console.log)
-//
-//  document.getElementById("demo1").innerHTML = Math.floor((Math.random() * 10) + 1);
-//  document.getElementById("demo2").innerHTML = counter++;
-//  
-//  document.getElementById("demo4").innerHTML = "test";
-//  //document.getElementById("demo5").innerHTML = light.getOn(1);
-//  //console.log(light.getOn2(1) + xReturnValue );
-//  document.getElementById("demo6").innerHTML = "test";
-//  //document.getElementById("demo3").innerHTML = tempvar();
-//  //document.getElementById("demo4").innerHTML = counter++;
-//  //document.getElementById("demo5").innerHTML = counter++;
-//  
-//
-//}
-
+//x = document.getElementById("demo")
+//x.innerHTML = numbers[1];
 
 //console.log = function (d) {
-//  process.stdout.write(d + '\n');
+//process.stdout.write(d + '\n');
 //};
-
-
-
-
 //function updatesPush(iCounterInput){
 //  iCounterOutput = iCounterInput;
 //      //document.getElementById("demo2").innerHTML = iCounterInput;
@@ -187,157 +185,9 @@ setTimeout(myInit, 3000);
 //}
 //
 //
-//window.onload = function(){
-//  // Init globals
-//  parentElementMainTable = document.getElementById('main-table-body');
-//  addOrderBtn = document.getElementById("add-order");
-
-  // Add the onclick function to add rows in table
-  //addOrderBtn.onclick = function(){
-  //    addRow();
-  //}
-//}
-
-
-//function htmlServer(){
-//  var http = require('http');
-//
-//  http.createServer(function (request, response) {
-//      console.log('New connection');
-//     // userCount++;
-//
-//
-//
-//
-//     function present(){
-//      response.writeHead(200, {'Content-Type': 'text/plain'});
-//      response.write('Hello!\n');
-//      response.write('We have had '+counter+' visits!\n');
-//      response.cork();
-//     }
-//     setTimeout(present, 1000);   
-//
-//      
-//     //response.end();
-//
-//  }).listen(8080,'127.0.0.1');
-//
-//  console.log('Server started');
-//};
-//
-//htmlServer();
 
 
 
-/************
-*   HTTP    *
-************/
-//  var http = require('http');
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//  HTTP Properties and Methods
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//  createClient()	Deprecated. Creates a HTTP client
-//  createServer()	Creates an HTTP server
-//  get()	Sets the method to GET, and returns an object containing the user's request
-//  globalAgent	Returns the HTTP Agent
-//  request()	Returns an object containing the user's request
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*************
-*   STREAM   *
-*************/
-//  var stream = require('stream');
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//  ### Readable Stream Properties and Methods
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//  isPaused()	Returns true if the state of  the readable stream is paused, otherwise false
-//  pause()	Pauses the readable stream
-//  pipe()	Turns the readable stream into the specified writable stream
-//  read()	Returns a specified part of the readable stream
-//  resume()	Resumes a paused stream
-//  setEncoding()	Sets the character encoding of the readable stream
-//  unpipe()	Stops turning a readable stream into a writable stream, caused by the pipe() method
-//  unshift()	Pushes some specified data back into the internal buffer
-//  wrap()	Helps reading streams made by older Node.js versions
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//  ### Writable Stream Properties and Methods
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//  cork()	Stops the writable stream and all written data will be buffered in memory
-//  end()	Ends the writable stream
-//  setDefaultEncoding()	Sets the encoding for the writable stream
-//  uncork()	Flushes all data that has been buffered since the cork() method was called
-//  write()	Writes data to the stream
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-//      http.createServer(function(req, res){ }).listen(8888, '127.0.0.1');
-//      response.writeHead(200, {'Content-Type': 'text/plain'});
-//      res.writeHead(200, {'Content-Type': 'text/html'});  
-
-//  res.write('<!doctype html>\n<html lang="en">\n' +  
-//    '\n<meta charset="utf-8">\n<title>Test web page on node.js</title>\n' + 
-//    '<style type="text/css">* {font-family:arial, sans-serif;}</style>\n' + 
-//    '\n\n<h1>Euro 2012 teams</h1>\n' + 
-//    '<div id="content"><p>The teams in Group D for Euro 2012 are:</p><ul><li>England</li><li>France</li><li>Sweden</li><li>Ukraine</li></ul></div>' + 
-//    '\n\n');
-
-//    http://theholmesoffice.com/how-to-build-a-simple-webpage-in-node-js/  
-
-
-
-
-//       function someOtherFucntion(){
-//          function getCallback(){
-//            tmpVar = callbackVar;
-//            if (callbackVar !== null){
-//              resetCallback();
-//              return tmpVar;
-//            }
-//          }
-//
-//          function setCallback(data){
-//            callbackVar = data;
-//          }
-//
-//          function resetCallback(){
-//            callbackVar = null;
-//          }
-//          client.get('/lights/1/', function (err, result) {
-//            if ( err || typeof result === undefined){ return err;}
-//            setCallback(result.state.on);
-//          })
-//          return getCallback();
-//       }
-//
-//      console.log(someOtherFucntion());
-
-
-
-//        function getResult(){
-//          if (callbackVar !== null && callbackVar !== undefined){
-//            tmpVar = callbackVar;
-//            callbackVar = null;
-//            return tmpVar;
-//          }
-//        }
-//
-//        function saveResult(data){
-//          callbackVar = data;
-//        }
-//
-//        function someOtherFucntion(){
-//
-//          client.get('/lights/1/', function (err, result) {
-//            if ( err || typeof result === undefined){ return err;}
-//            saveResult(result.state.on);//setCall
-//          })
-//          return getResult();
-//       }
 
 
 
