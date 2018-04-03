@@ -1,132 +1,139 @@
-
-
 counter = 1;
 
+/************
+*   Paths   *
+************/
 
+//Root
 pathroot = '/root/scripts/HomeAutomation/';
     
+    //Config
     pathconfig = pathroot + './config/';
 
+    //Resources
     pathresources = pathroot + './resources/';
     
+        //Avr
         pathavr = pathresources + './avr/';
 
+        //Hue
         pathhue = pathresources + './hue/';
             
+            //Bridge
             pathhuebridge = pathhue + './bridge/';                 //  pathbridge = pathhue + './bridge/';
             pathhuebridgevalues = pathhuebridge + './_values/';
 
+            //Sensor
             pathhuesensor = pathhue + './sensor/';                 //  pathsensor = pathhue + './sensor/';
             pathhuesensorvalues = pathhuesensor + './_values/';
 
+            //Light
             pathhuelight = pathhue + './light/';                   //  pathlight = pathhue + './light/';
             pathhuelightvalues = pathhuelight + './_values/';
 
-        pathrpi = pathresources + './RPi/';  
+        //Rpi
+        pathrpi = pathresources + './RPi/';
+        
+            //Ledstrip
+            pathledstrip = pathrpi + './ledstrip/';
 
+    //Lib
     pathlib = pathroot + './lib/';
 
-    pathsrc = pathroot + './src/';
-    
+    //Src
+    pathsrc = pathroot + './src/';    
 
 
- /***************
-  *    Lights    *
-  ***************/
- iArrayLightConnected = [1, 2, 3, 4, 5, 6];
+/***************
+*    Lights    *
+***************/
+
+  iArrayLightConnected = [1, 2, 3, 4, 5, 6];
   
- //General attributes 
- sArrayLightManufacturerName = [''];   //                                                  //if ( typeof sArrayLightManufacturerName[i]     !== undefined){ process.stdout.write(" " + sArrayLightManufacturerName[i] ); };  
- sArrayLightProductname = [''];        //                                                  //if ( typeof sArrayLightProductname[i]          !== undefined){ process.stdout.write(" " + sArrayLightProductname[i]        ); }; 
- sArrayLightModelid = [''];            //                                                  //if ( typeof sArrayLightModelid[i]              !== undefined){ process.stdout.write(" " + sArrayLightModelid[i]             ); };
- sArrayLightName = ['', 'LightName'];  //                                                  //if ( typeof sArrayLightName[i]                 !== undefined){ process.stdout.write(" " + sArrayLightName[i]                ); };
- sArrayLightSwversion = [''];          //                                                  //if ( typeof sArrayLightSwversion[i]            !== undefined){ process.stdout.write(" " + sArrayLightSwversion[i]           ); };
- sArrayLightType = [''];               //                                                  //if ( typeof sArrayLightType[i]                 !== undefined){ process.stdout.write(" " + sArrayLightType[i]                ); };
- sArrayLightUniqueid = [''];           //                                                  //if ( typeof sArrayLightUniqueid[i]             !== undefined){ process.stdout.write(" " + sArrayLightUniqueid[i]            ); };
- bArrayLightOn = [''];                 // true, false                                      //if ( typeof bArrayLightOn[i]                   !== undefined){ process.stdout.write(" " + bArrayLightOn[i]                ); };
- bArrayLightReachable = [''];          // true, false                                      //if ( typeof bArrayLightReachable[i]            !== undefined){ process.stdout.write(" " + bArrayLightReachable[i]        ); }; 
- sArrayLightAlert = [''];              // none, select, lselect                            //if ( typeof sArrayLightAlert[i]                !== undefined){ process.stdout.write(" " + sArrayLightAlert[i]            ); }; 
- sArrayLightColorMode = [''];          // hs, xy, ct                                       //if ( typeof sArrayLightColorMode[i]            !== undefined){ process.stdout.write(" " + sArrayLightColorMode[i]        ); }; 
- sArrayLightEffect = [''];             // none, colorloop                                  //if ( typeof sArrayLightEffect[i]               !== undefined){ process.stdout.write(" " + sArrayLightEffect[i]            ); };
- iArrayLightTransitionTime = [''];     // multiple of 100ms and defaults to 4 (400ms)      //if ( typeof iArrayLightTransitionTime[i]       !== undefined){ process.stdout.write(" " + iArrayLightTransitionTime[i]   ); };
+  //General attributes 
+  sArrayLightManufacturerName = [''];                                                                                                                                                                                                                                           
+  sArrayLightProductname = [''];                                                              //Color attributes (Currrent)                 // Color attributes (New)                     // Color attributes (Old)         // xy > ct > hs                                                                                                                  
+  sArrayLightModelid = [''];                                                                  fArrayLightXyCur = [''];                      fArrayLightXyNew = [''];                      fArrayLightXyOld = [''];          // 0.000 - 1.000                                                                                                                   
+  sArrayLightName = ['', 'LightName'];                                                        fArrayLightXyXCur = [''];                     fArrayLightXyXNew = [''];                     fArrayLightXyXOld = [''];         // 0.000 - 1.000                                                                                                                   
+  sArrayLightSwversion = [''];                                                                fArrayLightXyYCur = [''];                     fArrayLightXyYNew = [''];                     fArrayLightXyYOld = [''];         // 0.000 - 1.000                                                                                                                   
+  sArrayLightType = [''];                                                                     iArrayLightCtCur = [''];                      iArrayLightCtNew = [''];                      iArrayLightCtOld = [''];          // 153 - 500                                                                                                                       
+  sArrayLightUniqueid = [''];                                                                 iArrayLightHueCur = [''];                     iArrayLightHueNew = [''];                     iArrayLightHueOld = [''];         // 0 - 65535                                                                                                                       
+  bArrayLightOn = [''];                 /* true, false                                 */     iArrayLightSatCur = [''];                     iArrayLightSatNew = [''];                     iArrayLightSatOld = [''];         // 0 - 254                                                                                                                         
+  bArrayLightReachable = [''];          /* true, false                                 */     iArrayLightBriCur = [''];                     iArrayLightBriNew = [''];                     iArrayLightBriOld = [''];         // 1-254                                                                                                                           
+  sArrayLightAlert = [''];              /* none, select, lselect                       */     iArrayLightRgbRedCur = [''];                  iArrayLightRgbRedNew = [''];                  iArrayLightRgbRedOld = [''];      // 0 - 254                                                                                                                         
+  sArrayLightColorMode = [''];          /* hs, xy, ct                                  */     iArrayLightRgbGreenCur = [''];                iArrayLightRgbGreenNew = [''];                iArrayLightRgbGreenOld = [''];    // 0 - 254                                                    
+  sArrayLightEffect = [''];             /* none, colorloop                             */     iArrayLightRgbBlueCur = [''];                 iArrayLightRgbBlueNew = [''];                 iArrayLightRgbBlueOld = [''];                                                                   
+  iArrayLightTransitionTime = [''];     /* multiple of 100ms and defaults to 4 (400ms) */   
+     
+/***************
+*    Sensors   *
+***************/
 
- 
- //Color attributes (Currrent)            // Color attributes (New)            // Color attributes (Old)             // xy > ct > hs
- fArrayLightXyCur = [''];                 fArrayLightXyNew = [''];             fArrayLightXyOld = [''];          // 0.000 - 1.000          //if ( typeof fArrayLightXyCur[i]             !== undefined){ process.stdout.write(" " + fArrayLightXyCur[i]            ); };         
- fArrayLightXyXCur = [''];                fArrayLightXyXNew = [''];            fArrayLightXyXOld = [''];          // 0.000 - 1.000         //if ( typeof fArrayLightXyXCur[i]            !== undefined){ process.stdout.write(" " + fArrayLightXyXCur[i]            ); };     
- fArrayLightXyYCur = [''];                fArrayLightXyYNew = [''];            fArrayLightXyYOld = [''];          // 0.000 - 1.000         //if ( typeof fArrayLightXyYCur[i]            !== undefined){ process.stdout.write(" " + fArrayLightXyYCur[i]            ); };     
- iArrayLightCtCur = [''];                 iArrayLightCtNew = [''];             iArrayLightCtOld = [''];           // 153 - 500             //if ( typeof iArrayLightCtCur[i]             !== undefined){ process.stdout.write(" " + iArrayLightCtCur[i]            ); };     
- iArrayLightHueCur = [''];                iArrayLightHueNew = [''];            iArrayLightHueOld = [''];          // 0 - 65535             //if ( typeof iArrayLightHueCur[i]            !== undefined){ process.stdout.write(" " + iArrayLightHueCur[i]            ); };     
- iArrayLightSatCur = [''];                iArrayLightSatNew = [''];            iArrayLightSatOld = [''];          // 0 - 254               //if ( typeof iArrayLightSatCur[i]            !== undefined){ process.stdout.write(" " + iArrayLightSatCur[i]            ); };     
- iArrayLightBriCur = [''];                iArrayLightBriNew = [''];            iArrayLightBriOld = [''];          // 1-254                 //if ( typeof iArrayLightBriCur[i]            !== undefined){ process.stdout.write(" " + iArrayLightBriCur[i]            ); };     
- iArrayLightRgbRedCur = [''];             iArrayLightRgbRedNew = [''];         iArrayLightRgbRedOld = [''];       // 0 - 254               //if ( typeof iArrayLightRgbRedCur[i]         !== undefined){ process.stdout.write(" " + iArrayLightRgbRedCur[i]        ); };     
- iArrayLightRgbGreenCur = [''];           iArrayLightRgbGreenNew = [''];       iArrayLightRgbGreenOld = [''];     // 0 - 254               //if ( typeof iArrayLightRgbGreenCur[i]       !== undefined){ process.stdout.write(" " + iArrayLightRgbGreenCur[i]        ); }; 
- iArrayLightRgbBlueCur = [''];            iArrayLightRgbBlueNew = [''];        iArrayLightRgbBlueOld = [''];                               //if ( typeof iArrayLightRgbBlueCur[i]        !== undefined){ process.stdout.write(" " + iArrayLightRgbBlueCur[i]        ); };  
+  iArraySensorConnected = [1, 2, 5, 6, 7, 8, 9, 10, 11];        //i++; if ( i == 3 ){ i = 5; } else if ( i == 11 ){ i = 1; } sensor.getInfo(i);
 
-
-  /***************
-  *    Sensors   *
-  ***************/
- iArraySensorConnected = [1, 2, 5, 6, 7, 8, 9, 10, 11];        //i++; if ( i == 3 ){ i = 5; } else if ( i == 11 ){ i = 1; } sensor.getInfo(i);
- 
- //sensor.getLightLevel(8);
- //sensor.getTemperature(6);
- //sensor.getButtonevent(5);
- //sensor.getLastupdated(5);
-
- sArraySensorName = [''];                  //if (typeof sArraySensorName[i]               !== undefined){ process.stdout.write(" " + sArraySensorName[i]); };
- sArraySensorType = [''];                  //if (typeof sArraySensorType[i]               !== undefined){ process.stdout.write(" " + sArraySensorType[i]); };
- sArraySensorModelId = [''];               //if (typeof sArraySensorModelId[i]            !== undefined){ process.stdout.write(" " + sArraySensorModelId[i]); };
- sArraySensorManufacturerName = [''];      //if (typeof sArraySensorManufacturerName[i]   !== undefined){ process.stdout.write(" " + sArraySensorManufacturerName[i]); };
- sArraySensorSwVersion = [''];             //if (typeof sArraySensorSwVersion[i]          !== undefined){ process.stdout.write(" " + sArraySensorSwVersion[i]); };
- sArraySensorUniqueId = [''];              //if (typeof sArraySensorUniqueId[i]           !== undefined){ process.stdout.write(" " + sArraySensorUniqueId[i]); };
- bArraySensorRecycle = [''];               //if (typeof bArraySensorRecycle[i]            !== undefined){ process.stdout.write(" " + bArraySensorRecycle[i]); };
-
- iArraySensorButtonEvent = [''];           //if (typeof iArraySensorButtonEvent[i]       !== undefined){ process.stdout.write(" " + iArraySensorButtonEvent[i]); };
- iArraySensorLightLevel = [''];            //if (typeof iArraySensorLightLevel[i]        !== undefined){ process.stdout.write(" " + iArraySensorLightLevel[i]); };    
- bArraySensorDark = [''];                  //if (typeof bArraySensorDark[i]              !== undefined){ process.stdout.write(" " + bArraySensorDark[i]); };  
- bArraySensorDaylight = [''];              //if (typeof bArraySensorDaylight[i]          !== undefined){ process.stdout.write(" " + bArraySensorDaylight[i]); };  
- iArraySensorStatus = [''];                //if (typeof iArraySensorStatus[i]            !== undefined){ process.stdout.write(" " + iArraySensorStatus[i]); };    
- sArraySensorLastupdated = [''];           //if (typeof sArraySensorLastupdated[i]       !== undefined){ process.stdout.write(" " + sArraySensorLastupdated[i]); };  
- bArraySensorPresence = [''];              //if (typeof bArraySensorPresence[i]          !== undefined){ process.stdout.write(" " + bArraySensorPresence[i]); };  
- iArraySensorTemperature = [''];           //if (typeof iArraySensorTemperature[i]       !== undefined){ process.stdout.write(" " + iArraySensorTemperature[i]); };  
-
- bArraySensorOn = [''];                    //if (typeof bArraySensorOn[i]                !== undefined){ process.stdout.write(" " + bArraySensorOn[i]); };
- iArraySensorBattery = [''];               //if (typeof iArraySensorBattery[i]           !== undefined){ process.stdout.write(" " + iArraySensorBattery[i]); };
- bArraySensorConfigured = [''];            //if (typeof bArraySensorConfigured[i]        !== undefined){ process.stdout.write(" " + bArraySensorConfigured[i]); };
- bArraySensorReachable = [''];             //if (typeof bArraySensorReachable[i]         !== undefined){ process.stdout.write(" " + bArraySensorReachable[i]); };
- sArraySensorAlert = [''];                 //if (typeof sArraySensorAlert[i]             !== undefined){ process.stdout.write(" " + sArraySensorAlert[i]); };
- iArraySensorTholdDark = [''];             //if (typeof iArraySensorTholdOffset[i]       !== undefined){ process.stdout.write(" " + iArraySensorTholdOffset[i]); };
- iArraySensorTholdOffset = [''];           //if (typeof iArraySensorTholdOffset[i]       !== undefined){ process.stdout.write(" " + iArraySensorTholdOffset[i]); };
- iArraySensorStatus = [''];                //if (typeof iArraySensorStatus[i]            !== undefined){ process.stdout.write(" " + iArraySensorStatus[i]); };
- iArraySensorTholdOffset = [''];           //if (typeof iArraySensorTholdOffset[i]       !== undefined){ process.stdout.write(" " + iArraySensorTholdOffset[i]); };
- bArraySensorLedindication = [''];         //if (typeof bArraySensorLedindication[i]     !== undefined){ process.stdout.write(" " + bArraySensorLedindication[i]); };
- bArraySensorUsertest = [''];              //if (typeof bArraySensorUsertest[i]          !== undefined){ process.stdout.write(" " + bArraySensorUsertest[i]); };
- iArraySensorSensitivity = [''];           //if (typeof iArraySensorSensitivity[i]       !== undefined){ process.stdout.write(" " + iArraySensorSensitivity[i]); };
- iArraySensorSensitivityMax = [''];        //if (typeof iArraySensorSensitivityMax[i]    !== undefined){ process.stdout.write(" " + iArraySensorSensitivityMax[i]); };
- iArraySensorSunsetoffset = [''];          //if (typeof iArraySensorSunsetoffset[i]      !== undefined){ process.stdout.write(" " + iArraySensorSunsetoffset[i]); };
- iArraySensorSunriseoffset = [''];         //if (typeof iArraySensorSunriseoffset[i]     !== undefined){ process.stdout.write(" " + iArraySensorSunriseoffset[i]); };
- sArraySensorPending = [''];               //if (typeof sArraySensorPending[i]           !== undefined){ process.stdout.write(" " + sArraySensorPending[i]); };    
+  sArraySensorName = [''];                                                               sArraySensorNameCur = [''];                   sArraySensorNameNew = [''];                   sArraySensorNameOld = [''];                                                                                                                                                                                                                                      
+  sArraySensorType = [''];                                                               sArraySensorTypeCur = [''];                   sArraySensorTypeNew = [''];                   sArraySensorTypeOld = [''];                                                                                                                                                                                                                                      
+  sArraySensorModelId = [''];                                                            sArraySensorModelIdCur = [''];                sArraySensorModelIdNew = [''];                sArraySensorModelIdOld = [''];                                                                                                                                                                                                                                   
+  sArraySensorManufacturerName = [''];                                                   sArraySensorManufacturerNameCur = [''];       sArraySensorManufacturerNameNew = [''];       sArraySensorManufacturerNameOld = [''];                                                                                                                                                                                                                          
+  sArraySensorSwVersion = [''];                                                          sArraySensorSwVersionCur = [''];              sArraySensorSwVersionNew = [''];              sArraySensorSwVersionOld = [''];                                                                                                                                                                                                                                 
+  sArraySensorUniqueId = [''];                                                           sArraySensorUniqueIdCur = [''];               sArraySensorUniqueIdNew = [''];               sArraySensorUniqueIdOld = [''];                                                                                                                                                                                                                                  
+  bArraySensorRecycle = [''];                                                            bArraySensorRecycleCur = [''];                bArraySensorRecycleNew = [''];                bArraySensorRecycleOld = [''];                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                                                               
+  iArraySensorButtonEvent = [''];                                                        iArraySensorButtonEventCur = [''];            iArraySensorButtonEventNew = [''];            iArraySensorButtonEventOld = [''];                                                                                                                                                                                                                               
+  iArraySensorLightLevel = [''];                                                         iArraySensorLightLevelCur = [''];             iArraySensorLightLevelNew = [''];             iArraySensorLightLevelOld = [''];                                                                                                                                                                                                                                
+  bArraySensorDark = [''];                                                               bArraySensorDarkCur = [''];                   bArraySensorDarkNew = [''];                   bArraySensorDarkOld = [''];                                                                                                                                                                                                                                      
+  bArraySensorDaylight = [''];                                                           bArraySensorDaylightCur = [''];               bArraySensorDaylightNew = [''];               bArraySensorDaylightOld = [''];                                                                                                                                                                                                                                  
+  iArraySensorStatus = [''];                                                             iArraySensorStatusCur = [''];                 iArraySensorStatusNew = [''];                 iArraySensorStatusOld = [''];                                                                                                                                                                                                                                    
+  sArraySensorLastupdated = [''];                                                        sArraySensorLastupdatedCur = [''];            sArraySensorLastupdatedNew = [''];            sArraySensorLastupdatedOld = [''];                                                                                                                                                                                                                               
+  bArraySensorPresence = [''];                                                           bArraySensorPresenceCur = [''];               bArraySensorPresenceNew = [''];               bArraySensorPresenceOld = [''];                                                                                                                                                                                                                                  
+  iArraySensorTemperature = [''];                                                        iArraySensorTemperatureCur = [''];            iArraySensorTemperatureNew = [''];            iArraySensorTemperatureOld = [''];                                                                                                                                                                                                                               
+                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+  bArraySensorOn = [''];                                                                 bArraySensorOnCur = [''];                     bArraySensorOnNew = [''];                     bArraySensorOnOld = [''];                                                                                                                                                                                                                                        
+  iArraySensorBattery = [''];                                                            iArraySensorBatteryCur = [''];                iArraySensorBatteryNew = [''];                iArraySensorBatteryOld = [''];                                                                                                                                                                                                                                   
+  bArraySensorConfigured = [''];                                                         bArraySensorConfiguredCur = [''];             bArraySensorConfiguredNew = [''];             bArraySensorConfiguredOld = [''];                                                                                                                                                                                                                                
+  bArraySensorReachable = [''];                                                          bArraySensorReachableCur = [''];              bArraySensorReachableNew = [''];              bArraySensorReachableOld = [''];                                                                                                                                                                                                                                 
+  sArraySensorAlert = [''];                                                              sArraySensorAlertCur = [''];                  sArraySensorAlertNew = [''];                  sArraySensorAlertOld = [''];                                                                                                                                                                                                                                     
+  iArraySensorTholdDark = [''];                                                          iArraySensorTholdDarkCur = [''];              iArraySensorTholdDarkNew = [''];              iArraySensorTholdDarkOld = [''];                                                                                                                                                                                                                                 
+  iArraySensorTholdOffset = [''];                                                        iArraySensorTholdOffsetCur = [''];            iArraySensorTholdOffsetNew = [''];            iArraySensorTholdOffsetOld = [''];                                                                                                                                                                                                                               
+  iArraySensorStatus = [''];                                                             iArraySensorStatusCur = [''];                 iArraySensorStatusNew = [''];                 iArraySensorStatusOld = [''];                                                                                                                                                                                                                                    
+  iArraySensorTholdOffset = [''];                                                        iArraySensorTholdOffsetCur = [''];            iArraySensorTholdOffsetNew = [''];            iArraySensorTholdOffsetOld = [''];                                                                                                                                                                                                                               
+  bArraySensorLedindication = [''];                                                      bArraySensorLedindicationCur = [''];          bArraySensorLedindicationNew = [''];          bArraySensorLedindicationOld = [''];                                                                                                                                                                                                                             
+  bArraySensorUsertest = [''];                                                           bArraySensorUsertestCur = [''];               bArraySensorUsertestNew = [''];               bArraySensorUsertestOld = [''];                                                                                                                                                                                                                                  
+  iArraySensorSensitivity = [''];                                                        iArraySensorSensitivityCur = [''];            iArraySensorSensitivityNew = [''];            iArraySensorSensitivityOld = [''];                                                                                                                                                                                                                               
+  iArraySensorSensitivityMax = [''];                                                     iArraySensorSensitivityMaxCur = [''];         iArraySensorSensitivityMaxNew = [''];         iArraySensorSensitivityMaxOld = [''];                                                                                                                                                                                                                            
+  iArraySensorSunsetoffset = [''];                                                       iArraySensorSunsetoffsetCur = [''];           iArraySensorSunsetoffsetNew = [''];           iArraySensorSunsetoffsetOld = [''];                                                                                                                                                                                                                              
+  iArraySensorSunriseoffset = [''];                                                      iArraySensorSunriseoffsetCur = [''];          iArraySensorSunriseoffsetNew = [''];          iArraySensorSunriseoffsetOld = [''];                                                                                                                                                                                                                             
+  sArraySensorPending = [''];                                                            sArraySensorPendingCur = [''];                sArraySensorPendingNew = [''];                sArraySensorPendingOld = [''];                                                                                                                                                                                                                                   
 
 
 //****************************************************************************************************************************************/
 if (typeof document !== 'undefined'){        // When browser
 //****************************************************************************************************************************************/
+
   function clientGetUpdate(){
 
+    //str01 = getManufacturerName[1].toString();
     document.getElementById("demo1").innerHTML = Math.floor((Math.random() * 10) + 1);
     document.getElementById("demo2").innerHTML = pathresources;
     document.getElementById("demo3").innerHTML = pathroot;
     document.getElementById("demo4").innerHTML = pathconfig;
     document.getElementById("demo5").innerHTML = pathsrc;
     document.getElementById("demo6").innerHTML = pathsrc;
-    document.getElementById("demo7").innerHTML = pathsrc;
+    document.getElementById("demo7").innerHTML = sArrayLightName["1"];
     document.getElementById("demo8").innerHTML = pathsrc;
     document.getElementById("demo9").innerHTML = pathsrc;
     document.getElementById("demo0").innerHTML = counter++;
 
+    //for (var x = 0; x < 10; x++) {
+    //  document.getElementById("demo" + x).innerHTML = bArrayLightOn[x];
+    //}
+
+    //setTimeout(clientGetUpdate, iTimeout);
+    //setInterval(clientGetUpdate, 1000);
   }
+  
   setInterval(clientGetUpdate, 1000);
+
 //****************************************************************************************************************************************/  
 } else if (typeof document === 'undefined'){  //When console
 //****************************************************************************************************************************************/
@@ -139,58 +146,92 @@ if (typeof document !== 'undefined'){        // When browser
   light = require( pathhuelight + './light.js' );
   sensor = require( pathhuesensor + './sensor.js');
 
-  setInterval(myInit, 1000);
+  htmlServer();
+
+  myInit();
 };
 
 function myInit() {
   console.log("       " + counter++ + " " );
   
-  if ( counter == 1 || ( counter % 20 ) == 0 ){
+  if ( counter == 1 || ( counter % 25 ) == 0 ){
     light.getInfoAll();
-    //sensor.getInfoAll();
+    sensor.getInfoAll();
   }
 
-  if ( ( counter % 1000) == 1 ){
-    //light.saveInfoAll();
-    //light.loadInfoAll();
+  if ( counter == 26 ||( counter % 250 ) == 1 ){
+    light.saveInfoAll();
+    light.loadInfoAll();
   }
 
-
-
-   console.log(light.getOn(1));
+   //console.log(light.getHue(1));
+   //console.log(light.getHue(2));
    //light.sometest();
   
   setTimeout(myInit, 1000);
-  };
-  
+};
 
 
+function htmlServer(){
+  console.log('init Server...');
+  var http = require('http');
+  var https = require('https');
+  var fs = require('fs');
+  var path = require('path');
+  http.createServer(function (request, response) {
+    console.log('request starting...');
 
+    var filePath = '.' + request.url;
+    if (filePath == './')
+        filePath = './index.html';
 
-//x = document.getElementById("demo")
-//x.innerHTML = numbers[1];
+        var filePath = '.' + request.url;
+        if (filePath == './')
+            filePath = './index.html';
+    
+        var extname = path.extname(filePath);
+        var contentType = 'text/html';
+        switch (extname) {
+            case '.js':
+                contentType = 'text/javascript';
+                break;
+            case '.css':
+                contentType = 'text/css';
+                break;
+            case '.json':
+                contentType = 'application/json';
+                break;
+            case '.png':
+                contentType = 'image/png';
+                break;      
+            case '.jpg':
+                contentType = 'image/jpg';
+                break;
+            case '.wav':
+                contentType = 'audio/wav';
+                break;
+        }
+    
+        fs.readFile(filePath, function(error, content) {
+            if (error) {
+                if(error.code == 'ENOENT'){
+                    fs.readFile('./404.html', function(error, content) {
+                        response.writeHead(200, { 'Content-Type': contentType });
+                        response.end(content, 'utf-8');
+                    });
+                }
+                else {
+                    response.writeHead(500);
+                    response.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
+                    response.end(); 
+                }
+            }
+            else {
+                response.writeHead(200, { 'Content-Type': contentType });
+                response.end(content, 'utf-8');
+            }
+        });
 
-//console.log = function (d) {
-//process.stdout.write(d + '\n');
-//};
-//function updatesPush(iCounterInput){
-//  iCounterOutput = iCounterInput;
-//      //document.getElementById("demo2").innerHTML = iCounterInput;
-//      //window.getElementById("demo2").innerHTML = iCounterInput;
-//}
-//
-//
-//function updatesGet(){
-//  updatesPush(counter++);
-//}
-//
-//
-
-
-
-
-
-
-
-
+     }).listen(8080);
+};
 
