@@ -43,6 +43,13 @@ pathroot = '/root/scripts/HomeAutomation/';
     //Src
     pathsrc = pathroot + './src/';    
 
+/**********
+*   Hue   *
+*********/
+
+  sObjectResults = {};
+  //sObjectResults = result;      //Put all results in object 'document'.lights.*.*.*
+  //sObjectResults = { result };  //Put all results in object 'document'.results.lights.*.*.*
 
 /***************
 *    Lights    *
@@ -57,7 +64,7 @@ pathroot = '/root/scripts/HomeAutomation/';
   sArrayLightName = ['', 'LightName'];                                                        fArrayLightXyXCur = [''];                     fArrayLightXyXNew = [''];                     fArrayLightXyXOld = [''];         // 0.000 - 1.000                                                                                                                   
   sArrayLightSwversion = [''];                                                                fArrayLightXyYCur = [''];                     fArrayLightXyYNew = [''];                     fArrayLightXyYOld = [''];         // 0.000 - 1.000                                                                                                                   
   sArrayLightType = [''];                                                                     iArrayLightCtCur = [''];                      iArrayLightCtNew = [''];                      iArrayLightCtOld = [''];          // 153 - 500                                                                                                                       
-  sArrayLightUniqueid = [''];                                                                 iArrayLightHueCur = [''];                     iArrayLightHueNew = [''];                     iArrayLightHueOld = [''];         // 0 - 65535                                                                                                                       
+  sArrayLightUniqueid = [''];                                                                 iArrayLightHueCur = ['1'];                     iArrayLightHueNew = [''];                     iArrayLightHueOld = [''];         // 0 - 65535                                                                                                                       
   bArrayLightOn = [''];                 /* true, false                                 */     iArrayLightSatCur = [''];                     iArrayLightSatNew = [''];                     iArrayLightSatOld = [''];         // 0 - 254                                                                                                                         
   bArrayLightReachable = [''];          /* true, false                                 */     iArrayLightBriCur = [''];                     iArrayLightBriNew = [''];                     iArrayLightBriOld = [''];         // 1-254                                                                                                                           
   sArrayLightAlert = [''];              /* none, select, lselect                       */     iArrayLightRgbRedCur = [''];                  iArrayLightRgbRedNew = [''];                  iArrayLightRgbRedOld = [''];      // 0 - 254                                                                                                                         
@@ -111,27 +118,27 @@ if (typeof document !== 'undefined'){        // When browser
 //****************************************************************************************************************************************/
 
   function clientGetUpdate(){
+   
+    //var myObj = JSON.parse(pathhue + "./json.txt");
 
-    //str01 = getManufacturerName[1].toString();
-    document.getElementById("demo1").innerHTML = Math.floor((Math.random() * 10) + 1);
-    document.getElementById("demo2").innerHTML = pathresources;
-    document.getElementById("demo3").innerHTML = pathroot;
-    document.getElementById("demo4").innerHTML = pathconfig;
-    document.getElementById("demo5").innerHTML = pathsrc;
-    document.getElementById("demo6").innerHTML = pathsrc;
-    document.getElementById("demo7").innerHTML = sArrayLightName["1"];
-    document.getElementById("demo8").innerHTML = pathsrc;
-    document.getElementById("demo9").innerHTML = pathsrc;
-    document.getElementById("demo0").innerHTML = counter++;
-
-    //for (var x = 0; x < 10; x++) {
-    //  document.getElementById("demo" + x).innerHTML = bArrayLightOn[x];
-    //}
-
-    //setTimeout(clientGetUpdate, iTimeout);
-    //setInterval(clientGetUpdate, 1000);
+    document.getElementById("demo").innerHTML = counter++;
+    document.getElementById("demo01").innerHTML = Math.floor((Math.random() * 10) + 1);
+    document.getElementById("demo02").innerHTML = pathresources;
+    document.getElementById("demo03").innerHTML = pathroot;
+    document.getElementById("demo04").innerHTML = pathconfig;
+    document.getElementById("demo05").innerHTML = sArrayLightName;
+    document.getElementById("demo06").innerHTML = pathsrc;
+    if ( sObjectResults.config !== undefined ){   
+      //document.getElementById("demo07").innerHTML = sObjectResults.config;
+      //document.getElementById("demo07").innerHTML = JSON.stringify(sObjectResults.config);
+    }
+    document.getElementById("demo08").innerHTML = sArrayLightName["1"];
+    document.getElementById("demo09").innerHTML = jArrayResults;
   }
   
+
+
+
   setInterval(clientGetUpdate, 1000);
 
 //****************************************************************************************************************************************/  
@@ -145,31 +152,45 @@ if (typeof document !== 'undefined'){        // When browser
   exec = require('child_process').exec;
   light = require( pathhuelight + './light.js' );
   sensor = require( pathhuesensor + './sensor.js');
+  bridge = require( pathhuebridge + './bridge.js');
 
   htmlServer();
 
   myInit();
 };
 
+//console.log(db.lights[1].state.xy[1])
+
+
 function myInit() {
-  console.log("       " + counter++ + " " );
-  
+
+  console.log(counter++);
+
+  if ( ( counter % 3 ) == 0 ){
+    bridge.getInfoAll();
+  }
+
+  //if ( sObjectResults.lights !== undefined ){       //  ok
+  //if ( sObjectResults.lights[1] !== undefined ){    //  Cannot read property '1' of undefined
+  if ( ( counter % 3 ) == 0 && sObjectResults.config !== undefined ){   
+    console.log('\t' + sObjectResults.config.UTC);
+  }
+
+
   if ( counter == 1 || ( counter % 25 ) == 0 ){
     light.getInfoAll();
     sensor.getInfoAll();
   }
 
   if ( counter == 26 ||( counter % 250 ) == 1 ){
-    light.saveInfoAll();
-    light.loadInfoAll();
+//    light.saveInfoAll();
+//    light.loadInfoAll();
+//    sensor.saveInfoAll();
+//    sensor.loadInfoAll();
   }
 
-   //console.log(light.getHue(1));
-   //console.log(light.getHue(2));
-   //light.sometest();
-  
   setTimeout(myInit, 1000);
-};
+}
 
 
 function htmlServer(){
@@ -178,7 +199,8 @@ function htmlServer(){
   var https = require('https');
   var fs = require('fs');
   var path = require('path');
-  http.createServer(function (request, response) {
+  var sObjectResultsServer;
+  http.createServer(function (request, response){
     console.log('request starting...');
 
     var filePath = '.' + request.url;
@@ -234,4 +256,6 @@ function htmlServer(){
 
      }).listen(8080);
 };
+
+
 

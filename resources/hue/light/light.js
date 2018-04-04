@@ -22,7 +22,23 @@ exports.getInfo = function( iLightNumber,sValue){
   client.getLight( iLightNumber, function( err, result ){ 
 
     if ( err || result === undefined || result.state === undefined ){ return err;}
+
+    //var fs = require('fs');
+    //fs.writeFile(pathhue + "./json.txt", JSON.stringify(result), function(err) {
+    //    if (err) {
+    //        console.log(err);
+    //    }
+    //
+    //});
+
+     // var a = document.createElement("a");
+     // var file = new Blob([result], {type: 'text/plain'});
+     // a.href = URL.createObjectURL(file);
+     // a.download = 'json.txt';
+     // a.click();
     
+     if ( typeof result.manufacturername !== undefined   ){ jArrayResults = result;  };     
+
     //General:
     if ( typeof result.manufacturername !== undefined   ){ sArrayLightManufacturerName[iLightNumber] = result.manufacturername;  };  // light.getManufacturerName( iLightNumber );     
     if ( typeof result.productname !== undefined        ){ sArrayLightProductname[iLightNumber] = result.productname;            };  // light.getModelId( iLightNumber );              
