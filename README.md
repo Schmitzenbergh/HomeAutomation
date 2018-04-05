@@ -1,26 +1,26 @@
-# HomeAutomation
-    
-Just some home project... :)
+# HomeAutomation:
+
+Just some centralized controlled home automation project... :)
 
 
-## Philips Hue
+## Philips Hue:
 
 - Bridges
 - Lights
 - Sensors
 
 
-## Raspberry Pi
+## Raspberry Pi:
 
-- Ledstrip
-
-
-## Harman Kardon
-
-- avr171s
+- Ledstrip connected by GPIO driven and by PigPio 
 
 
-## Test
+## Harman Kardon:
+
+- avr171s remote controlled with xml/php
+
+
+## Todo's :
 
     TextBlock
     
@@ -34,10 +34,12 @@ Just some home project... :)
 
   `content...`
 
+## Folders:
 
-doc (Documents)
-inf (Information)
-lib (Libraries)
-res (Resources)
-src (Source)
-tst (Test)
+    - doc (Documents)
+    - inf (Information)
+    - lib (Libraries)
+    - res (Resources)
+    - src (Sources)
+    - tst (Test)
+  
