@@ -4,11 +4,16 @@ var banned = [
   '192.168.2.12'
   ];
   
+  // middleware enabled or not
+  var enabled = true;
+  
   // the middleware function
-  module.exports = function() {
+  module.exports = function(onoff) {
+      
+      enabled = (onoff == 'on') ? true : false;
       
       return function(req, res, next) {
-          if (banned.indexOf(req.connection.remoteAddress) > -1) {
+          if (enabled && banned.indexOf(req.connection.remoteAddress) > -1) {
               res.end('Banned');
           }
           else { next(); }
