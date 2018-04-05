@@ -153,9 +153,14 @@ if (typeof document !== 'undefined'){        // When browser
   light = require( pathhuelight + './light.js' );
   sensor = require( pathhuesensor + './sensor.js');
   bridge = require( pathhuebridge + './bridge.js');
+  
+  
+  //app = require('http').createServer(handler)
+  //io = require('socket.io')(app);
 
-  htmlServer();
-
+  startApp();
+  
+  //htmlServer();
   myInit();
 };
 
@@ -164,11 +169,11 @@ if (typeof document !== 'undefined'){        // When browser
 
 function myInit() {
 
-  console.log(counter++);
+  //console.log(counter++);
 
-  if ( ( counter % 3 ) == 0 ){
-    bridge.getInfoAll();
-  }
+  //if ( ( counter % 3 ) == 0 ){
+    //bridge.getInfoAll();
+ // }
 
   //if ( sObjectResults.lights !== undefined ){       //  ok
   //if ( sObjectResults.lights[1] !== undefined ){    //  Cannot read property '1' of undefined
@@ -178,8 +183,8 @@ function myInit() {
 
 
   if ( counter == 1 || ( counter % 25 ) == 0 ){
-    light.getInfoAll();
-    sensor.getInfoAll();
+    //light.getInfoAll();
+    //sensor.getInfoAll();
   }
 
   if ( counter == 26 ||( counter % 250 ) == 1 ){
@@ -191,6 +196,59 @@ function myInit() {
 
   setTimeout(myInit, 1000);
 }
+
+
+function startApp(){
+
+  var app = require('express')();
+  var http = require('http').Server(app);
+  var io = require('socket.io')(http);      //A server that integrates with (or mounts on) the Node.JS HTTP Server: socket.io
+  
+  app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+  });
+  
+  //io.on('connection', function(socket){
+  //  console.log('a user connected');
+  //});
+
+  //Each socket also fires a special disconnect event:
+  io.on('connection', function(socket){
+    console.log('a user connected');
+    socket.on('disconnect', function(){
+      console.log('user disconnected');
+    });
+  });
+
+  //And in index.js we print out the chat message event:
+  io.on('connection', function(socket){
+    socket.on('chat message', function(msg){
+      console.log('message: ' + msg);
+    });
+  });
+  
+  //In order to send an event to everyone, Socket.IO gives us the io.emit:
+  io.emit('some event', { for: 'everyone' });
+
+  //If you want to send a message to everyone except for a certain socket, we have the broadcast flag:
+  io.on('connection', function(socket){
+    socket.broadcast.emit('hi');
+  });
+
+  //In this case, for the sake of simplicity we’ll send the message to everyone, including the sender.
+  io.on('connection', function(socket){
+    socket.on('chat message', function(msg){
+      io.emit('chat message', msg);
+    });
+  });
+
+
+  http.listen(8080, function(){
+    console.log('listening on *:8080');
+  });
+
+
+};
 
 
 function htmlServer(){

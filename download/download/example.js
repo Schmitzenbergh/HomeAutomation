@@ -107,3 +107,7 @@ function leaveRoom( socket, roomName, fn ) {
     socket.broadcast.to( roomName ).emit( 'serverMessage', 'a user leaves' );
     socket.emit( 'message', 'You leave room ' + roomName );
 }
+
+
+
+//https://stackoverflow.com/questions/8424886/socket-onconnection-event-never-fired-nodejs-express-socket-io
