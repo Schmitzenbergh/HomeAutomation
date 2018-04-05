@@ -20,6 +20,16 @@ Just some centralized controlled home automation project... :)
 - avr171s remote controlled with xml/php
 
 
+## Folders:
+
+  - doc (Documents)
+  - inf (Information)
+  - lib (Libraries)
+  - res (Resources)
+  - src (Sources)
+  - tst (Test)
+
+
 ## Todo's :
 
     TextBlock
@@ -34,12 +44,3 @@ Just some centralized controlled home automation project... :)
 
   `content...`
 
-## Folders:
-
-    - doc (Documents)
-    - inf (Information)
-    - lib (Libraries)
-    - res (Resources)
-    - src (Sources)
-    - tst (Test)
-  
