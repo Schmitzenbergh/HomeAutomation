@@ -33,3 +33,11 @@ Just some home project... :)
   `*content...*`
 
   `content...`
+
+
+doc (Documents)
+inf (Information)
+lib (Libraries)
+res (Resources)
+src (Source)
+tst (Test)
