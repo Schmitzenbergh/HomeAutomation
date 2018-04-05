@@ -1,0 +1,3 @@
+$ cd webapps/node_test/
+$ node test.js
+Server running ...

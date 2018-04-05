@@ -84,6 +84,7 @@ exports.getInfoAll = function(){
 //###############################################################################################################################################################################
 exports.setInfo = function( iSensorNumber ){
   var result;
+  //bOn = typeof bOn !== 'undefined' ? bOn : true;
   // parameterinfo-state   : "buttonevent, dark, daylight, lastupdated, lightlevel, presence, temperature" are not modifiable, only "status" is modifiable
   // parameterinfo-config  : "configured, reachable, sensitivitymax" are not available, further "on, sunriseoffset, sunsetoffset, battery, alert, ledindication, usertest, pending, sensitivity, tholddark, tholdoffset" is modifiable
   // client.changeSensorConfig( iSensorNumber, {}, function( err, result ){ if ( err) throw err; console.log(result); });

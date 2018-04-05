@@ -1,0 +1,5 @@
+{
+  "name": "Socket.io-Whiteboard",
+  "description": "An example of Socket.io",
+  "keywords": ["node", "express", "socket.io", "websockets", "whiteboard", "example"]
+}
