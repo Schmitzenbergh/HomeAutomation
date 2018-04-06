@@ -310,3 +310,246 @@ function resetCb(){
 
 
 
+
+
+
+
+
+
+
+//    var sPOST = {
+//      uri: sUri + sPort + sPath,
+//      method: 'POST',
+//      json: true,
+//      body: { "key": "VolumeUp" }
+//    };
+//    
+//    var sGET = {
+//      uri: sUri + sPort + sPath,
+//      json: true,
+//    };
+
+
+//  method: null == GET
+
+///   GET001
+//    request({
+//      url: 'http://192.168.0.97:1925/5/ambilight/processed',
+//      json: true,
+//    }, function(error, response, body) {
+//      console.log(body);
+//    });
+
+///   GET002
+//    request({
+//      url: 'http://192.168.0.97:1925/5/ambilight/processed',
+//      method: null,
+//      json: true,
+//      body: null
+//    }, function(error, response, body) {
+//      console.log(body);
+//    });
+
+///   POST001
+///   var opts = {
+///     uri: 'http://192.168.0.97:1925/5/input/key',
+///     method: 'POST',
+///     json: true,
+///     body: { "key": "VolumeUp" }
+///   };
+///   request(opts, function (error, res, body){console.log(res); });
+
+//POST001
+
+
+
+
+
+
+
+
+
+
+
+//hostIp = 'http://192.168.0.97';
+//hostPort = ':' + '1925';
+//hostPath = '/5/input/key';
+//
+////POST001
+//var opts = {
+//  uri: hostIp + hostPort + hostPath,
+//  method: 'POST',
+//  json: true,
+//  body: { "key": "VolumeUp" }
+//};
+//request(opts, function (error, res, body){console.log(res); });
+
+
+
+
+
+
+
+
+//var options = {
+//  hostname: 'http://192.168.0.97',
+//  port: app.get('1925'),
+//  path: '/1/ambilight/processed',
+//  method: 'GET',
+//  json:true
+//}
+//request(options, function(error, response, body){
+//  if(error) console.log(error);
+//  else console.log(body);
+//});
+
+
+
+//var options = {
+//  hostname: '127.0.0.1',
+//  port: app.get('port'),
+//  path: '/users',
+//  method: 'GET',
+//  json:true
+//}
+//request(options, function(error, response, body){
+//  if(error) console.log(error);
+//  else console.log(body);
+//});
+
+
+
+
+
+//var urk = 'http://192.168.0.97:1925/5/input/key';
+//var method = 'GET';
+//var body  = { "key": "VolumeUp" };
+//
+//function setRequestOpt(urk, method, body){
+//  var sRetVal = {
+//      uri: 'http://192.168.0.97:1925/5/input/key',
+//      method: method,
+////      json: true,
+//      body: { "key": "VolumeUp" }
+//    };
+//  return sRetVal;
+//};
+//
+//
+//
+//request(setRequestOpt(), function (error, res, body){console.log(res); });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//      var request = require('request');
+//      
+//      method = 'POST';
+//      uri = 'http://192.168.0.97:1925/5/input/key';
+//      json = { "key": "VolumeUp" };
+//      
+//      request(options = { uri: uri, method: method, json: json }, function (error, response, body) {
+//        if (!error && response.statusCode == 200) {
+//          //console.log(body.id) // Print the shortened url.
+//          console.log(response) // Print the shortened url.
+//        }
+//      
+//      });
+
+
+//var request = require('request');
+//method = 'POST';
+//uri = 'http://192.168.0.97:1925/5/input/key';
+//json = { "key": "VolumeUp" };
+//      
+//      var options = {
+//        uri: uri,
+//        method: 'POST',
+//        json: true,
+//        body: json
+//      }
+//      request(options, function (error, response, body){console.log(response); });
+
+
+//      var request = require('request');
+//      method = 'POST';
+//      uri = 'http://192.168.0.97:1925/5/input/key';
+//      json = { "key": "VolumeUp" };
+//      request(options = { uri, method, json});
+
+
+
+//var request = require('request');
+//method = 'POST';
+//uri = 'http://192.168.0.97:1925/5/input/key';
+//json = { "key": "VolumeUp" };
+//
+//method = 'POST';
+//uri = 'http://192.168.0.97:1925/5/input/key';
+//json = { "key": "VolumeUp" };
+//
+//request(options = { uri: uri, method: method, json: json }, function (err, res, body){console.log(response)});
+
+
+///     var request = require('request');
+///     
+///     var options = {
+///       uri: 'http://192.168.0.97:1925/5/input/key',
+///       method: 'POST',
+///       json: { "key": "VolumeUp" },
+///     }
+
+
+//request(options, function (error, response, body){console.log(response); });
+
+
+
+//var request = require('request');
+//
+//var options = {
+//  uri: 'http://192.168.0.97:1925/5/input/key',
+//  method: 'POST',
+//  json: { "key": "VolumeUp" },
+//}
+//request(options, function (error, response, body){console.log(response); });
+
+
+
