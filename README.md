@@ -17,7 +17,7 @@ Just some centralized controlled home automation project... :)
 
 Philips 55PFS8209/12 (v5)
 
-  JSON: 
+  JSON:       ( GET-Example: GET http://localip:1925/5/activities/tv )
   
     * /activities/tv
     * /ambilight/cached
@@ -43,8 +43,6 @@ Philips 55PFS8209/12 (v5)
     * /system/deviceid_encrypted
     * /system/country
 
-  GET-Example: GET http://localip:1925/5/activities/tv
-
 
   XML:
     * http://localip:49154/nmsDescription.xml
@@ -52,6 +50,7 @@ Philips 55PFS8209/12 (v5)
     * http://localip:49154/nmsContentDirectorySCPD.xml
     * http://localip:49154/nmrConnectionManager.xml
     * http://localip:49154/nmrRenderingControl.xml
+
 
 
 ## Raspberry Pi:
