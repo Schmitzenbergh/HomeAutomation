@@ -19,39 +19,39 @@ Philips 55PFS8209/12 (v5)
 
   JSON: 
   
-  * /activities/tv
-  * /ambilight/cached
-  * /ambilight/lounge
-  * /ambilight/mode
-  * /ambilight/measured
-  * /ambilight/processed
-  * /applications
-  * /audio/volume
-  * /channeldb/tv
-  * /context
-  * /input/key
-  * /input/pointer
-  * /powerstate
-  * /system
-  * /system/epgsource
-  * /system/serialnumber_encrypted
-  * /system/nettvversion
-  * /system/name
-  * /system/model_encrypted
-  * /system/menulanguage
-  * /system/softwareversion_encrypted
-  * /system/deviceid_encrypted
-  * /system/country
+    * /activities/tv
+    * /ambilight/cached
+    * /ambilight/lounge
+    * /ambilight/mode
+    * /ambilight/measured
+    * /ambilight/processed
+    * /applications
+    * /audio/volume
+    * /channeldb/tv
+    * /context
+    * /input/key
+    * /input/pointer
+    * /powerstate
+    * /system
+    * /system/epgsource
+    * /system/serialnumber_encrypted
+    * /system/nettvversion
+    * /system/name
+    * /system/model_encrypted
+    * /system/menulanguage
+    * /system/softwareversion_encrypted
+    * /system/deviceid_encrypted
+    * /system/country
 
   GET-Example: GET http://localip:1925/5/activities/tv
 
 
   XML:
-  * http://localip:49154/nmsDescription.xml
-  * http://localip:49154/nmrAVTransport.xml
-  * http://localip:49154/nmsContentDirectorySCPD.xml
-  * http://localip:49154/nmrConnectionManager.xml
-  * http://localip:49154/nmrRenderingControl.xml
+    * http://localip:49154/nmsDescription.xml
+    * http://localip:49154/nmrAVTransport.xml
+    * http://localip:49154/nmsContentDirectorySCPD.xml
+    * http://localip:49154/nmrConnectionManager.xml
+    * http://localip:49154/nmrRenderingControl.xml
 
 
 ## Raspberry Pi:
