@@ -1,0 +1,147 @@
+diff -pur fusion.orig/call.c fusion/call.c
+--- fusion.orig/call.c	2010-03-09 15:56:14.000000000 +0100
++++ fusion/call.c	2010-03-22 20:13:20.000000000 +0100
+@@ -251,8 +251,9 @@ fusion_call_execute(FusionDev * dev, Fus
+ 	if (execution) {
+ 		/* Transfer held skirmishs (locks). */
+ 		fusion_skirmish_transfer_all(dev, call->fusion_id,
+-					     fusionee_id(fusionee),
+-					     current->pid);
++						fusionee_id(fusionee),
++						current->pid,
++						serial);
+ 
+ 		/* Unlock call and wait for execution result. TODO: add timeout? */
+             
+@@ -337,6 +338,9 @@ fusion_call_return(FusionDev * dev, int 
+ 		/* FIXME: Caller might still have received a signal since check above. */
+ 		FUSION_ASSERT(execution->caller != NULL);
+ 
++		/* Return skirmishs. */
++		fusion_skirmish_return_all(dev, fusion_id, execution->serial);
++
+ 		/* Wake up caller. */
+ 		wake_up_interruptible(&execution->wait);
+ 
+diff -pur fusion.orig/skirmish.c fusion/skirmish.c
+--- fusion.orig/skirmish.c	2010-03-09 18:38:10.000000000 +0100
++++ fusion/skirmish.c	2010-03-22 20:12:22.000000000 +0100
+@@ -57,11 +57,13 @@ struct __FUSION_FusionSkirmish {
+ 	FusionID transfer_from;
+ 	int transfer_from_pid;
+ 	int transfer_count;
++	unsigned int transfer_serial;
+ 
+ 	FusionID transfer2_to;
+ 	FusionID transfer2_from;
+ 	int transfer2_from_pid;
+ 	int transfer2_count;
++	unsigned int transfer2_serial;
+ 
+ #ifdef FUSION_DEBUG_SKIRMISH_DEADLOCK
+ 	int pre_acquis[MAX_PRE_ACQUISITIONS];
+@@ -881,7 +883,7 @@ void fusion_skirmish_dismiss_all_from_pi
+ 
+ void
+ fusion_skirmish_transfer_all(FusionDev * dev,
+-			     FusionID to, FusionID from, int from_pid)
++                             FusionID to, FusionID from, int from_pid, unsigned int serial)
+ {
+ 	FusionLink *l;
+ 
+@@ -903,6 +905,7 @@ fusion_skirmish_transfer_all(FusionDev *
+ 			skirmish->transfer_from     = from;
+ 			skirmish->transfer_from_pid = from_pid;
+ 			skirmish->transfer_count    = skirmish->lock_count;
++			skirmish->transfer_serial   = serial;
+ 
+ 			skirmish->lock_fid   = 0;
+ 			skirmish->lock_pid   = 0;
+@@ -920,6 +923,7 @@ fusion_skirmish_transfer_all(FusionDev *
+ 			skirmish->transfer2_from     = from;
+ 			skirmish->transfer2_from_pid = from_pid;
+ 			skirmish->transfer2_count    = skirmish->lock_count;
++			skirmish->transfer2_serial   = serial;
+ 
+ 			skirmish->lock_fid   = 0;
+ 			skirmish->lock_pid   = 0;
+@@ -955,7 +959,7 @@ void fusion_skirmish_reclaim_all(FusionD
+             FUSION_ASSERT(skirmish->transfer_to != 0);
+ 			FUSION_ASSERT(skirmish->transfer_from != 0);
+ 			FUSION_ASSERT(skirmish->transfer_count > 0);
+-			FUSION_ASSUME(skirmish->lock_pid == 0);
++                        FUSION_ASSERT(skirmish->lock_pid == -1);
+ 
+ 			skirmish->lock_fid   = skirmish->transfer_from;
+ 			skirmish->lock_pid   = skirmish->transfer_from_pid;
+@@ -974,7 +978,7 @@ void fusion_skirmish_reclaim_all(FusionD
+ 			FUSION_ASSERT(skirmish->transfer2_to != 0);
+ 			FUSION_ASSERT(skirmish->transfer2_from != 0);
+ 			FUSION_ASSERT(skirmish->transfer2_count > 0);
+-			FUSION_ASSUME(skirmish->lock_pid == 0);
++                        FUSION_ASSERT(skirmish->lock_pid == -1);
+ 
+ 			skirmish->lock_fid   = skirmish->transfer2_from;
+ 			skirmish->lock_pid   = skirmish->transfer2_from_pid;
+@@ -1031,3 +1035,46 @@ void fusion_skirmish_reclaim_all(FusionD
+ 
+ 	up(&dev->skirmish.lock);
+ }
++
++void fusion_skirmish_return_all(FusionDev * dev, int fusion_id, unsigned int serial)
++{
++	FusionLink *l;
++
++	down(&dev->skirmish.lock);
++
++	fusion_list_foreach(l, dev->skirmish.list) {
++		FusionSkirmish *skirmish = (FusionSkirmish *) l;
++
++		down(&skirmish->entry.lock);
++
++                if (skirmish->transfer2_to == 0) {
++                     if (skirmish->transfer_to == fusion_id &&
++                         skirmish->transfer_serial == serial)
++                     {
++                             FUSION_ASSERT(skirmish->transfer_from != 0);
++                             FUSION_ASSERT(skirmish->transfer_count > 0);
++                             FUSION_ASSERT(skirmish->lock_count == 0);
++                             FUSION_ASSERT(skirmish->lock_fid == 0);
++                             FUSION_ASSERT(skirmish->lock_pid == 0);
++     
++                             skirmish->lock_pid = -1;
++                     }
++                }
++                else if (skirmish->transfer2_to == fusion_id &&
++                         skirmish->transfer2_serial == serial)
++                      {
++                              FUSION_ASSERT(skirmish->transfer2_from != 0);
++                              FUSION_ASSERT(skirmish->transfer2_count > 0);
++                              FUSION_ASSERT(skirmish->lock_count == 0);
++                              FUSION_ASSERT(skirmish->lock_fid == 0);
++                              FUSION_ASSERT(skirmish->lock_pid == 0);
++
++                              skirmish->lock_pid = -1;
++                      }
++
++		up(&skirmish->entry.lock);
++	}
++
++	up(&dev->skirmish.lock);
++}
++
+diff -pur fusion.orig/skirmish.h fusion/skirmish.h
+--- fusion.orig/skirmish.h	2009-03-31 14:04:32.000000000 +0200
++++ fusion/skirmish.h	2010-03-22 20:10:44.000000000 +0100
+@@ -50,8 +50,10 @@ void fusion_skirmish_dismiss_all(FusionD
+ void fusion_skirmish_dismiss_all_from_pid(FusionDev * dev, int pid);
+ 
+ void fusion_skirmish_transfer_all(FusionDev * dev,
+-				  FusionID to, FusionID from, int from_pid);
++				  FusionID to, FusionID from, int from_pid, unsigned int serial);
+ 
+ void fusion_skirmish_reclaim_all(FusionDev * dev, int from_pid);
+ 
++void fusion_skirmish_return_all(FusionDev * dev, int fusion_id, unsigned int serial);
++
+ #endif

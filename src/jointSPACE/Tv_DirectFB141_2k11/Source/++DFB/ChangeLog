@@ -1,0 +1,527 @@
+2007-02-13   dok	20:05:42	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	examples/.cvsignore (1.2) (+1 -0;)
+		examples/dfbplay.cpp (1.1) (27J3qZVNZqCPTm6s; )
+		examples/Makefile.am (1.4) (+1 -2;)
+	
+	oops, here it is
+	
+2007-02-13   mws	19:52:07	
+
+	Files:	examples/Makefile.am (1.3) (+2 -1;)
+	
+	removed dfbplay from examples Makefile.am for now
+	reason: source is not present
+	this fixed compiling again
+	
+2007-02-02   dok	22:02:20	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	ChangeLog (1.4) (+37 -0;)
+		examples/tests/data/Makefile.am (1.1) (4I4Dlvf8yE7NTX4s; )
+		examples/tests/data/.cvsignore (1.1) (4I4Dlvf8yE7NTX4s; )
+		examples/tests/Makefile.am (1.2) (+2 -2;)
+		configure.in (1.9) (+2 -1;)
+	
+	distfix
+	
+2007-02-02   dok	20:46:45	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	++dfb/idirectfbsurface.cpp (1.10) (+9 -0;)
+		include/idirectfbsurface.h (1.12) (+2 -0;)
+	
+	IDirectFBSurface::GetFramebufferOffset()
+	
+2007-02-02   dok	20:43:08	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	ChangeLog (1.3) (+168 -54;)
+		include/idirectfbwindow.h (1.4) (+9 -2;)
+		include/idirectfbsurface.h (1.11) (+4 -0;)
+		include/idirectfbdisplaylayer.h (1.6) (+1 -0;)
+		examples/tests/data/test32x32x16.dfiff (1.1) (HVcZKVYh368ysX4s; )
+		examples/tests/data/test32x32.tif (1.1) (HVcZKVYh368ysX4s; )
+		examples/tests/data/test32x32.ppm (1.1) (HVcZKVYh368ysX4s; )
+		examples/tests/data/test32x32.png (1.1) (HVcZKVYh368ysX4s; )
+		examples/tests/data/test32x32.jpeg (1.1) (HVcZKVYh368ysX4s; )
+		examples/tests/data/test32x32.gif (1.1) (HVcZKVYh368ysX4s; )
+		examples/tests/data/test32x32.dfiff (1.1) (HVcZKVYh368ysX4s; )
+		examples/tests/data/test32x32.bmp (1.1) (HVcZKVYh368ysX4s; )
+		examples/tests/images.cpp (1.1) (HVcZKVYh368ysX4s; )
+		examples/tests/Makefile.am (1.1) (HVcZKVYh368ysX4s; )
+		examples/tests/.cvsignore (1.1) (HVcZKVYh368ysX4s; )
+		examples/Makefile.am (1.2) (+7 -1;)
+		++dfb/idirectfbwindow.cpp (1.3) (+16 -2;)
+		++dfb/idirectfbsurface.cpp (1.9) (+12 -0;)
+		++dfb/idirectfbdisplaylayer.cpp (1.6) (+5 -0;)
+		configure.in (1.8) (+4 -3;)
+	
+	Update for 1.0.0 and some test stuff I had lying around.
+	
+2007-01-08   marka	16:01:10	
+
+	Files:	++dfb.spec.in (1.1) (N5EIaVN9Qw7AHI1s; )
+		configure.in (1.7) (+1 -0;)
+		.cvsignore (1.3) (+1 -0;)
+	
+	Added spec file for building RPM packages.
+	
+2006-12-17   mws	22:48:07	
+
+	Files:	.cvsignore (1.2) (+10 -0;)
+	
+	updated cvsignore a bit
+	
+2006-12-17   mws	22:29:31	
+
+	Files:	include/++dfb.h (1.6) (+4 -4;)
+	
+	fix wrong copy ctor argument;
+	thanks to Phil Endecott for pointing out.
+	
+2006-10-01   mws	00:23:12	
+
+	Files:	++dfb/idirectfbfont.cpp (1.4) (+10 -0;)
+		include/idirectfbfont.h (1.4) (+7 -0;)
+	
+	follow up integration of GetStringBreak in DirectFB
+	for testing purposes in ++dfb;
+	
+2006-07-08   klan	14:16:06	
+
+	Files:	++dfb/idirectfbdisplaylayer.cpp (1.5) (+12 -0;)
+		include/idirectfbvideoprovider.h (1.7) (+9 -1;)
+		include/idirectfbsurface.h (1.10) (+17 -7;)
+		include/idirectfbscreen.h (1.4) (+3 -0;)
+		include/idirectfbfont.h (1.3) (+7 -0;)
+		include/idirectfbdisplaylayer.h (1.5) (+5 -0;)
+		++dfb/idirectfbvideoprovider.cpp (1.5) (+34 -2;)
+		++dfb/idirectfbsurface.cpp (1.8) (+37 -11;)
+		++dfb/idirectfbscreen.cpp (1.3) (+6 -0;)
+		++dfb/idirectfbfont.cpp (1.3) (+18 -0;)
+	
+	Updated to current DirectFB API.
+	
+2006-05-20   klan	13:25:32	
+
+	Files:	configure.in (1.6) (+1 -1;)
+	
+	0.9.26 required.
+	
+2006-05-20   klan	13:24:52	
+
+	Files:	++dfb/idirectfbinputdevice.cpp (1.2) (+5 -0;)
+		include/idirectfbwindow.h (1.3) (+1 -0;)
+		include/idirectfbinputdevice.h (1.3) (+1 -0;)
+		++dfb/idirectfbwindow.cpp (1.2) (+5 -0;)
+	
+	Added IDirectFBWindow::DetachEventBuffer() and IDirectFBInputDevice::DetachEventBuffer().
+	
+2006-05-07   dok	00:00:35	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	examples/dfbswitch.cpp (1.2) (+19 -1;)
+	
+	Pass "-l" to get a list of modes.
+	
+2006-03-26   dok	18:56:52	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	autogen.sh (1.2) (+1 -1;)
+	
+	Fix autoconf version detection.
+	
+2006-01-15   klan	19:18:02	
+
+	Files:	++dfb/idirectfbvideoprovider.cpp (1.4) (+9 -0;)
+		include/idirectfbvideoprovider.h (1.6) (+2 -1;)
+	
+	Added IDirectFBVideoProvider::GetStatus().
+	
+2006-01-15   klan	12:25:59	
+
+	Files:	++dfb/idirectfbeventbuffer.cpp (1.3) (+9 -0;)
+		include/idirectfbvideoprovider.h (1.5) (+1 -0;)
+		include/idirectfbsurface.h (1.9) (+2 -0;)
+		include/idirectfbeventbuffer.h (1.4) (+3 -0;)
+		++dfb/idirectfbvideoprovider.cpp (1.3) (+5 -0;)
+		++dfb/idirectfbsurface.cpp (1.7) (+4 -0;)
+	
+	Implemented IDirectFBSurface::GetClip(), IDirectFBEventBuffer::EnableStatistics(),
+	IDirectFBEventBuffer::GetStatistics(), IDirectFBVideoProvider::GetStreamDescription().
+	
+2005-11-04   klan	09:43:41	
+
+	Files:	configure.in (1.5) (+1 -1;)
+	
+	Version 0.9.25.
+	
+2005-10-30   klan	18:34:44	
+
+	Files:	++dfb/idirectfbvideoprovider.cpp (1.2) (+5 -0;)
+		include/idirectfbvideoprovider.h (1.4) (+2 -0;)
+	
+	IDirectFBVideoProvider::SendEvent().
+	
+2005-10-26   klan	16:30:06	
+
+	Files:	ChangeLog (1.2) (+360 -0;)
+	
+	Updated ChangeLog.
+	
+2005-10-26   klan	16:29:03	
+
+	Files:	configure.in (1.4) (+1 -1;)
+	
+	Version 0.9.24.
+	
+2005-10-26   klan	16:28:28	
+
+	Files:	++dfb/idirectfbdatabuffer.cpp (1.2) (+14 -0;)
+		include/idirectfbvideoprovider.h (1.3) (+2 -0;)
+		include/idirectfbdatabuffer.h (1.3) (+2 -0;)
+	
+	Follow recent API changes.
+	
+2005-09-14   dok	14:28:43	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	include/idirectfbeventbuffer.h (1.3) (+1 -1;)
+	
+	Thanks again to Mark Adams <mark147m@gmail.com>!
+	
+	He changed WaitForEventWithTimeout() so that it doesn't throw an
+	exception when a timeout occurs, which is a normal circumstance.
+	
+	Instead it returns true if events are available or false after a timeout.
+	
+2005-09-14   dok	14:28:42	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	++dfb/idirectfbeventbuffer.cpp (1.2) (+9 -2;)
+	
+	Thanks again to Mark Adams <mark147m@gmail.com>!
+	
+	He changed WaitForEventWithTimeout() so that it doesn't throw an
+	exception when a timeout occurs, which is a normal circumstance.
+	
+	Instead it returns true if events are available or false after a timeout.
+	
+2005-09-14   dok	14:05:27	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	++dfb/idirectfbdisplaylayer.cpp (1.4) (+1 -1;)
+	
+	Fixed SetColorAdjustment(), thanks to Mark Adams <mark147m@gmail.com>!
+	
+2005-06-06   mws	19:51:19	
+
+	Files:	include/++dfb.h (1.5) (+4 -4;)
+		include/idirectfbsurface.h (1.8) (+1 -1;)
+	
+	use c++ style casting;
+	
+2005-06-01   mws	00:19:14	
+
+	Files:	include/idirectfb.h (1.4) (+8 -8;)
+		include/idirectfbsurface.h (1.7) (+2 -2;)
+	
+	fix wrong template param in copy constructor;
+	more const'ed member functions;
+	fix return type in template copy constructor;
+	
+	 ++dfb.h              |    9 +++++----
+	 idirectfb.cpp        |   12 ++++++------
+	 idirectfb.h          |   16 ++++++++--------
+	 idirectfbsurface.cpp |    6 +++---
+	 idirectfbsurface.h   |    4 ++--
+	 5 files changed, 24 insertions(+), 23 deletions(-)
+	
+2005-06-01   mws	00:19:13	
+
+	Files:	++dfb/idirectfb.cpp (1.3) (+6 -6;)
+		include/++dfb.h (1.4) (+5 -4;)
+		++dfb/idirectfbsurface.cpp (1.6) (+3 -3;)
+	
+	fix wrong template param in copy constructor;
+	more const'ed member functions;
+	fix return type in template copy constructor;
+	
+	 ++dfb.h              |    9 +++++----
+	 idirectfb.cpp        |   12 ++++++------
+	 idirectfb.h          |   16 ++++++++--------
+	 idirectfbsurface.cpp |    6 +++---
+	 idirectfbsurface.h   |    4 ++--
+	 5 files changed, 24 insertions(+), 23 deletions(-)
+	
+2005-05-30   mws	21:36:57	
+
+	Files:	++dfb/idirectfbfont.cpp (1.2) (+8 -8;)
+		include/idirectfbwindow.h (1.2) (+9 -2;)
+		include/idirectfbvideoprovider.h (1.2) (+9 -3;)
+		include/idirectfbsurface.h (1.6) (+9 -3;)
+		include/idirectfbscreen.h (1.3) (+9 -2;)
+		include/idirectfbpalette.h (1.2) (+9 -2;)
+		include/idirectfbinputdevice.h (1.2) (+9 -3;)
+		include/idirectfbimageprovider.h (1.2) (+9 -3;)
+		include/idirectfbfont.h (1.2) (+17 -10;)
+		include/idirectfbeventbuffer.h (1.2) (+9 -2;)
+		include/idirectfbdisplaylayer.h (1.4) (+9 -2;)
+		include/idirectfbdatabuffer.h (1.2) (+9 -2;)
+		include/idirectfb.h (1.3) (+9 -3;)
+		include/++dfb.h (1.3) (+54 -101;)
+	
+	changed ++DFB class interface from
+	huge #define macro to a template class
+	adapted all clientclasses to be derived;
+	consted some of the idirectfbfont member functions;
+	
+	 changed files:
+	 ++dfb.h                  |  155 ++++++++++++++++-------------------------------
+	 idirectfb.h              |   12 ++-
+	 idirectfbdatabuffer.h    |   11 ++-
+	 idirectfbdisplaylayer.h  |   11 ++-
+	 idirectfbeventbuffer.h   |   11 ++-
+	 idirectfbfont.cpp        |   16 ++--
+	 idirectfbfont.h          |   27 +++++---
+	 idirectfbimageprovider.h |   12 ++-
+	 idirectfbinputdevice.h   |   12 ++-
+	 idirectfbpalette.h       |   11 ++-
+	 idirectfbscreen.h        |   11 ++-
+	 idirectfbsurface.h       |   12 ++-
+	 idirectfbvideoprovider.h |   12 ++-
+	 idirectfbwindow.h        |   11 ++-
+	 14 files changed, 178 insertions(+), 146 deletions(-)
+	
+2005-04-06   dok	21:01:41	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	++dfb/idirectfb.cpp (1.2) (+2 -2;)
+		include/idirectfb.h (1.2) (+1 -1;)
+	
+	GetCardCapabilities() -> GetDeviceDescription()
+	
+2005-03-22   dok	12:46:10	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	++dfb/idirectfbscreen.cpp (1.2) (+74 -0;)
+		include/idirectfbscreen.h (1.2) (+39 -0;)
+	
+	Added missing methods.
+	
+2005-03-11   dok	13:26:08	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	++dfb/idirectfbsurface.cpp (1.5) (+6 -1;)
+		include/idirectfbsurface.h (1.5) (+2 -1;)
+	
+	More SetColor() convenience.
+	
+2005-02-28   dok	10:04:41	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	configure.in (1.3) (+1 -1;)
+		include/idirectfbsurface.h (1.4) (+4 -1;)
+		++dfb/idirectfbsurface.cpp (1.4) (+5 -0;)
+	
+	Added IDirectFBSurface::DisableAcceleration().
+	
+2005-02-27   dok	12:14:03	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	++dfb/idirectfbdisplaylayer.cpp (1.3) (+8 -0;)
+		include/idirectfbsurface.h (1.3) (+3 -1;)
+		include/idirectfbdisplaylayer.h (1.3) (+4 -0;)
+		++dfb/idirectfbsurface.cpp (1.3) (+6 -1;)
+	
+	Added IDirectFBDisplayLayer::SetScreenRectangle().
+	
+	Added IDirectFBSurface::FillRectangles().
+	
+2005-02-10   dok	15:38:41	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	++dfb/idirectfbsurface.cpp (1.2) (+5 -0;)
+		include/idirectfbsurface.h (1.2) (+5 -1;)
+	
+	Added IDirectFBSurface::SetAlphaRamp().
+	
+	Changed default alpha of Clear() from 0xff to 0x00.
+	
+2005-01-19   dok	23:09:50	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	include/++dfb.h (1.2) (+9 -0;)
+	
+	Fix reference counting by implementing the
+	constructor "Interface( const Interface &other )".
+	
+2005-01-19   dok	21:30:40	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	++dfb/idirectfbdisplaylayer.cpp (1.2) (+6 -0;)
+		include/idirectfbdisplaylayer.h (1.2) (+2 -0;)
+	
+	Added IDirectFBDisplayLayer::SetScreenPosition().
+	
+2005-01-19   dok	21:20:37	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	configure.in (1.2) (+1 -1;)
+	
+	0.9.22
+	
+2004-08-17   dok	20:07:54	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	++dfb/++dfb.cpp (1.2) (+0 -0;)
+		++dfb/ppdfb.cpp (1.1) ( )
+		++dfb/Makefile.am (1.3) (+1 -1;)
+	
+	libfool!
+	
+2004-08-17   dok	19:54:49	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	++dfb/++dfb.cpp (1.1) ( )
+		++dfb/dfb++_internal.h (1.2) (+0 -0;)
+		++dfb/dfb++.cpp (1.2) (+0 -0;)
+		++dfb/Makefile.am (1.2) (+3 -3;)
+		++dfb/++dfb_internal.h (1.1) ( )
+	
+	Forgot some renaming.
+	
+2004-08-17   dok	19:50:07	Denis Oliver Kropp <dok@directfb.org>
+
+	Files:	++dfb-config.in (1.1) ( )
+		include/idirectfbwindow.h (1.1) ( )
+		include/idirectfbvideoprovider.h (1.1) ( )
+		include/idirectfbsurface.h (1.1) ( )
+		include/idirectfbscreen.h (1.1) ( )
+		include/idirectfbpalette.h (1.1) ( )
+		include/idirectfbinputdevice.h (1.1) ( )
+		include/idirectfbimageprovider.h (1.1) ( )
+		include/idirectfbfont.h (1.1) ( )
+		include/idirectfbeventbuffer.h (1.1) ( )
+		include/idirectfbdisplaylayer.h (1.1) ( )
+		include/idirectfbdatabuffer.h (1.1) ( )
+		include/idirectfb.h (1.1) ( )
+		include/Makefile.am (1.1) ( )
+		include/.cvsignore (1.1) ( )
+		include/++dfb.h (1.1) ( )
+		examples/simple.cpp (1.1) ( )
+		examples/dfbswitch.cpp (1.1) ( )
+		examples/dfbshow.cpp (1.1) ( )
+		examples/dfbimage.h (1.1) ( )
+		examples/dfbimage.cpp (1.1) ( )
+		examples/dfbapp.h (1.1) ( )
+		examples/dfbapp.cpp (1.1) ( )
+		examples/Makefile.am (1.1) ( )
+		examples/.cvsignore (1.1) ( )
+		++dfb/idirectfbwindow.cpp (1.1) ( )
+		++dfb/idirectfbvideoprovider.cpp (1.1) ( )
+		++dfb/idirectfbsurface.cpp (1.1) ( )
+		++dfb/idirectfbscreen.cpp (1.1) ( )
+		++dfb/idirectfbpalette.cpp (1.1) ( )
+		++dfb/idirectfbinputdevice.cpp (1.1) ( )
+		++dfb/idirectfbimageprovider.cpp (1.1) ( )
+		++dfb/idirectfbfont.cpp (1.1) ( )
+		++dfb/idirectfbeventbuffer.cpp (1.1) ( )
+		++dfb/idirectfbdisplaylayer.cpp (1.1) ( )
+		++dfb/idirectfbdatabuffer.cpp (1.1) ( )
+		++dfb/idirectfb.cpp (1.1) ( )
+		++dfb/dfb++_internal.h (1.1) ( )
+		++dfb/dfb++.cpp (1.1) ( )
+		++dfb/Makefile.am (1.1) ( )
+		++dfb/.cvsignore (1.1) ( )
+		configure.in (1.1) ( )
+		autogen.sh (1.1) ( )
+		README (1.1) ( )
+		NEWS (1.1) ( )
+		Makefile.am (1.1) ( )
+		ChangeLog (1.1) ( )
+		AUTHORS (1.1) ( )
+		.cvsignore (1.1) ( )
+		++dfb.pc.in (1.1) ( )
+	
+	++DFB is an advanced version of DFB++
+	
+	It's an incompatible fork with fundamental changes.
+	
+	Applications no longer deal with interface pointers. The classes
+	wrapping around interfaces are used a container for an interface
+	pointer, providing garbage collection the "direct" way 8-)
+	
+	By overwriting certain operators, e.g. '=', the need to care
+	about AddRef() and Release() has been eliminated. These methods
+	aren't even available anymore.
+	
+	All interfaces are released automatically now, either caused by
+	finalization of an object having interface members, or by leaving
+	a stack frame with an interface hold in a local variable.
+	
+	This also eliminates duplication of code caused by the lack of
+	a C++ equivalent to Java's "finally" block.
+	
+	The following code is using DFB++:
+	
+	void DFBImage::Load( std::string filename )
+	{
+		IDirectFB              *dfb      = NULL;
+		IDirectFBImageProvider *provider = NULL;
+		IDirectFBSurface       *surface  = NULL;
+	
+		try {
+			DFBSurfaceDescription desc;
+	
+			dfb = DirectFB::Create();
+	
+			provider = dfb->CreateImageProvider( filename.data() );
+	
+			provider->GetSurfaceDescription( &desc );
+	
+			surface = dfb->CreateSurface( desc );
+	
+			provider->RenderTo( surface, NULL );
+		}
+		/* Work around missing "finally". */
+		catch (...) {
+			if (surface)
+				surface->Release();
+	
+			if (provider)
+				provider->Release();
+	
+			if (dfb)
+				dfb->Release();
+	
+			throw;
+		}
+	
+		m_surface = surface;	/* Keep pointer to interface object. */
+	
+		provider->Release();
+		dfb->Release();
+	}
+	
+	This is how it's looking using ++DFB:
+	
+	void DFBImage::Load( std::string filename )
+	{
+		IDirectFB              dfb;
+		IDirectFBImageProvider provider;
+		IDirectFBSurface       surface;
+		DFBSurfaceDescription  desc;
+	
+		dfb = DirectFB::Create();
+	
+		provider = dfb.CreateImageProvider( filename.data() );
+	
+		provider.GetSurfaceDescription( &desc );
+	
+		surface = dfb.CreateSurface( desc );
+	
+		provider.RenderTo( surface, NULL );
+	
+		m_surface = surface;
+	}
+	
+	The last line instructs the container object 'm_surface' (member)
+	to take the interface pointer from 'surface' after calling AddRef().
+	
+	Leaving the stack frame due to an exception or a return causes
+	finalization of the local container objects 'dfb', 'provider'
+	and 'surface' calling Release() if they've already been assigned
+	an interface pointer.
+	
+	The suggested way of passing interfaces via parameters
+	is to use C++ references as in this declaration:
+	
+		void PrepareTarget( IDirectFBSurface &target );
+	
+	Explicitly releasing an interface is as simple as this:
+	
+		m_surface = NULL;
+	

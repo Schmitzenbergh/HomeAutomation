@@ -1,0 +1,7 @@
+export ARCH=mips
+export PATH=/opt/embeddedalley/nxp_tv550/bin:$PATH
+export CROSS_COMPILE=/opt/embeddedalley/nxp_tv550/bin/mipsel-linux-
+echo "CROSS_COMPILE = $CROSS_COMPILE"
+export KERNEL_BUILD=/home/beq00852/kernelbuild_550/linux-2.6.28.9
+export KERNEL_SOURCE=/home/beq00852/kernelbuild_550/linux-2.6.28.9
+

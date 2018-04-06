@@ -1,0 +1,10 @@
+export CC=arm-linux-gnueabi-gcc
+export CXX=arm-linux-gnueabi-g++
+export NM=arm-linux-gnueabi-nm
+export LD=arm-linux-gnueabi-ld
+
+all:
+	@make -f makefile.voodoo
+
+clean:
+	@make -f makefile.voodoo clean

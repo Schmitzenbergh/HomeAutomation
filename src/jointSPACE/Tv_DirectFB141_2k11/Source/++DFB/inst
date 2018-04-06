@@ -1,0 +1,1 @@
+make -j7 DESTDIR=`cat .DESTDIR` install

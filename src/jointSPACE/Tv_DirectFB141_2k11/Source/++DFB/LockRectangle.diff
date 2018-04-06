@@ -1,0 +1,32 @@
+diff --git a/++dfb/idirectfbsurface.cpp b/++dfb/idirectfbsurface.cpp
+index bc29fd5..d53ac78 100644
+--- a/++dfb/idirectfbsurface.cpp
++++ b/++dfb/idirectfbsurface.cpp
+@@ -438,3 +438,11 @@ void IDirectFBSurface::Write( const void               *ptr,
+      DFBCHECK( iface->Write (iface, rect, ptr, pitch) );
+ }
+ 
++void IDirectFBSurface::LockRectangle (DFBSurfaceLockFlags   flags,
++                                      const DFBRectangle   *rect,
++                                      void                **ptr,
++                                      int                  *pitch)
++{
++     DFBCHECK( iface->LockRectangle (iface, flags, rect, ptr, pitch) );
++}
++
+diff --git a/include/idirectfbsurface.h b/include/idirectfbsurface.h
+index f68ae78..a490ff2 100644
+--- a/include/idirectfbsurface.h
++++ b/include/idirectfbsurface.h
+@@ -195,6 +195,11 @@ public:
+                                                  int                       pitch,
+                                                  const DFBRectangle       *rect = NULL);
+ 
++     void                   LockRectangle       (DFBSurfaceLockFlags       flags,
++                                                 const DFBRectangle       *rect,
++                                                 void                    **ptr,
++                                                 int                      *pitch);
++
+      inline IDirectFBSurface& operator = (const IDirectFBSurface& other){
+           return IPPAny<IDirectFBSurface, IDirectFBSurface_C>::operator =(other);
+      }

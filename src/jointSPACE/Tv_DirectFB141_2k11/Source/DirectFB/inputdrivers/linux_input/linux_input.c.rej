@@ -1,0 +1,38 @@
+*************** get_device_info( int              fd,
+*** 1034,1039 ****
+       unsigned long relbit[NBITS(REL_CNT)];
+       unsigned long absbit[NBITS(ABS_CNT)];
+  
+       /* get device name */
+       ioctl( fd, EVIOCGNAME(DFB_INPUT_DEVICE_DESC_NAME_LENGTH - 1), info->desc.name );
+  
+--- 1034,1041 ----
+       unsigned long relbit[NBITS(REL_CNT)];
+       unsigned long absbit[NBITS(ABS_CNT)];
+  
++      struct input_id devinfo;
++ 
+       /* get device name */
+       ioctl( fd, EVIOCGNAME(DFB_INPUT_DEVICE_DESC_NAME_LENGTH - 1), info->desc.name );
+  
+*************** get_device_info( int              fd,
+*** 1153,1158 ****
+            info->prefered_id = DIDID_MOUSE;
+       else
+            info->prefered_id = DIDID_ANY;
+  }
+  
+  static bool
+--- 1155,1166 ----
+            info->prefered_id = DIDID_MOUSE;
+       else
+            info->prefered_id = DIDID_ANY;
++ 
++      /* Get VID and PID information */
++      ioctl( fd, EVIOCGID, &devinfo );
++      
++      info->desc.vendor_id  = devinfo.vendor;
++      info->desc.product_id = devinfo.product;
+  }
+  
+  static bool

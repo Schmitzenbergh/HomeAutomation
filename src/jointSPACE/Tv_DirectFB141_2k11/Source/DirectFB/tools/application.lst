@@ -1,0 +1,15 @@
+# Application Name; executable; arguments
+#PluggIt; ./pluggit; -r 1280x720 -f RGB16 -A 100 -H 20 -F 10
+Doom PIP; ./doom; --destination 0.5,0.0-0.5x0.5 
+Doom Full Screen; ./doom
+Emu Odyssey; ./emuodd
+Emu Colecovision; ./emucol
+Emu VCS; ./emuvcs
+Emu Gameboy; ./emugbo
+Emu SMS; ./emusms
+Emu Gamegear; ./emugg
+Emu Genesis; ./emugen
+Emu PCEngine; ./emupce
+Emu MAME; ./emumame
+
+

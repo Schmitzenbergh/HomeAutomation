@@ -1,0 +1,173 @@
+
+/*
+ * (c) 2010 Koninklijke Philips Electronics N.V., All rights reserved
+ * 
+ * This source code and any compilation or derivative thereof is the
+ * proprietary information of Koninklijke Philips Electronics N.V. and is
+ * confidential in nature.
+ * Under no circumstances is this software to be exposed to or placed under an
+ * Open Source License of any type without the expressed written permission of
+ * Koninklijke Philips Electronics N.V.
+ */
+
+
+int idcmdmxAllocateClientStream = 0;
+int idcmdmxFree = 1;
+int idcmdmxGetAvailableClientStreams = 2;
+int idcmdmxGetPlatformStream = 3;
+int idcmdmxGetStreamInfo = 4;
+int idcmdmxGetStreamMapSize = 5;
+int idcmdmxGetSupportedPlatformStreams = 6;
+int idcmdmxSetBuffer = 7;
+int idcmdmxSetStreamIndex = 8;
+int idcmdmxStart = 9;
+int idcmdmxStop = 10;
+int idconnitfGetAvailableInterfaces = 11;
+int iddcfSetAesContentKey = 12;
+int idimgdecDecodeImage = 13;
+int idimgdecDecodeThumbnail = 14;
+int idimgdecGetBufAlignment = 15;
+int idimgdecGetMaxResolution = 16;
+int idimgdecGetMetaDataPresent = 17;
+int idimgdecGetOrgFullResolution = 18;
+int idimgdecGetOrgImageAspectRatio = 19;
+int idimgdecGetOrgImageOrientation = 20;
+int idimgdecGetOrgThumbnailResolution = 21;
+int idimgdecGetRawMetaData = 22;
+int idimgdecGetRotationMode = 23;
+int idimgdecGetScaleRange = 24;
+int idimgdecGetSuppFormatClasses = 25;
+int idimgdecGetSuppFormatTypes = 26;
+int idimgdecGetSuppImageFormats = 27;
+int idimgdecGetSupportedRotationModes = 28;
+int idimgdecGetThumbnailPresent = 29;
+int idimgdecSetRotationMode = 30;
+int idmdGetAvType = 31;
+int idnetschemecfgGetNetworkJitter = 32;
+int idnetschemecfgSetNetworkJitter = 33;
+int idurlsrcjpgAbortAction = 34;
+int idurlsrcjpgCloseUrl = 35;
+int idurlsrcjpgGetAvailStepModes = 36;
+int idurlsrcjpgGetBufferFullness = 37;
+int idurlsrcjpgGetPosition = 38;
+int idurlsrcjpgGetSeekMode = 39;
+int idurlsrcjpgGetSizeForDuration = 40;
+int idurlsrcjpgGetSpeed = 41;
+int idurlsrcjpgGetSpeedRange = 42;
+int idurlsrcjpgGetSuppSchemes = 43;
+int idurlsrcjpgGetTotalDuration = 44;
+int idurlsrcjpgGetTotalSize = 45;
+int idurlsrcjpgGetUrl = 46;
+int idurlsrcjpgOpenUrl = 47;
+int idurlsrcjpgPause = 48;
+int idurlsrcjpgResume = 49;
+int idurlsrcjpgSetPosition = 50;
+int idurlsrcjpgSetSeekMode = 51;
+int idurlsrcjpgSetSpeed = 52;
+int idurlsrcjpgStart = 53;
+int idurlsrcjpgStepBackward = 54;
+int idurlsrcjpgStepForward = 55;
+int idurlsrcjpgStop = 56;
+int idurlsrcmp3AbortAction = 57;
+int idurlsrcmp3CloseUrl = 58;
+int idurlsrcmp3GetAvailStepModes = 59;
+int idurlsrcmp3GetBufferFullness = 60;
+int idurlsrcmp3GetPosition = 61;
+int idurlsrcmp3GetSeekMode = 62;
+int idurlsrcmp3GetSizeForDuration = 63;
+int idurlsrcmp3GetSpeed = 64;
+int idurlsrcmp3GetSpeedRange = 65;
+int idurlsrcmp3GetSuppSchemes = 66;
+int idurlsrcmp3GetTotalDuration = 67;
+int idurlsrcmp3GetTotalSize = 68;
+int idurlsrcmp3GetUrl = 69;
+int idurlsrcmp3OpenUrl = 70;
+int idurlsrcmp3Pause = 71;
+int idurlsrcmp3Resume = 72;
+int idurlsrcmp3SetPosition = 73;
+int idurlsrcmp3SetSeekMode = 74;
+int idurlsrcmp3SetSpeed = 75;
+int idurlsrcmp3Start = 76;
+int idurlsrcmp3StepBackward = 77;
+int idurlsrcmp3StepForward = 78;
+int idurlsrcmp3Stop = 79;
+int idurlsrcvidAbortAction = 80;
+int idurlsrcvidCloseUrl = 81;
+int idurlsrcvidGetAvailStepModes = 82;
+int idurlsrcvidGetBufferFullness = 83;
+int idurlsrcvidGetPosition = 84;
+int idurlsrcvidGetSeekMode = 85;
+int idurlsrcvidGetSizeForDuration = 86;
+int idurlsrcvidGetSpeed = 87;
+int idurlsrcvidGetSpeedRange = 88;
+int idurlsrcvidGetSuppSchemes = 89;
+int idurlsrcvidGetTotalDuration = 90;
+int idurlsrcvidGetTotalSize = 91;
+int idurlsrcvidGetUrl = 92;
+int idurlsrcvidOpenUrl = 93;
+int idurlsrcvidPause = 94;
+int idurlsrcvidResume = 95;
+int idurlsrcvidSetPosition = 96;
+int idurlsrcvidSetSeekMode = 97;
+int idurlsrcvidSetSpeed = 98;
+int idurlsrcvidStart = 99;
+int idurlsrcvidStepBackward = 100;
+int idurlsrcvidStepForward = 101;
+int idurlsrcvidStop = 102;
+int plfapiconnMethodID_Last = 103;
+
+
+int idcmdmxNOnBufferFull = 0;
+int idcmdmxNOnDataArrived = 1;
+int idcmdmxNOnSystemBitRateChanged = 2;
+int idconnitfNOnAvailabilityChanged = 3;
+int iddigadecNOnError = 4;
+int iddigvdecNOnError = 5;
+int iddigvdecNOnStandardDataChanged = 6;
+int idimgdecNOnEndMetaData = 7;
+int idimgdecNOnFullImageDecoded = 8;
+int idimgdecNOnMetaDataFound = 9;
+int idimgdecNOnResolutionObtained = 10;
+int idimgdecNOnThumbnailDecoded = 11;
+int idimgdecNOnThumbnailPresence = 12;
+int idmdNOnAvTypeNotify = 13;
+int idurlsrcjpgNOnAccessible = 14;
+int idurlsrcjpgNOnActionAborted = 15;
+int idurlsrcjpgNOnBufferingStatusChanged = 16;
+int idurlsrcjpgNOnConnectionRetry = 17;
+int idurlsrcjpgNOnDataConsumed = 18;
+int idurlsrcjpgNOnEndOfInput = 19;
+int idurlsrcjpgNOnEndOfRendering = 20;
+int idurlsrcjpgNOnNotAccessible = 21;
+int idurlsrcjpgNOnPlayTimeChanged = 22;
+int idurlsrcjpgNOnSetPositionAborted = 23;
+int idurlsrcjpgNOnSetPositionCompleted = 24;
+int idurlsrcjpgNOnTrickControlLost = 25;
+int idurlsrcmp3NOnAccessible = 26;
+int idurlsrcmp3NOnActionAborted = 27;
+int idurlsrcmp3NOnBufferingStatusChanged = 28;
+int idurlsrcmp3NOnConnectionRetry = 29;
+int idurlsrcmp3NOnDataConsumed = 30;
+int idurlsrcmp3NOnEndOfInput = 31;
+int idurlsrcmp3NOnEndOfRendering = 32;
+int idurlsrcmp3NOnNotAccessible = 33;
+int idurlsrcmp3NOnPlayTimeChanged = 34;
+int idurlsrcmp3NOnSetPositionAborted = 35;
+int idurlsrcmp3NOnSetPositionCompleted = 36;
+int idurlsrcmp3NOnTrickControlLost = 37;
+int idurlsrcvidNOnAccessible = 38;
+int idurlsrcvidNOnActionAborted = 39;
+int idurlsrcvidNOnBufferingStatusChanged = 40;
+int idurlsrcvidNOnConnectionRetry = 41;
+int idurlsrcvidNOnDataConsumed = 42;
+int idurlsrcvidNOnEndOfInput = 43;
+int idurlsrcvidNOnEndOfRendering = 44;
+int idurlsrcvidNOnNotAccessible = 45;
+int idurlsrcvidNOnPlayTimeChanged = 46;
+int idurlsrcvidNOnSetPositionAborted = 47;
+int idurlsrcvidNOnSetPositionCompleted = 48;
+int idurlsrcvidNOnTrickControlLost = 49;
+int plfapiconnNotificationID_Last = 50;
+
+char *plfapiconnIpcVersion = "1.5.201003231640";
+
