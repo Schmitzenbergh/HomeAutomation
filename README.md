@@ -1,7 +1,7 @@
 # HomeAutomation:
 
 Just some centralized controlled home automation project... :)
-**Note: the folder `src` contains unrelated items**
+**Note:** the folder `src` contains unrelated items
 
 
 ## Philips Hue:
@@ -15,7 +15,7 @@ Just some centralized controlled home automation project... :)
 ## Philips Smart Tv
 [jointspace API reference v1.0 (legancy)](http://jointspace.sourceforge.net/projectdata/documentation/jasonApi/)
 
-* Philips 55PFS8209/12 (v5)
+Philips 55PFS8209/12 (v5)
 
   JSON: 
   
