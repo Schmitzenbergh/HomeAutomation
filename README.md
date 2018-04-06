@@ -1,25 +1,24 @@
 # HomeAutomation:
 
 Just some centralized controlled home automation project... :)
+**Note: the folder `src` contains unrelated items**
 
-Note: the folder `src` contains unrelated items
 
 ## Philips Hue:
 [Hue API reference](https://www.developers.meethue.com/philips-hue-api)
 
-  * Bridges
-- Lights
-- Sensors
+* Bridges
+* Lights
+* Sensors
 
 
 ## Philips Smart Tv
-[jointspace API reference (legancy)](http://jointspace.sourceforge.net/projectdata/documentation/jasonApi/) 
+[jointspace API reference v1.0 (legancy)](http://jointspace.sourceforge.net/projectdata/documentation/jasonApi/)
 
-- Tested on Philips 55PFS8209/12.
+* Philips 55PFS8209/12 (v5)
 
-  Tested Commands(v5)   Example: http://192.168.0.97:1925/5/activities/tv
-    
-  JSON:
+  JSON: 
+  
   * /activities/tv
   * /ambilight/cached
   * /ambilight/lounge
@@ -44,29 +43,42 @@ Note: the folder `src` contains unrelated items
   * /system/deviceid_encrypted
   * /system/country
 
+  GET-Example: GET http://localip:1925/5/activities/tv
+
 
   XML:
-  * http://192.168.0.97:49154/nmsDescription.xml
-  * http://192.168.0.97:49154/nmrAVTransport.xml
-  * http://192.168.0.97:49154/nmsContentDirectorySCPD.xml
-  * http://192.168.0.97:49154/nmrConnectionManager.xml
-  * http://192.168.0.97:49154/nmrRenderingControl.xml
+  * http://localip:49154/nmsDescription.xml
+  * http://localip:49154/nmrAVTransport.xml
+  * http://localip:49154/nmsContentDirectorySCPD.xml
+  * http://localip:49154/nmrConnectionManager.xml
+  * http://localip:49154/nmrRenderingControl.xml
 
 
 ## Raspberry Pi:
 [pigpio API reference](http://abyz.me.uk/rpi/pigpio/pigpiod.html)
 
-- Ledstrip connected by GPIO driven and by PigPio 
+- Ledstrip connected by GPIO 
+- Remote controlled by PigPio 
 
 
 ## Harman Kardon:
 [API reference](https://github.com/KarimGeiger/HKAPI)
 
-- avr171s remote controlled with xml/php
+- Avr171s
+- Remote controlled with xml/php
+
+
+
+
+
+
+
+
 
 
 ## Todo's :
 
+  FOLDERS:
     - doc (Documents)
     - inf (Information)
     - lib (Libraries)
@@ -75,7 +87,6 @@ Note: the folder `src` contains unrelated items
     - tst (Test)
 
   TESTING:
-
    POST /upnp/control/RenderingControl1 HTTP/1.1
    HOST: 10.0.0.112:49153
    CONTENT-LENGTH: 290
