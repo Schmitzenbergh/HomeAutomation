@@ -108,4 +108,4 @@ Just some centralized controlled home automation project in progress....  :)
     X-User-Agent: redsonic
        <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
     <s:Body><u:GetMuteResponse xmlns:u="urn:schemas-upnp-org:service:RenderingControl:3"><CurrentMute>0</CurrentMute></u:GetMuteResponse></s:Body></s:Envelope>
-    GET/POST
+    GET/POST 
