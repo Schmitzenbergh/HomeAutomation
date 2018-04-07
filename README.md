@@ -1,72 +1,73 @@
 # HomeAutomation:
 
-Just some centralized controlled home automation project... :)
+Just some centralized controlled home automation project in progress....  :)
 
-**Note:** the folder `src` contains unrelated items
+**Note:** the `src` folder contains unrelated items.
 
 
 ## Philips Hue:
 [Hue API reference](https://www.developers.meethue.com/philips-hue-api)
 
-* Bridges
-* Lights
-* Sensors
+    used components:
+    * Bridges
+    * Lights
+    * Sensors
 
 
-## Philips Smart Tv
+## Philips Smart Tv (55PFS8209/12):
 [jointspace API reference v1.0 (legancy)](http://jointspace.sourceforge.net/projectdata/documentation/jasonApi/)
-
-Philips 55PFS8209/12 (v5)
+** still searching for jointspace API reference v5.0!!**
 
   JSON:       ( GET-Example: GET http://localip:1925/5/activities/tv )
   
-    * /activities/tv
-    * /ambilight/cached
-    * /ambilight/lounge
-    * /ambilight/mode
-    * /ambilight/measured
-    * /ambilight/processed
-    * /applications
-    * /audio/volume
-    * /channeldb/tv
-    * /context
-    * /input/key
-    * /input/pointer
-    * /powerstate
-    * /system
-    * /system/epgsource
-    * /system/serialnumber_encrypted
-    * /system/nettvversion
-    * /system/name
-    * /system/model_encrypted
-    * /system/menulanguage
-    * /system/softwareversion_encrypted
-    * /system/deviceid_encrypted
-    * /system/country
+    * http://localip/activities/tv
+    * http://localip/ambilight/cached
+    * http://localip/ambilight/lounge
+    * http://localip/ambilight/mode
+    * http://localip/ambilight/measured
+    * http://localip/ambilight/processed
+    * http://localip/ambilight/topology
+    * http://localip/applications
+    * http://localip/audio/volume
+    * http://localip/channeldb/tv
+    * http://localip/context
+    * http://localip/input/key
+    * http://localip/input/pointer
+    * http://localip/powerstate
+    * http://localip/system
+    * http://localip/system/country
+    * http://localip/system/deviceid_encrypted
+    * http://localip/system/epgsource
+    * http://localip/system/serialnumber_encrypted
+    * http://localip/system/model_encrypted
+    * http://localip/system/menulanguage
+    * http://localip/system/name
+    * http://localip/system/nettvversion
+    * http://localip/system/softwareversion_encrypted
+
 
 
   XML:
 
-    * http://localip:49154/nmsDescription.xml
     * http://localip:49154/nmrAVTransport.xml
     * http://localip:49154/nmsContentDirectorySCPD.xml
     * http://localip:49154/nmrConnectionManager.xml
+    * http://localip:49154/nmsDescription.xml
     * http://localip:49154/nmrRenderingControl.xml
 
 
 
-## Raspberry Pi:
+## Raspberry Pi (v2):
 [pigpio API reference](http://abyz.me.uk/rpi/pigpio/pigpiod.html)
 
-- Ledstrip connected by GPIO 
-- Remote controlled by PigPio 
+  - Ledstrip connected by GPIO 
+  - Remote controlled by PigPio 
 
 
-## Harman Kardon:
+## Harman Kardon (Avr171s):
 [API reference](https://github.com/KarimGeiger/HKAPI)
 
-- Avr171s
-- Remote controlled with xml/php
+  - Remote controlled with xml/php
 
 
 
