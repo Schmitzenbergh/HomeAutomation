@@ -1,23 +1,31 @@
-#!/usr/bin/env node
-
+/*********\
+| General |######################################################################################################################################################################\
+|                                                                                                                                                                                |
+|     Situation:                # Function:                                                                                                                                      |                 
+|    ###################################################                                                                                                                         |                               
+|     Hue To Scriptvar          # getInfo, getInfoAll                                                                                                                            |                                                                                                                     
+|     Scriptvar to Hue          # setInfo, setInfoAll                                                                                                                            |                                                                                                                       
+|     From Hue                  # get[Variable]                                                                                                                                  |                                                                                               
+|     To Hue                    # set[Variable]                                                                                                                                  |                                                                                               
+|     return                                                                                                                                                                     |                                                             
+|     return                                                                                                                                                                     |                                                             
+|     From disk                 # loadInfo, loadInfoALL                                                                                                                          |                                                                                                                     
+|     To disk                   # saveInfo, saveInfoAll                                                                                                                          |                                                                                                                     
+|     From/To script            # not needed                                                                                                                                     |                                                                                             
+|                                                                                                                                                                                |                                                                        |
+*********************************************************************************************************************************************************************************/
 debug = false;
 
-//# Situation:                # Function:
-//###############################################################################################################################################################################
-//# Hue To Scriptvar          # getInfo, getInfoAll               
-//# Scriptvar to Hue          # setInfo, setInfoAll                 
-//# From Hue                  # get[Variable]
-//# To Hue                    # set[Variable]
-//# From disk                 # loadInfo, loadInfoALL             
-//# To disk                   # saveInfo, saveInfoAll             
-
-//# From/To script            # not needed
 
 
-/** getInfo **/
-//get all attributes for 1 light from hue to script-variables
-//Example: light.getInfo(iLightNumber, Value)
-//###############################################################################################################################################################################
+/*********\
+| getInfo |######################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - get all attributes for 1 light, from hue to script-variables                                                                                                                 |
+|                                                                                                                                                                                |
+| Example: light.getInfo(iLightNumber, Value)                                                                                                                                    |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.getInfo = function( iLightNumber,sValue){
   client.getLight( iLightNumber, function( err, result ){ 
 
@@ -65,10 +73,15 @@ exports.getInfo = function( iLightNumber,sValue){
 };
 
 
-/** getInfo - ALL**/
-//get all attributes for all lights from hue to script-variables
-// Example: light.getInfoAll()
-//###############################################################################################################################################################################
+
+/***************\
+| getInfo - ALL |################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - get all attributes for all lights from hue to script-variables                                                                                                               |
+|                                                                                                                                                                                |
+| Example: light.getInfoAll()                                                                                                                                                    |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.getInfoAll = function(){
   //process.stdout.write('\n' + " Fetch Light Info...");
   var x = 0;
@@ -82,10 +95,14 @@ exports.getInfoAll = function(){
 }
 
 
-/** setInfo **/
-//sets all attributes from 1 light from script-variables to hue
-// Example: light.setInfo( iLightNumber,sValue )
-//###############################################################################################################################################################################
+
+/*********\
+| setInfo |######################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - sets all attributes from 1 light from script-variables to hue                                                                                                                |
+|                                                                                                                                                                                |
+| Example:                                                                                                                                                                       |
+\********************************************************************************************************************************************************************************/
 exports.setInfo = function( iLightNumber,sValue ){
   client.setLight( iLightNumber, function( err, result ){
   
@@ -110,10 +127,15 @@ exports.setInfo = function( iLightNumber,sValue ){
 }
 
 
-/** setInfo - ALL**/
-//sets all attributes for all lights from script-variables to hue
-// Example: light.setInfoAll()
-//###############################################################################################################################################################################
+
+/***************\
+| setInfo - ALL |################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - sets all attributes for all lights from script-variables to hue                                                                                                              |
+|                                                                                                                                                                                |
+| Example: light.setInfoAll()                                                                                                                                                    |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.setInfoAll = function(){
   //process.stdout.write('\n' + " Push Light Info...");
   var x = 0;
@@ -127,37 +149,62 @@ exports.setInfoAll = function(){
 }
 
 
-/** getValue **/
-//get attribute from a single light
-// Example: light.getManufacturerName(1, console.log)
-//          light.getManufacturerName(1, output)
-//###############################################################################################################################################################################
-exports.getManufacturerName = function (iLightNumber){     client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.manufacturername === undefined      ){ return err; } sArrayLightManufacturerName[iLightNumber]                              }); return sArrayLightManufacturerName[iLightNumber] ;};
-exports.getProductName = function (iLightNumber){          client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.productname === undefined           ){ return err; } sArrayLightProductname[iLightNumber]                                   }); return sArrayLightProductname[iLightNumber]      ;};
-exports.getModelId = function (iLightNumber){              client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.modelid === undefined               ){ return err; } sArrayLightModelid[iLightNumber]                                       }); return sArrayLightModelid[iLightNumber]          ;};
-exports.getName = function (iLightNumber){                 client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.name === undefined                  ){ return err; } sArrayLightName[iLightNumber]                                          }); return sArrayLightName[iLightNumber]             ;};
-exports.getSwVersion = function (iLightNumber){            client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.swversion === undefined             ){ return err; } sArrayLightSwversion[iLightNumber]                                     }); return sArrayLightSwversion[iLightNumber]        ;};
-exports.getType = function (iLightNumber){                 client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.type === undefined                  ){ return err; } sArrayLightType[iLightNumber]                                          }); return sArrayLightType[iLightNumber]             ;};
-exports.getUniqueid = function (iLightNumber){             client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.uniqueid === undefined              ){ return err; } sArrayLightUniqueid[iLightNumber]                                      }); return sArrayLightUniqueid[iLightNumber]         ;};
-exports.getOn = function(iLightNumber){                    client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.on === undefined              ){ return err; } bArrayLightOn[iLightNumber] = result.state.on;                         }); return bArrayLightOn[iLightNumber]               ;};
-exports.getBri = function(iLightNumber){                   client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.bri === undefined             ){ return err; } iArrayLightBriCur[iLightNumber] = result.state.bri;                    }); return iArrayLightBriCur[iLightNumber]           ;};
-exports.getHue = function (iLightNumber){                  client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.hue === undefined             ){ return err; } iArrayLightHueCur[iLightNumber] = result.state.hue                     }); return iArrayLightHueCur[iLightNumber]          ;};
-exports.getSat = function (iLightNumber){                  client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.sat === undefined             ){ return err; } iArrayLightSatCur[iLightNumber] = result.state.sat                     }); return iArrayLightSatCur[iLightNumber]          ;};
-exports.getEffect = function (iLightNumber){               client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.effect === undefined          ){ return err; } sArrayLightEffect[iLightNumber] = result.state.effect                  }); return sArrayLightEffect[iLightNumber]          ;};
-exports.getXy = function (iLightNumber){                   client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.xy === undefined              ){ return err; } fArrayLightXyCur[iLightNumber] = result.state.xy                       }); return fArrayLightXyCur[iLightNumber]           ;};
-exports.getXyX = function (iLightNumber){                  client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.xy[0] === undefined           ){ return err; } fArrayLightXyXCur[iLightNumber] = result.state.xy[0]                   }); return fArrayLightXyXCur[iLightNumber]          ;};
-exports.getXyY = function (iLightNumber){                  client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.xy[1] === undefined           ){ return err; } fArrayLightXyYCur[iLightNumber] = result.state.xy[1]                   }); return fArrayLightXyYCur[iLightNumber]          ;};
-exports.getCt = function (iLightNumber){                   client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.ct === undefined              ){ return err; } iArrayLightCtCur[iLightNumber] = result.state.ct                       }); return iArrayLightCtCur[iLightNumber]           ;};
-exports.getAlert = function (iLightNumber){                client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.alert === undefined           ){ return err; } sArrayLightAlert[iLightNumber] = result.state.alert                    }); return sArrayLightAlert[iLightNumber]           ;};
-exports.getColormode = function (iLightNumber){            client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.colormode === undefined       ){ return err; } sArrayLightColorMode[iLightNumber] = result.state.colormode            }); return sArrayLightColorMode[iLightNumber]       ;};
-exports.getReachable = function (iLightNumber){            client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.reachable === undefined       ){ return err; } bArrayLightReachable[iLightNumber] = result.state.reachable            }); return bArrayLightReachable[iLightNumber]       ;};
-exports.getTransisitonTime = function (iLightNumber){      client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.transitiontime === undefined  ){ return err; } bArrayLightTransitionTime[iLightNumber] = result.state.transitiontime  }); return bArrayLightTransitionTime[iLightNumber]  ;};
+
+/**********\
+| getValue |#####################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - get attribute from a single light                                                                                                                                            |
+|                                                                                                                                                                                |
+|  Examples: light.getManufacturerName('1', function(callback){ console.log(callback); });                                                                                       |                                                                                              
+|            light.getModelId('1', function(callback){ console.log(callback); });                                                                                                |                                                                                                                                                                                
+|            light.getName('1', function(callback){ console.log(callback); });                                                                                                   |                                                                                  
+|            light.getSwVersion('1', function(callback){ console.log(callback); });                                                                                              |                                                                                       
+|            light.getType('1', function(callback){ console.log(callback); });                                                                                                   |                                                                                  
+|            light.getUniqueid('1', function(callback){ console.log(callback); });                                                                                               |                                                                                      
+|            light.getOn('1', function(callback){ console.log(callback); });                                                                                                     |                                                                                
+|            light.getBri('1', function(callback){ console.log(callback); });                                                                                                    |                                                                                 
+|            light.getHue('1', function(callback){ console.log(callback); });                                                                                                    |                                                                                 
+|            light.getSat('1', function(callback){ console.log(callback); });                                                                                                    |                                                                                 
+|            light.getEffect('1', function(callback){ console.log(callback); });                                                                                                 |                                                                                    
+|            light.getXy('1', function(callback){ console.log(callback); });                                                                                                     |                                                                                
+|            light.getXyX('1', function(callback){ console.log(callback); });                                                                                                    |                                                                                 
+|            light.getXyY('1', function(callback){ console.log(callback); });                                                                                                    |                                                                                 
+|            light.getCt('1', function(callback){ console.log(callback); });                                                                                                     |                                                                                
+|            light.getAlert('1', function(callback){ console.log(callback); });                                                                                                  |                                                                                                                                                                                                                                                                         
+|            light.getColormode('1', function(callback){ console.log(callback); });                                                                                              |                                                                                       
+|            light.getReachable('1', function(callback){ console.log(callback); });                                                                                              |                                                                                       
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
+exports.getManufacturerName = function(iLightNumber,cb){      client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.manufacturername === undefined      ){ return err; } sArrayLightManufacturerName[iLightNumber] = result.manufacturername;    cb(result.manufacturername);     }); };
+exports.getModelId = function (iLightNumber,cb){              client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.modelid === undefined               ){ return err; } sArrayLightModelid[iLightNumber] = result.modelid;                      cb(result.modelid);              }); };
+exports.getName = function (iLightNumber,cb){                 client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.name === undefined                  ){ return err; } sArrayLightName[iLightNumber] = result.name;                            cb(result.name);                 }); };
+exports.getSwVersion = function (iLightNumber,cb){            client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.swversion === undefined             ){ return err; } sArrayLightSwversion[iLightNumber] = result.swversion;                  cb(result.swversion);            }); };
+exports.getType = function (iLightNumber,cb){                 client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.type === undefined                  ){ return err; } sArrayLightType[iLightNumber] = result.type;                            cb(result.type);                 }); };
+exports.getUniqueid = function (iLightNumber,cb){             client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.uniqueid === undefined              ){ return err; } sArrayLightUniqueid[iLightNumber] = result.uniqueid;                    cb(result.uniqueid);             }); };
+exports.getOn = function(iLightNumber,cb){                    client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.on === undefined              ){ return err; } bArrayLightOn[iLightNumber] = result.state.on;                          cb(result.state.on);             }); };
+exports.getBri = function(iLightNumber,cb){                   client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.bri === undefined             ){ return err; } iArrayLightBriCur[iLightNumber] = result.state.bri;                     cb(result.state.bri);            }); };
+exports.getHue = function (iLightNumber,cb){                  client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.hue === undefined             ){ return err; } iArrayLightHueCur[iLightNumber] = result.state.hue;                     cb(result.state.hue);            }); };
+exports.getSat = function (iLightNumber,cb){                  client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.sat === undefined             ){ return err; } iArrayLightSatCur[iLightNumber] = result.state.sat;                     cb(result.state.sat);            }); };
+exports.getEffect = function (iLightNumber,cb){               client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.effect === undefined          ){ return err; } sArrayLightEffect[iLightNumber] = result.state.effect;                  cb(result.state.effect);         }); };
+exports.getXy = function (iLightNumber,cb){                   client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.xy === undefined              ){ return err; } fArrayLightXyCur[iLightNumber] = result.state.xy;                       cb(result.state.xy);             }); };
+exports.getXyX = function (iLightNumber,cb){                  client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.xy[0] === undefined           ){ return err; } fArrayLightXyXCur[iLightNumber] = result.state.xy[0];                   cb(result.state.xy[0]);            }); };
+exports.getXyY = function (iLightNumber,cb){                  client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.xy[1] === undefined           ){ return err; } fArrayLightXyYCur[iLightNumber] = result.state.xy[1];                   cb(result.state.xy[1]);            }); };
+exports.getCt = function (iLightNumber,cb){                   client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.ct === undefined              ){ return err; } iArrayLightCtCur[iLightNumber] = result.state.ct;                       cb(result.state.ct);             }); };
+exports.getAlert = function (iLightNumber,cb){                client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.alert === undefined           ){ return err; } sArrayLightAlert[iLightNumber] = result.state.alert;                    cb(result.state.alert);          }); };
+exports.getColormode = function (iLightNumber,cb){            client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.colormode === undefined       ){ return err; } sArrayLightColorMode[iLightNumber] = result.state.colormode;            cb(result.state.colormode);      }); };
+exports.getReachable = function (iLightNumber,cb){            client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.reachable === undefined       ){ return err; } bArrayLightReachable[iLightNumber] = result.state.reachable;            cb(result.state.reachable);      }); };
+exports.getTransisitonTime = function (iLightNumber,cb){      client.get('/lights/' + iLightNumber + '/', function (err, result) { if ( err || typeof result.state.transitiontime === undefined  ){ return err; } iArrayLightTransitionTime[iLightNumber] = result.state.transitiontime;  cb(result.state.transitiontime); }); };
 
 
-/** setValue **/
-//set attribute for a single light
-// Example: light.getManufacturerName(iLightNumber, Value)
-//###############################################################################################################################################################################
+
+/**********\
+| setValue |#####################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - set attribute from a single light                                                                                                                                            |
+|                                                                                                                                                                                |
+| Example:                                                                                                                                                                       |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.setOn = function( iLightNumber,bValue){             client.setLightState( iLightNumber, { "on": bValue },                    function( err, result ){ if ( err ) return err; }); };     // true/false
 exports.setOff = function( iLightNumber ){                  client.setLightState( iLightNumber, { "on": false },                     function( err, result ){ if ( err ) return err; }); };     // none                          
 exports.setBri = function( iLightNumber,iValue){            client.setLightState( iLightNumber, { "bri": iValue },                   function( err, result ){ if ( err ) return err; }); };     // 0-254
@@ -183,42 +230,52 @@ exports.setReachable = function( iLightNumber,bValue){      client.setLightState
 exports.setTransitionTime = function( iLightNumber,iValue){ client.setLightState( iLightNumber, { "transitiontime": iValue },        function( err, result ){ if ( err ) return err; }); };     // a multiple of 100 milliseconds, e.g. 4 means 400ms
 
 
-/** loadInfo **/
-//load variables from 1 light from disk
-// Example: light.loadInfo(iLightNumber)
-//###############################################################################################################################################################################
+
+/**********\
+| loadInfo |#####################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - load variables from 1 light from disk                                                                                                                                        |
+|                                                                                                                                                                                |
+| Example: light.loadInfo(iLightNumber)                                                                                                                                          |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.loadInfo = function(iLightNumber){
   //if (!fs.existsSync(pathhuelightvalues + iLightNumber + "/state"))
   var path;
 
-  path = pathhuelightvalues + iLightNumber + "/manufacturername"    ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightManufacturerName[iLightNumber] = data; console.log("Read Light " + iLightNumber + " - /manufacturername     : " + data ); }; }); };     //  if ( sArrayLightManufacturerName[iLightNumber] !== undefined ){ sArrayLightManufacturerName[iLightNumber] = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/manufacturername" ) };
-  path = pathhuelightvalues + iLightNumber + "/productname"         ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightProductname[iLightNumber]      = data; console.log("Read Light " + iLightNumber + " - /productname          : " + data ); }; }); };     //  if ( sArrayLightProductname[iLightNumber]      !== undefined ){ sArrayLightProductname[iLightNumber]      = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/productname"      ) };
-  path = pathhuelightvalues + iLightNumber + "/modelid"             ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightModelid[iLightNumber]          = data; console.log("Read Light " + iLightNumber + " - /modelid              : " + data ); }; }); };     //  if ( sArrayLightModelid[iLightNumber]          !== undefined ){ sArrayLightModelid[iLightNumber]          = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/modelid"          ) };
-  path = pathhuelightvalues + iLightNumber + "/name"                ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightName[iLightNumber]             = data; console.log("Read Light " + iLightNumber + " - /name                 : " + data ); }; }); };     //  if ( sArrayLightName[iLightNumber]             !== undefined ){ sArrayLightName[iLightNumber]             = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/name"             ) };
-  path = pathhuelightvalues + iLightNumber + "/swversion"           ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightSwversion[iLightNumber]        = data; console.log("Read Light " + iLightNumber + " - /swversion            : " + data ); }; }); };     //  if ( sArrayLightSwversion[iLightNumber]        !== undefined ){ sArrayLightSwversion[iLightNumber]        = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/swversion"        ) };
-  path = pathhuelightvalues + iLightNumber + "/type"                ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightType[iLightNumber]             = data; console.log("Read Light " + iLightNumber + " - /type                 : " + data ); }; }); };     //  if ( sArrayLightType[iLightNumber]             !== undefined ){ sArrayLightType[iLightNumber]             = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/type"             ) };
-  path = pathhuelightvalues + iLightNumber + "/uniqueid"            ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightUniqueid[iLightNumber]         = data; console.log("Read Light " + iLightNumber + " - /uniqueid             : " + data ); }; }); };     //  if ( sArrayLightUniqueid[iLightNumber]         !== undefined ){ sArrayLightUniqueid[iLightNumber]         = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/uniqueid"         ) };
-  path = pathhuelightvalues + iLightNumber + "/state/on"            ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArrayLightOn[iLightNumber]               = data; console.log("Read Light " + iLightNumber + " - /state/on             : " + data ); }; }); };     //  if ( bArrayLightOn[iLightNumber]               !== undefined ){ bArrayLightOn[iLightNumber]               = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/state/on"         ) };
-  path = pathhuelightvalues + iLightNumber + "/state/bri"           ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArrayLightBriCur[iLightNumber]           = data; console.log("Read Light " + iLightNumber + " - /state/bri            : " + data ); }; }); };     //  if ( iArrayLightBriCur[iLightNumber]           !== undefined ){ iArrayLightBriCur[iLightNumber]           = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/state/bri"        ) };
-  path = pathhuelightvalues + iLightNumber + "/state/hue"           ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArrayLightHueCur[iLightNumber]           = data; console.log("Read Light " + iLightNumber + " - /state/hue            : " + data ); }; }); };     //  if ( iArrayLightHueCur[iLightNumber]           !== undefined ){ iArrayLightHueCur[iLightNumber]           = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/state/hue"        ) };
-  path = pathhuelightvalues + iLightNumber + "/state/sat"           ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArrayLightSatCur[iLightNumber]           = data; console.log("Read Light " + iLightNumber + " - /state/sat            : " + data ); }; }); };     //  if ( iArrayLightSatCur[iLightNumber]           !== undefined ){ iArrayLightSatCur[iLightNumber]           = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/state/sat"        ) };
-  path = pathhuelightvalues + iLightNumber + "/state/effect"        ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightEffect[iLightNumber]           = data; console.log("Read Light " + iLightNumber + " - /state/effect         : " + data ); }; }); };     //  if ( sArrayLightEffect[iLightNumber]           !== undefined ){ sArrayLightEffect[iLightNumber]           = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/state/effect"     ) };
-  path = pathhuelightvalues + iLightNumber + "/state/xy"            ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ fArrayLightXyCur[iLightNumber]            = data; console.log("Read Light " + iLightNumber + " - /state/xy             : " + data ); }; }); };     //  if ( fArrayLightXyCur[iLightNumber]            !== undefined ){ fArrayLightXyCur[iLightNumber]            = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/state/xy/xy"      ) };
-  path = pathhuelightvalues + iLightNumber + "/state/x"             ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ fArrayLightXyXCur[iLightNumber]           = data; console.log("Read Light " + iLightNumber + " - /state/x              : " + data ); }; }); };     //  if ( fArrayLightXyXCur[iLightNumber]           !== undefined ){ fArrayLightXyXCur[iLightNumber]           = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/state/xy/x"       ) };
-  path = pathhuelightvalues + iLightNumber + "/state/y"             ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ fArrayLightXyYCur[iLightNumber]           = data; console.log("Read Light " + iLightNumber + " - /state/y              : " + data ); }; }); };     //  if ( fArrayLightXyYCur[iLightNumber]           !== undefined ){ fArrayLightXyYCur[iLightNumber]           = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/state/xy/y"       ) };
-  path = pathhuelightvalues + iLightNumber + "/state/ct"            ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArrayLightCtCur[iLightNumber]            = data; console.log("Read Light " + iLightNumber + " - /state/ct             : " + data ); }; }); };     //  if ( iArrayLightCtCur[iLightNumber]            !== undefined ){ iArrayLightCtCur[iLightNumber]            = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/state/ct"         ) };
-  path = pathhuelightvalues + iLightNumber + "/state/alert"         ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightAlert[iLightNumber]            = data; console.log("Read Light " + iLightNumber + " - /state/alert          : " + data ); }; }); };     //  if ( sArrayLightAlert[iLightNumber]            !== undefined ){ sArrayLightAlert[iLightNumber]            = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/state/alert"      ) };
-  path = pathhuelightvalues + iLightNumber + "/state/colormode"     ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightColorMode[iLightNumber]        = data; console.log("Read Light " + iLightNumber + " - /state/colormode      : " + data ); }; }); };     //  if ( sArrayLightColorMode[iLightNumber]        !== undefined ){ sArrayLightColorMode[iLightNumber]        = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/state/colormode"  ) };
-  path = pathhuelightvalues + iLightNumber + "/state/reachable"     ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArrayLightReachable[iLightNumber]        = data; console.log("Read Light " + iLightNumber + " - /state/reachable      : " + data ); }; }); };     //  if ( bArrayLightReachable[iLightNumber]        !== undefined ){ bArrayLightReachable[iLightNumber]        = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/state/reachable"  ) };
-  path = pathhuelightvalues + iLightNumber + "/state/transitiontime"; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArrayLightTransitionTime[iLightNumber]   = data; console.log("Read Light " + iLightNumber + " - /state/transitiontime : " + data ); }; }); };     //  if ( bArrayLightReachable[iLightNumber]        !== undefined ){ bArrayLightReachable[iLightNumber]        = exec("/bin/cat " + pathhuelightvalues + iLightNumber + "/state/reachable"  ) };
+  path = pathhuelightvalues + iLightNumber + "/manufacturername"    ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightManufacturerName[iLightNumber] = data; console.log("Read Light " + iLightNumber + " - /manufacturername     : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/productname"         ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightProductname[iLightNumber]      = data; console.log("Read Light " + iLightNumber + " - /productname          : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/modelid"             ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightModelid[iLightNumber]          = data; console.log("Read Light " + iLightNumber + " - /modelid              : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/name"                ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightName[iLightNumber]             = data; console.log("Read Light " + iLightNumber + " - /name                 : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/swversion"           ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightSwversion[iLightNumber]        = data; console.log("Read Light " + iLightNumber + " - /swversion            : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/type"                ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightType[iLightNumber]             = data; console.log("Read Light " + iLightNumber + " - /type                 : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/uniqueid"            ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightUniqueid[iLightNumber]         = data; console.log("Read Light " + iLightNumber + " - /uniqueid             : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/state/on"            ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArrayLightOn[iLightNumber]               = data; console.log("Read Light " + iLightNumber + " - /state/on             : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/state/bri"           ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArrayLightBriCur[iLightNumber]           = data; console.log("Read Light " + iLightNumber + " - /state/bri            : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/state/hue"           ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArrayLightHueCur[iLightNumber]           = data; console.log("Read Light " + iLightNumber + " - /state/hue            : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/state/sat"           ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArrayLightSatCur[iLightNumber]           = data; console.log("Read Light " + iLightNumber + " - /state/sat            : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/state/effect"        ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightEffect[iLightNumber]           = data; console.log("Read Light " + iLightNumber + " - /state/effect         : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/state/xy"            ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ fArrayLightXyCur[iLightNumber]            = data; console.log("Read Light " + iLightNumber + " - /state/xy             : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/state/x"             ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ fArrayLightXyXCur[iLightNumber]           = data; console.log("Read Light " + iLightNumber + " - /state/x              : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/state/y"             ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ fArrayLightXyYCur[iLightNumber]           = data; console.log("Read Light " + iLightNumber + " - /state/y              : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/state/ct"            ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArrayLightCtCur[iLightNumber]            = data; console.log("Read Light " + iLightNumber + " - /state/ct             : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/state/alert"         ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightAlert[iLightNumber]            = data; console.log("Read Light " + iLightNumber + " - /state/alert          : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/state/colormode"     ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightColorMode[iLightNumber]        = data; console.log("Read Light " + iLightNumber + " - /state/colormode      : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/state/reachable"     ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArrayLightReachable[iLightNumber]        = data; console.log("Read Light " + iLightNumber + " - /state/reachable      : " + data ); }; }); };
+  path = pathhuelightvalues + iLightNumber + "/state/transitiontime"; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArrayLightTransitionTime[iLightNumber]   = data; console.log("Read Light " + iLightNumber + " - /state/transitiontime : " + data ); }; }); };
   
 };              
 
 
-/** loadInfo All**/
-//loads all variables from all lights from disk
-// Example: light.loadInfoAll()
-//###############################################################################################################################################################################
+
+/****************\
+| loadInfo - All |###############################################################################################################################################################\
+|                                                                                                                                                                                |
+| - loads all variables from all lights from disk                                                                                                                                |
+|                                                                                                                                                                                |
+| Example: light.loadInfoAll()                                                                                                                                                   |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.loadInfoAll = function(){
   //process.stdout.write('\n' + " Push Light Info...");
   var x = 0;
@@ -232,10 +289,15 @@ exports.loadInfoAll = function(){
 }
 
 
-/** saveInfo **/
-//saves all variables from 1 light to disk
-// Example: light.saveInfo(iLightNumber)
-//###############################################################################################################################################################################
+
+/**********\
+| saveInfo |#####################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - saves variables from 1 light from disk                                                                                                                                       |
+|                                                                                                                                                                                |
+| Example: light.saveInfo(iLightNumber)                                                                                                                                          |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.saveInfo = function(iLightNumber){
 
   if (!fs.existsSync(pathhuelightvalues + iLightNumber + "/state")) { exec("/bin/mkdir -p " + pathhuelightvalues + iLightNumber + "/state" ); };
@@ -264,10 +326,15 @@ exports.saveInfo = function(iLightNumber){
 };
 
 
-/** setInfo - ALL**/
-//saves all variables from all lights to disk
-// Example: light.saveInfoAll()
-//###############################################################################################################################################################################
+
+/***************\
+| setInfo - All |################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - saves all variables from all lights to disk                                                                                                                                  |
+|                                                                                                                                                                                |
+| Example: light.saveInfoAll()                                                                                                                                                   |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.saveInfoAll = function(){
   //process.stdout.write('\n' + " Fetch Light Info...");
   var x = 0;
