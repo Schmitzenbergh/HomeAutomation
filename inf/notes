@@ -4,3 +4,25 @@ request(options = { uri: 'http://192.168.0.97:1925/5/input/key', method: 'POST',
     console.log(response) // Print the shortened url.
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+try {
+    jQuery.parseJSON(response);
+} catch(error) {
+    // its not json
+}

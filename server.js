@@ -8,6 +8,12 @@ var jsonObj = JSON.parse(jsonFile);
 var server;
 var counter = 1;
 
+
+
+/***************\
+| NodeJS Server |###############################################################################################################################################################################
+\***************/
+
 server = http.createServer(function(req, res){
     // your normal server code
     var path = url.parse(req.url).pathname;
