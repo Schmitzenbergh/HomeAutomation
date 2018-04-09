@@ -1,20 +1,6 @@
-var http = require('http');
-var url = require('url');
-var fs = require('fs');
-//var fs = require('angular-json-tree');
-var path = require('path');
 var jsonFile=fs.readFileSync('db.json', 'utf8');
 var jsonObj = JSON.parse(jsonFile);
 var server;
-var counter = 1;
-
-//avr = require( pathavrhk171s + 'default.js');
-
-
-
-//var tv = require('');
-
-
 
 /***************\
 | NodeJS Server |###############################################################################################################################################################################
@@ -119,7 +105,7 @@ socket.on('FM'              , function(data){ avr.SendCommand('source-selection'
 socket.on('vTuner'          , function(data){ avr.SendCommand('source-selection', undefined, 'vTuner'          ); });
 socket.on('Bluetooth'       , function(data){ avr.SendCommand('source-selection', undefined, 'Bluetooth'       ); });
 
-
+////tv.postInputKeyVolumeUp(),
 
 //    //send data to client
 //    setInterval(function(){

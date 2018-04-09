@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
   <head>
     <title>Socket.io Test</title>
@@ -23,82 +23,69 @@
       }
     </script>
 
+    <style type="text/css">
+	.auto-style1 {
+		font-size: 14px;
+	}
+	</style>
+
   </head>
   <body>
 
-    //<button onClick="socket.emit('voldown')">down</button>
+<h1>AVR</h1>
+</br>
+<button onClick="socket.emit('power-on'    )" style="width: 110px; height: 30px"><center class="auto-style1">power-on     </center></button>
+<button onClick="socket.emit('volume-up'   )" style="width: 110px; height: 30px"><center class="auto-style1">volume-up    </center></button>
+<button onClick="socket.emit('mute-on'     )" style="width: 110px; height: 30px"><center class="auto-style1">mute-on      </center></button>
+<button onClick="socket.emit('mute-toggle' )" style="width: 110px; height: 30px"><center class="auto-style1">mute-toggle  </center></button>               
+<button onClick="socket.emit('AUX'         )" style="width: 110px; height: 30px"><center class="auto-style1">AUX          </center></button>               
+<button onClick="socket.emit('TV'          )" style="width: 110px; height: 30px"><center class="auto-style1">TV           </center></button>               
+<button onClick="socket.emit('Cable Sat'   )" style="width: 110px; height: 30px"><center class="auto-style1">Cable Sat    </center></button>               
+<button onClick="socket.emit('STB'         )" style="width: 110px; height: 30px"><center class="auto-style1">STB          </center></button>               
+<button onClick="socket.emit('Radio'       )" style="width: 110px; height: 30px"><center class="auto-style1">Radio        </center></button>               
+<button onClick="socket.emit('Game'        )" style="width: 110px; height: 30px"><center class="auto-style1">Game         </center></button>               
+<button onClick="socket.emit('USB'         )" style="width: 110px; height: 30px"><center class="auto-style1">USB          </center></button>               
+
+</br>
+<button onClick="socket.emit('power-off'   )" style="width: 110px; height: 30px"><center class="auto-style1">power-off    </center></button>               
+<button onClick="socket.emit('volume-down' )" style="width: 110px; height: 30px"><center class="auto-style1">volume-down  </center></button>
+<button onClick="socket.emit('mute-off'    )" style="width: 110px; height: 30px"><center class="auto-style1">mute-off     </center></button>               
+<button onClick="socket.emit('Disc'        )" style="width: 110px; height: 30px"><center class="auto-style1">Disc         </center></button>               
+<button onClick="socket.emit('Media Server')" style="width: 110px; height: 30px"><center class="auto-style1">Media Server </center></button>               
+<button onClick="socket.emit('Home Network')" style="width: 110px; height: 30px"><center class="auto-style1">Home Network </center></button>               
+<button onClick="socket.emit('AM'          )" style="width: 110px; height: 30px"><center class="auto-style1">AM           </center></button>               
+<button onClick="socket.emit('FM'          )" style="width: 110px; height: 30px"><center class="auto-style1">FM           </center></button>               
+<button onClick="socket.emit('vTuner'      )" style="width: 110px; height: 30px"><center class="auto-style1">vTuner       </center></button>               
+<button onClick="socket.emit('Bluetooth'   )" style="width: 110px; height: 30px"><center class="auto-style1">Bluetooth    </center></button>               
+
+</br>
+<button onClick="socket.emit('ok'          )" style="width: 110px; height: 30px"><center class="auto-style1">ok           </center></button>               
+<button onClick="socket.emit('home'        )" style="width: 110px; height: 30px"><center class="auto-style1">home         </center></button>               
+<button onClick="socket.emit('options'     )" style="width: 110px; height: 30px"><center class="auto-style1">options      </center></button>               
+<button onClick="socket.emit('down'        )" style="width: 110px; height: 30px"><center class="auto-style1">down         </center></button>               
+<button onClick="socket.emit('up'          )" style="width: 110px; height: 30px"><center class="auto-style1">up           </center></button>               
+<button onClick="socket.emit('left'        )" style="width: 110px; height: 30px"><center class="auto-style1">left         </center></button>               
+<button onClick="socket.emit('right'       )" style="width: 110px; height: 30px"><center class="auto-style1">right        </center></button>               
+
+</br>
+<button onClick="socket.emit('back'        )" style="width: 110px; height: 30px"><center class="auto-style1">back         </center></button>               
+<button onClick="socket.emit('forward'     )" style="width: 110px; height: 30px"><center class="auto-style1">forward      </center></button>               
+<button onClick="socket.emit('pause'       )" style="width: 110px; height: 30px"><center class="auto-style1">pause        </center></button>               
+<button onClick="socket.emit('play'        )" style="width: 110px; height: 30px"><center class="auto-style1">play         </center></button>               
+<button onClick="socket.emit('next'        )" style="width: 110px; height: 30px"><center class="auto-style1">next         </center></button>               
+<button onClick="socket.emit('previous'    )" style="width: 110px; height: 30px"><center class="auto-style1">previous     </center></button>               
+<button onClick="socket.emit('sleep'       )" style="width: 110px; height: 30px"><center class="auto-style1">sleep        </center></button>               
+<button onClick="socket.emit('delay'       )" style="width: 110px; height: 30px"><center class="auto-style1">delay        </center></button>               
+
+</br>
+<button onClick="socket.emit('channel-up'  )" style="width: 110px; height: 30px"><center class="auto-style1">channel-up   </center></button>               
+<button onClick="socket.emit('channel-down')" style="width: 110px; height: 30px"><center class="auto-style1">channel-down </center></button>               
+<button onClick="socket.emit('tuner-up'    )" style="width: 110px; height: 30px"><center class="auto-style1">tuner-up     </center></button>               
+<button onClick="socket.emit('tuner-down'  )" style="width: 110px; height: 30px"><center class="auto-style1">tuner-down   </center></button>                     
 
 
 
-<button onClick="socket.emit('power-off'   )"><center>power-off    </center></button>               
-<button onClick="socket.emit('power-on'    )"><center>power-on     </center></button>               
-<button onClick="socket.emit('mute-toggle' )"><center>mute-toggle  </center></button>               
-<button onClick="socket.emit('mute-on'     )"><center>mute-on      </center></button>               
-<button onClick="socket.emit('mute-off'    )"><center>mute-off     </center></button>               
-<button onClick="socket.emit('volume-down' )"><center>volume-down  </center></button>               
-<button onClick="socket.emit('volume-up'   )"><center>volume-up    </center></button>               
-<button onClick="socket.emit('ok'          )"><center>ok           </center></button>               
-<button onClick="socket.emit('home'        )"><center>home         </center></button>               
-<button onClick="socket.emit('options'     )"><center>options      </center></button>               
-<button onClick="socket.emit('down'        )"><center>down         </center></button>               
-<button onClick="socket.emit('up'          )"><center>up           </center></button>               
-<button onClick="socket.emit('left'        )"><center>left         </center></button>               
-<button onClick="socket.emit('right'       )"><center>right        </center></button>               
-<button onClick="socket.emit('back'        )"><center>back         </center></button>               
-<button onClick="socket.emit('forward'     )"><center>forward      </center></button>               
-<button onClick="socket.emit('pause'       )"><center>pause        </center></button>               
-<button onClick="socket.emit('play'        )"><center>play         </center></button>               
-<button onClick="socket.emit('next'        )"><center>next         </center></button>               
-<button onClick="socket.emit('previous'    )"><center>previous     </center></button>               
-<button onClick="socket.emit('sleep'       )"><center>sleep        </center></button>               
-<button onClick="socket.emit('delay'       )"><center>delay        </center></button>               
-<button onClick="socket.emit('channel-up'  )"><center>channel-up   </center></button>               
-<button onClick="socket.emit('channel-down')"><center>channel-down </center></button>               
-<button onClick="socket.emit('tuner-up'    )"><center>tuner-up     </center></button>               
-<button onClick="socket.emit('tuner-down'  )"><center>tuner-down   </center></button>           
-<button onClick="socket.emit('AUX'         )"><center>AUX          </center></button>               
-<button onClick="socket.emit('TV'          )"><center>TV           </center></button>               
-<button onClick="socket.emit('Cable Sat'   )"><center>Cable Sat    </center></button>               
-<button onClick="socket.emit('STB'         )"><center>STB          </center></button>               
-<button onClick="socket.emit('Radio'       )"><center>Radio        </center></button>               
-<button onClick="socket.emit('Game'        )"><center>Game         </center></button>               
-<button onClick="socket.emit('USB'         )"><center>USB          </center></button>               
-<button onClick="socket.emit('Disc'        )"><center>Disc         </center></button>               
-<button onClick="socket.emit('Media Server')"><center>Media Server </center></button>               
-<button onClick="socket.emit('Home Network')"><center>Home Network </center></button>               
-<button onClick="socket.emit('AM'          )"><center>AM           </center></button>               
-<button onClick="socket.emit('FM'          )"><center>FM           </center></button>               
-<button onClick="socket.emit('vTuner'      )"><center>vTuner       </center></button>               
-<button onClick="socket.emit('Bluetooth'   )"><center>Bluetooth    </center></button>               
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  </body>
 
   
 <!--  DropDown
@@ -123,21 +110,7 @@
     });
 
 
-
--->
-
-
-    <p id="jsonFile">NoValue</p>
-    
-
-
-
-
-  </body>
-
-
-  <!--
-
+ <p id="jsonFile">NoValue</p>
 
     <p>Some TestText in index.html</p><p></p>
     
