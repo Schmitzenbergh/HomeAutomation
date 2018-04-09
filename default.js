@@ -109,7 +109,7 @@ pathroot = '/root/scripts/HomeAutomation/';
   sArraySensorPending = [''];                                                            sArraySensorPendingCur = [''];                sArraySensorPendingNew = [''];                sArraySensorPendingOld = [''];                                                                                                                                                                                                                                   
 
 /*********\
-| Sensors |###############################################################################################################################################################################
+| Default |###############################################################################################################################################################################
 \*********/
 
 hue = require('hue-sdk');
@@ -123,22 +123,21 @@ client = new hue.Hue(require( pathconfig + './.credentials.json' ));
 var light = require( pathhuelight + 'light.js' );
 
 
-//light.getManufacturerName('1', function(callback){ console.log(callback); });
-//light.getModelId('1', function(callback){ console.log(callback); });
-//light.getName('1', function(callback){ console.log(callback); });
-//light.getSwVersion('1', function(callback){ console.log(callback); });
-//light.getType('1', function(callback){ console.log(callback); });
-//light.getUniqueid('1', function(callback){ console.log(callback); });
-//light.getOn('1', function(callback){ console.log(callback); });
-//light.getBri('1', function(callback){ console.log(callback); });
-//light.getHue('1', function(callback){ console.log(callback); });
-//light.getSat('1', function(callback){ console.log(callback); });
-//light.getEffect('1', function(callback){ console.log(callback); });
-//light.getXy('1', function(callback){ console.log(callback); });
-//light.getXyX('1', function(callback){ console.log(callback); });
-//light.getXyY('1', function(callback){ console.log(callback); });
-//light.getCt('1', function(callback){ console.log(callback); });
-//light.getAlert('1', function(callback){ console.log(callback); });
-//light.getColormode('1', function(callback){ console.log(callback); });
-//light.getReachable('1', function(callback){ console.log(callback); });
-light.getTransisitonTime ('1', function(callback){ console.log(callback); });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

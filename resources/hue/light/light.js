@@ -23,7 +23,7 @@ debug = false;
 |                                                                                                                                                                                |
 | - get all attributes for 1 light, from hue to script-variables                                                                                                                 |
 |                                                                                                                                                                                |
-| Example: light.getInfo(iLightNumber, Value)                                                                                                                                    |
+|  Example: light.getInfo(iLightNumber, Value)                                                                                                                                   |
 |                                                                                                                                                                                |
 \********************************************************************************************************************************************************************************/
 exports.getInfo = function( iLightNumber,sValue){
@@ -79,7 +79,7 @@ exports.getInfo = function( iLightNumber,sValue){
 |                                                                                                                                                                                |
 | - get all attributes for all lights from hue to script-variables                                                                                                               |
 |                                                                                                                                                                                |
-| Example: light.getInfoAll()                                                                                                                                                    |
+|  Example: light.getInfoAll()                                                                                                                                                   |
 |                                                                                                                                                                                |
 \********************************************************************************************************************************************************************************/
 exports.getInfoAll = function(){
@@ -101,7 +101,8 @@ exports.getInfoAll = function(){
 |                                                                                                                                                                                |
 | - sets all attributes from 1 light from script-variables to hue                                                                                                                |
 |                                                                                                                                                                                |
-| Example:                                                                                                                                                                       |
+|  Example:                                                                                                                                                                      |
+|                                                                                                                                                                                |
 \********************************************************************************************************************************************************************************/
 exports.setInfo = function( iLightNumber,sValue ){
   client.setLight( iLightNumber, function( err, result ){
@@ -133,7 +134,7 @@ exports.setInfo = function( iLightNumber,sValue ){
 |                                                                                                                                                                                |
 | - sets all attributes for all lights from script-variables to hue                                                                                                              |
 |                                                                                                                                                                                |
-| Example: light.setInfoAll()                                                                                                                                                    |
+|  Example: light.setInfoAll()                                                                                                                                                   |
 |                                                                                                                                                                                |
 \********************************************************************************************************************************************************************************/
 exports.setInfoAll = function(){
@@ -202,7 +203,7 @@ exports.getTransisitonTime = function (iLightNumber,cb){      client.get('/light
 |                                                                                                                                                                                |
 | - set attribute from a single light                                                                                                                                            |
 |                                                                                                                                                                                |
-| Example:                                                                                                                                                                       |
+|  Example:                                                                                                                                                                      |
 |                                                                                                                                                                                |
 \********************************************************************************************************************************************************************************/
 exports.setOn = function( iLightNumber,bValue){             client.setLightState( iLightNumber, { "on": bValue },                    function( err, result ){ if ( err ) return err; }); };     // true/false
