@@ -1,0 +1,27 @@
+{
+  "name": "HomeAutomation",
+  "version": "1.0.0",
+  "description": "testing",
+  "main": "default.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node default.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dannyvanlierop/HomeAutomation.git"
+  },
+  "keywords": [
+    "Homeautomation",
+  ],
+  "author": "Danny van Lierop",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dannyvanlierop/HomeAutomation/issues"
+  },
+  "homepage": "https://github.com/dannyvanlierop/HomeAutomation#readme"
+}
