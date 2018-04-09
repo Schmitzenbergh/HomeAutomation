@@ -7,7 +7,7 @@ var PORT = 10025;
 //buildRequest( arrayOptParamA ,arrayOptParamB(optional) ,arrayOptParamC(optional) );
 
 //Options parameter A                             
-var arrayOptParamA = []
+var arrayOptParamA = [];
 arrayOptParamA[0]  = 'source-selection' ;                                                                                                             
 arrayOptParamA[1]  = 'power-off'        ;                                                                                                             
 arrayOptParamA[2]  = 'power-on'         ;                                                                                                             
@@ -37,12 +37,12 @@ arrayOptParamA[25] = 'tuner-up'         ;
 arrayOptParamA[26] = 'tuner-down'       ;                                                                                                             
                                                                                                               
 //Options parameter B                                                                                                             
-var arrayOptParamB = []                                                                                                             
+var arrayOptParamB = [];                                                                                                           
 arrayOptParamB[0] = 'Main Zone'         ;                                                                                                             
 arrayOptParamB[1] = 'Zone2'             ;                                                                                                             
                                                                                                               
 //Options parameter C                                                                                                             
-var arrayOptParamC = []                                                                                                             
+var arrayOptParamC = [];                                                                                                             
 arrayOptParamC[0]  = 'AUX'              ;                                                                                                             
 arrayOptParamC[1]  = 'TV'               ;                                                                                                             
 arrayOptParamC[2]  = 'Cable Sat'        ;                                                                                                             
@@ -58,55 +58,35 @@ arrayOptParamC[11] = 'FM'               ;
 arrayOptParamC[12] = 'vTuner'           ;
 arrayOptParamC[13] = 'Bluetooth'        ;
 
+exports.SendCommand = function(cmd, zone, param){
+
+  function buildRequest(cmd, zone, param) {
+       var text = '';
+       var payload = '<?xml version="1.0" encoding="UTF-8"?> <harman> <bds> <common> <control> <name>' + cmd + '</name> <zone>' + zone + '</zone> <para>' + param + '</para> </control> </common> </bds> </harman>';
+       zone = zone || 'Main Zone';
+       param = param || ''
+       text += 'POST HK_APP HTTP/1.1\r\n';
+       text += 'Host: :' + PORT + '\r\n';
+       text += 'User-Agent: Harman Kardon BTS Remote Controller/1.0\r\n';
+       text += 'Content-Length: ' + payload.length + '\r\n';
+       text += '\r\n';
+       text += payload;
+       return text;
+  }
 
 
-*********
+  var client = new net.Socket();
+  client.connect(PORT, HOST, function() {
+    client.write(buildRequest(cmd,zone,param        ));
+      console.log('CONNECTED TO: ' + HOST + ':' + PORT);
+      client.destroy();     // Added Later
+  });
 
-
-
-
-
-
-
-
-
-function buildRequest(cmd, zone, param) {
-     var text = '';
-     var payload = '<?xml version="1.0" encoding="UTF-8"?> <harman> <bds> <common> <control> <name>' + cmd + '</name> <zone>' + zone + '</zone> <para>' + param + '</para> </control> </common> </bds> </harman>';
-     zone = zone || 'Main Zone';
-     param = param || ''
-     text += 'POST HK_APP HTTP/1.1\r\n';
-     text += 'Host: :' + PORT + '\r\n';
-     text += 'User-Agent: Harman Kardon BTS Remote Controller/1.0\r\n';
-     text += 'Content-Length: ' + payload.length + '\r\n';
-     text += '\r\n';
-     text += payload;
-     return text;
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
     //client.write(buildRequest('source-selection','',''));
-
-
-
-var client = new net.Socket();
-client.connect(PORT, HOST, function() {
-  client.write(buildRequest('volume-up'        ));
-    console.log('CONNECTED TO: ' + HOST + ':' + PORT);
-    client.destroy();     // Added Later
-});
-
 
 

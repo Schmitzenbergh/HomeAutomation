@@ -78,91 +78,61 @@ var io = require('socket.io').listen(server);
 // define interactions with client
 io.sockets.on('connection', function(socket){
 
-    socket.on('volup', function(data){  avr.SendCommand('mute-on'); });
-    socket.on('voldown', function(data){ avr.SendCommand('mute');   });
-
-
-socket.on('on', function(data){ avr.VolDown(); });   
-socket.on('off', function(data){ avr.SendCommand('Off'); });   
-socket.on('sleep', function(data){ avr.SendCommand('sleep'); });   
-socket.on('play', function(data){ avr.SendCommand('play'); });   
-socket.on('pause', function(data){ avr.SendCommand('pause'); });   
-socket.on('forward', function(data){ avr.SendCommand('forward'); });   
-socket.on('reverse', function(data){ avr.SendCommand('reverse'); });   
-socket.on('next', function(data){ avr.SendCommand('next'); });   
-socket.on('previous', function(data){ avr.SendCommand('previous'); });   
-socket.on('volumeDown', function(data){ avr.SendCommand('VolumeDown'); });   
-socket.on('volumeUp', function(data){ avr.SendCommand('VolumeUp'); });   
-socket.on('muteToggle', function(data){ avr.SendCommand('muteToggle'); });   
-socket.on('mute-on', function(data){ avr.SendCommand('mute-on'); }); 
-socket.on('mute-off', function(data){ avr.SendCommand('mute-off'); }); 
-socket.on('up', function(data){ avr.SendCommand('up'); });   
-socket.on('right', function(data){ avr.SendCommand('right'); });   
-socket.on('down', function(data){ avr.SendCommand('down'); });   
-socket.on('left', function(data){ avr.SendCommand('left'); });   
-socket.on('ok', function(data){ avr.SendCommand('ok'); });   
-socket.on('back', function(data){ avr.SendCommand('back'); });   
-socket.on('home', function(data){ avr.SendCommand('home'); });   
-socket.on('info', function(data){ avr.SendCommand('info'); });   
-socket.on('options', function(data){ avr.SendCommand('options'); }); 
-socket.on('heartAlive', function(data){ avr.SendCommand('heartAlive'); });   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+socket.on('power-off'       , function(data){ avr.SendCommand('power-off'       ); });
+socket.on('power-on'        , function(data){ avr.SendCommand('power-on'        ); });
+socket.on('mute-toggle'     , function(data){ avr.SendCommand('mute-toggle'     ); });
+socket.on('mute-on'         , function(data){ avr.SendCommand('mute-on'         ); });
+socket.on('mute-off'        , function(data){ avr.SendCommand('mute-off'        ); });
+socket.on('volume-down'     , function(data){ avr.SendCommand('volume-down'     ); });
+socket.on('volume-up'       , function(data){ avr.SendCommand('volume-up'       ); });
+socket.on('ok'              , function(data){ avr.SendCommand('ok'              ); });
+socket.on('home'            , function(data){ avr.SendCommand('home'            ); });
+socket.on('options'         , function(data){ avr.SendCommand('options'         ); });
+socket.on('down'            , function(data){ avr.SendCommand('down'            ); });
+socket.on('up'              , function(data){ avr.SendCommand('up'              ); });
+socket.on('left'            , function(data){ avr.SendCommand('left'            ); });
+socket.on('right'           , function(data){ avr.SendCommand('right'           ); });
+socket.on('back'            , function(data){ avr.SendCommand('back'            ); });
+socket.on('forward'         , function(data){ avr.SendCommand('forward'         ); });
+socket.on('pause'           , function(data){ avr.SendCommand('pause'           ); });
+socket.on('play'            , function(data){ avr.SendCommand('play'            ); });
+socket.on('next'            , function(data){ avr.SendCommand('next'            ); });
+socket.on('previous'        , function(data){ avr.SendCommand('previous'        ); });
+socket.on('sleep'           , function(data){ avr.SendCommand('sleep'           ); });
+socket.on('delay'           , function(data){ avr.SendCommand('delay'           ); });
+socket.on('channel-up'      , function(data){ avr.SendCommand('channel-up'      ); });
+socket.on('channel-down'    , function(data){ avr.SendCommand('channel-down'    ); });
+socket.on('tuner-up'        , function(data){ avr.SendCommand('tuner-up'        ); });
+socket.on('tuner-down'      , function(data){ avr.SendCommand('tuner-down'      ); });
+socket.on('AUX'             , function(data){ avr.SendCommand('source-selection', undefined, 'AUX'             ); });
+socket.on('TV'              , function(data){ avr.SendCommand('source-selection', undefined, 'TV'              ); });
+socket.on('Cable Sat'       , function(data){ avr.SendCommand('source-selection', undefined, 'Cable Sat'       ); });
+socket.on('STB'             , function(data){ avr.SendCommand('source-selection', undefined, 'STB'             ); });
+socket.on('Radio'           , function(data){ avr.SendCommand('source-selection', undefined, 'Radio'           ); });
+socket.on('Game'            , function(data){ avr.SendCommand('source-selection', undefined, 'Game'            ); });
+socket.on('USB'             , function(data){ avr.SendCommand('source-selection', undefined, 'USB'             ); });
+socket.on('Disc'            , function(data){ avr.SendCommand('source-selection', undefined, 'Disc'            ); });
+socket.on('Media Server'    , function(data){ avr.SendCommand('source-selection', undefined, 'Media Server'    ); });
+socket.on('Home Network'    , function(data){ avr.SendCommand('source-selection', undefined, 'Home Network'    ); });
+socket.on('AM'              , function(data){ avr.SendCommand('source-selection', undefined, 'AM'              ); });
+socket.on('FM'              , function(data){ avr.SendCommand('source-selection', undefined, 'FM'              ); });
+socket.on('vTuner'          , function(data){ avr.SendCommand('source-selection', undefined, 'vTuner'          ); });
+socket.on('Bluetooth'       , function(data){ avr.SendCommand('source-selection', undefined, 'Bluetooth'       ); });
 
 
 
+//    //send data to client
+//    setInterval(function(){
+//        //socket.emit('date', counter);
+//        //socket.emit('date', {'date': new Date()});
+//        
+//        //Example1
+//        // socket.emit('date', {'date': jsonFile });
+//        socket.emit('jsonFile', jsonFile);
+//        
+//    }, 1000);
+//
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //send data to client
-    setInterval(function(){
-        //socket.emit('date', counter);
-        //socket.emit('date', {'date': new Date()});
-        
-        //Example1
-        // socket.emit('date', {'date': jsonFile });
-        socket.emit('jsonFile', jsonFile);
-        
-    }, 1000);
-
-    socket.emit('button1', { hello: 'world' }); // Send data to client
 
   //    //recieve client data
   //  socket.on('client_data', function(data){
