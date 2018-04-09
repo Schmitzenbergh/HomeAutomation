@@ -8,24 +8,69 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/json2html/1.2.0/json2html.min.js"></script>
 
     <script> 
-
+      //var avr = require( '/resources/avr/default.js' );
     
     //var tv = require( '/resources/SmartTV/tv.js' );
-//tv.postInputKeyVolumeUp();
+    //tv.postInputKeyVolumeUp();
       var socket = io.connect();
       var jData;
   
-      socket.on('jsonFile', function(data){
-        jData = data;
-        $('#jsonFile').text(jData);
-      });
+      
+
+      //Reset the page to home
+      function goHomepage(){
+        window.history.pushState("", "", '/');
+      }
     </script>
 
   </head>
   <body>
 
+    <button onClick="socket.emit('voldown')">down</button>
+    <button onClick="socket.emit('volup')">up</button>
+
+
+<p></p>
+<button onClick="socket.emit('on')"></button>on</button>
+<button onClick="socket.emit('off')"></button>off</button>
+
+<p></p>
+<button onClick="socket.emit('sleep')"></button>sleep</button>
+<button onClick="socket.emit('play')"></button>play</button>
+<button onClick="socket.emit('pause')"></button>pause</button>
+
+
+<p></p>
+<button onClick="socket.emit('forward')"></button>forward</button>
+<button onClick="socket.emit('reverse')"></button>reverse</button>
+<button onClick="socket.emit('next')"></button>next</button>
+<button onClick="socket.emit('previous')"></button>previous</button>
+<button onClick="socket.emit('volumeDown')"></button>volumeDown</button>
+
+<p></p>
+<button onClick="socket.emit('volumeUp')"></button>volumeUp</button>
+<button onClick="socket.emit('muteToggle')"></button>muteToggle</button>
+<button onClick="socket.emit('mute-on')"></button>mute-on</button>
+<button onClick="socket.emit('mute-off')"></button>mute-off</button>
+<button onClick="socket.emit('up')"></button>up</button>
+
+<p></p>
+<button onClick="socket.emit('right')"></button>right</button>
+<button onClick="socket.emit('down')"></button>down</button>
+<button onClick="socket.emit('left')"></button>left</button>
+<button onClick="socket.emit('ok')"></button>ok</button>
+<button onClick="socket.emit('back')"></button>back</button>
+<button onClick="socket.emit('home')"></button>home</button>
+
+<p></p>
+<button onClick="socket.emit('info')"></button>info</button>
+<button onClick="socket.emit('options')"></button>options</button>
+<button onClick="socket.emit('heartAlive')"></button>heartAlive</button>
+                        
 
     
+
+<!--  DropDown
 
     <p>Select: </p>
     <select id="myselect" onchange="change_myselect(this.value)">
@@ -40,6 +85,17 @@
         <option value="rules">rules</option>
         <option value="resourcelinks">resourcelinks</option>
     </select>
+
+    socket.on('jsonFile', function(data){
+      jData = data;
+      $('#jsonFile').text(jData);
+    });
+
+
+
+-->
+
+
     <p id="jsonFile">NoValue</p>
     
 

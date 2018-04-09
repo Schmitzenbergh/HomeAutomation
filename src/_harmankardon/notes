@@ -6,28 +6,28 @@ I've gone through all actions available on the official App so this list should 
 
 All the actions can be triggered using the Zone object, either using run() or the magic method. You can also run your own requests by using API::generateRequest(), API::sendRequest() and API::readResponse().
 
-void on() - Turn device on.
-void off() - Turn device off.
-void sleep() - Toggle sleep or set sleep timer.
-void play() - Play current track.
-void pause() - Pause current track.
-void forward() - Go forward in current track.
-void reverse() - Go reverse in current track.
-void next() - Select next track.
-void previous() - Select previous track.
-void volumeDown() - Adjust volume by +1. (looking for a better way to do this...)
-void volumeUp() - Adjust volume by -1. (same here...)
-void muteToggle() - (Un-)Toggle the volume.
-void up() - Go up.
-void right() - Go right.
-void down() - Go down.
-void left() - Go left.
-void ok() - Confirm selection.
-void back() - Go back.
-void home() - Go home.
-void info() - Show info-menu.
-void options() - Show options-menu.
-string heartAlive() - Send heart alive request and get back some garbage (yay!).
+void on                                    () - Turn device on.
+void off                                    () - Turn device off.
+void sleep                                    () - Toggle sleep or set sleep timer.
+void play                                    () - Play current track.
+void pause                                    () - Pause current track.
+void forward                                    () - Go forward in current track.
+void reverse                                    () - Go reverse in current track.
+void next                                    () - Select next track.
+void previous                                    () - Select previous track.
+void volumeDown                                    () - Adjust volume by +1. (looking for a better way to do this...)
+void volumeUp                                    () - Adjust volume by -1. (same here...)
+void muteToggle                                    () - (Un-)Toggle the volume.
+void up                                    () - Go up.
+void right                                    () - Go right.
+void down                                    () - Go down.
+void left                                    () - Go left.
+void ok                                    () - Confirm selection.
+void back                                    () - Go back.                                    
+void home                                    () - Go home.
+void info                                    () - Show info-menu.
+void options                                    () - Show options-menu.
+string heartAlive                                    () - Send heart alive request and get back some garbage (yay!).
 void selectSource($source) - Select the source. A list of (my) sources is shown below.
 Sources
 The sources are exactly as shown on the on-screen menu, so in my case:
