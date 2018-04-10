@@ -108,7 +108,7 @@ HarmanKardonAVRAccessory.prototype = {
 
     exec("ping -c 2 -W 1 " +this.ip+ " | grep -i '2 received'", function(error, stdout, stderr) {
         state = stdout ? true : false;
-        that.log("Current state: " + (state ? "On." : "Off."));
+        this.log("Current state: " + (state ? "On." : "Off."));
         callback(null, state);
     });
   },
@@ -183,3 +183,6 @@ HarmanKardonAVRAccessory.prototype = {
       return availableServices;
   }
 }
+
+
+console.log(HarmanKardonAVRAccessory.prototype.getPowerState());

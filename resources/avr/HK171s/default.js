@@ -2,6 +2,8 @@
  //   buildRequest( Param ,Zonename(optional) ,Source(optional) );
  //   buildRequest( arrayOptParamA ,arrayOptParamB(optional) ,arrayOptParamC(optional) );
 
+//Example POST request: http://192.168.0.98:10025/
+
 var net = require('net');     //  Moved to default, but kept in here for when used ass single script
 
 var HOST = '192.168.0.98';
@@ -23,8 +25,8 @@ arrayOptParamA[10] = 'options'         ;                                        
 arrayOptParamA[11] = 'down'            ;                                          arrayOptParamC[11] = 'FM'          ; 
 arrayOptParamA[12] = 'up'              ;                                          arrayOptParamC[12] = 'vTuner'      ; 
 arrayOptParamA[13] = 'left'            ;                                          arrayOptParamC[13] = 'Bluetooth'   ; 
-arrayOptParamA[14] = 'right'           ;                                                                               
-arrayOptParamA[15] = 'back'            ;                                                                               
+arrayOptParamA[14] = 'right'           ;                                          //arrayOptParamC[14] = 'iPod'        ;                                      
+arrayOptParamA[15] = 'back'            ;                                          //arrayOptParamC[15] = 'Spotify'     ;                                      
 arrayOptParamA[16] = 'forward'         ;                                                                               
 arrayOptParamA[17] = 'pause'           ;                                                                               
 arrayOptParamA[18] = 'play'            ;                                                                               
@@ -40,12 +42,13 @@ arrayOptParamA[26] = 'tuner-down'      ;
 
 function buildRequest(cmd, zone, param) {
      var text = '';
-     var payload = '<?xml version="1.0" encoding="UTF-8"?> <harman> <bds> <common> <control> <name>' + cmd + '</name> <zone>' + zone + '</zone> <para>' + param + '</para> </control> </common> </bds> </harman>';
+     var payload = '<?xml version="1.0" encoding="UTF-8"?> <harman> <avr> <common> <control> <name>' + cmd + '</name> <zone>' + zone + '</zone> <para>' + param + '</para> </control> </common> </avr> </harman>';
      zone = zone || 'Main Zone';
      param = param || ''
-     text += 'POST HK_APP HTTP/1.1\r\n';
+     //text += 'POST HK_APP HTTP/1.1\r\n';
+     text += 'POST AVR HTTP/1.1\r\n';
      text += 'Host: :' + PORT + '\r\n';
-     text += 'User-Agent: Harman Kardon BTS Remote Controller/1.0\r\n';
+     text += 'User-Agent: Harman Kardon AVR Remote Controller /2.0\r\n';
      text += 'Content-Length: ' + payload.length + '\r\n';
      text += '\r\n';
      text += payload;
@@ -57,8 +60,8 @@ exports.SendCommand = function(cmd, zone, param){
 
   var client = new net.Socket();
   client.connect(PORT, HOST, function() {
-    client.write(buildRequest(cmd,zone,param        ));
-      console.log('CONNECTED TO: ' + HOST + ':' + PORT);
+    client.write(buildRequest(cmd,zone,param));
+      console.log('CONNECTED TO: ' + HOST + ':' + PORT + ' Sending command: ' + cmd);
       client.destroy();     // Added Later
   });
 

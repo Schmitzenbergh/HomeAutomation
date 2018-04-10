@@ -120,6 +120,7 @@ http = require('http');
 url = require('url');
 fs = require('fs');
 
+
 hue = require('hue-sdk');     //hue = require( pathresources + './hue-sdk/lib/hue.js'),
 client = new hue.Hue(require( pathconfig + './.credentials.json' ));
 light = require( pathhuelight + 'light.js' );
@@ -132,10 +133,25 @@ tv = require( pathsmarttv + 'tv.js' );
 counter = 1;
 
 
-
 /*******\
 | Start |###############################################################################################################################################################################
 \*******/
-
 require('./server');
+
+
+//setInterval(function(){  
+//      Somefunction();
+//}, 3000);
+//
+//function Somefunction(){
+//
+//    avr.SendCommand('volume-up');
+//
+//    setTimeout(function(){  
+//        avr.SendCommand('volume-down');
+//    }, 1000);
+//
+//}
+
+
 

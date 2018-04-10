@@ -46,3 +46,36 @@ client.connect(PORT, HOST, function() {
 //  });
 //  
 //buildRequest('mute-off','Main Zone','MHL')
+
+
+
+//    socket.on('StartFunctionToGetVAlue'      , function(data){ StartFunctionToGetVAlue ; });
+//
+//
+//    //Default realtimes
+//    setInterval(function(){ counter++; socket.emit('volumeID', counter); }, 1000);
+//    //socket.emit('date', {'date': jsonFile });
+//
+//
+//    //send data to client         socket.emit('triggerName', Variables);
+//                                //socket.emit('triggerName', counter);
+//                                //socket.emit('triggerName', {'date': new Date()});
+//                                //socket.emit('triggerName', {'date': jsonFile });
+//                                //socket.emit('triggerName', jsonFile);
+//
+//    //  recieve client data
+//    //  socket.on('client_data', function(data){ DoStuffHere; });
+//    //  socket.on('client_data', function(data){ process.stdout.write(data.letter); });
+//
+//    // Send frequently updates to client
+//    //    setInterval(function(){  
+//    //    }, 1000);
+//io.sockets.on('connection', function (socket) {
+//  socket.emit('news', { hello: 'world' }); // Send data to client
+//
+//  // wait for the event raised by the client
+//  socket.on('my other event', function (data) {  
+//    console.log(data);
+//  });
+//});
+

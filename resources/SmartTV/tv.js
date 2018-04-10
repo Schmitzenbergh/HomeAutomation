@@ -2,7 +2,7 @@
 *   Info:                                                                                          *
 *                                                                                                  *
 *   Tested on Philips Smart Tv (55PFS8209/12)                                                      *
-*                                                                                                  *
+*   - Need to be checked                                                                           *
 *   Examples:                                                                                      *
 *   GET  - getJSON('9',function(callback){ console.log(callback)})                                 *
 *   POST - postJSON('12', { "key": "VolumeDown" }, function(callback){ console.log(callback) });   *
@@ -128,6 +128,7 @@ exports.postAmbiLightLounge = function (){               postJSON('3',  {"speed"
 exports.postAmbiLightMode = function (){                 postJSON('5',  {"current":"internal"}, function(callback){ console.log(callback) }); }
 exports.postAudioVolume = function (){                   postJSON('9',  {"min":0,"current":20,"muted":true,"max":60}, function(callback){ console.log(callback) }); }
 exports.postInputPointer = function (){                  postJSON('11', { "?????": "?????" }, function(callback){ console.log(callback) }); }   //????
+
 exports.postInputKeyStandby = function (){               postJSON('12', { "key": "Standby" }, function(callback){ console.log(callback) }); }
 exports.postInputKeyBack = function (){                  postJSON('12', { "key": "Back" }, function(callback){ console.log(callback) }); }
 exports.postInputKeyFind = function (){                  postJSON('12', { "key": "Find" }, function(callback){ console.log(callback) }); }
@@ -175,5 +176,6 @@ exports.postInputKeyStop = function (){                  postJSON('12', { "key":
 exports.postInputKeyRewind = function (){                postJSON('12', { "key": "Rewind" }, function(callback){ console.log(callback) }); }
 exports.postInputKeyRecord = function (){                postJSON('12', { "key": "Record" }, function(callback){ console.log(callback) }); }
 exports.postInputKeyOnline = function (){                postJSON('12', { "key": "Online" }, function(callback){ console.log(callback) }); }
+
 exports.postPowerstateOn = function (){                  postJSON('15', { "powerstate":"On" }, function(callback){ console.log(callback) }); }
 exports.postPowerstateStandby = function (){             postJSON('15', { "powerstate":"Standby" }, function(callback){ console.log(callback) }); }

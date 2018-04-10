@@ -1,5 +1,5 @@
-var jsonFile=fs.readFileSync('db.json', 'utf8');
-var jsonObj = JSON.parse(jsonFile);
+//var jsonFile=fs.readFileSync('db.json', 'utf8');
+//var jsonObj = JSON.parse(jsonFile);
 var server;
 
 /***************\
@@ -64,66 +64,108 @@ var io = require('socket.io').listen(server);
 // define interactions with client
 io.sockets.on('connection', function(socket){
 
-socket.on('power-off'       , function(data){ avr.SendCommand('power-off'       ); });
-socket.on('power-on'        , function(data){ avr.SendCommand('power-on'        ); });
-socket.on('mute-toggle'     , function(data){ avr.SendCommand('mute-toggle'     ); });
-socket.on('mute-on'         , function(data){ avr.SendCommand('mute-on'         ); });
-socket.on('mute-off'        , function(data){ avr.SendCommand('mute-off'        ); });
-socket.on('volume-down'     , function(data){ avr.SendCommand('volume-down'     ); });
-socket.on('volume-up'       , function(data){ avr.SendCommand('volume-up'       ); });
-socket.on('ok'              , function(data){ avr.SendCommand('ok'              ); });
-socket.on('home'            , function(data){ avr.SendCommand('home'            ); });
-socket.on('options'         , function(data){ avr.SendCommand('options'         ); });
-socket.on('down'            , function(data){ avr.SendCommand('down'            ); });
-socket.on('up'              , function(data){ avr.SendCommand('up'              ); });
-socket.on('left'            , function(data){ avr.SendCommand('left'            ); });
-socket.on('right'           , function(data){ avr.SendCommand('right'           ); });
-socket.on('back'            , function(data){ avr.SendCommand('back'            ); });
-socket.on('forward'         , function(data){ avr.SendCommand('forward'         ); });
-socket.on('pause'           , function(data){ avr.SendCommand('pause'           ); });
-socket.on('play'            , function(data){ avr.SendCommand('play'            ); });
-socket.on('next'            , function(data){ avr.SendCommand('next'            ); });
-socket.on('previous'        , function(data){ avr.SendCommand('previous'        ); });
-socket.on('sleep'           , function(data){ avr.SendCommand('sleep'           ); });
-socket.on('delay'           , function(data){ avr.SendCommand('delay'           ); });
-socket.on('channel-up'      , function(data){ avr.SendCommand('channel-up'      ); });
-socket.on('channel-down'    , function(data){ avr.SendCommand('channel-down'    ); });
-socket.on('tuner-up'        , function(data){ avr.SendCommand('tuner-up'        ); });
-socket.on('tuner-down'      , function(data){ avr.SendCommand('tuner-down'      ); });
-socket.on('AUX'             , function(data){ avr.SendCommand('source-selection', undefined, 'AUX'             ); });
-socket.on('TV'              , function(data){ avr.SendCommand('source-selection', undefined, 'TV'              ); });
-socket.on('Cable Sat'       , function(data){ avr.SendCommand('source-selection', undefined, 'Cable Sat'       ); });
-socket.on('STB'             , function(data){ avr.SendCommand('source-selection', undefined, 'STB'             ); });
-socket.on('Radio'           , function(data){ avr.SendCommand('source-selection', undefined, 'Radio'           ); });
-socket.on('Game'            , function(data){ avr.SendCommand('source-selection', undefined, 'Game'            ); });
-socket.on('USB'             , function(data){ avr.SendCommand('source-selection', undefined, 'USB'             ); });
-socket.on('Disc'            , function(data){ avr.SendCommand('source-selection', undefined, 'Disc'            ); });
-socket.on('Media Server'    , function(data){ avr.SendCommand('source-selection', undefined, 'Media Server'    ); });
-socket.on('Home Network'    , function(data){ avr.SendCommand('source-selection', undefined, 'Home Network'    ); });
-socket.on('AM'              , function(data){ avr.SendCommand('source-selection', undefined, 'AM'              ); });
-socket.on('FM'              , function(data){ avr.SendCommand('source-selection', undefined, 'FM'              ); });
-socket.on('vTuner'          , function(data){ avr.SendCommand('source-selection', undefined, 'vTuner'          ); });
-socket.on('Bluetooth'       , function(data){ avr.SendCommand('source-selection', undefined, 'Bluetooth'       ); });
-
-////tv.postInputKeyVolumeUp(),
-
-//    //send data to client
-//    setInterval(function(){
-//        //socket.emit('date', counter);
-//        //socket.emit('date', {'date': new Date()});
-//        
-//        //Example1
-//        // socket.emit('date', {'date': jsonFile });
-//        socket.emit('jsonFile', jsonFile);
-//        
-//    }, 1000);
-//
+    socket.on('power-off'       , function(data){ avr.SendCommand('power-off'       ); });
+    socket.on('power-on'        , function(data){ avr.SendCommand('power-on'        ); });
+    socket.on('mute-toggle'     , function(data){ avr.SendCommand('mute-toggle'     ); });
+    socket.on('mute-on'         , function(data){ avr.SendCommand('mute-on'         ); });
+    socket.on('mute-off'        , function(data){ avr.SendCommand('mute-off'        ); });
+    socket.on('volume-down'     , function(data){ avr.SendCommand('volume-down'     ); });
+    socket.on('volume-up'       , function(data){ avr.SendCommand('volume-up'       ); });
+    socket.on('ok'              , function(data){ avr.SendCommand('ok'              ); });
+    socket.on('home'            , function(data){ avr.SendCommand('home'            ); });
+    socket.on('options'         , function(data){ avr.SendCommand('options'         ); });
+    socket.on('down'            , function(data){ avr.SendCommand('down'            ); });
+    socket.on('up'              , function(data){ avr.SendCommand('up'              ); });
+    socket.on('left'            , function(data){ avr.SendCommand('left'            ); });
+    socket.on('right'           , function(data){ avr.SendCommand('right'           ); });
+    socket.on('back'            , function(data){ avr.SendCommand('back'            ); });
+    socket.on('forward'         , function(data){ avr.SendCommand('forward'         ); });
+    socket.on('pause'           , function(data){ avr.SendCommand('pause'           ); });
+    socket.on('play'            , function(data){ avr.SendCommand('play'            ); });
+    socket.on('next'            , function(data){ avr.SendCommand('next'            ); });
+    socket.on('previous'        , function(data){ avr.SendCommand('previous'        ); });
+    socket.on('sleep'           , function(data){ avr.SendCommand('sleep'           ); });
+    socket.on('delay'           , function(data){ avr.SendCommand('delay'           ); });
+    socket.on('channel-up'      , function(data){ avr.SendCommand('channel-up'      ); });
+    socket.on('channel-down'    , function(data){ avr.SendCommand('channel-down'    ); });
+    socket.on('tuner-up'        , function(data){ avr.SendCommand('tuner-up'        ); });
+    socket.on('tuner-down'      , function(data){ avr.SendCommand('tuner-down'      ); });
+    socket.on('AUX'             , function(data){ avr.SendCommand('source-selection', undefined, 'AUX'             ); });
+    socket.on('TV'              , function(data){ avr.SendCommand('source-selection', undefined, 'TV'              ); });
+    socket.on('Cable Sat'       , function(data){ avr.SendCommand('source-selection', undefined, 'Cable Sat'       ); });
+    socket.on('STB'             , function(data){ avr.SendCommand('source-selection', undefined, 'STB'             ); });
+    socket.on('Radio'           , function(data){ avr.SendCommand('source-selection', undefined, 'Radio'           ); });
+    socket.on('Game'            , function(data){ avr.SendCommand('source-selection', undefined, 'Game'            ); });
+    socket.on('USB'             , function(data){ avr.SendCommand('source-selection', undefined, 'USB'             ); });
+    socket.on('Disc'            , function(data){ avr.SendCommand('source-selection', undefined, 'Disc'            ); });
+    socket.on('Media Server'    , function(data){ avr.SendCommand('source-selection', undefined, 'Media Server'    ); });
+    socket.on('Home Network'    , function(data){ avr.SendCommand('source-selection', undefined, 'Home Network'    ); });
+    socket.on('AM'              , function(data){ avr.SendCommand('source-selection', undefined, 'AM'              ); });
+    socket.on('FM'              , function(data){ avr.SendCommand('source-selection', undefined, 'FM'              ); });
+    socket.on('vTuner'          , function(data){ avr.SendCommand('source-selection', undefined, 'vTuner'          ); });
+    socket.on('Bluetooth'       , function(data){ avr.SendCommand('source-selection', undefined, 'Bluetooth'       ); });
+    //socket.on('iPod'            , function(data){ avr.SendCommand('source-selection', undefined, 'iPod'            ); });
+    //socket.on('Spotify'         , function(data){ avr.SendCommand('source-selection', undefined, 'Spotify'         ); });
 
 
-  //    //recieve client data
-  //  socket.on('client_data', function(data){
-  //      process.stdout.write(data.letter);
-  //  });
+
+    socket.on('postAmbilightCached'        , function(data){ tv.postAmbilightCached()        ; });
+    socket.on('postAmbiLightLounge'        , function(data){ tv.postAmbiLightLounge()        ; });
+    socket.on('postAmbiLightMode'          , function(data){ tv.postAmbiLightMode()          ; });
+    socket.on('postAudioVolume'            , function(data){ tv.postAudioVolume()            ; });
+    socket.on('postInputPointer'           , function(data){ tv.postInputPointer()           ; });
+
+
+    socket.on('postInputKeyStandby'        , function(data){ tv.postInputKeyStandby()        ; });
+    socket.on('postInputKeyBack'           , function(data){ tv.postInputKeyBack()           ; });
+    socket.on('postInputKeyFind'           , function(data){ tv.postInputKeyFind()           ; });
+    socket.on('postInputKeyRedColour'      , function(data){ tv.postInputKeyRedColour()      ; });
+    socket.on('postInputKeyGreenColour'    , function(data){ tv.postInputKeyGreenColour()    ; });
+    socket.on('postInputKeyYellowColour'   , function(data){ tv.postInputKeyYellowColour()   ; });
+    socket.on('postInputKeyBlueColour'     , function(data){ tv.postInputKeyBlueColour()     ; });
+    socket.on('postInputKeyHome'           , function(data){ tv.postInputKeyHome()           ; });
+    socket.on('postInputKeyVolumeUp'       , function(data){ tv.postInputKeyVolumeUp()       ; });
+    socket.on('postInputKeyVolumeDown'     , function(data){ tv.postInputKeyVolumeDown()     ; });
+    socket.on('postInputKeyMute'           , function(data){ tv.postInputKeyMute()           ; });
+    socket.on('postInputKeyOptions'        , function(data){ tv.postInputKeyOptions()        ; });
+    socket.on('postInputKeyDot'            , function(data){ tv.postInputKeyDot()            ; });
+    socket.on('postInputKeyDigit0'         , function(data){ tv.postInputKeyDigit0()         ; });
+    socket.on('postInputKeyDigit1'         , function(data){ tv.postInputKeyDigit1()         ; });
+    socket.on('postInputKeyDigit2'         , function(data){ tv.postInputKeyDigit2()         ; });
+    socket.on('postInputKeyDigit3'         , function(data){ tv.postInputKeyDigit3()         ; });
+    socket.on('postInputKeyDigit4'         , function(data){ tv.postInputKeyDigit4()         ; });
+    socket.on('postInputKeyDigit5'         , function(data){ tv.postInputKeyDigit5()         ; });
+    socket.on('postInputKeyDigit6'         , function(data){ tv.postInputKeyDigit6()         ; });
+    socket.on('postInputKeyDigit7'         , function(data){ tv.postInputKeyDigit7()         ; });
+    socket.on('postInputKeyDigit8'         , function(data){ tv.postInputKeyDigit8()         ; });
+    socket.on('postInputKeyDigit9'         , function(data){ tv.postInputKeyDigit9()         ; });
+    socket.on('postInputKeyInfo'           , function(data){ tv.postInputKeyInfo()           ; });
+    socket.on('postInputKeyCursorUp'       , function(data){ tv.postInputKeyCursorUp()       ; });
+    socket.on('postInputKeyCursorDown'     , function(data){ tv.postInputKeyCursorDown()     ; });
+    socket.on('postInputKeyCursorLeft'     , function(data){ tv.postInputKeyCursorLeft()     ; });
+    socket.on('postInputKeyCursorRight'    , function(data){ tv.postInputKeyCursorRight()    ; });
+    socket.on('postInputKeyConfirm'        , function(data){ tv.postInputKeyConfirm()        ; });
+    socket.on('postInputKeyNext'           , function(data){ tv.postInputKeyNext()           ; });
+    socket.on('postInputKeyPrevious'       , function(data){ tv.postInputKeyPrevious()       ; });
+    socket.on('postInputKeyAdjust'         , function(data){ tv.postInputKeyAdjust()         ; });
+    socket.on('postInputKeyWatchTV'        , function(data){ tv.postInputKeyWatchTV()        ; });
+    socket.on('postInputKeyViewmode'       , function(data){ tv.postInputKeyViewmode()       ; });
+    socket.on('postInputKeyTeletext'       , function(data){ tv.postInputKeyTeletext()       ; });
+    socket.on('postInputKeySubtitle'       , function(data){ tv.postInputKeySubtitle()       ; });
+    socket.on('postInputKeyChannelStepUp'  , function(data){ tv.postInputKeyChannelStepUp()  ; });
+    socket.on('postInputKeyChannelStepDown', function(data){ tv.postInputKeyChannelStepDown(); });
+    socket.on('postInputKeySource'         , function(data){ tv.postInputKeySource()         ; });
+    socket.on('postInputKeyAmbilightOnOff' , function(data){ tv.postInputKeyAmbilightOnOff (); });
+    socket.on('postInputKeyPlayPause'      , function(data){ tv.postInputKeyPlayPause()      ; });
+    socket.on('postInputKeyPause'          , function(data){ tv.postInputKeyPause()          ; });
+    socket.on('postInputKeyFastForward'    , function(data){ tv.postInputKeyFastForward()    ; });
+    socket.on('postInputKeyStop'           , function(data){ tv.postInputKeyStop()           ; });
+    socket.on('postInputKeyRewind'         , function(data){ tv.postInputKeyRewind()         ; });
+    socket.on('postInputKeyRecord'         , function(data){ tv.postInputKeyRecord()         ; });
+    socket.on('postInputKeyOnline'         , function(data){ tv.postInputKeyOnline()         ; });
+
+    socket.on('postPowerstateOn'           , function(data){ tv.postPowerstateOn()           ; });
+    socket.on('postPowerstateStandby'      , function(data){ tv.postPowerstateStandby()      ; });
 
 });
 
@@ -131,12 +173,3 @@ socket.on('Bluetooth'       , function(data){ avr.SendCommand('source-selection'
 
 
 
-
-//io.sockets.on('connection', function (socket) {
-//  socket.emit('news', { hello: 'world' }); // Send data to client
-//
-//  // wait for the event raised by the client
-//  socket.on('my other event', function (data) {  
-//    console.log(data);
-//  });
-//});
