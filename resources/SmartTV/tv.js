@@ -53,6 +53,7 @@ sArrayPaths[21]='/5/system/model_encrypted';                      // GET -      
 sArrayPaths[22]='/5/system/name';                                 // GET -      // {"name":"SmartTV"}
 sArrayPaths[23]='/5/system/softwareversion_encrypted';            // GET -      // {"softwareversion_encrypted":"нєяєωιℓℓвєѕσмєєη¢яуρтє∂кєу"}   
 sArrayPaths[24]='/5/system/serialnumber_encrypted';               // GET -      // {"country":"нєяєωιℓℓвєѕσмєєη¢яуρтє∂кєу"}
+sArrayPaths[25]='/5/system/timestamp';                            // GET -      // {"timestamp": "49348"}
 
 
 
@@ -115,6 +116,7 @@ exports.getSystemModelEncrypted = function (){           getJSON('21',function(c
 exports.getSystemName = function (){                     getJSON('22',function(callback){ console.log(callback)}) }
 exports.getSystemSoftwareversionEncrypted = function (){ getJSON('23',function(callback){ console.log(callback)}) }
 exports.getSystemSerialnumberEncrypted = function (){    getJSON('24',function(callback){ console.log(callback)}) }
+exports.getSystemTimeStamp = function (){                getJSON('25',function(callback){ console.log(callback)}) }
 
 
 /***************************\
