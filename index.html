@@ -6,24 +6,42 @@
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/json2html/1.2.0/json2html.min.js"></script>
+    <script> testing = '100';
+    var socket = io.connect();
 
-    <script> 
-      //var avr = require( '/resources/avr/default.js' );
-    
-    //var tv = require( '/resources/SmartTV/tv.js' );
-    //tv.postInputKeyVolumeUp();
-      var socket = io.connect();
-//      var jData;
- //     socket.on('volumeID', function(data){
-  //      jData = data;
-   //     $('#volumeID').text(jData);
-    //  });
-      
+      //event triggerd, do something
+      socket.on('eventname', function(data){} );
 
-      //Reset the page to home
-      function goHomepage(){
-        window.history.pushState("", "", '/');
-      }
+      //trigger event everywehere
+      socket.emit('eventname', function(data){} );
+
+      //trigger event everywehere
+      socket.broadcasr.emit('eventname', function(data){} );
+
+
+      //start
+      socket.on('iArrayLightHueCur', function(data){
+          $('#iArrayLightHueCur').text(data);
+          $('#test1').text(testing);
+          $('#test1').text(global.testing);
+      });
+
+
+
+
+      //SetTo5("test");
+      //
+      //function SetTo5(varString) {
+      //  var newValue = 5;
+      //  eval(varString + " = " + newValue);
+      //  console.log(test)
+      //}
+
+      //function SetToString(varString) {
+      //  var newValue = "string";
+      //  eval(varString + " = " + "'" + newValue + "'");
+      //}
+
     </script>
 
     <style type="text/css">
@@ -469,11 +487,10 @@ channel- </button>
 
   <br>     
 
-
-
-
-
- <p id="volumeID">NoValue</p>
+<p id="test0">message</p>
+<p id="test1">noValue</p>
+<p id="test2">noValue</p>
+ <p id="iArrayLightHueCur">noValue</p>
 
 
 

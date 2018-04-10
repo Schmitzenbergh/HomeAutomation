@@ -62,7 +62,7 @@ pathroot = '/root/scripts/HomeAutomation/';
   sArrayLightName = ['', 'LightName'];                                                        fArrayLightXyXCur = [''];                     fArrayLightXyXNew = [''];                     fArrayLightXyXOld = [''];         // 0.000 - 1.000                                                                                                                   
   sArrayLightSwversion = [''];                                                                fArrayLightXyYCur = [''];                     fArrayLightXyYNew = [''];                     fArrayLightXyYOld = [''];         // 0.000 - 1.000                                                                                                                   
   sArrayLightType = [''];                                                                     iArrayLightCtCur = [''];                      iArrayLightCtNew = [''];                      iArrayLightCtOld = [''];          // 153 - 500                                                                                                                       
-  sArrayLightUniqueid = [''];                                                                 iArrayLightHueCur = ['1'];                     iArrayLightHueNew = [''];                     iArrayLightHueOld = [''];         // 0 - 65535                                                                                                                       
+  sArrayLightUniqueid = [''];                                                                 iArrayLightHueCur = ['1'];                    iArrayLightHueNew = [''];                     iArrayLightHueOld = [''];         // 0 - 65535                                                                                                                       
   bArrayLightOn = [''];                 /* true, false                                 */     iArrayLightSatCur = [''];                     iArrayLightSatNew = [''];                     iArrayLightSatOld = [''];         // 0 - 254                                                                                                                         
   bArrayLightReachable = [''];          /* true, false                                 */     iArrayLightBriCur = [''];                     iArrayLightBriNew = [''];                     iArrayLightBriOld = [''];         // 1-254                                                                                                                           
   sArrayLightAlert = [''];              /* none, select, lselect                       */     iArrayLightRgbRedCur = [''];                  iArrayLightRgbRedNew = [''];                  iArrayLightRgbRedOld = [''];      // 0 - 254                                                                                                                         
@@ -132,6 +132,7 @@ tv = require( pathsmarttv + 'tv.js' );
 
 counter = 1;
 
+testing = 10;
 
 /*******\
 | Start |###############################################################################################################################################################################
@@ -139,19 +140,35 @@ counter = 1;
 require('./server');
 
 
-//setInterval(function(){  
-//      Somefunction();
-//}, 3000);
-//
-//function Somefunction(){
-//
-//    avr.SendCommand('volume-up');
-//
-//    setTimeout(function(){  
-//        avr.SendCommand('volume-down');
-//    }, 1000);
-//
-//}
+setInterval(function(){  
+      iArrayLightHueCur++;
+  
 
+}, 3000);
+
+
+
+//var myvars = {};
+//var myString1 = "test1";
+//var myString2 = "test2";
+//var myString3 = "test3";
+//var myString4 = "test4";
+
+//SetTo5("test");
+//
+//function SetTo5(varString) {
+//  var newValue = 5;
+//  eval(varString + " = " + newValue);
+//  console.log(test)
+//}
+//testing = 10;
+//myvars[myString1] = '4';
+//myvars[myString2] = '3';
+//myvars[myString3] = '2';
+//myvars[myString4] = '1';
+//console.log(myvars);
+//console.log(myvars.myString2);
+//console.log(myvars.myString3);
+//console.log(myvars.myString4);
 
 

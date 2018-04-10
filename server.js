@@ -55,6 +55,10 @@ send404 = function(res){
 
 server.listen(80);
 
+
+
+
+
 // use socket.io
 var io = require('socket.io').listen(server);
 
@@ -64,6 +68,8 @@ var io = require('socket.io').listen(server);
 // define interactions with client
 io.sockets.on('connection', function(socket){
 
+
+    // Will do something when its get triggerd by emitter
     socket.on('power-off'       , function(data){ avr.SendCommand('power-off'       ); });
     socket.on('power-on'        , function(data){ avr.SendCommand('power-on'        ); });
     socket.on('mute-toggle'     , function(data){ avr.SendCommand('mute-toggle'     ); });
@@ -167,7 +173,67 @@ io.sockets.on('connection', function(socket){
     socket.on('postPowerstateOn'           , function(data){ tv.postPowerstateOn()           ; });
     socket.on('postPowerstateStandby'      , function(data){ tv.postPowerstateStandby()      ; });
 
+    socket.on('message'      , function(data){ console.log('client is here')      ; });;
+    socket.broadcast.emit('message', 'Another client has just connected!');
+
+
+    // Will do something when its value changed
+      setInterval(function(){  
+          if (iArrayLightHueCur !== iArrayLightHueOld){
+              socket.emit('iArrayLightHueCur', iArrayLightHueCur);
+          }
+          //console.log(testing);
+          //console.log(global.testing);
+      }, 1000);
+       
+    
+
+
+
 });
+
+function ReplicationCheck(){
+    iArrayLightHueCur !== iArrayLightHueOld
+}
+
+
+
+function ReplicatedEvent(sVariableName){
+	  console.log("FunctionCall: ReplicatedEvent: " + sVariableName);		
+
+    //Request
+	       if (VarName == 'iArrayLightHueCur'){ socket.emit('iArrayLightHueCur', iArrayLightHueCur); }
+	  else if (VarName == 'iArrayLightHueNew'){	socket.emit('iArrayLightHueNew', iArrayLightHueNew); }
+	  else if (VarName == 'iArrayLightHueOld'){	socket.emit('iArrayLightHueOld', iArrayLightHueCur); }
+	  else { //ReplicateAll;
+	  }
+}
+
+//Reset the page to home
+function goHomepage(){
+      window.history.pushState("", "", '/');
+}
+
+
+
+
+
+
+
+
+////		for (x = 0; x < ModeArrayLength ; x++)
+////		{                                                      								//		
+////			ModeAccessLevelArray[x]=(ModeAccessLevelArray[x]); 								//		
+////		}              
+
+
+
+
+
+
+
+
+
 
 
 
