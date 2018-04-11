@@ -32,7 +32,12 @@ server = http.createServer(function(req, res){
                   if (err){ return send404(res); };
                   htmlScript = data;
     });
-    
+
+    //fs.readFile( pathconfig + 'db.var', "UTF8", function(err, data){
+    //              if (err){ return send404(res); };
+    //              htmlScript = data;
+    //});
+
     console.log(pathpublic);
     switch (path){
         case '/':

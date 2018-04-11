@@ -1,4 +1,4 @@
-require('./db.paths');
+require("./db.paths");
 var fs = require('fs');
 
 function varBuilder(){
@@ -55,6 +55,6 @@ function varBuilder(){
     }
   }
 };
-
+varBuilder();
 
 
