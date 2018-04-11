@@ -1,45 +1,49 @@
-﻿   <script>
-      //iArrayLightTransitionTime = ['', '99'];
+<html>
+  <head>
+    <title>Socket.io Test</title>
+    <script src="/socket.io/socket.io.js"></script>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json2html/1.2.0/json2html.min.js"></script>
+        <script> var socket = io.connect();
 
+        //event triggerd, do something
+        //socket.on('eventname', function(data){} );
 
+        //trigger event everywhere
+        //socket.emit('eventname', function(data){} );
 
-
-    //$('#test0').text(data);
-
-
-
-      var socket = io.connect();
-
-      //event triggerd, do something
-      //socket.on('eventname', function(data){} );
-
-      //trigger event everywehere
-      //socket.emit('eventname', function(data){} );
-
-      //trigger event everywehere
-      //socket.broadcasr.emit('eventname', function(data){} );
+        //trigger event everywehere except self
+        //socket.broadcast.emit('eventname', function(data){} );
 
       //Start:
 
-      socket.on('test0', function(data){ $('#test0').text(data); });
-      socket.on('test1', function(data){ $('#test1').text(data); });
-      socket.on('test2', function(data){ $('#test2').text(data); });
-      socket.on('test3', function(data){ $('#test3').text(data); });
-      socket.on('test4', function(data){ $('#test4').text(data); });
-      socket.on('test5', function(data){ $('#test5').text(data); });
-      socket.on('test6', function(data){ $('#test6').text(data); });
-      socket.on('test7', function(data){ $('#test7').text(data); });
-      socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightHueCur').text(data); });
-
-      socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime0').text("test"); });
-      socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime1').text(iArrayLightTransitionTime[1]); });
-      socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime2').text(iArrayLightTransitionTime[2]); });
-      socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime3').text("test"); });
-      socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime4').text(iArrayLightTransitionTime[4]); });
-      socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime5').text(iArrayLightTransitionTime[5]); });
+        socket.on('test0', function(data){ $('#test0').text(data); });
+        socket.on('test1', function(data){ $('#test1').text(data); });
+        socket.on('test2', function(data){ $('#test2').text(data); });
+        socket.on('test3', function(data){ $('#test3').text(data); });
+        socket.on('test4', function(data){ $('#test4').text(data); });
+        socket.on('test5', function(data){ $('#test5').text(data); });
+        socket.on('test6', function(data){ $('#test6').text(data); });
+        socket.on('test7', function(data){ $('#test7').text(data); });
+        socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightHueCur').text(data); });
+        socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime0').text("test"); });
+        socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime1').text(iArrayLightTransitionTime[1]); });
+        socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime2').text(iArrayLightTransitionTime[2]); });
+        socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime3').text("test"); });
+        socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime4').text(iArrayLightTransitionTime[4]); });
+        socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime5').text(iArrayLightTransitionTime[5]); });
                                                       
 
   
+
+
+
+
+
+
+
+
 
 
       //SetTo5("test");
@@ -56,17 +60,6 @@
       //}
 
     </script>
-
-
-<html>
-  <head>
-    <title>Socket.io Test</title>
-    <script src="/socket.io/socket.io.js"></script>
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/json2html/1.2.0/json2html.min.js"></script>
-    <script src="./config/db.var"></script>
- 
 
     <style type="text/css">
 	.auto-style1 {

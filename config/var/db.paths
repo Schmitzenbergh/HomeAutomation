@@ -1,0 +1,19 @@
+// Paths:
+pathroot            = '/root/scripts/HomeAutomation/';
+pathconfig          = pathroot + './config/';
+pathpublic          = pathroot + './public/';
+pathresources       = pathroot + './resources/';
+pathavr             = pathresources + './avr/';
+pathavrhk171s       = pathavr + './HK171s/';
+pathhue             = pathresources + './hue/';
+pathhuebridge       = pathhue + './bridge/';
+pathhuebridgevalues = pathhuebridge + './_values/';
+pathhuesensor       = pathhue + './sensor/';
+pathhuesensorvalues = pathhuesensor + './_values/';
+pathhuelight        = pathhue + './light/';
+pathhuelightvalues  = pathhuelight + './_values/';
+pathrpi             = pathresources + './RPi/';
+pathledstrip        = pathrpi + './ledstrip/';
+pathsmarttv         = pathresources + './SmartTV/';
+pathlib             = pathroot + './lib/';
+pathsrc             = pathroot + './src/';
