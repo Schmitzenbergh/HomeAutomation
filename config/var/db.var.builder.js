@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 require('./db.paths');
 
 function buildvar(){
@@ -17,10 +18,16 @@ function buildvar(){
 
   var varString     = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x +  " = '';");
 //  exports.keyString = keyString = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
+=======
+function varBuilder(){
+  var varArray    = fs.readFileSync(pathconfigvar + "./db.arrays", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = [''];");
+  var varBool     = fs.readFileSync(pathconfigvar + "./db.bools", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = '';");
+  var varInterger = fs.readFileSync(pathconfigvar + "./db.integers", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = '';");
+  var varObject   = fs.readFileSync(pathconfigvar + "./db.objects", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = {};");
+  var varString   = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x +  " = '';");
+>>>>>>> parent of 65b2cc8... ...revert this, some msitake
 
   fs.writeFileSync( pathconfigvar + "./db.var",fs.readFileSync(pathconfigvar + "./db.paths", 'UTF8'));
-  //fs.writeFileSync( pathconfigvar + "./keyname",'');
-  //fs.writeFileSync( pathconfigvar + "./keyname.array",'');
 
   for ( x = 0; varArray.length > x; x++ ){
     if ( x == 0 ){
@@ -29,9 +36,6 @@ function buildvar(){
     if ( varArray[x].toString().length > 7){
       fs.appendFileSync( pathconfigvar + "./db.var", varArray[x] );
     }
-    //if ( varArray[x].toString().length > 7){
-    //  fs.appendFileSync( pathconfigvar + "./keyname.array", keyArray[x] );
-    //}
   }
 
   for ( x = 0; varBool.length > x; x++ ){
@@ -41,9 +45,6 @@ function buildvar(){
     if ( varBool[x].toString().length > 7){
       fs.appendFileSync( pathconfigvar + "./db.var", varBool[x] );
     }
-    //if ( varBool[x].toString().length > 7){
-    //  fs.appendFileSync( pathconfigvar + "./keyname", keyBool[x] );
-    //}
   }
 
   for ( x = 0; varInterger.length > x; x++ ){
@@ -53,9 +54,6 @@ function buildvar(){
     if ( varInterger[x].toString().length > 7){
       fs.appendFileSync( pathconfigvar + "./db.var", varInterger[x] );
     }
-    //if ( keyInterger[x].toString().length > 7){
-    //  fs.appendFileSync( pathconfigvar + "./keyname", keyInterger[x] );
-    //}
   }
 
   for ( x = 0; varObject.length > x; x++ ){
@@ -65,9 +63,6 @@ function buildvar(){
     if ( varObject[x].toString().length > 7){
       fs.appendFileSync( pathconfigvar + "./db.var", varObject[x] );
     }
-    //if ( keyObject[x].toString().length > 7){
-    //  fs.appendFileSync( pathconfigvar + "./keyname", keyObject[x] );
-    //}
   }
 
   for ( x = 0; varString.length > x; x++ ){
@@ -77,11 +72,14 @@ function buildvar(){
     if ( varString[x].toString().length > 7){
       fs.appendFileSync( pathconfigvar + "./db.var", varString[x] );
     }
-    //if ( keyString[x].toString().length > 7){
-    //  fs.appendFileSync( pathconfigvar + "./keyname", keyString[x] );
-    //}
   }
+<<<<<<< HEAD
 }
 
 buildvar();
+=======
+};
+varBuilder();
+
+>>>>>>> parent of 65b2cc8... ...revert this, some msitake
 

@@ -2,7 +2,7 @@
 //var jsonObj = JSON.parse(jsonFile);
 var server;
 
-//var keyArray    = fs.readFileSync(pathconfigvar + "./keyname.array", 'UTF8').split("\r");
+
 
 
 
@@ -234,8 +234,6 @@ var io = require('socket.io').listen(server);
       //socket.broadcast.emit('message', 'Another client has just connected!');
 
 
-
-
       // Will do something when its value changed
       setInterval(function(){  
           socket.emit('test0', "test0");
@@ -246,9 +244,39 @@ var io = require('socket.io').listen(server);
           socket.emit('test5', counter);
           socket.emit('test6', counter);
           socket.emit('test7', counter);
+<<<<<<< HEAD
           //socket.emit('iArrayLightHueCur', iArrayLightHueCur);
       }, 1000);
+=======
+          socket.emit('iArrayLightHueCur', iArrayLightHueCur);
+      }, 1000);
+        //        socket.emit('iArrayLightTransitionTime', iArrayLightTransitionTime);
+>>>>>>> parent of 65b2cc8... ...revert this, some msitake
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
