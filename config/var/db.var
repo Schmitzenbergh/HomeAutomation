@@ -1,6 +1,7 @@
 // Paths:
 pathroot            = '/root/scripts/HomeAutomation/';
 pathconfig          = pathroot + './config/';
+pathconfigvar       = pathconfig + './var/';
 pathpublic          = pathroot + './public/';
 pathresources       = pathroot + './resources/';
 pathavr             = pathresources + './avr/';

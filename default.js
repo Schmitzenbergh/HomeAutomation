@@ -1,5 +1,6 @@
+require('./config/var/db.paths');
 //module.exports.repl.ignoreUndefined = true;
-require('./config/var/db.var.builder.js');
+
 //require('./config/var/db.var');
 
 path = require('path');
@@ -10,6 +11,9 @@ fs = require('fs');
 
 hue = require('hue-sdk');     //hue = require( pathresources + './hue-sdk/lib/hue.js'),
 client = new hue.Hue(require( pathconfig + './.credentials.json' ));
+
+require('./config/var/db.var.builder.js');
+
 light = require( pathhuelight + 'light.js' );
 
 avr = require( pathavrhk171s + 'default.js');

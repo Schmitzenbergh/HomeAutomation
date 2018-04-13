@@ -28,7 +28,7 @@ server = http.createServer(function(req, res){
     // your normal server code
     var path = url.parse(req.url).pathname;
 
-    fs.readFile( pathconfig + 'db.var', "UTF8", function(err, data){
+    fs.readFileSync( pathconfigvar + './db.var', "UTF8", function(err, data){
                   if (err){ return send404(res); };
                   htmlScript = data;
     });
@@ -36,7 +36,7 @@ server = http.createServer(function(req, res){
     console.log(pathpublic);
     switch (path){
         case '/':
-            fs.readFile( pathpublic + 'index.html', function(err, data){
+            fs.readFile( pathpublic + './index.html', function(err, data){
               if (err){ return send404(res); };
               res.writeHead(200, {'Content-type': 'text/html'}); 
                 res.write("<script>" + htmlScript + "</script>" + data + "test");
@@ -62,7 +62,7 @@ server = http.createServer(function(req, res){
 
     }
     if (bDoPageRefresh){  // For all actions without a page
-        fs.readFile(pathpublic + 'index.html', function(err, data){
+        fs.readFile(pathpublic + './index.html', function(err, data){
             if (err){ return send404(res); }
             res.writeHead(200, {'Content-type': 'text/html'});
             res.write(data, 'utf8'); res.end();
@@ -237,17 +237,17 @@ var io = require('socket.io').listen(server);
 
 
       // Will do something when its value changed
-//      setInterval(function(){  
-//          socket.emit('test0', "test0");
-//          socket.emit('test1', "test1");
-//          socket.emit('test2', "test2");
-//          socket.emit('test3', counter);
-//          socket.emit('test4', counter);
-//          socket.emit('test5', counter);
-//          socket.emit('test6', counter);
-//          socket.emit('test7', counter);
-//          socket.emit('iArrayLightHueCur', iArrayLightHueCur);
-//      }, 1000);
+      setInterval(function(){  
+          socket.emit('test0', "test0");
+          socket.emit('test1', "test1");
+          socket.emit('test2', "test2");
+          socket.emit('test3', counter);
+          socket.emit('test4', counter);
+          socket.emit('test5', counter);
+          socket.emit('test6', counter);
+          socket.emit('test7', counter);
+          //socket.emit('iArrayLightHueCur', iArrayLightHueCur);
+      }, 1000);
 });
 
 

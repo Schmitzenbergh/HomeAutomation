@@ -1,6 +1,7 @@
-require('./db.paths');
-var fs = require('fs');
 
+require('./db.paths');
+
+function buildvar(){
 //function varBuilder(){
   var varArray      = fs.readFileSync(pathconfigvar + "./db.arrays", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = [''];");
 //  exports.keyArray  = keyArray = fs.readFileSync(pathconfigvar + "./db.arrays", 'UTF8').replace(/\n/g,'').split("\r").map( x => x );
@@ -80,14 +81,7 @@ var fs = require('fs');
     //  fs.appendFileSync( pathconfigvar + "./keyname", keyString[x] );
     //}
   }
-<<<<<<< HEAD
+}
 
-  //console.log("init done!..... ");
-//};
-//varBuilder();
-=======
-};
-
->>>>>>> parent of b12cbaf... ..
-
+buildvar();
 
