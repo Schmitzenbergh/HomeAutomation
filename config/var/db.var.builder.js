@@ -1,4 +1,4 @@
-require("./db.paths");
+require('./db.paths');
 var fs = require('fs');
 
 //function varBuilder(){
@@ -80,9 +80,14 @@ var fs = require('fs');
     //  fs.appendFileSync( pathconfigvar + "./keyname", keyString[x] );
     //}
   }
+<<<<<<< HEAD
 
   //console.log("init done!..... ");
 //};
 //varBuilder();
+=======
+};
+
+>>>>>>> parent of b12cbaf... ..
 
 
