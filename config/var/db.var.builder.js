@@ -1,40 +1,33 @@
+require("./db.paths");
+var fs = require('fs');
 
-<<<<<<< HEAD
-require('./db.paths');
-
-function buildvar(){
-//function varBuilder(){
+function varBuilder(){
   var varArray      = fs.readFileSync(pathconfigvar + "./db.arrays", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = [''];");
-//  exports.keyArray  = keyArray = fs.readFileSync(pathconfigvar + "./db.arrays", 'UTF8').replace(/\n/g,'').split("\r").map( x => x );
+  exports.keyArray  = keyArray = fs.readFileSync(pathconfigvar + "./db.arrays", 'UTF8').replace(/\n/g,'').split("\r").map( x => x );
 
   var varBool       = fs.readFileSync(pathconfigvar + "./db.bools", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = '';");
-//  exports.keyBool   = keyBool = fs.readFileSync(pathconfigvar + "./db.bools", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
+  exports.keyBool   = keyBool = fs.readFileSync(pathconfigvar + "./db.bools", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
 
   var varInterger   = fs.readFileSync(pathconfigvar + "./db.integers", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = '';");
-//  exports.keyInterger = keyInterger = fs.readFileSync(pathconfigvar + "./db.integers", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
+  exports.keyInterger = keyInterger = fs.readFileSync(pathconfigvar + "./db.integers", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
 
   var varObject     = fs.readFileSync(pathconfigvar + "./db.objects", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = {};");
-//  exports.keyObject = keyObject = fs.readFileSync(pathconfigvar + "./db.objects", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
+  exports.keyObject = keyObject = fs.readFileSync(pathconfigvar + "./db.objects", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
 
   var varString     = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x +  " = '';");
-//  exports.keyString = keyString = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
-=======
-function varBuilder(){
-  var varArray    = fs.readFileSync(pathconfigvar + "./db.arrays", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = [''];");
-  var varBool     = fs.readFileSync(pathconfigvar + "./db.bools", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = '';");
-  var varInterger = fs.readFileSync(pathconfigvar + "./db.integers", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = '';");
-  var varObject   = fs.readFileSync(pathconfigvar + "./db.objects", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = {};");
-  var varString   = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x +  " = '';");
->>>>>>> parent of 65b2cc8... ...revert this, some msitake
+  exports.keyString = keyString = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
 
   fs.writeFileSync( pathconfigvar + "./db.var",fs.readFileSync(pathconfigvar + "./db.paths", 'UTF8'));
+  fs.writeFileSync( pathconfigvar + "./keyname",'');
+  fs.writeFileSync( pathconfigvar + "./keyname.array",'');
 
   for ( x = 0; varArray.length > x; x++ ){
     if ( x == 0 ){
       fs.appendFileSync( pathconfigvar + "./db.var", '\n\n//Array:');
     }
     if ( varArray[x].toString().length > 7){
-      fs.appendFileSync( pathconfigvar + "./db.var", varArray[x] );
+      fs.appendFileSync( pathconfigvar + "./db.var", varArray[x] )
+      fs.appendFileSync( pathconfigvar + "./keyname.array", keyArray[x] )
     }
   }
 
@@ -44,6 +37,7 @@ function varBuilder(){
     }
     if ( varBool[x].toString().length > 7){
       fs.appendFileSync( pathconfigvar + "./db.var", varBool[x] );
+      fs.appendFileSync( pathconfigvar + "./keyname", keyBool[x] );
     }
   }
 
@@ -53,6 +47,7 @@ function varBuilder(){
     }
     if ( varInterger[x].toString().length > 7){
       fs.appendFileSync( pathconfigvar + "./db.var", varInterger[x] );
+      fs.appendFileSync( pathconfigvar + "./keyname", keyInterger[x] );
     }
   }
 
@@ -62,6 +57,7 @@ function varBuilder(){
     }
     if ( varObject[x].toString().length > 7){
       fs.appendFileSync( pathconfigvar + "./db.var", varObject[x] );
+      fs.appendFileSync( pathconfigvar + "./keyname", keyObject[x] );
     }
   }
 
@@ -71,15 +67,10 @@ function varBuilder(){
     }
     if ( varString[x].toString().length > 7){
       fs.appendFileSync( pathconfigvar + "./db.var", varString[x] );
+      fs.appendFileSync( pathconfigvar + "./keyname", keyString[x] );
     }
   }
-<<<<<<< HEAD
-}
-
-buildvar();
-=======
 };
 varBuilder();
 
->>>>>>> parent of 65b2cc8... ...revert this, some msitake
 

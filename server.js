@@ -244,14 +244,8 @@ var io = require('socket.io').listen(server);
           socket.emit('test5', counter);
           socket.emit('test6', counter);
           socket.emit('test7', counter);
-<<<<<<< HEAD
-          //socket.emit('iArrayLightHueCur', iArrayLightHueCur);
-      }, 1000);
-=======
           socket.emit('iArrayLightHueCur', iArrayLightHueCur);
       }, 1000);
-        //        socket.emit('iArrayLightTransitionTime', iArrayLightTransitionTime);
->>>>>>> parent of 65b2cc8... ...revert this, some msitake
 });
 
 

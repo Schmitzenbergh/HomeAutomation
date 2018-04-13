@@ -1,11 +1,7 @@
 require('./config/var/db.paths');
 //module.exports.repl.ignoreUndefined = true;
-<<<<<<< HEAD
 
 //require('./config/var/db.var');
-=======
-require('./config/var/db.var.builder.js');
->>>>>>> parent of 65b2cc8... ...revert this, some msitake
 
 path = require('path');
 net = require('net');
