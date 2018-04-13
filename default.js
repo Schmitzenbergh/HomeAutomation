@@ -1,5 +1,6 @@
 //module.exports.repl.ignoreUndefined = true;
 require('./config/var/db.var.builder.js');
+//require('./config/var/db.var');
 
 path = require('path');
 net = require('net');
@@ -19,21 +20,20 @@ iArraySensorConnected =             [1, 2, 5, 6, 7, 8, 9, 10, 11];
 
 counter = 0;
 
-
+teststring = "sometestvaluehere";
 
 /*******\
 | Start |###############################################################################################################################################################################
 \*******/
 
-setTimeout(function(){ require('./server'); }, 2000);
-setInterval(function(){  
-  
-  iArrayLightHueCur = counter++-20; 
+setTimeout(function(){ require('./server');
+//light.getInfoAll();
+ }, 2000);
 
-
-
-
-}, 1000);
+//setInterval(function(){  
+//  iArrayLightHueCur = counter++-20; 
+//
+//}, 2000);
 
 
 
@@ -68,6 +68,19 @@ setInterval(function(){
 
 
 
+//  exports.returnArrayValue = function(sVariableName, iPosition){  "use strict"
+//    let temparr = global[sVariableName];
+//  
+//    console.log(temparr instanceof Array);
+//    if (iPosition){
+//      return temparr[iPosition];
+//    } else {
+//      return temparr;
+//    }
+//    
+//  };  
+//  //sArrayLightAlert[0] = "sometestexample";
+//  console.log(returnArrayValue("sArrayLightAlert", 0));
 
 
 

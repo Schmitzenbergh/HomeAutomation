@@ -442,6 +442,15 @@ function resetCb(){
 
 
 
+*************************************************
+
+function returnArrayValue(sVariableName, iPosition){  "use strict"
+  let temparr = global[sVariableName];
+  return temparr[iPosition];
+};  
+console.log(returnArrayValue("somearray", 1));
+
+*************************************************
 
 
 
@@ -449,10 +458,17 @@ function resetCb(){
 
 
 
+somearray[0] = "10";
+....
+somearray[8] = "2";
+somearray[9] = "1";
 
 
+function getVariableVAlue(sVariableName){
+  console.log(global[sVariableName]);
+};  getVariableVAlue("somearray");
 
-
+CONSOLE: [ '10', '9', '8', '7', '6', '5', '4', '3', '2', '1' ]
 
 
 

@@ -2,7 +2,7 @@
 //var jsonObj = JSON.parse(jsonFile);
 var server;
 
-
+//var keyArray    = fs.readFileSync(pathconfigvar + "./keyname.array", 'UTF8').split("\r");
 
 
 
@@ -239,44 +239,21 @@ var io = require('socket.io').listen(server);
       //socket.broadcast.emit('message', 'Another client has just connected!');
 
 
+
+
       // Will do something when its value changed
-      setInterval(function(){  
-          socket.emit('test0', "test0");
-          socket.emit('test1', "test1");
-          socket.emit('test2', "test2");
-          socket.emit('test3', counter);
-          socket.emit('test4', counter);
-          socket.emit('test5', counter);
-          socket.emit('test6', counter);
-          socket.emit('test7', counter);
-          socket.emit('iArrayLightHueCur', iArrayLightHueCur);
-      }, 1000);
-        //        socket.emit('iArrayLightTransitionTime', iArrayLightTransitionTime);
+//      setInterval(function(){  
+//          socket.emit('test0', "test0");
+//          socket.emit('test1', "test1");
+//          socket.emit('test2', "test2");
+//          socket.emit('test3', counter);
+//          socket.emit('test4', counter);
+//          socket.emit('test5', counter);
+//          socket.emit('test6', counter);
+//          socket.emit('test7', counter);
+//          socket.emit('iArrayLightHueCur', iArrayLightHueCur);
+//      }, 1000);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
