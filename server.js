@@ -1,17 +1,7 @@
 //var jsonFile=fs.readFileSync('db.json', 'utf8');
 //var jsonObj = JSON.parse(jsonFile);
 var server;
-
-
-
-
-
-
-
-
-
-
- //console.log(data);  //htmlScript = toString().data;
+//console.log(data);  //htmlScript = toString().data;
 
 
 
@@ -27,19 +17,16 @@ server = http.createServer(function(req, res){
   var htmlScript;
     // your normal server code
     var path = url.parse(req.url).pathname;
+    var htmlScript = fs.readFileSync(pathconfigvar + "./db.var", 'UTF8').replace(/\r/g,' ').split("\r").map(x => '\n' + x);
 
-    fs.readFileSync( pathconfigvar + './db.var', "UTF8", function(err, data){
-                  if (err){ return send404(res); };
-                  htmlScript = data;
-    });
-    
     console.log(pathpublic);
     switch (path){
         case '/':
             fs.readFile( pathpublic + './index.html', function(err, data){
               if (err){ return send404(res); };
               res.writeHead(200, {'Content-type': 'text/html'}); 
-                res.write("<script>" + htmlScript + "</script>" + data + "test");
+                res.write("<script>" + htmlScript + "</script>");
+                res.write(data );
               res.end();
             });
             break;
@@ -69,40 +56,6 @@ server = http.createServer(function(req, res){
         });
     }
 }),
-
-//    http.createServer(function (req, res) {
-//      var html = buildHtml(req);
-//    
-//      res.writeHead(200, {
-//        'Content-Type': 'text/html',
-//        'Content-Length': html.length,
-//        'Expires': new Date().toUTCString()
-//      });
-//      res.end(html);
-//    }).listen(8080);
-//    
-//    function buildHtml(req) {
-//      var header = '';
-//      var body = '';
-//      var script = '';
-//    
-//      fs.readFile( pathpublic + 'index.html', function(err, data){
-//          script = data;
-//    });
-//    
-//    
-//      // concatenate header string
-//      // concatenate body string
-//    
-//      return '<!DOCTYPE html>'
-//           + '<html><header>' + header + '</header><body>' + body + '</body></html>';
-//    };
-
-
-
-
-
-
 
 send404 = function(res){
     res.writeHead(404);
@@ -245,8 +198,36 @@ var io = require('socket.io').listen(server);
           socket.emit('test6', counter);
           socket.emit('test7', counter);
           socket.emit('iArrayLightHueCur', iArrayLightHueCur);
+          socket.emit('iArrayLightConnected', iArrayLightConnected);
+          socket.emit('iArraySensorConnected', iArraySensorConnected);
       }, 1000);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -297,27 +278,34 @@ function goHomepage(){
 }
 
 
-
-
-
-
-
-
 ////		for (x = 0; x < ModeArrayLength ; x++)
 ////		{                                                      								//		
 ////			ModeAccessLevelArray[x]=(ModeAccessLevelArray[x]); 								//		
 ////		}              
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//    http.createServer(function (req, res) {
+//      var html = buildHtml(req);
+//    
+//      res.writeHead(200, {
+//        'Content-Type': 'text/html',
+//        'Content-Length': html.length,
+//        'Expires': new Date().toUTCString()
+//      });
+//      res.end(html);
+//    }).listen(8080);
+//    
+//    function buildHtml(req) {
+//      var header = '';
+//      var body = '';
+//      var script = '';
+//    
+//      fs.readFile( pathpublic + 'index.html', function(err, data){
+//          script = data;
+//    });
+//    
+//    
+//      // concatenate header string
+//      // concatenate body string
+//    
+//      return '<!DOCTYPE html>'
+//           + '<html><header>' + header + '</header><body>' + body + '</body></html>';
+//    };
