@@ -257,6 +257,7 @@ var io = require('socket.io').listen(server);
           socket.emit('test7', counter);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           
       }, 2000);
 =======
@@ -264,6 +265,8 @@ var io = require('socket.io').listen(server);
       }, 1000);
 >>>>>>> parent of 32848da... ..update
 =======
+=======
+>>>>>>> parent of eec5bbf... Merged/Tested
           //socket.emit('iArrayLightHueCur', iArrayLightHueCur);
       }, 1000);
 =======
@@ -271,6 +274,9 @@ var io = require('socket.io').listen(server);
       }, 1000);
         //        socket.emit('iArrayLightTransitionTime', iArrayLightTransitionTime);
 >>>>>>> parent of 65b2cc8... ...revert this, some msitake
+<<<<<<< HEAD
+>>>>>>> parent of eec5bbf... Merged/Tested
+=======
 >>>>>>> parent of eec5bbf... Merged/Tested
 });
 
