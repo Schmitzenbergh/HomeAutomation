@@ -14,8 +14,12 @@ require('./config/var/db.var.builder.js');
 require('./config/var/db.var');/////////////////////////////////////////////////////////
 
 light = require( pathhuelight + 'light.js' );
+
 avr = require( pathavrhk171s + 'default.js');
 tv = require( pathsmarttv + 'tv.js' );
+
+iArrayLightConnected =              [1, 2, 3, 4, 5, 6];
+iArraySensorConnected =             [1, 2, 5, 6, 7, 8, 9, 10, 11];   
 
 counter = 0;
 
@@ -25,7 +29,7 @@ counter = 0;
 | Start |###############################################################################################################################################################################
 \*******/
 
-setTimeout(function(){ require('./server'); }, 3000);
+setTimeout(function(){ require('./server'); }, 2000);
 setInterval(function(){  
   
   console.log(counter++); 

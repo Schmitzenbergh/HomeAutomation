@@ -1,5 +1,6 @@
-
-bDebug
 counter
+<<<<<<< HEAD
 oTestObject
 sTestString
+=======
+>>>>>>> parent of 32848da... ..update
