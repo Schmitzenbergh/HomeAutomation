@@ -3,10 +3,6 @@
 var server;
 //console.log(data);  //htmlScript = toString().data;
 
-
-
-
-
 /***************\
 | NodeJS Server |###############################################################################################################################################################################
 \***************/
@@ -18,6 +14,7 @@ server = http.createServer(function(req, res){
     // your normal server code
     var path = url.parse(req.url).pathname;
     var htmlScript = fs.readFileSync(pathconfigvar + "./db.var", 'UTF8').replace(/\r/g,' ').split("\r").map(x => '\n' + x);
+    var pathScript = fs.readFileSync(pathconfigvar + "./db.paths", 'UTF8').replace(/\r/g,' ').split("\r").map(x => '\n' + x);
 
     console.log(pathpublic);
     switch (path){
@@ -25,7 +22,8 @@ server = http.createServer(function(req, res){
             fs.readFile( pathpublic + './index.html', function(err, data){
               if (err){ return send404(res); };
               res.writeHead(200, {'Content-type': 'text/html'}); 
-                res.write("<script>" + htmlScript + "</script>");
+                res.write("<script>" + pathScript + '\n</script>\n');
+                res.write("<script>" + htmlScript + '\n</script>\n');
                 res.write(data );
               res.end();
             });
@@ -65,9 +63,8 @@ send404 = function(res){
 
 server.listen(80);
 
-
-
-
+setTimeout(function(){ light.getInfoAll(); }, 3000);
+//setTimeout(function(){ light.getInfoAll(); }, 3000);
 
 // use socket.io
 var io = require('socket.io').listen(server);
@@ -187,9 +184,14 @@ var io = require('socket.io').listen(server);
       //socket.broadcast.emit('message', 'Another client has just connected!');
 
 
+
+      //var sKeyNames = fs.readFileSync(pathconfigvar + "./keyname.array", 'UTF8').replace(/^\s*$(?:\r\n?|\n)/gm,'').split("\r").map( x => '\n' + x );
+                      //fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8')
+
       // Will do something when its value changed
-      setInterval(function(){  
-          socket.emit('test0', "test0");
+      setInterval(function(){
+        counter++;
+          socket.emit('test0', "test2");
           socket.emit('test1', "test1");
           socket.emit('test2', "test2");
           socket.emit('test3', counter);
@@ -197,60 +199,9 @@ var io = require('socket.io').listen(server);
           socket.emit('test5', counter);
           socket.emit('test6', counter);
           socket.emit('test7', counter);
-          socket.emit('iArrayLightHueCur', iArrayLightHueCur);
-          socket.emit('iArrayLightConnected', iArrayLightConnected);
-          socket.emit('iArraySensorConnected', iArraySensorConnected);
-      }, 1000);
+          
+      }, 2000);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

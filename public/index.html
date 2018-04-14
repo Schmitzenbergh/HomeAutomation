@@ -1,3 +1,17 @@
+    <script src="./config/db.var"></script>
+   <script>
+      var socket = io.connect();
+      socket.on('test0', function(data){ $('#test0').text(data); });
+      socket.on('test1', function(data){ $('#test1').text(data); });
+      socket.on('test2', function(data){ $('#test2').text(data); });
+      socket.on('test3', function(data){ $('#test3').text(data); });
+      socket.on('test4', function(data){ $('#test4').text(data); });
+      socket.on('test5', function(data){ $('#test5').text(data); });
+      socket.on('test6', function(data){ $('#test6').text(data); });
+      socket.on('test7', function(data){ $('#test7').text(data); });
+      </script>
+
+
 <html>
   <head>
     <title>Socket.io Test</title>
@@ -5,61 +19,8 @@
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/json2html/1.2.0/json2html.min.js"></script>
-        <script> var socket = io.connect();
-
-        //event triggerd, do something
-        //socket.on('eventname', function(data){} );
-
-        //trigger event everywhere
-        //socket.emit('eventname', function(data){} );
-
-        //trigger event everywehere except self
-        //socket.broadcast.emit('eventname', function(data){} );
-
-      //Start:
-
-        socket.on('test0', function(data){ $('#test0').text(data); });
-        socket.on('test1', function(data){ $('#test1').text(data); });
-        socket.on('test2', function(data){ $('#test2').text(data); });
-        socket.on('test3', function(data){ $('#test3').text(data); });
-        socket.on('test4', function(data){ $('#test4').text(data); });
-        socket.on('test5', function(data){ $('#test5').text(data); });
-        socket.on('test6', function(data){ $('#test6').text(data); });
-        socket.on('test7', function(data){ $('#test7').text(data); });
-        socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightHueCur').text(data); });
-        socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime0').text("test"); });
-        socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime1').text(iArrayLightTransitionTime[1]); });
-        socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime2').text(iArrayLightTransitionTime[2]); });
-        socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime3').text("test"); });
-        socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime4').text(iArrayLightTransitionTime[4]); });
-        socket.on('iArrayLightHueCur', function(data){  $('#iArrayLightTransitionTime5').text(iArrayLightTransitionTime[5]); });
-                                                      
-
-  
 
 
-
-
-
-
-
-
-
-
-      //SetTo5("test");
-      //
-      //function SetTo5(varString) {
-      //  var newValue = 5;
-      //  eval(varString + " = " + newValue);
-      //  console.log(test)
-      //}
-
-      //function SetToString(varString) {
-      //  var newValue = "string";
-      //  eval(varString + " = " + "'" + newValue + "'");
-      //}
-
-    </script>
 
     <style type="text/css">
 	.auto-style1 {
@@ -512,67 +473,8 @@ test4                     :<a id="test4">             noValue</a></br>
 test5                     :<a id="test5">             noValue</a></br>
 test6                     :<a id="test6">             noValue</a></br>
 test7                     :<a id="test7">             noValue</a></br>
-iArrayLightTransitionTime0  :<a id="iArrayLightTransitionTime0">noValue</a></br>
-iArrayLightTransitionTime1  :<a id="iArrayLightTransitionTime1">noValue</a></br>
-iArrayLightTransitionTime2  :<a id="iArrayLightTransitionTime2">noValue</a></br>
-iArrayLightTransitionTime3  :<a id="iArrayLightTransitionTime3">noValue</a></br>
-iArrayLightTransitionTime4  :<a id="iArrayLightTransitionTime4">noValue</a></br>
-iArrayLightTransitionTime5  :<a id="iArrayLightTransitionTime5">noValue</a></br>
-iArrayLightHueCur :<a id="iArrayLightHueCur">noValue</a><br>
-iArrayLightConnected :<a id="iArrayLightConnected">noValue</a><br>
-iArraySensorConnected :<a id="iArraySensorConnected">noValue</a><br>
 
-
-
-  </body>
-
-  
-<!--  DropDown
-
-    <p>Select: </p>
-    <select id="myselect" onchange="change_myselect(this.value)">
-        <option value="">Choose an option:</option>
-        <option value="lights">lights</option>
-        <option value="state">state</option>
-        <option value="groups">groups</option>
-        <option value="config">config</option>
-        <option value="schedule">schedule</option>
-        <option value="scenes">scenes</option>
-        <option value="sensors">sensors</option>
-        <option value="rules">rules</option>
-        <option value="resourcelinks">resourcelinks</option>
-    </select>
-
-    socket.on('jsonFile', function(data){
-      jData = data;
-      $('#jsonFile').text(jData);
-    });
-
-
- <p id="jsonFile">NoValue</p>
-
-    <p>Some TestText in index.html</p><p></p>
-    
-    <p>Select from json</p>
-    <select id="myselect" onchange="change_myselect(this.value)">
-        <option value="">Choose an option:</option>
-        <option value="lights">lights</option>
-        <option value="state">state</option>
-        <option value="groups">groups</option>
-        <option value="config">config</option>
-        <option value="schedule">schedule</option>
-        <option value="scenes">scenes</option>
-        <option value="sensors">sensors</option>
-        <option value="rules">rules</option>
-        <option value="resourcelinks">resourcelinks</option>
-    </select>
-
-    <p>Send to server</p>
-    <textarea id="text2">NoValue</textarea>
-    <div id="jsonFile">NoValue</div>
-
--->
-
+</body>
 </html> 
 
 

@@ -1,8 +1,6 @@
 require('./config/var/db.paths');
 //module.exports.repl.ignoreUndefined = true;
 
-//require('./config/var/db.var');
-
 path = require('path');
 net = require('net');
 http = require('http');
@@ -13,6 +11,7 @@ hue = require('hue-sdk');     //hue = require( pathresources + './hue-sdk/lib/hu
 client = new hue.Hue(require( pathconfig + './.credentials.json' ));
 
 require('./config/var/db.var.builder.js');
+require('./config/var/db.var');/////////////////////////////////////////////////////////
 
 light = require( pathhuelight + 'light.js' );
 avr = require( pathavrhk171s + 'default.js');
@@ -29,14 +28,10 @@ counter = 0;
 setTimeout(function(){ require('./server'); }, 3000);
 setInterval(function(){  
   
-  iArrayLightHueCur = counter++-20; 
+  console.log(counter++); 
+  light.getInfoAll();
 
-
-
-
-}, 1000);
-
-
+}, 2000);
 
 //var myvars = {};
 //var myString1 = "test1";
@@ -52,14 +47,6 @@ setInterval(function(){
 //  console.log(test)
 //}
 //testing = 10;
-//myvars[myString1] = '4';
-//myvars[myString2] = '3';
-//myvars[myString3] = '2';
-//myvars[myString4] = '1';
-//console.log(myvars);
-//console.log(myvars.myString2);
-//console.log(myvars.myString3);
-//console.log(myvars.myString4);
 
 
 

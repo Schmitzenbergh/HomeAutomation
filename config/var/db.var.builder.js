@@ -17,15 +17,16 @@ function varBuilder(){
   var varString = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/^\s*$(?:\r\n?|\n)/gm,'').split("\r").map(x => '\n' + x +  " = '';");
   var keyString = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/^\s*$(?:\r\n?|\n)/gm,'').split("\r").map( x => '\n' + x );
 
-  fs.writeFileSync( pathconfigvar + "./db.var",fs.readFileSync(pathconfigvar + "./db.paths", 'UTF8'));
+  var varPredefined = fs.readFileSync(pathconfigvar + "./db.predefined", 'UTF8').replace(/\r/gm,'').split("\r").map(x => '\n' + x);
+  var varPath = fs.readFileSync(pathconfigvar + "./db.paths", 'UTF8');
+  
+  fs.writeFileSync( pathconfigvar + "./db.var",'');
+  //fs.appendFileSync( pathconfigvar + "./db.var",varPath);
   
   fs.writeFileSync( pathconfigvar + "./keyname",'');
   fs.writeFileSync( pathconfigvar + "./keyname.array",'');
 
-fs.writeFileSync( pathconfigvar + "./db.var",fs.readFileSync(pathconfigvar + "./db.paths", 'UTF8'));
-fs.writeFileSync( pathconfigvar + "./db.var",fs.readFileSync(pathconfigvar + "./db.paths", 'UTF8'));
-fs.writeFileSync( pathconfigvar + "./db.var",fs.readFileSync(pathconfigvar + "./db.paths", 'UTF8'));
-
+//fs.writeFileSync( pathconfigvar + "./db.var",fs.readFileSync(pathconfigvar + "./db.paths", 'UTF8'));
 
   //Array
   for ( x = 0; varArray.length > x; x++ ){
@@ -97,22 +98,11 @@ fs.writeFileSync( pathconfigvar + "./db.var",fs.readFileSync(pathconfigvar + "./
         fs.appendFileSync( pathconfigvar + "./keyname", keyString[x] )
  }
 
+fs.appendFileSync( pathconfigvar + "./db.var", '\n\n//Predefined:');
+fs.appendFileSync( pathconfigvar + "./db.var", varPredefined );
 
-//Integer
-  for ( x = 0; varInteger.length > x; x++ ){
-    if ( x == 0 ){
-      fs.appendFileSync( pathconfigvar + "./db.var", '\n\n//Integer:');
-    }
-    fs.appendFileSync( pathconfigvar + "./db.var", varInteger[x] );
-  }
-  for ( x = 0; keyInteger.length > x; x++ ){
-      fs.appendFileSync( pathconfigvar + "./keyname", keyInteger[x] )
-  }
+//fs.writeFileSync(pathconfigvar + "./keyname", fs.readFileSync(pathconfigvar + "./keyname", 'UTF8'));
 
-
-
-
-   //fs.writeFileSync(pathconfigvar + "./keyname", fs.readFileSync(pathconfigvar + "./keyname", 'UTF8').replace(/^\s*[\r\n]/gm));
 };
 varBuilder();
 
