@@ -239,7 +239,6 @@ var io = require('socket.io').listen(server);
           socket.emit('newcounter'                        , counter);
           socket.emit('iArrayLightConnected'           ,iArrayLightConnected);                                         
           socket.emit('sArrayLightManufacturerName'    ,sArrayLightManufacturerName);                                         
-          socket.emit('sArrayLightProductname'         ,sArrayLightProductname         );                                     
           socket.emit('sArrayLightModelid'             ,sArrayLightModelid             );                                 
           socket.emit('sArrayLightName'                ,sArrayLightName                );                             
           socket.emit('sArrayLightSwversion'           ,sArrayLightSwversion           );                                   

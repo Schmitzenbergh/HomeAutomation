@@ -24,7 +24,6 @@ pathsrc             = pathroot + './src/';
 
 iArrayLightConnected = [''];
 sArrayLightManufacturerName = [''];
-sArrayLightProductname = [''];
 sArrayLightModelid = [''];
 sArrayLightName = [''];
 sArrayLightSwversion = [''];

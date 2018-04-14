@@ -20,36 +20,34 @@
         AddTableCollumnLight = function(oData, sVariableName){
             var result = "</td>" + sVariableName + "</td>";
               for (var i = 1; i < oData.length; i++) {
-                  result += "<td>";  
-                  result += oData[i];
-                  result += "</td>";
+                if (oData[i] === null || oData[i] === undefined ){
+                 result += "<td>";  
+                 result += " ";
+                 result += "</td>";
+                } else {
+                 result += "<td>";  
+                 result += oData[i];
+                 result += "</td>";
+                }
             }
             document.getElementById(sVariableName).innerHTML = result;
         };
 
-        //  AddTableCollumnSensor = function(oData, sVariableName){
-        //      var result = "</td>" + sVariableName + "</td>";
-        //        for (var i = 1; i < oData.length; i++) {
-        //            result += "<td>";  
-        //            result += oData[i];
-        //            result += "</td>";
-        //      }
-        //      document.getElementById(sVariableName).innerHTML = result;
-        //  };
-
-
         AddTableCollumnSensor = function(oData, sVariableName){
             var result = "</td>" + sVariableName + "</td>";
               for (var i = 1; i < oData.length; i++) {
-               // while ( i !== iArraySensorConnected[i] ){
-               // 
-               // } //i = iArraySensorConnected[i];
-               if ( i != 3 && i != 4){
-                  result += "<td>";  
-                  result += oData[i];
-                  result += "</td>";
-                  document.getElementById(sVariableName).innerHTML = result;
-               }
+              if ( i != 3 && i != 4){
+                if (oData[i] === null || oData[i] === undefined ){
+                 result += '<td style="background-color: #808080">';  
+                 result += ' ';
+                 result += '</td>';
+                } else {
+                 result += '<td>';  
+                 result += oData[i];
+                 result += '</td>';
+                }
+                 document.getElementById(sVariableName).innerHTML = result;
+              }
             }
         };
         
@@ -76,7 +74,6 @@
       
       socket.on('iArrayLightConnected'           ,function(data){ AddTableCollumn(data, 'iArrayLightConnected'                );    });
       socket.on('sArrayLightManufacturerName'    ,function(data){ AddTableCollumnLight(data, 'sArrayLightManufacturerName'    );    });
-      socket.on('sArrayLightProductname'         ,function(data){ AddTableCollumnLight(data, 'sArrayLightProductname'         );    });
       socket.on('sArrayLightModelid'             ,function(data){ AddTableCollumnLight(data, 'sArrayLightModelid'             );    });
       socket.on('sArrayLightName'                ,function(data){ AddTableCollumnLight(data, 'sArrayLightName'                );    });
       socket.on('sArrayLightSwversion'           ,function(data){ AddTableCollumnLight(data, 'sArrayLightSwversion'           );    });
@@ -703,11 +700,11 @@ channel- </button>
   <br></p>
   
   
-  
-    <table  border="1" style="width: 100%;">
+</br></br>
+<h2>Lights:</h2>
+<table  border="1" style="width: 100%;">
 <tr id='iArrayLightConnected'           ></tr>
 <tr id='sArrayLightManufacturerName'    ></tr>
-<tr id='sArrayLightProductname'         ></tr>
 <tr id='sArrayLightModelid'             ></tr>
 <tr id='sArrayLightName'                ></tr>
 <tr id='sArrayLightSwversion'           ></tr>
@@ -718,7 +715,9 @@ channel- </button>
 <tr id='sArrayLightAlert'               ></tr>
 <tr id='sArrayLightColorMode'           ></tr>
 <tr id='sArrayLightEffect'              ></tr>
+<!--
 <tr id='iArrayLightTransitionTime'      ></tr>
+-->
 <tr id='fArrayLightXyCur'               ></tr>
 <tr id='fArrayLightXyXCur'              ></tr>
 <tr id='fArrayLightXyYCur'              ></tr>
@@ -726,6 +725,7 @@ channel- </button>
 <tr id='iArrayLightHueCur'              ></tr>
 <tr id='iArrayLightSatCur'              ></tr>
 <tr id='iArrayLightBriCur'              ></tr>
+<!--
 <tr id='iArrayLightRgbRedCur'           ></tr>
 <tr id='iArrayLightRgbGreenCur'         ></tr>
 <tr id='iArrayLightRgbBlueCur'          ></tr>
@@ -749,6 +749,11 @@ channel- </button>
 <tr id='iArrayLightRgbRedOld'           ></tr>
 <tr id='iArrayLightRgbGreenOld'         ></tr>
 <tr id='iArrayLightRgbBlueOld'          ></tr>
+-->
+</table>
+</br></br>
+<h2>Sensors:</h2>
+<table  border="1" style="width: 100%;">
 <tr id='iArraySensorConnected'          ></tr>
 <tr id='sArraySensorName'               ></tr>
 <tr id='sArraySensorType'               ></tr>
@@ -757,6 +762,7 @@ channel- </button>
 <tr id='sArraySensorSwVersion'          ></tr>
 <tr id='sArraySensorUniqueId'           ></tr>
 <tr id='bArraySensorRecycle'            ></tr>
+<!--
 <tr id='sArraySensorNameCur'            ></tr>
 <tr id='sArraySensorTypeCur'            ></tr>
 <tr id='sArraySensorModelIdCur'         ></tr>
@@ -778,6 +784,7 @@ channel- </button>
 <tr id='sArraySensorSwVersionOld'       ></tr>
 <tr id='sArraySensorUniqueIdOld'        ></tr>
 <tr id='bArraySensorRecycleOld'         ></tr>
+-->
 <tr id='iArraySensorButtonEvent'        ></tr>
 <tr id='iArraySensorLightLevel'         ></tr>
 <tr id='bArraySensorDark'               ></tr>
@@ -786,6 +793,7 @@ channel- </button>
 <tr id='sArraySensorLastupdated'        ></tr>
 <tr id='bArraySensorPresence'           ></tr>
 <tr id='iArraySensorTemperature'        ></tr>
+<!--
 <tr id='iArraySensorButtonEventCur'     ></tr>
 <tr id='iArraySensorLightLevelCur'      ></tr>
 <tr id='bArraySensorDarkCur'            ></tr>
@@ -810,6 +818,7 @@ channel- </button>
 <tr id='sArraySensorLastupdatedOld'     ></tr>
 <tr id='bArraySensorPresenceOld'        ></tr>
 <tr id='iArraySensorTemperatureOld'     ></tr>
+-->
 <tr id='bArraySensorOn'                 ></tr>
 <tr id='iArraySensorBattery'            ></tr>
 <tr id='bArraySensorConfigured'         ></tr>
@@ -826,6 +835,7 @@ channel- </button>
 <tr id='iArraySensorSunsetoffset'       ></tr>
 <tr id='iArraySensorSunriseoffset'      ></tr>
 <tr id='sArraySensorPending'            ></tr>
+<!--
 <tr id='bArraySensorOnCur'              ></tr>
 <tr id='iArraySensorBatteryCur'         ></tr>
 <tr id='bArraySensorConfiguredCur'      ></tr>
@@ -874,187 +884,7 @@ channel- </button>
 <tr id='iArraySensorSunsetoffsetOld'    ></tr>
 <tr id='iArraySensorSunriseoffsetOld'   ></tr>
 <tr id='sArraySensorPendingOld'         ></tr>
-
-<!--
-
-  <br>     
-newcounter                     :<a id="newcounter">             NoValue</a></br>
-counter                     :<a id="counter">             NoValue</a></br>
-<p>Lights</p>
-LightConnected           :<a id="iArrayLightConnected">            NoValue</a>                       </br>
-LightManufacturerName    :<a id="sArrayLightManufacturerName">            NoValue</a>                             </br>
-LightProductname         :<a id="sArrayLightProductname">            NoValue</a>                         </br>
-LightModelid             :<a id="sArrayLightModelid">            NoValue</a>                     </br>
-LightName                :<a id="sArrayLightName">            NoValue</a>                 </br>
-LightSwversion           :<a id="sArrayLightSwversion">            NoValue</a>                       </br>
-LightType                :<a id="sArrayLightType">            NoValue</a>                 </br>
-LightUniqueid            :<a id="sArrayLightUniqueid">            NoValue</a>                     </br>
-LightOn                  :<a id="bArrayLightOn">            NoValue</a>               </br>
-LightReachable           :<a id="bArrayLightReachable">            NoValue</a>                       </br>
-LightAlert               :<a id="sArrayLightAlert">            NoValue</a>                   </br>
-LightColorMode           :<a id="sArrayLightColorMode">            NoValue</a>                       </br>
-LightEffect              :<a id="sArrayLightEffect">            NoValue</a>                   </br>
-LightTransitionTime      :<a id="iArrayLightTransitionTime">            NoValue</a>                           </br>
-LightXyCur               :<a id="fArrayLightXyCur">            NoValue</a>                   </br>
-LightXyXCur              :<a id="fArrayLightXyXCur">            NoValue</a>                   </br>
-LightXyYCur              :<a id="fArrayLightXyYCur">            NoValue</a>                   </br>
-LightCtCur               :<a id="iArrayLightCtCur">            NoValue</a>                   </br>
-LightHueCur              :<a id="iArrayLightHueCur">            NoValue</a>                   </br>
-LightSatCur              :<a id="iArrayLightSatCur">            NoValue</a>                   </br>
-LightBriCur              :<a id="iArrayLightBriCur">            NoValue</a>                   </br>
-LightRgbRedCur           :<a id="iArrayLightRgbRedCur">            NoValue</a></br>
-LightRgbGreenCur         :<a id="iArrayLightRgbGreenCur">            NoValue</a>                         </br>
-LightRgbBlueCur          :<a id="iArrayLightRgbBlueCur">            NoValue</a>                       </br>
-LightXyNew               :<a id="fArrayLightXyNew">            NoValue</a>                   </br>
-LightXyXNew              :<a id="fArrayLightXyXNew">            NoValue</a>                   </br>
-LightXyYNew              :<a id="fArrayLightXyYNew">            NoValue</a>                   </br>
-LightCtNew               :<a id="iArrayLightCtNew">            NoValue</a>                   </br>
-LightHueNew              :<a id="iArrayLightHueNew">            NoValue</a>                   </br>
-LightSatNew              :<a id="iArrayLightSatNew">            NoValue</a>                   </br>
-LightBriNew              :<a id="iArrayLightBriNew">            NoValue</a>                   </br>
-LightRgbRedNew           :<a id="iArrayLightRgbRedNew">            NoValue</a>                       </br>
-LightRgbGreenNew         :<a id="iArrayLightRgbGreenNew">            NoValue</a>                         </br>
-LightRgbBlueNew          :<a id="iArrayLightRgbBlueNew">            NoValue</a>                       </br>
-LightXyOld               :<a id="fArrayLightXyOld">            NoValue</a>                   </br>
-LightXyXOld              :<a id="fArrayLightXyXOld">            NoValue</a>                   </br>
-LightXyYOld              :<a id="fArrayLightXyYOld">            NoValue</a>                   </br>
-LightCtOld               :<a id="iArrayLightCtOld">            NoValue</a>                   </br>
-LightHueOld              :<a id="iArrayLightHueOld">            NoValue</a>                   </br>
-LightSatOld              :<a id="iArrayLightSatOld">            NoValue</a>                   </br>
-LightBriOld              :<a id="iArrayLightBriOld">            NoValue</a>                   </br>
-LightRgbRedOld           :<a id="iArrayLightRgbRedOld">            NoValue</a>                       </br>
-LightRgbGreenOld         :<a id="iArrayLightRgbGreenOld">            NoValue</a>                         </br>
-LightRgbBlueOld          :<a id="iArrayLightRgbBlueOld">            NoValue</a>                       </br><p>Sensors</p>
-SensorConnected          :<a id="iArraySensorConnected">            NoValue</a>                       </br>
-SensorName               :<a id="sArraySensorName">            NoValue</a>                   </br>
-SensorType               :<a id="sArraySensorType">            NoValue</a>                   </br>
-SensorModelId            :<a id="sArraySensorModelId">            NoValue</a>                     </br>
-SensorManufacturerName   :<a id="sArraySensorManufacturerName">            NoValue</a>                               </br>
-SensorSwVersion          :<a id="sArraySensorSwVersion">            NoValue</a>                       </br>
-SensorUniqueId           :<a id="sArraySensorUniqueId">            NoValue</a>                       </br>
-SensorRecycle            :<a id="bArraySensorRecycle">            NoValue</a>                     </br>
-SensorNameCur            :<a id="sArraySensorNameCur">            NoValue</a>                     </br>
-SensorTypeCur            :<a id="sArraySensorTypeCur">            NoValue</a>                     </br>
-SensorModelIdCur         :<a id="sArraySensorModelIdCur">            NoValue</a>                         </br>
-SensorManufacturerNameCur:<a id="sArraySensorManufacturerNameCur">            NoValue</a>                                 </br>
-SensorSwVersionCur       :<a id="sArraySensorSwVersionCur">            NoValue</a>                           </br>
-SensorUniqueIdCur        :<a id="sArraySensorUniqueIdCur">            NoValue</a>                         </br>
-SensorRecycleCur         :<a id="bArraySensorRecycleCur">            NoValue</a>                         </br>
-SensorNameNew            :<a id="sArraySensorNameNew">            NoValue</a>                     </br>
-SensorTypeNew            :<a id="sArraySensorTypeNew">            NoValue</a>                     </br>
-SensorModelIdNew         :<a id="sArraySensorModelIdNew">            NoValue</a>                         </br>
-SensorManufacturerNameNew:<a id="sArraySensorManufacturerNameNew">            NoValue</a>                                 </br>
-SensorSwVersionNew       :<a id="sArraySensorSwVersionNew">            NoValue</a>                           </br>
-SensorUniqueIdNew        :<a id="sArraySensorUniqueIdNew">            NoValue</a>                         </br>
-SensorRecycleNew         :<a id="bArraySensorRecycleNew">            NoValue</a>                         </br>
-SensorNameOld            :<a id="sArraySensorNameOld">            NoValue</a>                     </br>
-SensorTypeOld            :<a id="sArraySensorTypeOld">            NoValue</a>                     </br>
-SensorModelIdOld         :<a id="sArraySensorModelIdOld">            NoValue</a>                         </br>
-SensorManufacturerNameOld:<a id="sArraySensorManufacturerNameOld">            NoValue</a>                                 </br>
-SensorSwVersionOld       :<a id="sArraySensorSwVersionOld">            NoValue</a>                           </br>
-SensorUniqueIdOld        :<a id="sArraySensorUniqueIdOld">            NoValue</a>                         </br>
-SensorRecycleOld         :<a id="bArraySensorRecycleOld">            NoValue</a>                         </br>
-SensorButtonEvent        :<a id="iArraySensorButtonEvent">            NoValue</a>                         </br>
-SensorLightLevel         :<a id="iArraySensorLightLevel">            NoValue</a>                         </br>
-SensorDark               :<a id="bArraySensorDark">            NoValue</a>                   </br>
-SensorDaylight           :<a id="bArraySensorDaylight">            NoValue</a>                       </br>
-SensorStatus             :<a id="iArraySensorStatus">            NoValue</a>                     </br>
-SensorLastupdated        :<a id="sArraySensorLastupdated">            NoValue</a>                         </br>
-SensorPresence           :<a id="bArraySensorPresence">            NoValue</a>                       </br>
-SensorTemperature        :<a id="iArraySensorTemperature">            NoValue</a>                         </br>
-SensorButtonEventCur     :<a id="iArraySensorButtonEventCur">            NoValue</a>                             </br>
-SensorLightLevelCur      :<a id="iArraySensorLightLevelCur">            NoValue</a>                           </br>
-SensorDarkCur            :<a id="bArraySensorDarkCur">            NoValue</a>                     </br>
-SensorDaylightCur        :<a id="bArraySensorDaylightCur">            NoValue</a>                         </br>
-SensorStatusCur          :<a id="iArraySensorStatusCur">            NoValue</a>                       </br>
-SensorLastupdatedCur     :<a id="sArraySensorLastupdatedCur">            NoValue</a>                             </br>
-SensorPresenceCur        :<a id="bArraySensorPresenceCur">            NoValue</a>                         </br>
-SensorTemperatureCur     :<a id="iArraySensorTemperatureCur">            NoValue</a>                             </br>
-SensorButtonEventNew     :<a id="iArraySensorButtonEventNew">            NoValue</a>                             </br>
-SensorLightLevelNew      :<a id="iArraySensorLightLevelNew">            NoValue</a>                           </br>
-SensorDarkNew            :<a id="bArraySensorDarkNew">            NoValue</a>                     </br>
-SensorDaylightNew        :<a id="bArraySensorDaylightNew">            NoValue</a>                         </br>
-SensorStatusNew          :<a id="iArraySensorStatusNew">            NoValue</a>                       </br>
-SensorLastupdatedNew     :<a id="sArraySensorLastupdatedNew">            NoValue</a>                             </br>
-SensorPresenceNew        :<a id="bArraySensorPresenceNew">            NoValue</a>                         </br>
-SensorTemperatureNew     :<a id="iArraySensorTemperatureNew">            NoValue</a>                             </br>
-SensorButtonEventOld     :<a id="iArraySensorButtonEventOld">            NoValue</a>                             </br>
-SensorLightLevelOld      :<a id="iArraySensorLightLevelOld">            NoValue</a>                           </br>
-SensorDarkOld            :<a id="bArraySensorDarkOld">            NoValue</a>                     </br>
-SensorDaylightOld        :<a id="bArraySensorDaylightOld">            NoValue</a>                         </br>
-SensorStatusOld          :<a id="iArraySensorStatusOld">            NoValue</a>                       </br>
-SensorLastupdatedOld     :<a id="sArraySensorLastupdatedOld">            NoValue</a>                             </br>
-SensorPresenceOld        :<a id="bArraySensorPresenceOld">            NoValue</a>                         </br>
-SensorTemperatureOld     :<a id="iArraySensorTemperatureOld">            NoValue</a>                             </br>
-SensorOn                 :<a id="bArraySensorOn">            NoValue</a>                 </br>
-SensorBattery            :<a id="iArraySensorBattery">            NoValue</a>                     </br>
-SensorConfigured         :<a id="bArraySensorConfigured">            NoValue</a>                         </br>
-SensorReachable          :<a id="bArraySensorReachable">            NoValue</a>                       </br>
-SensorAlert              :<a id="sArraySensorAlert">            NoValue</a>                   </br>
-SensorTholdDark          :<a id="iArraySensorTholdDark">            NoValue</a>                       </br>
-SensorTholdOffset        :<a id="iArraySensorTholdOffset">            NoValue</a>                         </br>
-SensorStatus             :<a id="iArraySensorStatus">            NoValue</a>                     </br>
-SensorTholdOffset        :<a id="iArraySensorTholdOffset">            NoValue</a>                         </br>
-SensorLedindication      :<a id="bArraySensorLedindication">            NoValue</a>                           </br>
-SensorUsertest           :<a id="bArraySensorUsertest">            NoValue</a>                       </br>
-SensorSensitivity        :<a id="iArraySensorSensitivity">            NoValue</a>                         </br>
-SensorSensitivityMax     :<a id="iArraySensorSensitivityMax">            NoValue</a>                             </br>
-SensorSunsetoffset       :<a id="iArraySensorSunsetoffset">            NoValue</a>                           </br>
-SensorSunriseoffset      :<a id="iArraySensorSunriseoffset">            NoValue</a>                           </br>
-SensorPending            :<a id="sArraySensorPending">            NoValue</a>                     </br>
-SensorOnCur              :<a id="bArraySensorOnCur">            NoValue</a>                   </br>
-SensorBatteryCur         :<a id="iArraySensorBatteryCur">            NoValue</a>                         </br>
-SensorConfiguredCur      :<a id="bArraySensorConfiguredCur">            NoValue</a>                           </br>
-SensorReachableCur       :<a id="bArraySensorReachableCur">            NoValue</a>                           </br>
-SensorAlertCur           :<a id="sArraySensorAlertCur">            NoValue</a>                       </br>
-SensorTholdDarkCur       :<a id="iArraySensorTholdDarkCur">            NoValue</a>                           </br>
-SensorTholdOffsetCur     :<a id="iArraySensorTholdOffsetCur">            NoValue</a>                             </br>
-SensorStatusCur          :<a id="iArraySensorStatusCur">            NoValue</a>                       </br>
-SensorTholdOffsetCur     :<a id="iArraySensorTholdOffsetCur">            NoValue</a>                             </br>
-SensorLedindicationCur   :<a id="bArraySensorLedindicationCur">            NoValue</a>                               </br>
-SensorUsertestCur        :<a id="bArraySensorUsertestCur">            NoValue</a>                         </br>
-SensorSensitivityCur     :<a id="iArraySensorSensitivityCur">            NoValue</a>                             </br>
-SensorSensitivityMaxCur  :<a id="iArraySensorSensitivityMaxCur">            NoValue</a>                               </br>
-SensorSunsetoffsetCur    :<a id="iArraySensorSunsetoffsetCur">            NoValue</a>                             </br>
-SensorSunriseoffsetCur   :<a id="iArraySensorSunriseoffsetCur">            NoValue</a>                               </br>
-SensorPendingCur         :<a id="sArraySensorPendingCur">            NoValue</a>                         </br>
-SensorOnNew              :<a id="bArraySensorOnNew">            NoValue</a>                   </br>
-SensorBatteryNew         :<a id="iArraySensorBatteryNew">            NoValue</a>                         </br>
-SensorConfiguredNew      :<a id="bArraySensorConfiguredNew">            NoValue</a>                           </br>
-SensorReachableNew       :<a id="bArraySensorReachableNew">            NoValue</a>                           </br>
-SensorAlertNew           :<a id="sArraySensorAlertNew">            NoValue</a>                       </br>
-SensorTholdDarkNew       :<a id="iArraySensorTholdDarkNew">            NoValue</a>                           </br>
-SensorTholdOffsetNew     :<a id="iArraySensorTholdOffsetNew">            NoValue</a>                             </br>
-SensorStatusNew          :<a id="iArraySensorStatusNew">            NoValue</a>                       </br>
-SensorTholdOffsetNew     :<a id="iArraySensorTholdOffsetNew">            NoValue</a>                             </br>
-SensorLedindicationNew   :<a id="bArraySensorLedindicationNew">            NoValue</a>                               </br>
-SensorUsertestNew        :<a id="bArraySensorUsertestNew">            NoValue</a>                         </br>
-SensorSensitivityNew     :<a id="iArraySensorSensitivityNew">            NoValue</a>                             </br>
-SensorSensitivityMaxNew  :<a id="iArraySensorSensitivityMaxNew">            NoValue</a>                               </br>
-SensorSunsetoffsetNew    :<a id="iArraySensorSunsetoffsetNew">            NoValue</a>                             </br>
-SensorSunriseoffsetNew   :<a id="iArraySensorSunriseoffsetNew">            NoValue</a>                               </br>
-SensorPendingNew         :<a id="sArraySensorPendingNew">            NoValue</a>                         </br>
-SensorOnOld              :<a id="bArraySensorOnOld">            NoValue</a>                   </br>
-SensorBatteryOld         :<a id="iArraySensorBatteryOld">            NoValue</a>                         </br>
-SensorConfiguredOld      :<a id="bArraySensorConfiguredOld">            NoValue</a>                           </br>
-SensorReachableOld       :<a id="bArraySensorReachableOld">            NoValue</a>                           </br>
-SensorAlertOld           :<a id="sArraySensorAlertOld">            NoValue</a>                       </br>
-SensorTholdDarkOld       :<a id="iArraySensorTholdDarkOld">            NoValue</a>                           </br>
-SensorTholdOffsetOld     :<a id="iArraySensorTholdOffsetOld">            NoValue</a>                             </br>
-SensorStatusOld          :<a id="iArraySensorStatusOld">            NoValue</a>                       </br>
-SensorTholdOffsetOld     :<a id="iArraySensorTholdOffsetOld">            NoValue</a>                             </br>
-SensorLedindicationOld   :<a id="bArraySensorLedindicationOld">            NoValue</a>                               </br>
-SensorUsertestOld        :<a id="bArraySensorUsertestOld">            NoValue</a>                         </br>
-SensorSensitivityOld     :<a id="iArraySensorSensitivityOld ">            NoValue</a>                             </br>
-SensorSensitivityMaxOld  :<a id="iArraySensorSensitivityMaxOld">            NoValue</a>                               </br>
-SensorSunsetoffsetOld    :<a id="iArraySensorSunsetoffsetOld">            NoValue</a>                             </br>
-SensorSunriseoffsetOld   :<a id="iArraySensorSunriseoffsetOld">            NoValue</a>                               </br>
-SensorPendingOld         :<a id="sArraySensorPendingOld">            NoValue</a>                         </br>
-
-</table>
-  </body>
-
-  
+-->
 <!--  DropDown
 
     <p>Select: </p>
