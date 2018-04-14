@@ -20,27 +20,21 @@ light = require( pathhuelight + 'light.js' );
 avr = require( pathavrhk171s + 'default.js');
 tv = require( pathsmarttv + 'tv.js' );
 
-iArrayLightConnected =              [1, 2, 3, 4, 5, 6];
-iArraySensorConnected =             [1, 2, 5, 6, 7, 8, 9, 10, 11];   
-
-counter = 0;
-
-
-
 /*******\
 | Start |###############################################################################################################################################################################
 \*******/
 
-setTimeout(function(){ require('./server'); }, 2000);
-setInterval(function(){  
-  
-  //iArrayLightHueCur = counter++-20; 
-  counter++;
-  light.getInfoAll();
-  sensor.getInfoAll();
+setTimeout(function(){ require('./server'); 
+
+  setInterval(function(){  
+    counter++;
+    light.getInfoAll();
+    sensor.getInfoAll();
+  }, 1000);
 
 
-}, 1000);
+}, 2000);
+
 
 
 

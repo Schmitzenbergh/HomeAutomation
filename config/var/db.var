@@ -21,6 +21,7 @@ pathsrc             = pathroot + './src/';
 
 
 //Array:
+
 iArrayLightConnected = [''];
 sArrayLightManufacturerName = [''];
 sArrayLightProductname = [''];
@@ -193,10 +194,18 @@ sArraySensorPendingOld = [''];
 
 //Bool:
 
+
 //Integer:
+
 counter = '';
 
 //Object:
+
 oTestObject = {};
 
 //String:
+
+
+//Predefined:
+
+iArrayLightConnected  = ['1','2','3','4','5','6'];iArraySensorConnected = [1, 2, 5, 6, 7, 8, 9, 10, 11];counter = 0;;

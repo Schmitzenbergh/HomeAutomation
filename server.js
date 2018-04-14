@@ -24,22 +24,20 @@ var server;
 server = http.createServer(function(req, res){
   console.log("Client connected");
   var bDoPageRefresh = false;
-  var htmlScript;
+  var htmlScript = fs.readFileSync( pathconfigvar + './db.var', "UTF8", function(err, data){  });
     // your normal server code
     var path = url.parse(req.url).pathname;
 
-    fs.readFileSync( pathconfigvar + './db.var', "UTF8", function(err, data){
-                  if (err){ return send404(res); };
-                  htmlScript = data;
-    });
     
+    
+    //var varString     = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x +  " = '';");
     console.log(pathpublic);
     switch (path){
         case '/':
             fs.readFile( pathpublic + './index.html', function(err, data){
               if (err){ return send404(res); };
               res.writeHead(200, {'Content-type': 'text/html'}); 
-                res.write("<script>" + htmlScript + "</script>" + data + "test");
+                res.write("<script>" + '\n' + htmlScript +  '\n' + "</script>" +  '\n'  + data);
               res.end();
             });
             break;
@@ -236,16 +234,11 @@ var io = require('socket.io').listen(server);
 
       // Will do something when its value changed
       setInterval(function(){  
-          socket.emit('test0', "test0");
-          socket.emit('test1', "test1");
-          socket.emit('test2', "test2");
-          socket.emit('test3', counter);
-          socket.emit('test4', counter);
-          socket.emit('test5', counter);
-          socket.emit('test6', counter);
-          socket.emit('test7', counter);
-          socket.emit('iArrayLightConnected',iArrayLightConnected);                                         
-          socket.emit('sArrayLightManufacturerName',sArrayLightManufacturerName);                                         
+
+          socket.emit('counter'                        , counter);
+          socket.emit('newcounter'                        , counter);
+          socket.emit('iArrayLightConnected'           ,iArrayLightConnected);                                         
+          socket.emit('sArrayLightManufacturerName'    ,sArrayLightManufacturerName);                                         
           socket.emit('sArrayLightProductname'         ,sArrayLightProductname         );                                     
           socket.emit('sArrayLightModelid'             ,sArrayLightModelid             );                                 
           socket.emit('sArrayLightName'                ,sArrayLightName                );                             
