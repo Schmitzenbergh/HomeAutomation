@@ -405,7 +405,7 @@ var io = require('socket.io').listen(server);
           socket.emit('iArraySensorSunsetoffsetOld'    ,iArraySensorSunsetoffsetOld    );                                         
           socket.emit('iArraySensorSunriseoffsetOld'   ,iArraySensorSunriseoffsetOld   );                                           
           socket.emit('sArraySensorPendingOld'         ,sArraySensorPendingOld         );                   
-      }, 1000);
+      }, 500);
 });
 
 

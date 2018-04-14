@@ -30,7 +30,7 @@ setTimeout(function(){ require('./server');
     counter++;
     light.getInfoAll();
     sensor.getInfoAll();
-  }, 2000);
+  }, 1000);
 
 
 }, 2000);
