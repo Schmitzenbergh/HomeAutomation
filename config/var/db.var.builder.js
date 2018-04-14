@@ -3,25 +3,25 @@ require('./db.paths');
 
 function buildvar(){
 //function varBuilder(){
-  var varArray      = fs.readFileSync(pathconfigvar + "./db.arrays", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = [''];");
-//  exports.keyArray  = keyArray = fs.readFileSync(pathconfigvar + "./db.arrays", 'UTF8').replace(/\n/g,'').split("\r").map( x => x );
+  var varArray      = fs.readFileSync(pathconfigvarsrc + "./db.arrays", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = [''];");
+//  exports.keyArray  = keyArray = fs.readFileSync(pathconfigvarsrc + "./db.arrays", 'UTF8').replace(/\n/g,'').split("\r").map( x => x );
 
-  var varBool       = fs.readFileSync(pathconfigvar + "./db.bools", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = '';");
-//  exports.keyBool   = keyBool = fs.readFileSync(pathconfigvar + "./db.bools", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
+  var varBool       = fs.readFileSync(pathconfigvarsrc + "./db.bools", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = '';");
+//  exports.keyBool   = keyBool = fs.readFileSync(pathconfigvarsrc + "./db.bools", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
 
-  var varInterger   = fs.readFileSync(pathconfigvar + "./db.integers", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = '';");
-//  exports.keyInterger = keyInterger = fs.readFileSync(pathconfigvar + "./db.integers", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
+  var varInterger   = fs.readFileSync(pathconfigvarsrc + "./db.integers", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = '';");
+//  exports.keyInterger = keyInterger = fs.readFileSync(pathconfigvarsrc + "./db.integers", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
 
-  var varObject     = fs.readFileSync(pathconfigvar + "./db.objects", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = {};");
-//  exports.keyObject = keyObject = fs.readFileSync(pathconfigvar + "./db.objects", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
+  var varObject     = fs.readFileSync(pathconfigvarsrc + "./db.objects", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = {};");
+//  exports.keyObject = keyObject = fs.readFileSync(pathconfigvarsrc + "./db.objects", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
 
-  var varString     = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x +  " = '';");
-//  exports.keyString = keyString = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
+  var varString     = fs.readFileSync(pathconfigvarsrc + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x +  " = '';");
+//  exports.keyString = keyString = fs.readFileSync(pathconfigvarsrc + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
 
-  var predefined = fs.readFileSync( pathconfigvar + './db.predefined', 'UTF8').replace(/\n/g,'').split("\n").map(x => '\n' + x + ";");
+  var predefined = fs.readFileSync( pathconfigvarsrc + './db.predefined', 'UTF8').replace(/\n/g,'').split("\n").map(x => '\n' + x + ";");
   //.map(x => '\n' + x + ";");
 
-  fs.writeFileSync( pathconfigvar + "./db.var",fs.readFileSync(pathconfigvar + "./db.paths", 'UTF8'));
+  fs.writeFileSync( pathconfigvar + "./db.var",fs.readFileSync(pathconfigvarsrc + "./db.paths", 'UTF8'));
 
     for ( x = 0; varArray.length > x; x++ ){
     if ( x == 0 ){

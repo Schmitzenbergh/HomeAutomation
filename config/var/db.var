@@ -2,6 +2,7 @@
 pathroot            = '/root/scripts/HomeAutomation/';
 pathconfig          = pathroot + './config/';
 pathconfigvar       = pathconfig + './var/';
+pathconfigvarsrc    = pathconfigvar + './src/';
 pathpublic          = pathroot + './public/';
 pathresources       = pathroot + './resources/';
 pathavr             = pathresources + './avr/';
@@ -193,6 +194,7 @@ sArraySensorPendingOld = [''];
 
 //Bool:
 
+bTempBool = '';
 
 //Integer:
 
@@ -204,7 +206,8 @@ oTestObject = {};
 
 //String:
 
+sTestString = '';
 
 //Predefined:
 
-iArrayLightConnected  = ['1','2','3','4','5','6'];iArraySensorConnected = [1, 2, 5, 6, 7, 8, 9, 10, 11];counter = 0;;
+iArrayLightConnected  = ['1','2','3','4','5','6'];iArraySensorConnected = ['1','2','5','6','7','8','9','10','11'];counter = 0;;

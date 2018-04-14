@@ -70,8 +70,7 @@
 
 
       socket.on('counter', function(data){ counter = data; $('#counter').text(data);});
-      socket.on('newcounter', function(data){ $('#newcounter').text(counter); });
-      
+     
       socket.on('iArrayLightConnected'           ,function(data){ AddTableCollumn(data, 'iArrayLightConnected'                );    });
       socket.on('sArrayLightManufacturerName'    ,function(data){ AddTableCollumnLight(data, 'sArrayLightManufacturerName'    );    });
       socket.on('sArrayLightModelid'             ,function(data){ AddTableCollumnLight(data, 'sArrayLightModelid'             );    });
@@ -699,8 +698,7 @@ channel- </button>
 
   <br></p>
   
-  
-</br></br>
+<p>Counter: <a id='counter'></a></p>
 <h2>Lights:</h2>
 <table  border="1" style="width: 100%;">
 <tr id='iArrayLightConnected'           ></tr>

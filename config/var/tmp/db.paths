@@ -2,6 +2,7 @@
 pathroot            = '/root/scripts/HomeAutomation/';
 pathconfig          = pathroot + './config/';
 pathconfigvar       = pathconfig + './var/';
+pathconfigvarsrc    = pathconfigvar + './src/';
 pathpublic          = pathroot + './public/';
 pathresources       = pathroot + './resources/';
 pathavr             = pathresources + './avr/';
