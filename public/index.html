@@ -1,17 +1,3 @@
-    <script src="./config/db.var"></script>
-   <script>
-      var socket = io.connect();
-      socket.on('test0', function(data){ $('#test0').text(data); });
-      socket.on('test1', function(data){ $('#test1').text(data); });
-      socket.on('test2', function(data){ $('#test2').text(data); });
-      socket.on('test3', function(data){ $('#test3').text(data); });
-      socket.on('test4', function(data){ $('#test4').text(data); });
-      socket.on('test5', function(data){ $('#test5').text(data); });
-      socket.on('test6', function(data){ $('#test6').text(data); });
-      socket.on('test7', function(data){ $('#test7').text(data); });
-      </script>
-
-
 <html>
   <head>
     <title>Socket.io Test</title>
@@ -19,8 +5,225 @@
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/json2html/1.2.0/json2html.min.js"></script>
+        <script> var socket = io.connect();
+
+        //event triggerd, do something
+        //socket.on('eventname', function(data){} );
+
+        //trigger event everywhere
+        //socket.emit('eventname', function(data){} );
+
+        //trigger event everywehere except self
+        //socket.broadcast.emit('eventname', function(data){} );
+
+      //Start:
+
+        socket.on('test0', function(data){ $('#test0').text(data); });
+        socket.on('test1', function(data){ $('#test1').text(data); });
+        socket.on('test2', function(data){ $('#test2').text(data); });
+        socket.on('test3', function(data){ $('#test3').text(data); });
+        socket.on('test4', function(data){ $('#test4').text(data); });
+        socket.on('test5', function(data){ $('#test5').text(data); });
+        socket.on('test6', function(data){ $('#test6').text(data); });
+        socket.on('test7', function(data){ $('#test7').text(data); });
+        
+
+      socket.on('iArrayLightConnected'           ,function(data){ $('#iArrayLightConnected'    ).text(data); });
+      socket.on('sArrayLightManufacturerName'    ,function(data){ $('#sArrayLightManufacturerName'    ).text(data); });
+      socket.on('sArrayLightProductname'         ,function(data){ $('#sArrayLightProductname'         ).text(data); });
+      socket.on('sArrayLightModelid'             ,function(data){ $('#sArrayLightModelid'             ).text(data); });
+      socket.on('sArrayLightName'                ,function(data){ $('#sArrayLightName'                ).text(data); });
+      socket.on('sArrayLightSwversion'           ,function(data){ $('#sArrayLightSwversion'           ).text(data); });
+      socket.on('sArrayLightType'                ,function(data){ $('#sArrayLightType'                ).text(data); });
+      socket.on('sArrayLightUniqueid'            ,function(data){ $('#sArrayLightUniqueid'            ).text(data); });
+      socket.on('bArrayLightOn'                  ,function(data){ $('#bArrayLightOn'                  ).text(data); });
+      socket.on('bArrayLightReachable'           ,function(data){ $('#bArrayLightReachable'           ).text(data); });
+      socket.on('sArrayLightAlert'               ,function(data){ $('#sArrayLightAlert'               ).text(data); });
+      socket.on('sArrayLightColorMode'           ,function(data){ $('#sArrayLightColorMode'           ).text(data); });
+      socket.on('sArrayLightEffect'              ,function(data){ $('#sArrayLightEffect'              ).text(data); });
+      socket.on('iArrayLightTransitionTime'      ,function(data){ $('#iArrayLightTransitionTime'      ).text(data); });
+      socket.on('fArrayLightXyCur'               ,function(data){ $('#fArrayLightXyCur'               ).text(data); });
+      socket.on('fArrayLightXyXCur'              ,function(data){ $('#fArrayLightXyXCur'              ).text(data); });
+      socket.on('fArrayLightXyYCur'              ,function(data){ $('#fArrayLightXyYCur'              ).text(data); });
+      socket.on('iArrayLightCtCur'               ,function(data){ $('#iArrayLightCtCur'               ).text(data); });
+      socket.on('iArrayLightHueCur'              ,function(data){ $('#iArrayLightHueCur'              ).text(data); });
+      socket.on('iArrayLightSatCur'              ,function(data){ $('#iArrayLightSatCur'              ).text(data); });
+      socket.on('iArrayLightBriCur'              ,function(data){ $('#iArrayLightBriCur'              ).text(data); });
+      socket.on('iArrayLightRgbRedCur'           ,function(data){ $('#iArrayLightRgbRedCur'           ).text(data); });
+      socket.on('iArrayLightRgbGreenCur'         ,function(data){ $('#iArrayLightRgbGreenCur'         ).text(data); });
+      socket.on('iArrayLightRgbBlueCur'          ,function(data){ $('#iArrayLightRgbBlueCur'          ).text(data); });
+      socket.on('fArrayLightXyNew'               ,function(data){ $('#fArrayLightXyNew'               ).text(data); });
+      socket.on('fArrayLightXyXNew'              ,function(data){ $('#fArrayLightXyXNew'              ).text(data); });
+      socket.on('fArrayLightXyYNew'              ,function(data){ $('#fArrayLightXyYNew'              ).text(data); });
+      socket.on('iArrayLightCtNew'               ,function(data){ $('#iArrayLightCtNew'               ).text(data); });
+      socket.on('iArrayLightHueNew'              ,function(data){ $('#iArrayLightHueNew'              ).text(data); });
+      socket.on('iArrayLightSatNew'              ,function(data){ $('#iArrayLightSatNew'              ).text(data); });
+      socket.on('iArrayLightBriNew'              ,function(data){ $('#iArrayLightBriNew'              ).text(data); });
+      socket.on('iArrayLightRgbRedNew'           ,function(data){ $('#iArrayLightRgbRedNew'           ).text(data); });
+      socket.on('iArrayLightRgbGreenNew'         ,function(data){ $('#iArrayLightRgbGreenNew'         ).text(data); });
+      socket.on('iArrayLightRgbBlueNew'          ,function(data){ $('#iArrayLightRgbBlueNew'          ).text(data); });
+      socket.on('fArrayLightXyOld'               ,function(data){ $('#fArrayLightXyOld'               ).text(data); });
+      socket.on('fArrayLightXyXOld'              ,function(data){ $('#fArrayLightXyXOld'              ).text(data); });
+      socket.on('fArrayLightXyYOld'              ,function(data){ $('#fArrayLightXyYOld'              ).text(data); });
+      socket.on('iArrayLightCtOld'               ,function(data){ $('#iArrayLightCtOld'               ).text(data); });
+      socket.on('iArrayLightHueOld'              ,function(data){ $('#iArrayLightHueOld'              ).text(data); });
+      socket.on('iArrayLightSatOld'              ,function(data){ $('#iArrayLightSatOld'              ).text(data); });
+      socket.on('iArrayLightBriOld'              ,function(data){ $('#iArrayLightBriOld'              ).text(data); });
+      socket.on('iArrayLightRgbRedOld'           ,function(data){ $('#iArrayLightRgbRedOld'           ).text(data); });
+      socket.on('iArrayLightRgbGreenOld'         ,function(data){ $('#iArrayLightRgbGreenOld'         ).text(data); });
+      socket.on('iArrayLightRgbBlueOld'          ,function(data){ $('#iArrayLightRgbBlueOld'          ).text(data); });
+      socket.on('iArraySensorConnected'          ,function(data){ $('#iArraySensorConnected'          ).text(data); });
+      socket.on('sArraySensorName'               ,function(data){ $('#sArraySensorName'               ).text(data); });
+      socket.on('sArraySensorType'               ,function(data){ $('#sArraySensorType'               ).text(data); });
+      socket.on('sArraySensorModelId'            ,function(data){ $('#sArraySensorModelId'            ).text(data); });
+      socket.on('sArraySensorManufacturerName'   ,function(data){ $('#sArraySensorManufacturerName'   ).text(data); });
+      socket.on('sArraySensorSwVersion'          ,function(data){ $('#sArraySensorSwVersion'          ).text(data); });
+      socket.on('sArraySensorUniqueId'           ,function(data){ $('#sArraySensorUniqueId'           ).text(data); });
+      socket.on('bArraySensorRecycle'            ,function(data){ $('#bArraySensorRecycle'            ).text(data); });
+      socket.on('sArraySensorNameCur'            ,function(data){ $('#sArraySensorNameCur'            ).text(data); });
+      socket.on('sArraySensorTypeCur'            ,function(data){ $('#sArraySensorTypeCur'            ).text(data); });
+      socket.on('sArraySensorModelIdCur'         ,function(data){ $('#sArraySensorModelIdCur'         ).text(data); });
+      socket.on('sArraySensorManufacturerNameCur',function(data){ $('#sArraySensorManufacturerNameCur').text(data); });
+      socket.on('sArraySensorSwVersionCur'       ,function(data){ $('#sArraySensorSwVersionCur'       ).text(data); });
+      socket.on('sArraySensorUniqueIdCur'        ,function(data){ $('#sArraySensorUniqueIdCur'        ).text(data); });
+      socket.on('bArraySensorRecycleCur'         ,function(data){ $('#bArraySensorRecycleCur'         ).text(data); });
+      socket.on('sArraySensorNameNew'            ,function(data){ $('#sArraySensorNameNew'            ).text(data); });
+      socket.on('sArraySensorTypeNew'            ,function(data){ $('#sArraySensorTypeNew'            ).text(data); });
+      socket.on('sArraySensorModelIdNew'         ,function(data){ $('#sArraySensorModelIdNew'         ).text(data); });
+      socket.on('sArraySensorManufacturerNameNew',function(data){ $('#sArraySensorManufacturerNameNew').text(data); });
+      socket.on('sArraySensorSwVersionNew'       ,function(data){ $('#sArraySensorSwVersionNew'       ).text(data); });
+      socket.on('sArraySensorUniqueIdNew'        ,function(data){ $('#sArraySensorUniqueIdNew'        ).text(data); });
+      socket.on('bArraySensorRecycleNew'         ,function(data){ $('#bArraySensorRecycleNew'         ).text(data); });
+      socket.on('sArraySensorNameOld'            ,function(data){ $('#sArraySensorNameOld'            ).text(data); });
+      socket.on('sArraySensorTypeOld'            ,function(data){ $('#sArraySensorTypeOld'            ).text(data); });
+      socket.on('sArraySensorModelIdOld'         ,function(data){ $('#sArraySensorModelIdOld'         ).text(data); });
+      socket.on('sArraySensorManufacturerNameOld',function(data){ $('#sArraySensorManufacturerNameOld').text(data); });
+      socket.on('sArraySensorSwVersionOld'       ,function(data){ $('#sArraySensorSwVersionOld'       ).text(data); });
+      socket.on('sArraySensorUniqueIdOld'        ,function(data){ $('#sArraySensorUniqueIdOld'        ).text(data); });
+      socket.on('bArraySensorRecycleOld'         ,function(data){ $('#bArraySensorRecycleOld'         ).text(data); });
+      socket.on('iArraySensorButtonEvent'        ,function(data){ $('#iArraySensorButtonEvent'        ).text(data); });
+      socket.on('iArraySensorLightLevel'         ,function(data){ $('#iArraySensorLightLevel'         ).text(data); });
+      socket.on('bArraySensorDark'               ,function(data){ $('#bArraySensorDark'               ).text(data); });
+      socket.on('bArraySensorDaylight'           ,function(data){ $('#bArraySensorDaylight'           ).text(data); });
+      socket.on('iArraySensorStatus'             ,function(data){ $('#iArraySensorStatus'             ).text(data); });
+      socket.on('sArraySensorLastupdated'        ,function(data){ $('#sArraySensorLastupdated'        ).text(data); });
+      socket.on('bArraySensorPresence'           ,function(data){ $('#bArraySensorPresence'           ).text(data); });
+      socket.on('iArraySensorTemperature'        ,function(data){ $('#iArraySensorTemperature'        ).text(data); });
+      socket.on('iArraySensorButtonEventCur'     ,function(data){ $('#iArraySensorButtonEventCur'     ).text(data); });
+      socket.on('iArraySensorLightLevelCur'      ,function(data){ $('#iArraySensorLightLevelCur'      ).text(data); });
+      socket.on('bArraySensorDarkCur'            ,function(data){ $('#bArraySensorDarkCur'            ).text(data); });
+      socket.on('bArraySensorDaylightCur'        ,function(data){ $('#bArraySensorDaylightCur'        ).text(data); });
+      socket.on('iArraySensorStatusCur'          ,function(data){ $('#iArraySensorStatusCur'          ).text(data); });
+      socket.on('sArraySensorLastupdatedCur'     ,function(data){ $('#sArraySensorLastupdatedCur'     ).text(data); });
+      socket.on('bArraySensorPresenceCur'        ,function(data){ $('#bArraySensorPresenceCur'        ).text(data); });
+      socket.on('iArraySensorTemperatureCur'     ,function(data){ $('#iArraySensorTemperatureCur'     ).text(data); });
+      socket.on('iArraySensorButtonEventNew'     ,function(data){ $('#iArraySensorButtonEventNew'     ).text(data); });
+      socket.on('iArraySensorLightLevelNew'      ,function(data){ $('#iArraySensorLightLevelNew'      ).text(data); });
+      socket.on('bArraySensorDarkNew'            ,function(data){ $('#bArraySensorDarkNew'            ).text(data); });
+      socket.on('bArraySensorDaylightNew'        ,function(data){ $('#bArraySensorDaylightNew'        ).text(data); });
+      socket.on('iArraySensorStatusNew'          ,function(data){ $('#iArraySensorStatusNew'          ).text(data); });
+      socket.on('sArraySensorLastupdatedNew'     ,function(data){ $('#sArraySensorLastupdatedNew'     ).text(data); });
+      socket.on('bArraySensorPresenceNew'        ,function(data){ $('#bArraySensorPresenceNew'        ).text(data); });
+      socket.on('iArraySensorTemperatureNew'     ,function(data){ $('#iArraySensorTemperatureNew'     ).text(data); });
+      socket.on('iArraySensorButtonEventOld'     ,function(data){ $('#iArraySensorButtonEventOld'     ).text(data); });
+      socket.on('iArraySensorLightLevelOld'      ,function(data){ $('#iArraySensorLightLevelOld'      ).text(data); });
+      socket.on('bArraySensorDarkOld'            ,function(data){ $('#bArraySensorDarkOld'            ).text(data); });
+      socket.on('bArraySensorDaylightOld'        ,function(data){ $('#bArraySensorDaylightOld'        ).text(data); });
+      socket.on('iArraySensorStatusOld'          ,function(data){ $('#iArraySensorStatusOld'          ).text(data); });
+      socket.on('sArraySensorLastupdatedOld'     ,function(data){ $('#sArraySensorLastupdatedOld'     ).text(data); });
+      socket.on('bArraySensorPresenceOld'        ,function(data){ $('#bArraySensorPresenceOld'        ).text(data); });
+      socket.on('iArraySensorTemperatureOld'     ,function(data){ $('#iArraySensorTemperatureOld'     ).text(data); });
+      socket.on('bArraySensorOn'                 ,function(data){ $('#bArraySensorOn'                 ).text(data); });
+      socket.on('iArraySensorBattery'            ,function(data){ $('#iArraySensorBattery'            ).text(data); });
+      socket.on('bArraySensorConfigured'         ,function(data){ $('#bArraySensorConfigured'         ).text(data); });
+      socket.on('bArraySensorReachable'          ,function(data){ $('#bArraySensorReachable'          ).text(data); });
+      socket.on('sArraySensorAlert'              ,function(data){ $('#sArraySensorAlert'              ).text(data); });
+      socket.on('iArraySensorTholdDark'          ,function(data){ $('#iArraySensorTholdDark'          ).text(data); });
+      socket.on('iArraySensorTholdOffset'        ,function(data){ $('#iArraySensorTholdOffset'        ).text(data); });
+      socket.on('iArraySensorStatus'             ,function(data){ $('#iArraySensorStatus'             ).text(data); });
+      socket.on('iArraySensorTholdOffset'        ,function(data){ $('#iArraySensorTholdOffset'        ).text(data); });
+      socket.on('bArraySensorLedindication'      ,function(data){ $('#bArraySensorLedindication'      ).text(data); });
+      socket.on('bArraySensorUsertest'           ,function(data){ $('#bArraySensorUsertest'           ).text(data); });
+      socket.on('iArraySensorSensitivity'        ,function(data){ $('#iArraySensorSensitivity'        ).text(data); });
+      socket.on('iArraySensorSensitivityMax'     ,function(data){ $('#iArraySensorSensitivityMax'     ).text(data); });
+      socket.on('iArraySensorSunsetoffset'       ,function(data){ $('#iArraySensorSunsetoffset'       ).text(data); });
+      socket.on('iArraySensorSunriseoffset'      ,function(data){ $('#iArraySensorSunriseoffset'      ).text(data); });
+      socket.on('sArraySensorPending'            ,function(data){ $('#sArraySensorPending'            ).text(data); });
+      socket.on('bArraySensorOnCur'              ,function(data){ $('#bArraySensorOnCur'              ).text(data); });
+      socket.on('iArraySensorBatteryCur'         ,function(data){ $('#iArraySensorBatteryCur'         ).text(data); });
+      socket.on('bArraySensorConfiguredCur'      ,function(data){ $('#bArraySensorConfiguredCur'      ).text(data); });
+      socket.on('bArraySensorReachableCur'       ,function(data){ $('#bArraySensorReachableCur'       ).text(data); });
+      socket.on('sArraySensorAlertCur'           ,function(data){ $('#sArraySensorAlertCur'           ).text(data); });
+      socket.on('iArraySensorTholdDarkCur'       ,function(data){ $('#iArraySensorTholdDarkCur'       ).text(data); });
+      socket.on('iArraySensorTholdOffsetCur'     ,function(data){ $('#iArraySensorTholdOffsetCur'     ).text(data); });
+      socket.on('iArraySensorStatusCur'          ,function(data){ $('#iArraySensorStatusCur'          ).text(data); });
+      socket.on('iArraySensorTholdOffsetCur'     ,function(data){ $('#iArraySensorTholdOffsetCur'     ).text(data); });
+      socket.on('bArraySensorLedindicationCur'   ,function(data){ $('#bArraySensorLedindicationCur'   ).text(data); });
+      socket.on('bArraySensorUsertestCur'        ,function(data){ $('#bArraySensorUsertestCur'        ).text(data); });
+      socket.on('iArraySensorSensitivityCur'     ,function(data){ $('#iArraySensorSensitivityCur'     ).text(data); });
+      socket.on('iArraySensorSensitivityMaxCur'  ,function(data){ $('#iArraySensorSensitivityMaxCur'  ).text(data); });
+      socket.on('iArraySensorSunsetoffsetCur'    ,function(data){ $('#iArraySensorSunsetoffsetCur'    ).text(data); });
+      socket.on('iArraySensorSunriseoffsetCur'   ,function(data){ $('#iArraySensorSunriseoffsetCur'   ).text(data); });
+      socket.on('sArraySensorPendingCur'         ,function(data){ $('#sArraySensorPendingCur'         ).text(data); });
+      socket.on('bArraySensorOnNew'              ,function(data){ $('#bArraySensorOnNew'              ).text(data); });
+      socket.on('iArraySensorBatteryNew'         ,function(data){ $('#iArraySensorBatteryNew'         ).text(data); });
+      socket.on('bArraySensorConfiguredNew'      ,function(data){ $('#bArraySensorConfiguredNew'      ).text(data); });
+      socket.on('bArraySensorReachableNew'       ,function(data){ $('#bArraySensorReachableNew'       ).text(data); });
+      socket.on('sArraySensorAlertNew'           ,function(data){ $('#sArraySensorAlertNew'           ).text(data); });
+      socket.on('iArraySensorTholdDarkNew'       ,function(data){ $('#iArraySensorTholdDarkNew'       ).text(data); });
+      socket.on('iArraySensorTholdOffsetNew'     ,function(data){ $('#iArraySensorTholdOffsetNew'     ).text(data); });
+      socket.on('iArraySensorStatusNew'          ,function(data){ $('#iArraySensorStatusNew'          ).text(data); });
+      socket.on('iArraySensorTholdOffsetNew'     ,function(data){ $('#iArraySensorTholdOffsetNew'     ).text(data); });
+      socket.on('bArraySensorLedindicationNew'   ,function(data){ $('#bArraySensorLedindicationNew'   ).text(data); });
+      socket.on('bArraySensorUsertestNew'        ,function(data){ $('#bArraySensorUsertestNew'        ).text(data); });
+      socket.on('iArraySensorSensitivityNew'     ,function(data){ $('#iArraySensorSensitivityNew'     ).text(data); });
+      socket.on('iArraySensorSensitivityMaxNew'  ,function(data){ $('#iArraySensorSensitivityMaxNew'  ).text(data); });
+      socket.on('iArraySensorSunsetoffsetNew'    ,function(data){ $('#iArraySensorSunsetoffsetNew'    ).text(data); });
+      socket.on('iArraySensorSunriseoffsetNew'   ,function(data){ $('#iArraySensorSunriseoffsetNew'   ).text(data); });
+      socket.on('sArraySensorPendingNew'         ,function(data){ $('#sArraySensorPendingNew'         ).text(data); });
+      socket.on('bArraySensorOnOld'              ,function(data){ $('#bArraySensorOnOld'              ).text(data); });
+      socket.on('iArraySensorBatteryOld'         ,function(data){ $('#iArraySensorBatteryOld'         ).text(data); });
+      socket.on('bArraySensorConfiguredOld'      ,function(data){ $('#bArraySensorConfiguredOld'      ).text(data); });
+      socket.on('bArraySensorReachableOld'       ,function(data){ $('#bArraySensorReachableOld'       ).text(data); });
+      socket.on('sArraySensorAlertOld'           ,function(data){ $('#sArraySensorAlertOld'           ).text(data); });
+      socket.on('iArraySensorTholdDarkOld'       ,function(data){ $('#iArraySensorTholdDarkOld'       ).text(data); });
+      socket.on('iArraySensorTholdOffsetOld'     ,function(data){ $('#iArraySensorTholdOffsetOld'     ).text(data); });
+      socket.on('iArraySensorStatusOld'          ,function(data){ $('#iArraySensorStatusOld'          ).text(data); });
+      socket.on('iArraySensorTholdOffsetOld'     ,function(data){ $('#iArraySensorTholdOffsetOld'     ).text(data); });
+      socket.on('bArraySensorLedindicationOld'   ,function(data){ $('#bArraySensorLedindicationOld'   ).text(data); });
+      socket.on('bArraySensorUsertestOld'        ,function(data){ $('#bArraySensorUsertestOld'        ).text(data); });
+      socket.on('iArraySensorSensitivityOld'     ,function(data){ $('#iArraySensorSensitivityOld'     ).text(data); });
+      socket.on('iArraySensorSensitivityMaxOld'  ,function(data){ $('#iArraySensorSensitivityMaxOld'  ).text(data); });
+      socket.on('iArraySensorSunsetoffsetOld'    ,function(data){ $('#iArraySensorSunsetoffsetOld'    ).text(data); });
+      socket.on('iArraySensorSunriseoffsetOld'   ,function(data){ $('#iArraySensorSunriseoffsetOld'   ).text(data); });
+      socket.on('sArraySensorPendingOld'         ,function(data){ $('#sArraySensorPendingOld'         ).text(data); });
+                                                      
+
+  
 
 
+
+
+
+
+
+
+
+
+      //SetTo5("test");
+      //
+      //function SetTo5(varString) {
+      //  var newValue = 5;
+      //  eval(varString + " = " + newValue);
+      //  console.log(test)
+      //}
+
+      //function SetToString(varString) {
+      //  var newValue = "string";
+      //  eval(varString + " = " + "'" + newValue + "'");
+      //}
+
+    </script>
 
     <style type="text/css">
 	.auto-style1 {
@@ -473,15 +676,175 @@ test4                     :<a id="test4">             noValue</a></br>
 test5                     :<a id="test5">             noValue</a></br>
 test6                     :<a id="test6">             noValue</a></br>
 test7                     :<a id="test7">             noValue</a></br>
-iArrayLightTransitionTime0  :<a id="iArrayLightTransitionTime0">noValue</a></br>
-iArrayLightTransitionTime1  :<a id="iArrayLightTransitionTime1">noValue</a></br>
-iArrayLightTransitionTime2  :<a id="iArrayLightTransitionTime2">noValue</a></br>
-iArrayLightTransitionTime3  :<a id="iArrayLightTransitionTime3">noValue</a></br>
-iArrayLightTransitionTime4  :<a id="iArrayLightTransitionTime4">noValue</a></br>
-iArrayLightTransitionTime5  :<a id="iArrayLightTransitionTime5">noValue</a></br>
-iArrayLightHueCur :<a id="iArrayLightHueCur">noValue</a><br>
-
-
+iArrayLightConnected           :<a id="iArrayLightConnected">            NoValue</a>                       </br>
+sArrayLightManufacturerName    :<a id="sArrayLightManufacturerName">            NoValue</a>                             </br>
+sArrayLightProductname         :<a id="sArrayLightProductname">            NoValue</a>                         </br>
+sArrayLightModelid             :<a id="sArrayLightModelid">            NoValue</a>                     </br>
+sArrayLightName                :<a id="sArrayLightName">            NoValue</a>                 </br>
+sArrayLightSwversion           :<a id="sArrayLightSwversion">            NoValue</a>                       </br>
+sArrayLightType                :<a id="sArrayLightType">            NoValue</a>                 </br>
+sArrayLightUniqueid            :<a id="sArrayLightUniqueid">            NoValue</a>                     </br>
+bArrayLightOn                  :<a id="bArrayLightOn">            NoValue</a>               </br>
+bArrayLightReachable           :<a id="bArrayLightReachable">            NoValue</a>                       </br>
+sArrayLightAlert               :<a id="sArrayLightAlert">            NoValue</a>                   </br>
+sArrayLightColorMode           :<a id="sArrayLightColorMode">            NoValue</a>                       </br>
+sArrayLightEffect              :<a id="sArrayLightEffect">            NoValue</a>                   </br>
+iArrayLightTransitionTime      :<a id="iArrayLightTransitionTime">            NoValue</a>                           </br>
+fArrayLightXyCur               :<a id="fArrayLightXyCur">            NoValue</a>                   </br>
+fArrayLightXyXCur              :<a id="fArrayLightXyXCur">            NoValue</a>                   </br>
+fArrayLightXyYCur              :<a id="fArrayLightXyYCur">            NoValue</a>                   </br>
+iArrayLightCtCur               :<a id="iArrayLightCtCur">            NoValue</a>                   </br>
+iArrayLightHueCur              :<a id="iArrayLightHueCur">            NoValue</a>                   </br>
+iArrayLightSatCur              :<a id="iArrayLightSatCur">            NoValue</a>                   </br>
+iArrayLightBriCur              :<a id="iArrayLightBriCur">            NoValue</a>                   </br>
+iArrayLightRgbRedCur           :<a id="iArrayLightRgbRedCur">            NoValue</a>                       </br>
+iArrayLightRgbGreenCur         :<a id="iArrayLightRgbGreenCur">            NoValue</a>                         </br>
+iArrayLightRgbBlueCur          :<a id="iArrayLightRgbBlueCur">            NoValue</a>                       </br>
+fArrayLightXyNew               :<a id="fArrayLightXyNew">            NoValue</a>                   </br>
+fArrayLightXyXNew              :<a id="fArrayLightXyXNew">            NoValue</a>                   </br>
+fArrayLightXyYNew              :<a id="fArrayLightXyYNew">            NoValue</a>                   </br>
+iArrayLightCtNew               :<a id="iArrayLightCtNew">            NoValue</a>                   </br>
+iArrayLightHueNew              :<a id="iArrayLightHueNew">            NoValue</a>                   </br>
+iArrayLightSatNew              :<a id="iArrayLightSatNew">            NoValue</a>                   </br>
+iArrayLightBriNew              :<a id="iArrayLightBriNew">            NoValue</a>                   </br>
+iArrayLightRgbRedNew           :<a id="iArrayLightRgbRedNew">            NoValue</a>                       </br>
+iArrayLightRgbGreenNew         :<a id="iArrayLightRgbGreenNew">            NoValue</a>                         </br>
+iArrayLightRgbBlueNew          :<a id="iArrayLightRgbBlueNew">            NoValue</a>                       </br>
+fArrayLightXyOld               :<a id="fArrayLightXyOld">            NoValue</a>                   </br>
+fArrayLightXyXOld              :<a id="fArrayLightXyXOld">            NoValue</a>                   </br>
+fArrayLightXyYOld              :<a id="fArrayLightXyYOld">            NoValue</a>                   </br>
+iArrayLightCtOld               :<a id="iArrayLightCtOld">            NoValue</a>                   </br>
+iArrayLightHueOld              :<a id="iArrayLightHueOld">            NoValue</a>                   </br>
+iArrayLightSatOld              :<a id="iArrayLightSatOld">            NoValue</a>                   </br>
+iArrayLightBriOld              :<a id="iArrayLightBriOld">            NoValue</a>                   </br>
+iArrayLightRgbRedOld           :<a id="iArrayLightRgbRedOld">            NoValue</a>                       </br>
+iArrayLightRgbGreenOld         :<a id="iArrayLightRgbGreenOld">            NoValue</a>                         </br>
+iArrayLightRgbBlueOld          :<a id="iArrayLightRgbBlueOld">            NoValue</a>                       </br>
+iArraySensorConnected          :<a id="iArraySensorConnected">            NoValue</a>                       </br>
+sArraySensorName               :<a id="sArraySensorName">            NoValue</a>                   </br>
+sArraySensorType               :<a id="sArraySensorType">            NoValue</a>                   </br>
+sArraySensorModelId            :<a id="sArraySensorModelId">            NoValue</a>                     </br>
+sArraySensorManufacturerName   :<a id="sArraySensorManufacturerName">            NoValue</a>                               </br>
+sArraySensorSwVersion          :<a id="sArraySensorSwVersion">            NoValue</a>                       </br>
+sArraySensorUniqueId           :<a id="sArraySensorUniqueId">            NoValue</a>                       </br>
+bArraySensorRecycle            :<a id="bArraySensorRecycle">            NoValue</a>                     </br>
+sArraySensorNameCur            :<a id="sArraySensorNameCur">            NoValue</a>                     </br>
+sArraySensorTypeCur            :<a id="sArraySensorTypeCur">            NoValue</a>                     </br>
+sArraySensorModelIdCur         :<a id="sArraySensorModelIdCur">            NoValue</a>                         </br>
+sArraySensorManufacturerNameCur:<a id="sArraySensorManufacturerNameCur">            NoValue</a>                                 </br>
+sArraySensorSwVersionCur       :<a id="sArraySensorSwVersionCur">            NoValue</a>                           </br>
+sArraySensorUniqueIdCur        :<a id="sArraySensorUniqueIdCur">            NoValue</a>                         </br>
+bArraySensorRecycleCur         :<a id="bArraySensorRecycleCur">            NoValue</a>                         </br>
+sArraySensorNameNew            :<a id="sArraySensorNameNew">            NoValue</a>                     </br>
+sArraySensorTypeNew            :<a id="sArraySensorTypeNew">            NoValue</a>                     </br>
+sArraySensorModelIdNew         :<a id="sArraySensorModelIdNew">            NoValue</a>                         </br>
+sArraySensorManufacturerNameNew:<a id="sArraySensorManufacturerNameNew">            NoValue</a>                                 </br>
+sArraySensorSwVersionNew       :<a id="sArraySensorSwVersionNew">            NoValue</a>                           </br>
+sArraySensorUniqueIdNew        :<a id="sArraySensorUniqueIdNew">            NoValue</a>                         </br>
+bArraySensorRecycleNew         :<a id="bArraySensorRecycleNew">            NoValue</a>                         </br>
+sArraySensorNameOld            :<a id="sArraySensorNameOld">            NoValue</a>                     </br>
+sArraySensorTypeOld            :<a id="sArraySensorTypeOld">            NoValue</a>                     </br>
+sArraySensorModelIdOld         :<a id="sArraySensorModelIdOld">            NoValue</a>                         </br>
+sArraySensorManufacturerNameOld:<a id="sArraySensorManufacturerNameOld">            NoValue</a>                                 </br>
+sArraySensorSwVersionOld       :<a id="sArraySensorSwVersionOld">            NoValue</a>                           </br>
+sArraySensorUniqueIdOld        :<a id="sArraySensorUniqueIdOld">            NoValue</a>                         </br>
+bArraySensorRecycleOld         :<a id="bArraySensorRecycleOld">            NoValue</a>                         </br>
+iArraySensorButtonEvent        :<a id="iArraySensorButtonEvent">            NoValue</a>                         </br>
+iArraySensorLightLevel         :<a id="iArraySensorLightLevel">            NoValue</a>                         </br>
+bArraySensorDark               :<a id="bArraySensorDark">            NoValue</a>                   </br>
+bArraySensorDaylight           :<a id="bArraySensorDaylight">            NoValue</a>                       </br>
+iArraySensorStatus             :<a id="iArraySensorStatus">            NoValue</a>                     </br>
+sArraySensorLastupdated        :<a id="sArraySensorLastupdated">            NoValue</a>                         </br>
+bArraySensorPresence           :<a id="bArraySensorPresence">            NoValue</a>                       </br>
+iArraySensorTemperature        :<a id="iArraySensorTemperature">            NoValue</a>                         </br>
+iArraySensorButtonEventCur     :<a id="iArraySensorButtonEventCur">            NoValue</a>                             </br>
+iArraySensorLightLevelCur      :<a id="iArraySensorLightLevelCur">            NoValue</a>                           </br>
+bArraySensorDarkCur            :<a id="bArraySensorDarkCur">            NoValue</a>                     </br>
+bArraySensorDaylightCur        :<a id="bArraySensorDaylightCur">            NoValue</a>                         </br>
+iArraySensorStatusCur          :<a id="iArraySensorStatusCur">            NoValue</a>                       </br>
+sArraySensorLastupdatedCur     :<a id="sArraySensorLastupdatedCur">            NoValue</a>                             </br>
+bArraySensorPresenceCur        :<a id="bArraySensorPresenceCur">            NoValue</a>                         </br>
+iArraySensorTemperatureCur     :<a id="iArraySensorTemperatureCur">            NoValue</a>                             </br>
+iArraySensorButtonEventNew     :<a id="iArraySensorButtonEventNew">            NoValue</a>                             </br>
+iArraySensorLightLevelNew      :<a id="iArraySensorLightLevelNew">            NoValue</a>                           </br>
+bArraySensorDarkNew            :<a id="bArraySensorDarkNew">            NoValue</a>                     </br>
+bArraySensorDaylightNew        :<a id="bArraySensorDaylightNew">            NoValue</a>                         </br>
+iArraySensorStatusNew          :<a id="iArraySensorStatusNew">            NoValue</a>                       </br>
+sArraySensorLastupdatedNew     :<a id="sArraySensorLastupdatedNew">            NoValue</a>                             </br>
+bArraySensorPresenceNew        :<a id="bArraySensorPresenceNew">            NoValue</a>                         </br>
+iArraySensorTemperatureNew     :<a id="iArraySensorTemperatureNew">            NoValue</a>                             </br>
+iArraySensorButtonEventOld     :<a id="iArraySensorButtonEventOld">            NoValue</a>                             </br>
+iArraySensorLightLevelOld      :<a id="iArraySensorLightLevelOld">            NoValue</a>                           </br>
+bArraySensorDarkOld            :<a id="bArraySensorDarkOld">            NoValue</a>                     </br>
+bArraySensorDaylightOld        :<a id="bArraySensorDaylightOld">            NoValue</a>                         </br>
+iArraySensorStatusOld          :<a id="iArraySensorStatusOld">            NoValue</a>                       </br>
+sArraySensorLastupdatedOld     :<a id="sArraySensorLastupdatedOld">            NoValue</a>                             </br>
+bArraySensorPresenceOld        :<a id="bArraySensorPresenceOld">            NoValue</a>                         </br>
+iArraySensorTemperatureOld     :<a id="iArraySensorTemperatureOld">            NoValue</a>                             </br>
+bArraySensorOn                 :<a id="bArraySensorOn">            NoValue</a>                 </br>
+iArraySensorBattery            :<a id="iArraySensorBattery">            NoValue</a>                     </br>
+bArraySensorConfigured         :<a id="bArraySensorConfigured">            NoValue</a>                         </br>
+bArraySensorReachable          :<a id="bArraySensorReachable">            NoValue</a>                       </br>
+sArraySensorAlert              :<a id="sArraySensorAlert">            NoValue</a>                   </br>
+iArraySensorTholdDark          :<a id="iArraySensorTholdDark">            NoValue</a>                       </br>
+iArraySensorTholdOffset        :<a id="iArraySensorTholdOffset">            NoValue</a>                         </br>
+iArraySensorStatus             :<a id="iArraySensorStatus">            NoValue</a>                     </br>
+iArraySensorTholdOffset        :<a id="iArraySensorTholdOffset">            NoValue</a>                         </br>
+bArraySensorLedindication      :<a id="bArraySensorLedindication">            NoValue</a>                           </br>
+bArraySensorUsertest           :<a id="bArraySensorUsertest">            NoValue</a>                       </br>
+iArraySensorSensitivity        :<a id="iArraySensorSensitivity">            NoValue</a>                         </br>
+iArraySensorSensitivityMax     :<a id="iArraySensorSensitivityMax">            NoValue</a>                             </br>
+iArraySensorSunsetoffset       :<a id="iArraySensorSunsetoffset">            NoValue</a>                           </br>
+iArraySensorSunriseoffset      :<a id="iArraySensorSunriseoffset">            NoValue</a>                           </br>
+sArraySensorPending            :<a id="sArraySensorPending">            NoValue</a>                     </br>
+bArraySensorOnCur              :<a id="bArraySensorOnCur">            NoValue</a>                   </br>
+iArraySensorBatteryCur         :<a id="iArraySensorBatteryCur">            NoValue</a>                         </br>
+bArraySensorConfiguredCur      :<a id="bArraySensorConfiguredCur">            NoValue</a>                           </br>
+bArraySensorReachableCur       :<a id="bArraySensorReachableCur">            NoValue</a>                           </br>
+sArraySensorAlertCur           :<a id="sArraySensorAlertCur">            NoValue</a>                       </br>
+iArraySensorTholdDarkCur       :<a id="iArraySensorTholdDarkCur">            NoValue</a>                           </br>
+iArraySensorTholdOffsetCur     :<a id="iArraySensorTholdOffsetCur">            NoValue</a>                             </br>
+iArraySensorStatusCur          :<a id="iArraySensorStatusCur">            NoValue</a>                       </br>
+iArraySensorTholdOffsetCur     :<a id="iArraySensorTholdOffsetCur">            NoValue</a>                             </br>
+bArraySensorLedindicationCur   :<a id="bArraySensorLedindicationCur">            NoValue</a>                               </br>
+bArraySensorUsertestCur        :<a id="bArraySensorUsertestCur">            NoValue</a>                         </br>
+iArraySensorSensitivityCur     :<a id="iArraySensorSensitivityCur">            NoValue</a>                             </br>
+iArraySensorSensitivityMaxCur  :<a id="iArraySensorSensitivityMaxCur">            NoValue</a>                               </br>
+iArraySensorSunsetoffsetCur    :<a id="iArraySensorSunsetoffsetCur">            NoValue</a>                             </br>
+iArraySensorSunriseoffsetCur   :<a id="iArraySensorSunriseoffsetCur">            NoValue</a>                               </br>
+sArraySensorPendingCur         :<a id="sArraySensorPendingCur">            NoValue</a>                         </br>
+bArraySensorOnNew              :<a id="bArraySensorOnNew">            NoValue</a>                   </br>
+iArraySensorBatteryNew         :<a id="iArraySensorBatteryNew">            NoValue</a>                         </br>
+bArraySensorConfiguredNew      :<a id="bArraySensorConfiguredNew">            NoValue</a>                           </br>
+bArraySensorReachableNew       :<a id="bArraySensorReachableNew">            NoValue</a>                           </br>
+sArraySensorAlertNew           :<a id="sArraySensorAlertNew">            NoValue</a>                       </br>
+iArraySensorTholdDarkNew       :<a id="iArraySensorTholdDarkNew">            NoValue</a>                           </br>
+iArraySensorTholdOffsetNew     :<a id="iArraySensorTholdOffsetNew">            NoValue</a>                             </br>
+iArraySensorStatusNew          :<a id="iArraySensorStatusNew">            NoValue</a>                       </br>
+iArraySensorTholdOffsetNew     :<a id="iArraySensorTholdOffsetNew">            NoValue</a>                             </br>
+bArraySensorLedindicationNew   :<a id="bArraySensorLedindicationNew">            NoValue</a>                               </br>
+bArraySensorUsertestNew        :<a id="bArraySensorUsertestNew">            NoValue</a>                         </br>
+iArraySensorSensitivityNew     :<a id="iArraySensorSensitivityNew">            NoValue</a>                             </br>
+iArraySensorSensitivityMaxNew  :<a id="iArraySensorSensitivityMaxNew">            NoValue</a>                               </br>
+iArraySensorSunsetoffsetNew    :<a id="iArraySensorSunsetoffsetNew">            NoValue</a>                             </br>
+iArraySensorSunriseoffsetNew   :<a id="iArraySensorSunriseoffsetNew">            NoValue</a>                               </br>
+sArraySensorPendingNew         :<a id="sArraySensorPendingNew">            NoValue</a>                         </br>
+bArraySensorOnOld              :<a id="bArraySensorOnOld">            NoValue</a>                   </br>
+iArraySensorBatteryOld         :<a id="iArraySensorBatteryOld">            NoValue</a>                         </br>
+bArraySensorConfiguredOld      :<a id="bArraySensorConfiguredOld">            NoValue</a>                           </br>
+bArraySensorReachableOld       :<a id="bArraySensorReachableOld">            NoValue</a>                           </br>
+sArraySensorAlertOld           :<a id="sArraySensorAlertOld">            NoValue</a>                       </br>
+iArraySensorTholdDarkOld       :<a id="iArraySensorTholdDarkOld">            NoValue</a>                           </br>
+iArraySensorTholdOffsetOld     :<a id="iArraySensorTholdOffsetOld">            NoValue</a>                             </br>
+iArraySensorStatusOld          :<a id="iArraySensorStatusOld">            NoValue</a>                       </br>
+iArraySensorTholdOffsetOld     :<a id="iArraySensorTholdOffsetOld">            NoValue</a>                             </br>
+bArraySensorLedindicationOld   :<a id="bArraySensorLedindicationOld">            NoValue</a>                               </br>
+bArraySensorUsertestOld        :<a id="bArraySensorUsertestOld">            NoValue</a>                         </br>
+iArraySensorSensitivityOld     :<a id="iArraySensorSensitivityOld ">            NoValue</a>                             </br>
+iArraySensorSensitivityMaxOld  :<a id="iArraySensorSensitivityMaxOld">            NoValue</a>                               </br>
+iArraySensorSunsetoffsetOld    :<a id="iArraySensorSunsetoffsetOld">            NoValue</a>                             </br>
+iArraySensorSunriseoffsetOld   :<a id="iArraySensorSunriseoffsetOld">            NoValue</a>                               </br>
+sArraySensorPendingOld         :<a id="sArraySensorPendingOld">            NoValue</a>                         </br>
 
   </body>
 
@@ -532,7 +895,5 @@ iArrayLightHueCur :<a id="iArrayLightHueCur">noValue</a><br>
 
 -->
 
-</body>
 </html> 
-
 

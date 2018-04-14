@@ -1,11 +1,7 @@
 require('./config/var/db.paths');
 //module.exports.repl.ignoreUndefined = true;
-<<<<<<< HEAD
 
-//require('./config/var/db.var');
-=======
-require('./config/var/db.var.builder.js');
->>>>>>> parent of 65b2cc8... ...revert this, some msitake
+
 
 path = require('path');
 net = require('net');
@@ -17,9 +13,10 @@ hue = require('hue-sdk');     //hue = require( pathresources + './hue-sdk/lib/hu
 client = new hue.Hue(require( pathconfig + './.credentials.json' ));
 
 require('./config/var/db.var.builder.js');
+require('./config/var/db.var');
 
+sensor = require( pathhuesensor + 'sensor.js' );
 light = require( pathhuelight + 'light.js' );
-
 avr = require( pathavrhk171s + 'default.js');
 tv = require( pathsmarttv + 'tv.js' );
 
@@ -37,9 +34,10 @@ counter = 0;
 setTimeout(function(){ require('./server'); }, 2000);
 setInterval(function(){  
   
-  iArrayLightHueCur = counter++-20; 
-
-
+  //iArrayLightHueCur = counter++-20; 
+  counter++;
+  light.getInfoAll();
+  sensor.getInfoAll();
 
 
 }, 1000);
@@ -68,7 +66,6 @@ setInterval(function(){
 //console.log(myvars.myString2);
 //console.log(myvars.myString3);
 //console.log(myvars.myString4);
-
 
 
 

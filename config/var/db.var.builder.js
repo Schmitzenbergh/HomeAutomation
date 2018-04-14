@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 require('./db.paths');
 
 function buildvar(){
@@ -18,14 +17,6 @@ function buildvar(){
 
   var varString     = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x +  " = '';");
 //  exports.keyString = keyString = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => x + '\n');
-=======
-function varBuilder(){
-  var varArray    = fs.readFileSync(pathconfigvar + "./db.arrays", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = [''];");
-  var varBool     = fs.readFileSync(pathconfigvar + "./db.bools", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = '';");
-  var varInterger = fs.readFileSync(pathconfigvar + "./db.integers", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = '';");
-  var varObject   = fs.readFileSync(pathconfigvar + "./db.objects", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x + " = {};");
-  var varString   = fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8').replace(/\n/g,'').split("\r").map(x => '\n' + x +  " = '';");
->>>>>>> parent of 65b2cc8... ...revert this, some msitake
 
   fs.writeFileSync( pathconfigvar + "./db.var",fs.readFileSync(pathconfigvar + "./db.paths", 'UTF8'));
 
@@ -73,13 +64,7 @@ function varBuilder(){
       fs.appendFileSync( pathconfigvar + "./db.var", varString[x] );
     }
   }
-<<<<<<< HEAD
 }
 
 buildvar();
-=======
-};
-varBuilder();
-
->>>>>>> parent of 65b2cc8... ...revert this, some msitake
 

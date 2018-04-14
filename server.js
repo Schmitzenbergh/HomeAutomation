@@ -13,6 +13,10 @@ var server;
 
  //console.log(data);  //htmlScript = toString().data;
 
+
+
+
+
 /***************\
 | NodeJS Server |###############################################################################################################################################################################
 \***************/
@@ -23,11 +27,6 @@ server = http.createServer(function(req, res){
   var htmlScript;
     // your normal server code
     var path = url.parse(req.url).pathname;
-<<<<<<< HEAD
-    var htmlScript = fs.readFileSync(pathconfigvar + "./db.var", 'UTF8').replace(/\r/g,' ').split("\r").map(x => '\n' + x);
-    var pathScript = fs.readFileSync(pathconfigvar + "./db.paths", 'UTF8').replace(/\r/g,' ').split("\r").map(x => '\n' + x);
-=======
->>>>>>> parent of 32848da... ..update
 
     fs.readFileSync( pathconfigvar + './db.var', "UTF8", function(err, data){
                   if (err){ return send404(res); };
@@ -40,13 +39,7 @@ server = http.createServer(function(req, res){
             fs.readFile( pathpublic + './index.html', function(err, data){
               if (err){ return send404(res); };
               res.writeHead(200, {'Content-type': 'text/html'}); 
-<<<<<<< HEAD
-                res.write("<script>" + pathScript + '\n</script>\n');
-                res.write("<script>" + htmlScript + '\n</script>\n');
-                res.write(data );
-=======
                 res.write("<script>" + htmlScript + "</script>" + data + "test");
->>>>>>> parent of 32848da... ..update
               res.end();
             });
             break;
@@ -119,8 +112,9 @@ send404 = function(res){
 
 server.listen(80);
 
-setTimeout(function(){ light.getInfoAll(); }, 3000);
-//setTimeout(function(){ light.getInfoAll(); }, 3000);
+
+
+
 
 // use socket.io
 var io = require('socket.io').listen(server);
@@ -240,14 +234,9 @@ var io = require('socket.io').listen(server);
       //socket.broadcast.emit('message', 'Another client has just connected!');
 
 
-
-      //var sKeyNames = fs.readFileSync(pathconfigvar + "./keyname.array", 'UTF8').replace(/^\s*$(?:\r\n?|\n)/gm,'').split("\r").map( x => '\n' + x );
-                      //fs.readFileSync(pathconfigvar + "./db.strings", 'UTF8')
-
       // Will do something when its value changed
-      setInterval(function(){
-        counter++;
-          socket.emit('test0', "test2");
+      setInterval(function(){  
+          socket.emit('test0', "test0");
           socket.emit('test1', "test1");
           socket.emit('test2', "test2");
           socket.emit('test3', counter);
@@ -255,36 +244,181 @@ var io = require('socket.io').listen(server);
           socket.emit('test5', counter);
           socket.emit('test6', counter);
           socket.emit('test7', counter);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-          
-      }, 2000);
-=======
-          socket.emit('iArrayLightHueCur', iArrayLightHueCur);
+          socket.emit('iArrayLightConnected',iArrayLightConnected);                                         
+          socket.emit('sArrayLightManufacturerName',sArrayLightManufacturerName);                                         
+          socket.emit('sArrayLightProductname'         ,sArrayLightProductname         );                                     
+          socket.emit('sArrayLightModelid'             ,sArrayLightModelid             );                                 
+          socket.emit('sArrayLightName'                ,sArrayLightName                );                             
+          socket.emit('sArrayLightSwversion'           ,sArrayLightSwversion           );                                   
+          socket.emit('sArrayLightType'                ,sArrayLightType                );                             
+          socket.emit('sArrayLightUniqueid'            ,sArrayLightUniqueid            );                                 
+          socket.emit('bArrayLightOn'                  ,bArrayLightOn                  );                           
+          socket.emit('bArrayLightReachable'           ,bArrayLightReachable           );                                   
+          socket.emit('sArrayLightAlert'               ,sArrayLightAlert               );                               
+          socket.emit('sArrayLightColorMode'           ,sArrayLightColorMode           );                                   
+          socket.emit('sArrayLightEffect'              ,sArrayLightEffect              );                               
+          socket.emit('iArrayLightTransitionTime'      ,iArrayLightTransitionTime      );                                       
+          socket.emit('fArrayLightXyCur'               ,fArrayLightXyCur               );                               
+          socket.emit('fArrayLightXyXCur'              ,fArrayLightXyXCur              );                               
+          socket.emit('fArrayLightXyYCur'              ,fArrayLightXyYCur              );                               
+          socket.emit('iArrayLightCtCur'               ,iArrayLightCtCur               );                               
+          socket.emit('iArrayLightHueCur'              ,iArrayLightHueCur              );                               
+          socket.emit('iArrayLightSatCur'              ,iArrayLightSatCur              );                               
+          socket.emit('iArrayLightBriCur'              ,iArrayLightBriCur              );                               
+          socket.emit('iArrayLightRgbRedCur'           ,iArrayLightRgbRedCur           );                                   
+          socket.emit('iArrayLightRgbGreenCur'         ,iArrayLightRgbGreenCur         );                                     
+          socket.emit('iArrayLightRgbBlueCur'          ,iArrayLightRgbBlueCur          );                                   
+          socket.emit('fArrayLightXyNew'               ,fArrayLightXyNew               );                               
+          socket.emit('fArrayLightXyXNew'              ,fArrayLightXyXNew              );                               
+          socket.emit('fArrayLightXyYNew'              ,fArrayLightXyYNew              );                               
+          socket.emit('iArrayLightCtNew'               ,iArrayLightCtNew               );                               
+          socket.emit('iArrayLightHueNew'              ,iArrayLightHueNew              );                               
+          socket.emit('iArrayLightSatNew'              ,iArrayLightSatNew              );                               
+          socket.emit('iArrayLightBriNew'              ,iArrayLightBriNew              );                               
+          socket.emit('iArrayLightRgbRedNew'           ,iArrayLightRgbRedNew           );                                   
+          socket.emit('iArrayLightRgbGreenNew'         ,iArrayLightRgbGreenNew         );                                     
+          socket.emit('iArrayLightRgbBlueNew'          ,iArrayLightRgbBlueNew          );                                   
+          socket.emit('fArrayLightXyOld'               ,fArrayLightXyOld               );                               
+          socket.emit('fArrayLightXyXOld'              ,fArrayLightXyXOld              );                               
+          socket.emit('fArrayLightXyYOld'              ,fArrayLightXyYOld              );                               
+          socket.emit('iArrayLightCtOld'               ,iArrayLightCtOld               );                               
+          socket.emit('iArrayLightHueOld'              ,iArrayLightHueOld              );                               
+          socket.emit('iArrayLightSatOld'              ,iArrayLightSatOld              );                               
+          socket.emit('iArrayLightBriOld'              ,iArrayLightBriOld              );                               
+          socket.emit('iArrayLightRgbRedOld'           ,iArrayLightRgbRedOld           );                                   
+          socket.emit('iArrayLightRgbGreenOld'         ,iArrayLightRgbGreenOld         );                                     
+          socket.emit('iArrayLightRgbBlueOld'          ,iArrayLightRgbBlueOld          );                                   
+          socket.emit('iArraySensorConnected'          ,iArraySensorConnected          );                                   
+          socket.emit('sArraySensorName'               ,sArraySensorName               );                               
+          socket.emit('sArraySensorType'               ,sArraySensorType               );                               
+          socket.emit('sArraySensorModelId'            ,sArraySensorModelId            );                                 
+          socket.emit('sArraySensorManufacturerName'   ,sArraySensorManufacturerName   );                                           
+          socket.emit('sArraySensorSwVersion'          ,sArraySensorSwVersion          );                                   
+          socket.emit('sArraySensorUniqueId'           ,sArraySensorUniqueId           );                                   
+          socket.emit('bArraySensorRecycle'            ,bArraySensorRecycle            );                                 
+          socket.emit('sArraySensorNameCur'            ,sArraySensorNameCur            );                                 
+          socket.emit('sArraySensorTypeCur'            ,sArraySensorTypeCur            );                                 
+          socket.emit('sArraySensorModelIdCur'         ,sArraySensorModelIdCur         );                                     
+          socket.emit('sArraySensorManufacturerNameCur',sArraySensorManufacturerNameCur);                                             
+          socket.emit('sArraySensorSwVersionCur'       ,sArraySensorSwVersionCur       );                                       
+          socket.emit('sArraySensorUniqueIdCur'        ,sArraySensorUniqueIdCur        );                                     
+          socket.emit('bArraySensorRecycleCur'         ,bArraySensorRecycleCur         );                                     
+          socket.emit('sArraySensorNameNew'            ,sArraySensorNameNew            );                                 
+          socket.emit('sArraySensorTypeNew'            ,sArraySensorTypeNew            );                                 
+          socket.emit('sArraySensorModelIdNew'         ,sArraySensorModelIdNew         );                                     
+          socket.emit('sArraySensorManufacturerNameNew',sArraySensorManufacturerNameNew);                                             
+          socket.emit('sArraySensorSwVersionNew'       ,sArraySensorSwVersionNew       );                                       
+          socket.emit('sArraySensorUniqueIdNew'        ,sArraySensorUniqueIdNew        );                                     
+          socket.emit('bArraySensorRecycleNew'         ,bArraySensorRecycleNew         );                                     
+          socket.emit('sArraySensorNameOld'            ,sArraySensorNameOld            );                                 
+          socket.emit('sArraySensorTypeOld'            ,sArraySensorTypeOld            );                                 
+          socket.emit('sArraySensorModelIdOld'         ,sArraySensorModelIdOld         );                                     
+          socket.emit('sArraySensorManufacturerNameOld',sArraySensorManufacturerNameOld);                                             
+          socket.emit('sArraySensorSwVersionOld'       ,sArraySensorSwVersionOld       );                                       
+          socket.emit('sArraySensorUniqueIdOld'        ,sArraySensorUniqueIdOld        );                                     
+          socket.emit('bArraySensorRecycleOld'         ,bArraySensorRecycleOld         );                                     
+          socket.emit('iArraySensorButtonEvent'        ,iArraySensorButtonEvent        );                                     
+          socket.emit('iArraySensorLightLevel'         ,iArraySensorLightLevel         );                                     
+          socket.emit('bArraySensorDark'               ,bArraySensorDark               );                               
+          socket.emit('bArraySensorDaylight'           ,bArraySensorDaylight           );                                   
+          socket.emit('iArraySensorStatus'             ,iArraySensorStatus             );                                 
+          socket.emit('sArraySensorLastupdated'        ,sArraySensorLastupdated        );                                     
+          socket.emit('bArraySensorPresence'           ,bArraySensorPresence           );                                   
+          socket.emit('iArraySensorTemperature'        ,iArraySensorTemperature        );                                     
+          socket.emit('iArraySensorButtonEventCur'     ,iArraySensorButtonEventCur     );                                         
+          socket.emit('iArraySensorLightLevelCur'      ,iArraySensorLightLevelCur      );                                       
+          socket.emit('bArraySensorDarkCur'            ,bArraySensorDarkCur            );                                 
+          socket.emit('bArraySensorDaylightCur'        ,bArraySensorDaylightCur        );                                     
+          socket.emit('iArraySensorStatusCur'          ,iArraySensorStatusCur          );                                   
+          socket.emit('sArraySensorLastupdatedCur'     ,sArraySensorLastupdatedCur     );                                         
+          socket.emit('bArraySensorPresenceCur'        ,bArraySensorPresenceCur        );                                     
+          socket.emit('iArraySensorTemperatureCur'     ,iArraySensorTemperatureCur     );                                         
+          socket.emit('iArraySensorButtonEventNew'     ,iArraySensorButtonEventNew     );                                         
+          socket.emit('iArraySensorLightLevelNew'      ,iArraySensorLightLevelNew      );                                       
+          socket.emit('bArraySensorDarkNew'            ,bArraySensorDarkNew            );                                 
+          socket.emit('bArraySensorDaylightNew'        ,bArraySensorDaylightNew        );                                     
+          socket.emit('iArraySensorStatusNew'          ,iArraySensorStatusNew          );                                   
+          socket.emit('sArraySensorLastupdatedNew'     ,sArraySensorLastupdatedNew     );                                         
+          socket.emit('bArraySensorPresenceNew'        ,bArraySensorPresenceNew        );                                     
+          socket.emit('iArraySensorTemperatureNew'     ,iArraySensorTemperatureNew     );                                         
+          socket.emit('iArraySensorButtonEventOld'     ,iArraySensorButtonEventOld     );                                         
+          socket.emit('iArraySensorLightLevelOld'      ,iArraySensorLightLevelOld      );                                       
+          socket.emit('bArraySensorDarkOld'            ,bArraySensorDarkOld            );                                 
+          socket.emit('bArraySensorDaylightOld'        ,bArraySensorDaylightOld        );                                     
+          socket.emit('iArraySensorStatusOld'          ,iArraySensorStatusOld          );                                   
+          socket.emit('sArraySensorLastupdatedOld'     ,sArraySensorLastupdatedOld     );                                         
+          socket.emit('bArraySensorPresenceOld'        ,bArraySensorPresenceOld        );                                     
+          socket.emit('iArraySensorTemperatureOld'     ,iArraySensorTemperatureOld     );                                         
+          socket.emit('bArraySensorOn'                 ,bArraySensorOn                 );                             
+          socket.emit('iArraySensorBattery'            ,iArraySensorBattery            );                                 
+          socket.emit('bArraySensorConfigured'         ,bArraySensorConfigured         );                                     
+          socket.emit('bArraySensorReachable'          ,bArraySensorReachable          );                                   
+          socket.emit('sArraySensorAlert'              ,sArraySensorAlert              );                               
+          socket.emit('iArraySensorTholdDark'          ,iArraySensorTholdDark          );                                   
+          socket.emit('iArraySensorTholdOffset'        ,iArraySensorTholdOffset        );                                     
+          socket.emit('iArraySensorStatus'             ,iArraySensorStatus             );                                 
+          socket.emit('iArraySensorTholdOffset'        ,iArraySensorTholdOffset        );                                     
+          socket.emit('bArraySensorLedindication'      ,bArraySensorLedindication      );                                       
+          socket.emit('bArraySensorUsertest'           ,bArraySensorUsertest           );                                   
+          socket.emit('iArraySensorSensitivity'        ,iArraySensorSensitivity        );                                     
+          socket.emit('iArraySensorSensitivityMax'     ,iArraySensorSensitivityMax     );                                         
+          socket.emit('iArraySensorSunsetoffset'       ,iArraySensorSunsetoffset       );                                       
+          socket.emit('iArraySensorSunriseoffset'      ,iArraySensorSunriseoffset      );                                       
+          socket.emit('sArraySensorPending'            ,sArraySensorPending            );                                 
+          socket.emit('bArraySensorOnCur'              ,bArraySensorOnCur              );                               
+          socket.emit('iArraySensorBatteryCur'         ,iArraySensorBatteryCur         );                                     
+          socket.emit('bArraySensorConfiguredCur'      ,bArraySensorConfiguredCur      );                                       
+          socket.emit('bArraySensorReachableCur'       ,bArraySensorReachableCur       );                                       
+          socket.emit('sArraySensorAlertCur'           ,sArraySensorAlertCur           );                                   
+          socket.emit('iArraySensorTholdDarkCur'       ,iArraySensorTholdDarkCur       );                                       
+          socket.emit('iArraySensorTholdOffsetCur'     ,iArraySensorTholdOffsetCur     );                                         
+          socket.emit('iArraySensorStatusCur'          ,iArraySensorStatusCur          );                                   
+          socket.emit('iArraySensorTholdOffsetCur'     ,iArraySensorTholdOffsetCur     );                                         
+          socket.emit('bArraySensorLedindicationCur'   ,bArraySensorLedindicationCur   );                                           
+          socket.emit('bArraySensorUsertestCur'        ,bArraySensorUsertestCur        );                                     
+          socket.emit('iArraySensorSensitivityCur'     ,iArraySensorSensitivityCur     );                                         
+          socket.emit('iArraySensorSensitivityMaxCur'  ,iArraySensorSensitivityMaxCur  );                                           
+          socket.emit('iArraySensorSunsetoffsetCur'    ,iArraySensorSunsetoffsetCur    );                                         
+          socket.emit('iArraySensorSunriseoffsetCur'   ,iArraySensorSunriseoffsetCur   );                                           
+          socket.emit('sArraySensorPendingCur'         ,sArraySensorPendingCur         );                                     
+          socket.emit('bArraySensorOnNew'              ,bArraySensorOnNew              );                               
+          socket.emit('iArraySensorBatteryNew'         ,iArraySensorBatteryNew         );                                     
+          socket.emit('bArraySensorConfiguredNew'      ,bArraySensorConfiguredNew      );                                       
+          socket.emit('bArraySensorReachableNew'       ,bArraySensorReachableNew       );                                       
+          socket.emit('sArraySensorAlertNew'           ,sArraySensorAlertNew           );                                   
+          socket.emit('iArraySensorTholdDarkNew'       ,iArraySensorTholdDarkNew       );                                       
+          socket.emit('iArraySensorTholdOffsetNew'     ,iArraySensorTholdOffsetNew     );                                         
+          socket.emit('iArraySensorStatusNew'          ,iArraySensorStatusNew          );                                   
+          socket.emit('iArraySensorTholdOffsetNew'     ,iArraySensorTholdOffsetNew     );                                         
+          socket.emit('bArraySensorLedindicationNew'   ,bArraySensorLedindicationNew   );                                           
+          socket.emit('bArraySensorUsertestNew'        ,bArraySensorUsertestNew        );                                     
+          socket.emit('iArraySensorSensitivityNew'     ,iArraySensorSensitivityNew     );                                         
+          socket.emit('iArraySensorSensitivityMaxNew'  ,iArraySensorSensitivityMaxNew  );                                           
+          socket.emit('iArraySensorSunsetoffsetNew'    ,iArraySensorSunsetoffsetNew    );                                         
+          socket.emit('iArraySensorSunriseoffsetNew'   ,iArraySensorSunriseoffsetNew   );                                           
+          socket.emit('sArraySensorPendingNew'         ,sArraySensorPendingNew         );                                     
+          socket.emit('bArraySensorOnOld'              ,bArraySensorOnOld              );                               
+          socket.emit('iArraySensorBatteryOld'         ,iArraySensorBatteryOld         );                                     
+          socket.emit('bArraySensorConfiguredOld'      ,bArraySensorConfiguredOld      );                                       
+          socket.emit('bArraySensorReachableOld'       ,bArraySensorReachableOld       );                                       
+          socket.emit('sArraySensorAlertOld'           ,sArraySensorAlertOld           );                                   
+          socket.emit('iArraySensorTholdDarkOld'       ,iArraySensorTholdDarkOld       );                                       
+          socket.emit('iArraySensorTholdOffsetOld'     ,iArraySensorTholdOffsetOld     );                                         
+          socket.emit('iArraySensorStatusOld'          ,iArraySensorStatusOld          );                                   
+          socket.emit('iArraySensorTholdOffsetOld'     ,iArraySensorTholdOffsetOld     );                                         
+          socket.emit('bArraySensorLedindicationOld'   ,bArraySensorLedindicationOld   );                                           
+          socket.emit('bArraySensorUsertestOld'        ,bArraySensorUsertestOld        );                                     
+          socket.emit('iArraySensorSensitivityOld'     ,iArraySensorSensitivityOld     );                                         
+          socket.emit('iArraySensorSensitivityMaxOld'  ,iArraySensorSensitivityMaxOld  );                                           
+          socket.emit('iArraySensorSunsetoffsetOld'    ,iArraySensorSunsetoffsetOld    );                                         
+          socket.emit('iArraySensorSunriseoffsetOld'   ,iArraySensorSunriseoffsetOld   );                                           
+          socket.emit('sArraySensorPendingOld'         ,sArraySensorPendingOld         );                   
       }, 1000);
->>>>>>> parent of 32848da... ..update
-=======
-=======
->>>>>>> parent of eec5bbf... Merged/Tested
-          //socket.emit('iArrayLightHueCur', iArrayLightHueCur);
-      }, 1000);
-=======
-          socket.emit('iArrayLightHueCur', iArrayLightHueCur);
-      }, 1000);
-        //        socket.emit('iArrayLightTransitionTime', iArrayLightTransitionTime);
->>>>>>> parent of 65b2cc8... ...revert this, some msitake
-<<<<<<< HEAD
->>>>>>> parent of eec5bbf... Merged/Tested
-=======
->>>>>>> parent of eec5bbf... Merged/Tested
 });
 
 
 
 
-<<<<<<< HEAD
-=======
 
 
 
@@ -308,7 +442,6 @@ var io = require('socket.io').listen(server);
 
 
 
->>>>>>> parent of 32848da... ..update
 function ReplicationCheck(){
     iArrayLightHueCur !== iArrayLightHueOld
 }
@@ -342,7 +475,6 @@ function goHomepage(){
 ////		{                                                      								//		
 ////			ModeAccessLevelArray[x]=(ModeAccessLevelArray[x]); 								//		
 ////		}              
-
 
 
 
