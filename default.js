@@ -19,6 +19,7 @@ sensor = require( pathhuesensor + 'sensor.js' );
 light = require( pathhuelight + 'light.js' );
 avr = require( pathavrhk171s + 'default.js');
 tv = require( pathsmarttv + 'tv.js' );
+server = require( pathserver + 'server.js' );
 
 /*******\
 | Start |###############################################################################################################################################################################
@@ -26,8 +27,8 @@ tv = require( pathsmarttv + 'tv.js' );
 
 setTimeout(function(){ require('./server'); 
 
-light.loadInfoAll();
-sensor.loadInfoAll();
+//light.loadInfoAll();
+//sensor.loadInfoAll();
 
   setInterval(function(){  
     counter++;
@@ -39,8 +40,8 @@ sensor.loadInfoAll();
       sensor.saveInfoAll();
     }
 
-
-  }, 1000);
+    console.log(counter);
+  }, 2000);
 
 
 }, 2000);

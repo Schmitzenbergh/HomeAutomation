@@ -17,5 +17,6 @@ pathhuelightvalues  = pathhuelight + './_values/';
 pathrpi             = pathresources + './RPi/';
 pathledstrip        = pathrpi + './ledstrip/';
 pathsmarttv         = pathresources + './SmartTV/';
+pathserver          = pathroot + './';
 pathlib             = pathroot + './lib/';
 pathsrc             = pathroot + './src/';

@@ -17,6 +17,7 @@ pathhuelightvalues  = pathhuelight + './_values/';
 pathrpi             = pathresources + './RPi/';
 pathledstrip        = pathrpi + './ledstrip/';
 pathsmarttv         = pathresources + './SmartTV/';
+pathserver          = pathroot;
 pathlib             = pathroot + './lib/';
 pathsrc             = pathroot + './src/';
 
@@ -210,4 +211,6 @@ sTestString = '';
 
 //Predefined:
 
-iArrayLightConnected  = ['1','2','3','4','5','6'];iArraySensorConnected = ['1','2','5','6','7','8','9','10','11'];counter = 0;;
+iArrayLightConnected  = ['1','2','3','4','5','6'];
+iArraySensorConnected = ['1','2','5','6','7','8','9','10','11'];
+counter = 0;;

@@ -1,22 +1,31 @@
-#!/usr/bin/env node
-
+/*********\
+| General |######################################################################################################################################################################\
+|                                                                                                                                                                                |
+|     Situation:                # Function:                                                                                                                                      |                 
+|    ###################################################                                                                                                                         |                               
+|     Hue To Scriptvar          # getInfo, getInfoAll                                                                                                                            |                                                                                                                     
+|     Scriptvar to Hue          # setInfo, setInfoAll                                                                                                                            |                                                                                                                       
+|     From Hue                  # get[Variable]                                                                                                                                  |                                                                                               
+|     To Hue                    # set[Variable]                                                                                                                                  |                                                                                               
+|     return                                                                                                                                                                     |                                                             
+|     return                                                                                                                                                                     |                                                             
+|     From disk                 # loadInfo, loadInfoALL                                                                                                                          |                                                                                                                     
+|     To disk                   # saveInfo, saveInfoAll                                                                                                                          |                                                                                                                     
+|     From/To script            # not needed                                                                                                                                     |                                                                                             
+|                                                                                                                                                                                |                                                                        |
+*********************************************************************************************************************************************************************************/
 debug = false;
 
-//# Situation:                # Function:
-//###############################################################################################################################################################################
-//# Hue To Scriptvar          # getInfo, getInfoAll                 
-//# Scriptvar to Hue          # setInfo, setInfoAll                 
-//# From Hue                  # get[Variable]                       
-//# To Hue                    # set[Variable]                       
-//# From disk                 # loadInfo, loadInfoALL               
-//# To disk                   # saveInfo, saveInfoAll               
-//# From/To script            # not needed                          
 
 
-/** getInfo **/
-//get all attributes for 1 sensor from hue to script-variables
-//Example: sensor.getInfo(iSensorNumber, Value)
-//###############################################################################################################################################################################
+/*********\
+| getInfo |######################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - get all attributes for 1 sensor, from hue to script-variables                                                                                                                |
+|                                                                                                                                                                                |
+|  Example: sensor.getInfo(iLightNumber, Value)                                                                                                                                  |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.getInfo = function( iSensorNumber,sValue){
   client.getSensor( iSensorNumber, function( err, result ){ 
 
@@ -61,10 +70,15 @@ exports.getInfo = function( iSensorNumber,sValue){
 };
 
 
-/** getInfo - ALL**/
-//get all attributes for all sensors from hue to script-variables
-// Example: sensor.getInfoAll()
-//###############################################################################################################################################################################
+
+/***************\
+| getInfo - ALL |################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - get all attributes for all sensors from hue to script-variables                                                                                                              |
+|                                                                                                                                                                                |
+|  Example: sensor.getInfoAll()                                                                                                                                                  |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.getInfoAll = function(){
   //process.stdout.write('\n' + " Fetch Sensor Info...");
   var x = 0;
@@ -78,10 +92,15 @@ exports.getInfoAll = function(){
 }
 
 
-/** setInfo **/
-//sets all attributes from 1 srnsor from script-variables to hue
-// Example: sensor.setInfo( iSensorNumber,sValue )
-//###############################################################################################################################################################################
+
+/*********\
+| setInfo |######################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - sets all attributes from 1 sensor from script-variables to hue                                                                                                               |
+|                                                                                                                                                                                |
+|  Example: sensor.setInfo( iSensorNumber,sValue )                                                                                                                               |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.setInfo = function( iSensorNumber ){
   var result;
   //bOn = typeof bOn !== 'undefined' ? bOn : true;
@@ -125,11 +144,14 @@ exports.setInfo = function( iSensorNumber ){
   result = false; switch (iSensorNumber) { case 6:;case 7:;case 8:;result=true;default:if (!result) break;                                     if ( sArraySensorPending[iSensorNumber] !== undefined ){                     client.changeSensorConfig( iSensorNumber, { "pending": sArraySensorPending[iSensorNumber]                      }, function( err, result ){ if ( err) throw err; console.log(result); }); }; };      //Enabled State        //  "pending": sArraySensorPending[iSensorNumber]                                                              
 };
 
-
-/** setInfo - ALL**/
-//sets all attributes for all sensors from script-variables to hue
-// Example: sensor.setInfoAll()
-//###############################################################################################################################################################################
+/***************\
+| setInfo - ALL |################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - sets all attributes for all sensors from script-variables to hue                                                                                                             |
+|                                                                                                                                                                                |
+|  Example: sensor.setInfoAll()                                                                                                                                                  |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.setInfoAll = function(){
   //process.stdout.write('\n' + " Push Sensor Info...");
   var x = 0;
@@ -143,11 +165,45 @@ exports.setInfoAll = function(){
 }
 
 
-/** getValue **/
-//get attribute from a single sensor
-// Example: sensor.getManufacturerName(1, console.log)
-//          sensor.getManufacturerName(1, output)
-//###############################################################################################################################################################################
+
+/**********\
+| getValue |#####################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - get attribute from a single sensor                                                                                                                                           |
+|                                                                                                                                                                                |
+|  Examples: sensor.getManufacturerName('1', function(callback){ console.log(callback); });                                                                                      |                                                                                              
+|            sensor.getModelId('1', function(callback){ console.log(callback); });                                                                                               |                                                                                                                                                                                
+|            sensor.getName('1', function(callback){ console.log(callback); });                                                                                                  |                                                                                  
+|            sensor.getSwVersion('1', function(callback){ console.log(callback); });                                                                                             |                                                                                       
+|            sensor.getType('1', function(callback){ console.log(callback); });                                                                                                  |                                                                                  
+|            sensor.getUniqueid('1', function(callback){ console.log(callback); });                                                                                              |                                                                                      
+|            sensor.getRecycle('1', function(callback){ console.log(callback); });                                                                                               |                                                                                
+|            sensor.getButtonevent('1', function(callback){ console.log(callback); });                                                                                           |                                                                                 
+|            sensor.getLightLevel('1', function(callback){ console.log(callback); });                                                                                            |                                                                                 
+|            sensor.getDark('1', function(callback){ console.log(callback); });                                                                                                  |                                                                                 
+|            sensor.getDaylight('1', function(callback){ console.log(callback); });                                                                                              |                                                                                    
+|            sensor.getStatus('1', function(callback){ console.log(callback); });                                                                                                |                                                                                
+|            sensor.getLastupdated('1', function(callback){ console.log(callback); });                                                                                           |                                                                                 
+|            sensor.getPresence('1', function(callback){ console.log(callback); });                                                                                              |                                                                                 
+|            sensor.getTemperature('1', function(callback){ console.log(callback); });                                                                                           |                                                                                
+|            sensor.getOn('1', function(callback){ console.log(callback); });                                                                                                    |                                                                                                                                                                                                                                                                         
+|            sensor.getBattery('1', function(callback){ console.log(callback); });                                                                                               |                                                                                       
+|            sensor.getConfigured('1', function(callback){ console.log(callback); });                                                                                            |                                                                                       
+|            sensor.getReachable('1', function(callback){ console.log(callback); });                                                                                             |                                                                                       
+|            sensor.getAlert('1', function(callback){ console.log(callback); });                                                                                                 |                                                                                       
+|            sensor.getTholdDark('1', function(callback){ console.log(callback); });                                                                                             |                                                                                       
+|            sensor.getTholdOffset('1', function(callback){ console.log(callback); });                                                                                           |                                                                                       
+|            sensor.getLedindication('1', function(callback){ console.log(callback); });                                                                                         |                                                                                       
+|            sensor.getUsertest('1', function(callback){ console.log(callback); });                                                                                              |                                                                                       
+|            sensor.getSensitivity('1', function(callback){ console.log(callback); });                                                                                           |                                                                                       
+|            sensor.getSensitivitymax('1', function(callback){ console.log(callback); });                                                                                        |                                                                                       
+|            sensor.getSunsetoffset('1', function(callback){ console.log(callback); });                                                                                          |                                                                                       
+|            sensor.getUnriseoffset('1', function(callback){ console.log(callback); });                                                                                          |                                                                                       
+|            sensor.getPending('1', function(callback){ console.log(callback); });                                                                                               |                                                                                       
+|                                                                                                                                                                                |
+|                                                                                                                                                                                |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.getManufacturerName = function (iSensorNumber, callback ){ client.get('/sensors/' + iSensorNumber + '/', function (err, result) { if ( err || typeof result.manufacturername      === undefined ){ return err;} callback(result.manufacturername     ) } )}
 exports.getProductName = function (iSensorNumber, callback ){      client.get('/sensors/' + iSensorNumber + '/', function (err, result) { if ( err || typeof result.productname           === undefined ){ return err;} callback(result.productname          ) } )}
 exports.getModelId = function (iSensorNumber, callback ){          client.get('/sensors/' + iSensorNumber + '/', function (err, result) { if ( err || typeof result.modelid               === undefined ){ return err;} callback(result.modelid              ) } )}
@@ -180,10 +236,15 @@ exports.getUnriseoffset = function (iSensorNumber, callback ){     client.get('/
 exports.getPending = function (iSensorNumber, callback ){          client.get('/sensors/' + iSensorNumber + '/', function (err, result) { if ( err || typeof result.config.pending        === undefined ){ return err;} callback(result.config.pending       ) } )}
 
 
-/** setValue **/
-//set attribute for a single sensor
-// Example: sensor.getManufacturerName(iSensorNumber, Value)
-//###############################################################################################################################################################################
+
+/**********\
+| setValue |#####################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - set attribute from a single light                                                                                                                                            |
+|                                                                                                                                                                                |
+|  Example: sensor.getManufacturerName(iSensorNumber, Value)                                                                                                                     |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 //exports.setManufacturerName function ( iSensorNumber, Value ){  if (iSensorNumber !== 0 ){                                                                                                                if ( sArraySensorManufacturerName[iSensorNumber] !== undefined ){     client.changeSensor      ( iSensorNumber, { "manufacturername": sArraySensorManufacturerName[iSensorNumber]    }, function( err, result ){ if ( err) throw err; console.log(result); }); }; }; };     //Read-Only       "manufacturername": sArraySensorManufacturerName[iSensorNumber]
 //exports.setProductName    = function ( iSensorNumber, Value ){  if (iSensorNumber !== 0 ){                                                                                                                if ( sArraySensorProductName[iSensorNumber] !== undefined ){          client.changeSensor      ( iSensorNumber, { "productname": sArraySensorProductName[iSensorNumber]              }, function( err, result ){ if ( err) throw err; console.log(result); }); }; }; };     //Read-Only       
 //exports.setModelId        = function ( iSensorNumber, Value ){  if (iSensorNumber !== 0 ){                                                                                                                if ( sArraySensorModeId[iSensorNumber] !== undefined ){               client.changeSensor      ( iSensorNumber, { "modelid": sArraySensorModeId[iSensorNumber]                       }, function( err, result ){ if ( err) throw err; console.log(result); }); }; }; };     //Read-Only       
@@ -214,53 +275,62 @@ exports.getPending = function (iSensorNumber, callback ){          client.get('/
   exports.setSunsetoffset   = function ( iSensorNumber, Value ){ result = false; switch (iSensorNumber) { case 1:;result=true;default:if (!result) break;                                                   if ( iArraySensorSunriseoffset[iSensorNumber] !== undefined ){        client.changeSensorConfig( iSensorNumber, { "sunriseoffset": iArraySensorSunriseoffset[iSensorNumber]          }, function( err, result ){ if ( err) throw err; console.log(result); }); }; }; };     //Enabled State   
   exports.setUnriseoffset   = function ( iSensorNumber, Value ){ result = false; switch (iSensorNumber) { case 1:;result=true;default:if (!result) break;                                                   if ( iArraySensorSunsetoffset[iSensorNumber] !== undefined ) {        client.changeSensorConfig( iSensorNumber, { "sunsetoffset": iArraySensorSunsetoffset[iSensorNumber]            }, function( err, result ){ if ( err) throw err; console.log(result); }); }; }; };     //Enabled State   
   exports.setPending        = function ( iSensorNumber, Value ){ result = false; switch (iSensorNumber) { case 6:;case 7:;case 8:;result=true;default:if (!result) break;                                   if ( sArraySensorPending[iSensorNumber] !== undefined ){              client.changeSensorConfig( iSensorNumber, { "pending": sArraySensorPending[iSensorNumber]                      }, function( err, result ){ if ( err) throw err; console.log(result); }); }; }; };      //Enabled State  
-  
 
 
-/** loadInfo **/
-//load variables from 1 sensor from disk
-// Example: sensor.loadInfo(iSensorNumber)
-//###############################################################################################################################################################################
+
+/**********\
+| loadInfo |#####################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - load variables from 1 sensor from disk                                                                                                                                       |
+|                                                                                                                                                                                |
+| Example: sensor.loadInfo(iSensorNumber)                                                                                                                                        |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.loadInfo = function(iSensorNumber){
   //if (!fs.existsSync(pathhuesensorvalues + iSensorNumber + "/state"))
   var path;
 
-  path = pathhuesensorvalues + iSensorNumber + "/manufacturername"      ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightManufacturerName[iSensorNumber] = data; console.log("Read Sensor " + iSensorNumber + " - /manufacturername      : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/modelid"               ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorModelId[iSensorNumber]         = data; console.log("Read Sensor " + iSensorNumber + " - /modelid               : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/name"                  ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorName[iSensorNumber]            = data; console.log("Read Sensor " + iSensorNumber + " - /name                  : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/swversion"             ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorSwVersion[iSensorNumber]       = data; console.log("Read Sensor " + iSensorNumber + " - /swversion             : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/type"                  ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorType[iSensorNumber]            = data; console.log("Read Sensor " + iSensorNumber + " - /type                  : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/uniqueid"              ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorUniqueId[iSensorNumber]        = data; console.log("Read Sensor " + iSensorNumber + " - /uniqueid              : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/state/buttonevent"     ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorButtonEvent[iSensorNumber]     = data; console.log("Read Sensor " + iSensorNumber + " - /state/buttonevent     : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/state/lightlevel"      ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorLightLevel[iSensorNumber]      = data; console.log("Read Sensor " + iSensorNumber + " - /state/lightlevel      : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/state/dark"            ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorDark[iSensorNumber]            = data; console.log("Read Sensor " + iSensorNumber + " - /state/dark            : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/state/daylight"        ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorDaylight[iSensorNumber]        = data; console.log("Read Sensor " + iSensorNumber + " - /state/daylight        : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/state/status"          ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorStatus[iSensorNumber]          = data; console.log("Read Sensor " + iSensorNumber + " - /state/status          : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/state/lastupdated"     ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorLastupdated[iSensorNumber]     = data; console.log("Read Sensor " + iSensorNumber + " - /state/lastupdated     : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/state/presence"        ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorPresence[iSensorNumber]        = data; console.log("Read Sensor " + iSensorNumber + " - /state/presence        : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/state/temperature"     ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorTemperature[iSensorNumber]     = data; console.log("Read Sensor " + iSensorNumber + " - /state/temperature     : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/state/on"              ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorOn[iSensorNumber]              = data; console.log("Read Sensor " + iSensorNumber + " - /state/on              : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/config/battery"        ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorBattery[iSensorNumber]         = data; console.log("Read Sensor " + iSensorNumber + " - /config/battery        : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/config/configured"     ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorConfigured[iSensorNumber]      = data; console.log("Read Sensor " + iSensorNumber + " - /config/configured     : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/config/reachable"      ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorReachable[iSensorNumber]       = data; console.log("Read Sensor " + iSensorNumber + " - /config/reachable      : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/config/alert"          ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorAlert[iSensorNumber]           = data; console.log("Read Sensor " + iSensorNumber + " - /config/alert          : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/config/tholddark"      ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorTholdDark[iSensorNumber]       = data; console.log("Read Sensor " + iSensorNumber + " - /config/tholddark      : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/config/tholdoffset"    ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorTholdOffset[iSensorNumber]     = data; console.log("Read Sensor " + iSensorNumber + " - /config/tholdoffset    : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/config/ledindication"  ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorLedindication[iSensorNumber]   = data; console.log("Read Sensor " + iSensorNumber + " - /config/ledindication  : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/config/usertest"       ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorUsertest[iSensorNumber]        = data; console.log("Read Sensor " + iSensorNumber + " - /config/usertest       : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/config/sensitivity"    ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorSensitivity[iSensorNumber]     = data; console.log("Read Sensor " + iSensorNumber + " - /config/sensitivity    : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/config/sensitivitymax" ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorSensitivityMax[iSensorNumber]  = data; console.log("Read Sensor " + iSensorNumber + " - /config/sensitivitymax : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/config/sunsetoffset"   ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorSunsetoffset[iSensorNumber]    = data; console.log("Read Sensor " + iSensorNumber + " - /config/sunsetoffset   : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/config/sunriseoffset"  ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorSunriseoffset[iSensorNumber]   = data; console.log("Read Sensor " + iSensorNumber + " - /config/sunriseoffset  : " + data ); }; }); };
-  path = pathhuesensorvalues + iSensorNumber + "/config/pending"        ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorPending[iSensorNumber]         = data; console.log("Read Sensor " + iSensorNumber + " - /config/pending        : " + data ); }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/manufacturername"      ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArrayLightManufacturerName[iSensorNumber] = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/modelid"               ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorModelId[iSensorNumber]         = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/name"                  ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorName[iSensorNumber]            = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/swversion"             ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorSwVersion[iSensorNumber]       = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/type"                  ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorType[iSensorNumber]            = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/uniqueid"              ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorUniqueId[iSensorNumber]        = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/state/buttonevent"     ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorButtonEvent[iSensorNumber]     = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/state/lightlevel"      ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorLightLevel[iSensorNumber]      = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/state/dark"            ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorDark[iSensorNumber]            = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/state/daylight"        ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorDaylight[iSensorNumber]        = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/state/status"          ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorStatus[iSensorNumber]          = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/state/lastupdated"     ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorLastupdated[iSensorNumber]     = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/state/presence"        ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorPresence[iSensorNumber]        = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/state/temperature"     ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorTemperature[iSensorNumber]     = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/state/on"              ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorOn[iSensorNumber]              = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/config/battery"        ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorBattery[iSensorNumber]         = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/config/configured"     ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorConfigured[iSensorNumber]      = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/config/reachable"      ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorReachable[iSensorNumber]       = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/config/alert"          ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorAlert[iSensorNumber]           = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/config/tholddark"      ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorTholdDark[iSensorNumber]       = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/config/tholdoffset"    ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorTholdOffset[iSensorNumber]     = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/config/ledindication"  ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorLedindication[iSensorNumber]   = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/config/usertest"       ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ bArraySensorUsertest[iSensorNumber]        = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/config/sensitivity"    ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorSensitivity[iSensorNumber]     = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/config/sensitivitymax" ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorSensitivityMax[iSensorNumber]  = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/config/sunsetoffset"   ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorSunsetoffset[iSensorNumber]    = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/config/sunriseoffset"  ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ iArraySensorSunriseoffset[iSensorNumber]   = data; }; }); };
+  path = pathhuesensorvalues + iSensorNumber + "/config/pending"        ; if ( fs.existsSync( path ) ){ fs.readFile( path , function read(err, data) { if(err) { return console.log(err); }   if( data !== undefined){ sArraySensorPending[iSensorNumber]         = data; }; }); };
 
 };
 
 
-/** loadInfo All**/
-//loads all variables from all sensors from disk
-// Example: sensor.loadInfoAll()
-//###############################################################################################################################################################################
+
+/****************\
+| loadInfo - All |###############################################################################################################################################################\
+|                                                                                                                                                                                |
+| - loads all variables from all sensors from disk                                                                                                                               |
+|                                                                                                                                                                                |
+| Example: sensor.loadInfoAll()                                                                                                                                                  |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.loadInfoAll = function(){
   //process.stdout.write('\n' + " Push Sensor Info...");
   var x = 0;
@@ -274,50 +344,60 @@ exports.loadInfoAll = function(){
 }
 
 
-/** saveInfo **/
-// saves all variables from 1 sensor to disk
-// Example: sensor.saveInfo(iSensorNumber)
-//###############################################################################################################################################################################
+
+/**********\
+| saveInfo |#####################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - saves variables from 1 light from disk                                                                                                                                       |
+|                                                                                                                                                                                |
+| Example: sensor.saveInfo(iSensorNumber)                                                                                                                                        |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.saveInfo = function(iSensorNumber){
 
   if (!fs.existsSync(pathhuesensorvalues + iSensorNumber + "/state")) { exec("/bin/mkdir -p " + pathhuesensorvalues + iSensorNumber + "/state" ); };
   if (!fs.existsSync(pathhuesensorvalues + iSensorNumber + "/state")) { exec("/bin/mkdir -p " + pathhuesensorvalues + iSensorNumber + "/config" ); };
 
-  if ( sArraySensorManufacturerName[iSensorNumber] !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/manufacturername"      , sArraySensorManufacturerName[iSensorNumber] , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /manufacturername      : " + sArraySensorManufacturerName[iSensorNumber]        ); }); };              
-  if ( sArraySensorModelId[iSensorNumber]          !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/modelid"               , sArraySensorModelId[iSensorNumber]          , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /modelid               : " + sArraySensorModelId[iSensorNumber]                 ); }); };              
-  if ( sArraySensorName[iSensorNumber]             !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/name"                  , sArraySensorName[iSensorNumber]             , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /name                  : " + sArraySensorName[iSensorNumber]                    ); }); };              
-  if ( sArraySensorSwVersion[iSensorNumber]        !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/swversion"             , sArraySensorSwVersion[iSensorNumber]        , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /swversion             : " + sArraySensorSwVersion[iSensorNumber]               ); }); };              
-  if ( sArraySensorType[iSensorNumber]             !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/type"                  , sArraySensorType[iSensorNumber]             , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /type                  : " + sArraySensorType[iSensorNumber]                    ); }); };              
-  if ( sArraySensorUniqueId[iSensorNumber]         !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/uniqueid"              , sArraySensorUniqueId[iSensorNumber]         , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /uniqueid              : " + sArraySensorUniqueId[iSensorNumber]                ); }); };              
-  if ( iArraySensorButtonEvent[iSensorNumber]      !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/buttonevent"     , iArraySensorButtonEvent[iSensorNumber]      , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /state/buttonevent     : " + iArraySensorButtonEvent[iSensorNumber]             ); }); };              
-  if ( iArraySensorLightLevel[iSensorNumber]       !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/lightlevel"      , iArraySensorLightLevel[iSensorNumber]       , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /state/lightlevel      : " + iArraySensorLightLevel[iSensorNumber]              ); }); };              
-  if ( bArraySensorDark[iSensorNumber]             !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/dark"            , bArraySensorDark[iSensorNumber]             , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /state/dark            : " + bArraySensorDark[iSensorNumber]                    ); }); };              
-  if ( bArraySensorDaylight[iSensorNumber]         !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/daylight"        , bArraySensorDaylight[iSensorNumber]         , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /state/daylight        : " + bArraySensorDaylight[iSensorNumber]                ); }); };              
-  if ( iArraySensorStatus[iSensorNumber]           !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/status"          , iArraySensorStatus[iSensorNumber]           , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /state/status          : " + iArraySensorStatus[iSensorNumber]                  ); }); };              
-  if ( sArraySensorLastupdated[iSensorNumber]      !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/lastupdated"     , sArraySensorLastupdated[iSensorNumber]      , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /state/lastupdated     : " + sArraySensorLastupdated[iSensorNumber]             ); }); };              
-  if ( bArraySensorPresence[iSensorNumber]         !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/presence"        , bArraySensorPresence[iSensorNumber]         , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /state/presence        : " + bArraySensorPresence[iSensorNumber]                ); }); };              
-  if ( iArraySensorTemperature[iSensorNumber]      !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/temperature"     , iArraySensorTemperature[iSensorNumber]      , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /state/temperature     : " + iArraySensorTemperature[iSensorNumber]             ); }); };              
-  if ( bArraySensorOn[iSensorNumber]               !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/on"              , bArraySensorOn[iSensorNumber]               , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /state/on              : " + bArraySensorOn[iSensorNumber]                      ); }); };              
-  if ( iArraySensorBattery[iSensorNumber]          !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/battery"        , iArraySensorBattery[iSensorNumber]          , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /config/battery        : " + iArraySensorBattery[iSensorNumber]                 ); }); };              
-  if ( bArraySensorConfigured[iSensorNumber]       !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/configured"     , bArraySensorConfigured[iSensorNumber]       , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /config/configured     : " + bArraySensorConfigured[iSensorNumber]              ); }); };              
-  if ( bArraySensorReachable[iSensorNumber]        !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/reachable"      , bArraySensorReachable[iSensorNumber]        , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /config/reachable      : " + bArraySensorReachable[iSensorNumber]               ); }); };              
-  if ( sArraySensorAlert[iSensorNumber]            !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/alert"          , sArraySensorAlert[iSensorNumber]            , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /config/alert          : " + sArraySensorAlert[iSensorNumber]                   ); }); };              
-  if ( iArraySensorTholdDark[iSensorNumber]        !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/tholddark"      , iArraySensorTholdDark[iSensorNumber]        , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /config/tholddark      : " + iArraySensorTholdDark[iSensorNumber]               ); }); };              
-  if ( iArraySensorTholdOffset[iSensorNumber]      !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/tholdoffset"    , iArraySensorTholdOffset[iSensorNumber]      , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /config/tholdoffset    : " + iArraySensorTholdOffset[iSensorNumber]             ); }); };              
-  if ( bArraySensorLedindication[iSensorNumber]    !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/ledindication"  , bArraySensorLedindication[iSensorNumber]    , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /config/ledindication  : " + bArraySensorLedindication[iSensorNumber]           ); }); };              
-  if ( bArraySensorUsertest[iSensorNumber]         !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/usertest"       , bArraySensorUsertest[iSensorNumber]         , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /config/usertest       : " + bArraySensorUsertest[iSensorNumber]                ); }); };              
-  if ( iArraySensorSensitivity[iSensorNumber]      !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/sensitivity"    , iArraySensorSensitivity[iSensorNumber]      , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /config/sensitivity    : " + iArraySensorSensitivity[iSensorNumber]             ); }); };              
-  if ( iArraySensorSensitivityMax[iSensorNumber]   !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/sensitivitymax" , iArraySensorSensitivityMax[iSensorNumber]   , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /config/sensitivitymax : " + iArraySensorSensitivityMax[iSensorNumber]          ); }); };              
-  if ( iArraySensorSunsetoffset[iSensorNumber]     !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/sunsetoffset"   , iArraySensorSunsetoffset[iSensorNumber]     , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /config/sunsetoffset   : " + iArraySensorSunsetoffset[iSensorNumber]            ); }); };              
-  if ( iArraySensorSunriseoffset[iSensorNumber]    !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/sunriseoffset"  , iArraySensorSunriseoffset[iSensorNumber]    , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /config/sunriseoffset  : " + iArraySensorSunriseoffset[iSensorNumber]           ); }); };              
-  if ( sArraySensorPending[iSensorNumber]          !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/pending"        , sArraySensorPending[iSensorNumber]          , function(err) { if(err) { return console.log(err); } console.log("Saved Sensor " + iSensorNumber + " - /config/pending        : " + sArraySensorPending[iSensorNumber]                 ); }); };              
-                
-}
+  if ( sArraySensorManufacturerName[iSensorNumber] !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/manufacturername"      , sArraySensorManufacturerName[iSensorNumber] , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( sArraySensorModelId[iSensorNumber]          !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/modelid"               , sArraySensorModelId[iSensorNumber]          , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( sArraySensorName[iSensorNumber]             !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/name"                  , sArraySensorName[iSensorNumber]             , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( sArraySensorSwVersion[iSensorNumber]        !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/swversion"             , sArraySensorSwVersion[iSensorNumber]        , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( sArraySensorType[iSensorNumber]             !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/type"                  , sArraySensorType[iSensorNumber]             , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( sArraySensorUniqueId[iSensorNumber]         !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/uniqueid"              , sArraySensorUniqueId[iSensorNumber]         , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( iArraySensorButtonEvent[iSensorNumber]      !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/buttonevent"     , iArraySensorButtonEvent[iSensorNumber]      , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( iArraySensorLightLevel[iSensorNumber]       !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/lightlevel"      , iArraySensorLightLevel[iSensorNumber]       , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( bArraySensorDark[iSensorNumber]             !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/dark"            , bArraySensorDark[iSensorNumber]             , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( bArraySensorDaylight[iSensorNumber]         !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/daylight"        , bArraySensorDaylight[iSensorNumber]         , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( iArraySensorStatus[iSensorNumber]           !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/status"          , iArraySensorStatus[iSensorNumber]           , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( sArraySensorLastupdated[iSensorNumber]      !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/lastupdated"     , sArraySensorLastupdated[iSensorNumber]      , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( bArraySensorPresence[iSensorNumber]         !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/presence"        , bArraySensorPresence[iSensorNumber]         , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( iArraySensorTemperature[iSensorNumber]      !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/temperature"     , iArraySensorTemperature[iSensorNumber]      , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( bArraySensorOn[iSensorNumber]               !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/state/on"              , bArraySensorOn[iSensorNumber]               , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( iArraySensorBattery[iSensorNumber]          !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/battery"        , iArraySensorBattery[iSensorNumber]          , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( bArraySensorConfigured[iSensorNumber]       !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/configured"     , bArraySensorConfigured[iSensorNumber]       , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( bArraySensorReachable[iSensorNumber]        !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/reachable"      , bArraySensorReachable[iSensorNumber]        , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( sArraySensorAlert[iSensorNumber]            !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/alert"          , sArraySensorAlert[iSensorNumber]            , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( iArraySensorTholdDark[iSensorNumber]        !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/tholddark"      , iArraySensorTholdDark[iSensorNumber]        , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( iArraySensorTholdOffset[iSensorNumber]      !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/tholdoffset"    , iArraySensorTholdOffset[iSensorNumber]      , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( bArraySensorLedindication[iSensorNumber]    !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/ledindication"  , bArraySensorLedindication[iSensorNumber]    , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( bArraySensorUsertest[iSensorNumber]         !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/usertest"       , bArraySensorUsertest[iSensorNumber]         , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( iArraySensorSensitivity[iSensorNumber]      !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/sensitivity"    , iArraySensorSensitivity[iSensorNumber]      , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( iArraySensorSensitivityMax[iSensorNumber]   !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/sensitivitymax" , iArraySensorSensitivityMax[iSensorNumber]   , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( iArraySensorSunsetoffset[iSensorNumber]     !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/sunsetoffset"   , iArraySensorSunsetoffset[iSensorNumber]     , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( iArraySensorSunriseoffset[iSensorNumber]    !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/sunriseoffset"  , iArraySensorSunriseoffset[iSensorNumber]    , function(err) { if(err) { return console.log(err); }; }); };              
+  if ( sArraySensorPending[iSensorNumber]          !== undefined ){ fs.writeFile( pathhuesensorvalues + iSensorNumber + "/config/pending"        , sArraySensorPending[iSensorNumber]          , function(err) { if(err) { return console.log(err); }; }); };              
+};
 
-/** setInfo - ALL**/
-//saves all variables from all sensors to disk
-// Example: sensor.saveInfoAll()
-//###############################################################################################################################################################################
+
+
+/***************\
+| setInfo - All |################################################################################################################################################################\
+|                                                                                                                                                                                |
+| - saves all variables from all sensors to disk                                                                                                                                 |
+|                                                                                                                                                                                |
+| Example: sensor.saveInfoAll()                                                                                                                                                  |
+|                                                                                                                                                                                |
+\********************************************************************************************************************************************************************************/
 exports.saveInfoAll = function(){
   //process.stdout.write('\n' + " Fetch Sensor Info...");
   var x = 0;
