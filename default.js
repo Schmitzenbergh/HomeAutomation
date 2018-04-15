@@ -1,4 +1,4 @@
-require('./config/var/db.paths');
+require('./config/var/src/db.paths');
 //module.exports.repl.ignoreUndefined = true;
 
 

@@ -2,7 +2,8 @@
 //if ( result.state.buttonevent !== undefined && result.state.buttonevent !== null)
 
 
-
+//var jsonFile=fs.readFileSync('db.json', 'utf8');
+//var jsonObj = JSON.parse(jsonFile);
 
 
 

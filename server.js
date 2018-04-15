@@ -1,20 +1,5 @@
-//var jsonFile=fs.readFileSync('db.json', 'utf8');
-//var jsonObj = JSON.parse(jsonFile);
-var server;
 
-
-
-
-
-
-
-
-
-
- //console.log(data);  //htmlScript = toString().data;
-
-
-
+//var server;
 
 
 /***************\

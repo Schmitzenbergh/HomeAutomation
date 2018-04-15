@@ -1,5 +1,5 @@
 
-require('./db.paths');
+require('./src/db.paths');
 
 function buildvar(){
 //function varBuilder(){
