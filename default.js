@@ -2,7 +2,7 @@ require('./config/var/src/db.paths');
 //module.exports.repl.ignoreUndefined = true;
 
 
-
+exec = require('child_process').exec;
 path = require('path');
 net = require('net');
 http = require('http');
@@ -41,8 +41,8 @@ setTimeout(function(){ require('./server');
     }
 
     console.log(counter);
-  }, 2000);
+  }, 1000);
 
 
-}, 2000);
+}, 3000);
 
