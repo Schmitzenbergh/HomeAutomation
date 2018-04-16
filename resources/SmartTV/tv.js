@@ -10,6 +10,42 @@
 *   	                                                                                             *
 ***************************************************************************************************/       
 
+
+//  New approach, without delay or timeouts
+//  console.log(Result.layer1);
+//  function getTvAmbiInfo(){
+//  
+//  var Result = {};
+//  
+//  var options = {
+//    hostname: '192.168.0.97',
+//    port: 1925,
+//    path: '/5/ambilight/processed',
+//    method: 'GET',
+//    headers: {
+//      'Content-Type': 'text/html',
+//      'Content-Length': Buffer.byteLength("")
+//    }
+//  };
+//  
+//  var req = http.request(options, (res) => {
+//    res.setEncoding('utf8');
+//    res.on('data', (chunk) => { Result = JSON.parse("" + chunk);});
+//    res.on('end', () => { console.log('response: ENDED');});
+//  });
+//  
+//  
+//  req.on('error', function(e) { console.log('problem with request: ' + e.message); });
+//  
+//  // write data to request body
+//  req.write(JSON.stringify(Result));
+//  req.end();
+//  };
+
+
+
+
+
 //
 //  TODO :      
 //    * PERFORMANCE CHECK

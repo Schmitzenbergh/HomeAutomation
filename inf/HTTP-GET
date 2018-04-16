@@ -1,0 +1,49 @@
+var http = require("http");
+var options = {
+  hostname: '192.168.0.97',
+  port: 1925,
+  path: '/5/ambilight/processed',
+  method: 'GET',
+  headers: {
+    'Content-Type': 'text/html',
+    'Content-Length': Buffer.byteLength("")
+  }
+};
+
+var req = http.request(options, (res) => {
+  res.on('data', (chunk) => {console.log("%s", chunk);});
+  res.on('data', () => {console.log(counter++);});
+  res.on('end', () => {});
+});
+
+// write data to request body
+req.write("abc");
+req.end();
+
+
+
+**************************************************************************************************
+
+
+var http = require("http");
+var options = {
+  hostname: '192.168.0.97',
+  port: 1925,
+  path: '/5/ambilight/processed',
+  method: 'GET',
+  headers: {
+    'Content-Type': 'text/html',
+    'Content-Length': Buffer.byteLength("")
+  }
+};
+
+var req = http.request(options, (res) => {
+  res.on('data', (chunk) => { Result = "" + chunk;});
+  //res.on('end', () => {});
+});
+
+//console.log(tempResult);
+// write data to request body
+//req.write("abc");
+req.end();
+};

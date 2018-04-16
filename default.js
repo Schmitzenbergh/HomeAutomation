@@ -1,13 +1,18 @@
+//var counter = 0;
+var hueStateOld = {};
+var hueStateNew = {};
+
 require('./config/var/src/db.paths');
 //module.exports.repl.ignoreUndefined = true;
 
-
 exec = require('child_process').exec;
-path = require('path');
+fs = require('fs');
 net = require('net');
 http = require('http');
+https = require("https");
+path = require('path');
+request = require('request');
 url = require('url');
-fs = require('fs');
 
 hue = require('hue-sdk');     //hue = require( pathresources + './hue-sdk/lib/hue.js'),
 client = new hue.Hue(require( pathconfig + './.credentials.json' ));
@@ -21,6 +26,8 @@ avr = require( pathavrhk171s + 'default.js');
 tv = require( pathsmarttv + 'tv.js' );
 server = require( pathserver + 'server.js' );
 
+
+
 /*******\
 | Start |###############################################################################################################################################################################
 \*******/
@@ -31,18 +38,14 @@ setTimeout(function(){ require('./server');
 //sensor.loadInfoAll();
 
   setInterval(function(){  
-    counter++;
-    light.getInfoAll();
-    sensor.getInfoAll();
+    //light.getInfoAll();
+    //sensor.getInfoAll();
 
-    if (( counter % 300) == 0 ){
-       light.saveInfoAll();
-      sensor.saveInfoAll();
-    }
-
-    console.log(counter);
-  }, 1000);
+    //if(( counter % 300) == 0 ){
+    //  light.saveInfoAll();
+    //  sensor.saveInfoAll();
+    //}
+  }, 100);
 
 
 }, 3000);
-
