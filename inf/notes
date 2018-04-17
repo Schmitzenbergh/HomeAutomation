@@ -26,3 +26,42 @@ try {
 } catch(error) {
     // its not json
 }
+
+
+
+
+
+
+
+
+callBackFunction (data, function ( err, response ){
+     console.log(response)
+}) 
+
+// callbackfunction 
+function callBackFuntion (data, callback){
+    //write your logic and return your result as
+callback("",result) //if not error
+callback(error, "") //if error
+}
+
+
+
+
+
+
+
+
+
+
+function myNew(next){
+    console.log("Im the one who initates callback");
+    next("nope", "success");
+}
+
+
+myNew(function(err, res){
+    console.log("I got back from callback",err, res);
+});
+
+

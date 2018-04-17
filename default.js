@@ -4,7 +4,7 @@ var hueStateNew = {};
 
 require('./config/var/src/db.paths');
 //module.exports.repl.ignoreUndefined = true;
-module.exports = VarHolder = {};
+
 exec = require('child_process').exec;
 fs = require('fs');
 net = require('net');
@@ -26,7 +26,7 @@ avr = require( pathavrhk171s + 'default.js');
 tv = require( pathsmarttv + 'tv.js' );
 server = require( pathserver + 'server.js' );
 
-test = require( pathlib + 'http.js' );
+modRequest = require( pathlib + 'request.js' );
 
 /*******\
 | Start |###############################################################################################################################################################################
@@ -34,23 +34,11 @@ test = require( pathlib + 'http.js' );
 
 setTimeout(function(){ require('./server'); 
 
-  var options = {
-    hostname: '192.168.0.97',
-    port: 1925,
-    path: '/5/ambilight/processed',
-    method: 'GET',
-    headers: {
-      'Content-Type': 'text/html',
-      'Content-Length': Buffer.byteLength("")
-    }
-  };
-
-
 //light.loadInfoAll();
 //sensor.loadInfoAll();
   setInterval(function(){  
     console.log(counter++);
-    console.log(JSON.stringify(VarHolder));
+    //console.log(JSON.stringify(VarHolder));
     //light.getInfoAll();
     //sensor.getInfoAll();
 
@@ -58,41 +46,26 @@ setTimeout(function(){ require('./server');
     //  light.saveInfoAll();
     //  sensor.saveInfoAll();
     //}
-    //require( pathlib + 'http.js' );
-    //    test.httpGET('192.168.0.97', 1925, '/5/ambilight/processed');
-    //    console.log(" " + counter + test.httpGET('192.168.0.97', 1925, '/5/ambilight/processed'));
 
-  console.log(test.httpGET());
+
+  //console.log(JSON.stringify(modRequest.httpGET()));
   //console.log(test.httpGET());
 
 
+function myNew(next){
+    console.log("Im the one who initates callback");
+    next("nope", "success");
+}
 
 
-  }, 500);
+myNew(function(err, res){
+    console.log("I got back from callback",err, res);
+});
+
+
+
+  }, 2000);
 
 
 }, 3000);
-
-
-//var http = require("http");
-//var options = {
-//  hostname: '192.168.0.97',
-//  port: 1925,
-//  path: '/5/ambilight/processed',
-//  method: 'GET',
-//  headers: {
-//    'Content-Type': 'text/html',
-//    'Content-Length': Buffer.byteLength("")
-//  }
-//};
-//
-//var req = http.request(options, (res) => {
-//  res.on('data', (chunk) => { Result = "" + chunk;});
-//  //res.on('end', () => {});
-//});
-//
-////console.log(tempResult);
-//// write data to request body
-////req.write("abc");
-//req.end();
 
