@@ -50,18 +50,8 @@ setTimeout(function(){ require('./server');
     //}
 
 
-  //console.log(tv.getJSON('/5/activities/tv'));
-  console.log(tv.returnVolume().layer1);
-
-  //console.log(tv.getJSON().channel);
   
-  
-  
-  //tv.pushBufferobjInputKeyVolumeDown();
-  //tv.pushBufferobj('/5/input/key', { "key": "VolumeDown" });
-
-  
-  //httpRequest.postBufferobj();
+  tv.pushBufferobjAudioVolume();
 
 
   }, 1000);

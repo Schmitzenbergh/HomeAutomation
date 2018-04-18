@@ -553,4 +553,82 @@ function resetCb(){
 //request(options, function (error, response, body){console.log(response); });
 
 
+**********************************************************************************************************************
 
+
+/************************\
+| OLD GET/POST Functions |###############################################################################################################################################################################
+\************************/
+//    function getJSON(arrPos, callback){           //Example: getJSON('9',function(callback){ console.log(callback)})
+//    
+//        if ( arrPos < 1 ) return;
+//        request.get({ uri: sUri + ':' + sPort + sArrayPaths[arrPos], json: true } , 
+//            function(err, res) {
+//                if ( err || res.statusCode != 200){ 
+//                  console.log(err);
+//                }
+//                return callback(JSON.parse(res));
+//                //callback(res.body);
+//            }
+//        );
+//    }
+//    
+//    function postJSON(arrPos, jObj, callback){    //  Example:   postJSON('12', { "key": "VolumeDown" }, function(callback){ console.log(callback) });
+//        if ( arrPos < 1 ) return;
+//        request.post({ url: sUri + ':' + sPort + sArrayPaths[arrPos], body: jObj, json: true } , 
+//            function(err, res) {
+//                if ( err || res.statusCode != 200){ 
+//                  console.log(err);
+//                }
+//                //console.log( 'Modified: ' + res.request.uri.href + ' ' + res.request.body );
+//                callback('Modified: ' + res.request.uri.href + ' ' + res.request.body)
+//            }
+//        );
+//    }
+//  New approach, without delay or timeouts
+//  console.log(Result.layer1);
+//  function getTvAmbiInfo(){
+//  
+//  var Result = {};
+//  
+//  var options = {
+//    hostname: '192.168.0.97',
+//    port: 1925,
+//    path: '/5/ambilight/processed',
+//    method: 'GET',
+//    headers: {
+//      'Content-Type': 'text/html',
+//      'Content-Length': Buffer.byteLength("")
+//    }
+//  };
+//  
+//  var req = http.request(options, (res) => {
+//    res.setEncoding('utf8');
+//    res.on('data', (chunk) => { Result = JSON.parse("" + chunk);});
+//    res.on('end', () => { console.log('response: ENDED');});
+//  });
+//  
+//  
+//  req.on('error', function(e) { console.log('problem with request: ' + e.message); });
+//  
+//  // write data to request body
+//  req.write(JSON.stringify(Result));
+//  req.end();
+//  };
+
+
+**********************************************************************************************************************
+
+**********************************************************************************************************************
+
+**********************************************************************************************************************
+
+**********************************************************************************************************************
+
+**********************************************************************************************************************
+
+**********************************************************************************************************************
+
+**********************************************************************************************************************
+
+**********************************************************************************************************************

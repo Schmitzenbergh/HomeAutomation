@@ -2,37 +2,33 @@
 *   Info:                                                                                          *
 *                                                                                                  *
 *   Tested on Philips Smart Tv (55PFS8209/12)                                                      *
-*   - Need to be checked                                                                           *
-*   Examples:                                                                                      *
-*   GET  - getJSON('9',function(callback){ console.log(callback)})                                 *
-*   POST - postJSON('12', { "key": "VolumeDown" }, function(callback){ console.log(callback) });   *
 *                                                                                                  *
+*   TODO's:                                                                                        *
+*   - Full Test                                                                                    *
+*   - DEBUG COPYPASTE: http://192.168.0.97:1925/5/audio/volume                                     *
+*                                                                                                  *
+*   GET:                                                                                           *
+*          - returnJSONObj (path)                                                                  *
+*          - console.log(tv.getJSON('/5/activities/tv'));                                          *
+*          - console.log(tv.returnActivitiesTv().channelList);                                     *
+*                                                                                                  *
+*   POST:                                                                                          *
+*          - pushBufferobj (path, jObj, callback)                                                  *
+*          - tv.pushBufferobjInputKeyVolumeDown();                                                 *
+*          - tv.pushBufferobj('/5/input/key', { "key": "VolumeDown" });                            *
+*   	                                                                                             *
+*  DEPENDENCY:                                                                                     *
+*          - independent (Node.js Built-in Modules)                                                *
 *   	                                                                                             *
 ***************************************************************************************************/       
-
-//
-//  TODO :      
-//    * PERFORMANCE CHECK
-//    * DEBUG COPYPASTE: http://192.168.0.97:1925/5/audio/volume
-//    * PUT 'update objects'
-//    * DELETE 'remove objects'
-//
-
-
-
-//tv.pushBufferobjInputKeyVolumeDown();
-//tv.pushBufferobj('/5/input/key', { "key": "VolumeDown" });
-
-
-
 var http = require("http");
-//var request = require('request');
+
+
 
 /******************\
 | Predefined Paths |###############################################################################################################################################################################
 \******************/
- var arrPos = 0;
- var sArrayPaths = [];
+var sArrayPaths = [];
  sArrayPaths[0]=undefined;                                        //   EMPTY
  sArrayPaths[1]='/5/activities/tv';                               // GET -      // {"channelList":{"id":"alltv","version":"60"},"channel":{"name":"NPO 1 HD","preset":1,"ccid":1000147}}
  sArrayPaths[2]='/5/ambilight/cached';                            // GET - POST // {"layer1":{"bottom":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0}},"right":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0},"2":{"b":0,"g":0,"r":0},"3":{"b":0,"g":0,"r":0}},"left":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0},"2":{"b":0,"g":0,"r":0},"3":{"b":0,"g":0,"r":0}},"top":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0},"2":{"b":0,"g":0,"r":0},"3":{"b":0,"g":0,"r":0},"4":{"b":0,"g":0,"r":0},"5":{"b":0,"g":0,"r":0},"6":{"b":0,"g":0,"r":0},"7":{"b":0,"g":0,"r":0}}}}
@@ -61,23 +57,14 @@ sArrayPaths[24]='/5/system/serialnumber_encrypted';               // GET -      
 sArrayPaths[25]='/5/system/timestamp';                            // GET -      // {"timestamp": "49348"}
 
 
-var proto='http://';
-var hostname= '192.168.0.97';
-var port= 1925;
-var path= '/5/activities/tv';
-var sUri = hostname;
-var sPort = port;
-
-
 
 /***************\
 | POST Function |###############################################################################################################################################################################
 \***************/
-
 exports.pushBufferobj = function(path, jObj, callback){
 
     var postOptions = {
-        uri: proto + hostname + ':' + port + path,
+        uri: 'http://' + '192.168.0.97' + ':' + 1925 + path,
         method: 'POST',
         body: jObj,
         json: true,
@@ -96,69 +83,67 @@ exports.pushBufferobj = function(path, jObj, callback){
 /***************************\
 | PreDefined POST Functions |###############################################################################################################################################################################
 \***************************/
+exports.pushBufferobjAmbilightCached = function (){               this.pushBufferobj(sArrayPaths[2] ,{"layer1":{"bottom":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0}},"right":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0},"2":{"b":0,"g":0,"r":0},"3":{"b":0,"g":0,"r":0}},"left":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0},"2":{"b":0,"g":0,"r":0},"3":{"b":0,"g":0,"r":0}},"top":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0},"2":{"b":0,"g":0,"r":0},"3":{"b":0,"g":0,"r":0},"4":{"b":0,"g":0,"r":0},"5":{"b":0,"g":0,"r":0},"6":{"b":0,"g":0,"r":0},"7":{"b":0,"g":0,"r":0}}}}, function(callback){ console.log(callback) }); }
+exports.pushBufferobjAmbiLightLounge = function (){               this.pushBufferobj(sArrayPaths[3] ,{"speed":0,"colordelta":{"brightness":0,"saturation":0,"hue":0},"color":{"brightness":0,"saturation":0,"hue":0},"mode":"Default"}, function(callback){ console.log(callback) }); }
+exports.pushBufferobjAmbiLightMode = function (){                 this.pushBufferobj(sArrayPaths[5] ,{"current":"internal"}, function(callback){ console.log(callback) }); }
+exports.pushBufferobjAudioVolume = function (){                   this.pushBufferobj(sArrayPaths[9] ,{"min":0,"current":20,"muted":true,"max":60}, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputPointer = function (){                  this.pushBufferobj(sArrayPaths[11],{ "?????": "?????" }, function(callback){ console.log(callback) }); }   //????
+exports.pushBufferobjInputKeyStandby = function (){               this.pushBufferobj(sArrayPaths[12],{ "key": "Standby" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyBack = function (){                  this.pushBufferobj(sArrayPaths[12],{ "key": "Back" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyFind = function (){                  this.pushBufferobj(sArrayPaths[12],{ "key": "Find" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyRedColour = function (){             this.pushBufferobj(sArrayPaths[12],{ "key": "RedColour" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyGreenColour = function (){           this.pushBufferobj(sArrayPaths[12],{ "key": "GreenColour" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyYellowColour = function (){          this.pushBufferobj(sArrayPaths[12],{ "key": "YellowColour" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyBlueColour = function (){            this.pushBufferobj(sArrayPaths[12],{ "key": "BlueColour" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyHome = function (){                  this.pushBufferobj(sArrayPaths[12],{ "key": "Home" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyVolumeUp = function (){              this.pushBufferobj(sArrayPaths[12],{ "key": "VolumeUp" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyVolumeDown = function (){            this.pushBufferobj(sArrayPaths[12],{ "key": "VolumeDown" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyMute = function (){                  this.pushBufferobj(sArrayPaths[12],{ "key": "Mute"  }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyOptions = function (){               this.pushBufferobj(sArrayPaths[12],{ "key": "Options" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyDot = function (){                   this.pushBufferobj(sArrayPaths[12],{ "key": "Dot"    }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyDigit0 = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Digit0" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyDigit1 = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Digit1" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyDigit2 = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Digit2" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyDigit3 = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Digit3" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyDigit4 = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Digit4" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyDigit5 = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Digit5" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyDigit6 = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Digit6" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyDigit7 = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Digit7" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyDigit8 = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Digit8" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyDigit9 = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Digit9" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyInfo = function (){                  this.pushBufferobj(sArrayPaths[12],{ "key": "Info" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyCursorUp = function (){              this.pushBufferobj(sArrayPaths[12],{ "key": "CursorUp" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyCursorDown = function (){            this.pushBufferobj(sArrayPaths[12],{ "key": "CursorDown" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyCursorLeft = function (){            this.pushBufferobj(sArrayPaths[12],{ "key": "CursorLeft" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyCursorRight = function (){           this.pushBufferobj(sArrayPaths[12],{ "key": "CursorRight" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyConfirm = function (){               this.pushBufferobj(sArrayPaths[12],{ "key": "Confirm" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyNext = function (){                  this.pushBufferobj(sArrayPaths[12],{ "key": "Next" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyPrevious = function (){              this.pushBufferobj(sArrayPaths[12],{ "key": "Previous" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyAdjust = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Adjust" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyWatchTV = function (){               this.pushBufferobj(sArrayPaths[12],{ "key": "WatchTV" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyViewmode = function (){              this.pushBufferobj(sArrayPaths[12],{ "key": "Viewmode" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyTeletext = function (){              this.pushBufferobj(sArrayPaths[12],{ "key": "Teletext" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeySubtitle = function (){              this.pushBufferobj(sArrayPaths[12],{ "key": "Subtitle" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyChannelStepUp = function (){         this.pushBufferobj(sArrayPaths[12],{ "key": "ChannelStepUp" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyChannelStepDown = function (){       this.pushBufferobj(sArrayPaths[12],{ "key": "ChannelStepDown" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeySource = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Source" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyAmbilightOnOff = function (){        this.pushBufferobj(sArrayPaths[12],{ "key": "AmbilightOnOff" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyPlayPause = function (){             this.pushBufferobj(sArrayPaths[12],{ "key": "PlayPause" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyPause = function (){                 this.pushBufferobj(sArrayPaths[12],{ "key": "Pause" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyFastForward = function (){           this.pushBufferobj(sArrayPaths[12],{ "key": "FastForward" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyStop = function (){                  this.pushBufferobj(sArrayPaths[12],{ "key": "Stop" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyRewind = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Rewind" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyRecord = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Record" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjInputKeyOnline = function (){                this.pushBufferobj(sArrayPaths[12],{ "key": "Online" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjPowerstateOn = function (){                  this.pushBufferobj(sArrayPaths[15],{ "powerstate":"On" }, function(callback){ console.log(callback) }); }
+exports.pushBufferobjPowerstateStandby = function (){             this.pushBufferobj(sArrayPaths[15],{ "powerstate":"Standby" }, function(callback){ console.log(callback) }); }
 
-exports.pushBufferobjAmbilightCached = function (){               pushBufferobj(sArrayPaths[2] ,{"layer1":{"bottom":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0}},"right":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0},"2":{"b":0,"g":0,"r":0},"3":{"b":0,"g":0,"r":0}},"left":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0},"2":{"b":0,"g":0,"r":0},"3":{"b":0,"g":0,"r":0}},"top":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0},"2":{"b":0,"g":0,"r":0},"3":{"b":0,"g":0,"r":0},"4":{"b":0,"g":0,"r":0},"5":{"b":0,"g":0,"r":0},"6":{"b":0,"g":0,"r":0},"7":{"b":0,"g":0,"r":0}}}}, function(callback){ console.log(callback) }); }
-exports.pushBufferobjAmbiLightLounge = function (){               pushBufferobj(sArrayPaths[3] ,{"speed":0,"colordelta":{"brightness":0,"saturation":0,"hue":0},"color":{"brightness":0,"saturation":0,"hue":0},"mode":"Default"}, function(callback){ console.log(callback) }); }
-exports.pushBufferobjAmbiLightMode = function (){                 pushBufferobj(sArrayPaths[5] ,{"current":"internal"}, function(callback){ console.log(callback) }); }
-exports.pushBufferobjAudioVolume = function (){                   pushBufferobj(sArrayPaths[9] ,{"min":0,"current":20,"muted":true,"max":60}, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputPointer = function (){                  pushBufferobj(sArrayPaths[11],{ "?????": "?????" }, function(callback){ console.log(callback) }); }   //????
-exports.pushBufferobjInputKeyStandby = function (){               pushBufferobj(sArrayPaths[12],{ "key": "Standby" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyBack = function (){                  pushBufferobj(sArrayPaths[12],{ "key": "Back" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyFind = function (){                  pushBufferobj(sArrayPaths[12],{ "key": "Find" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyRedColour = function (){             pushBufferobj(sArrayPaths[12],{ "key": "RedColour" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyGreenColour = function (){           pushBufferobj(sArrayPaths[12],{ "key": "GreenColour" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyYellowColour = function (){          pushBufferobj(sArrayPaths[12],{ "key": "YellowColour" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyBlueColour = function (){            pushBufferobj(sArrayPaths[12],{ "key": "BlueColour" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyHome = function (){                  pushBufferobj(sArrayPaths[12],{ "key": "Home" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyVolumeUp = function (){              pushBufferobj(sArrayPaths[12],{ "key": "VolumeUp" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyVolumeDown = function (){            pushBufferobj(sArrayPaths[12],{ "key": "VolumeDown" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyMute = function (){                  pushBufferobj(sArrayPaths[12],{ "key": "Mute"  }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyOptions = function (){               pushBufferobj(sArrayPaths[12],{ "key": "Options" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyDot = function (){                   pushBufferobj(sArrayPaths[12],{ "key": "Dot"    }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyDigit0 = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Digit0" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyDigit1 = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Digit1" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyDigit2 = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Digit2" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyDigit3 = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Digit3" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyDigit4 = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Digit4" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyDigit5 = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Digit5" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyDigit6 = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Digit6" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyDigit7 = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Digit7" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyDigit8 = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Digit8" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyDigit9 = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Digit9" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyInfo = function (){                  pushBufferobj(sArrayPaths[12],{ "key": "Info" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyCursorUp = function (){              pushBufferobj(sArrayPaths[12],{ "key": "CursorUp" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyCursorDown = function (){            pushBufferobj(sArrayPaths[12],{ "key": "CursorDown" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyCursorLeft = function (){            pushBufferobj(sArrayPaths[12],{ "key": "CursorLeft" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyCursorRight = function (){           pushBufferobj(sArrayPaths[12],{ "key": "CursorRight" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyConfirm = function (){               pushBufferobj(sArrayPaths[12],{ "key": "Confirm" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyNext = function (){                  pushBufferobj(sArrayPaths[12],{ "key": "Next" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyPrevious = function (){              pushBufferobj(sArrayPaths[12],{ "key": "Previous" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyAdjust = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Adjust" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyWatchTV = function (){               pushBufferobj(sArrayPaths[12],{ "key": "WatchTV" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyViewmode = function (){              pushBufferobj(sArrayPaths[12],{ "key": "Viewmode" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyTeletext = function (){              pushBufferobj(sArrayPaths[12],{ "key": "Teletext" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeySubtitle = function (){              pushBufferobj(sArrayPaths[12],{ "key": "Subtitle" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyChannelStepUp = function (){         pushBufferobj(sArrayPaths[12],{ "key": "ChannelStepUp" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyChannelStepDown = function (){       pushBufferobj(sArrayPaths[12],{ "key": "ChannelStepDown" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeySource = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Source" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyAmbilightOnOff = function (){        pushBufferobj(sArrayPaths[12],{ "key": "AmbilightOnOff" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyPlayPause = function (){             pushBufferobj(sArrayPaths[12],{ "key": "PlayPause" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyPause = function (){                 pushBufferobj(sArrayPaths[12],{ "key": "Pause" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyFastForward = function (){           pushBufferobj(sArrayPaths[12],{ "key": "FastForward" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyStop = function (){                  pushBufferobj(sArrayPaths[12],{ "key": "Stop" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyRewind = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Rewind" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyRecord = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Record" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjInputKeyOnline = function (){                pushBufferobj(sArrayPaths[12],{ "key": "Online" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjPowerstateOn = function (){                  pushBufferobj(sArrayPaths[15],{ "powerstate":"On" }, function(callback){ console.log(callback) }); }
-exports.pushBufferobjPowerstateStandby = function (){             pushBufferobj(sArrayPaths[15],{ "powerstate":"Standby" }, function(callback){ console.log(callback) }); }
+
 
 /**************\
 | GET Function |###############################################################################################################################################################################
 \**************/
-
-
-
-getJSON = function(path){
+exports.returnJSONObj = function(path){
 
     var getOptions = {
       hostname: '192.168.0.97',
@@ -182,95 +167,34 @@ getJSON = function(path){
 }
 
 
+
 /**************************\
 | PreDefined GET Functions |###############################################################################################################################################################################
 \**************************/
-exports.returnVolume = function (){                         getJSON(sArrayPaths[1] ); return Result; };
-exports.returnActivitiesTv = function (){                   getJSON(sArrayPaths[1] ); return Result; };
-exports.returnAmbilightCached = function (){                getJSON(sArrayPaths[2] ); return Result; };
-exports.returnAmbilightLounge = function (){                getJSON(sArrayPaths[3] ); return Result; };
-exports.returnAmbilightMeasured = function (){              getJSON(sArrayPaths[4] ); return Result; };
-exports.returnAmbilightMode = function (){                  getJSON(sArrayPaths[5] ); return Result; };
-exports.returnAmbilightProcessed = function (){             getJSON(sArrayPaths[6] ); return Result; };
-exports.returnAmbilightTopology = function (){              getJSON(sArrayPaths[7] ); return Result; };
-exports.returnApplications = function (){                   getJSON(sArrayPaths[8] ); return Result; };
-exports.returnAudioVolume = function (){                    getJSON(sArrayPaths[9] ); return Result; };
-exports.returnChanneldbTv = function (){                    getJSON(sArrayPaths[10]); return Result; };
-exports.returnContext = function (){                        getJSON(sArrayPaths[11]); return Result; };
-exports.returnNetworkDevices = function (){                 getJSON(sArrayPaths[14]); return Result; };
-exports.returnPowerstate = function (){                     getJSON(sArrayPaths[15]); return Result; };
-exports.returnSystem = function (){                         getJSON(sArrayPaths[16]); return Result; };
-exports.returnSystemCountry = function (){                  getJSON(sArrayPaths[17]); return Result; };
-exports.returnSystemDeviceIdEncrypted = function (){        getJSON(sArrayPaths[18]); return Result; };
-exports.returnSystemEpgsource = function (){                getJSON(sArrayPaths[19]); return Result; };
-exports.returnSystemMenulanguage = function (){             getJSON(sArrayPaths[20]); return Result; };
-exports.returnSystemModelEncrypted = function (){           getJSON(sArrayPaths[21]); return Result; };
-exports.returnSystemName = function (){                     getJSON(sArrayPaths[22]); return Result; };
-exports.returnSystemSoftwareversionEncrypted = function (){ getJSON(sArrayPaths[23]); return Result; };
-exports.returnSystemSerialnumberEncrypted = function (){    getJSON(sArrayPaths[24]); return Result; };
-exports.returnSystemTimeStamp = function (){                getJSON(sArrayPaths[25]); return Result; };
-
-
-
-/************************\
-| OLD GET/POST Functions |###############################################################################################################################################################################
-\************************/
-//    function getJSON(arrPos, callback){           //Example: getJSON('9',function(callback){ console.log(callback)})
-//    
-//        if ( arrPos < 1 ) return;
-//        request.get({ uri: sUri + ':' + sPort + sArrayPaths[arrPos], json: true } , 
-//            function(err, res) {
-//                if ( err || res.statusCode != 200){ 
-//                  console.log(err);
-//                }
-//                return callback(JSON.parse(res));
-//                //callback(res.body);
-//            }
-//        );
-//    }
-//    
-//    function postJSON(arrPos, jObj, callback){    //  Example:   postJSON('12', { "key": "VolumeDown" }, function(callback){ console.log(callback) });
-//        if ( arrPos < 1 ) return;
-//        request.post({ url: sUri + ':' + sPort + sArrayPaths[arrPos], body: jObj, json: true } , 
-//            function(err, res) {
-//                if ( err || res.statusCode != 200){ 
-//                  console.log(err);
-//                }
-//                //console.log( 'Modified: ' + res.request.uri.href + ' ' + res.request.body );
-//                callback('Modified: ' + res.request.uri.href + ' ' + res.request.body)
-//            }
-//        );
-//    }
-//  New approach, without delay or timeouts
-//  console.log(Result.layer1);
-//  function getTvAmbiInfo(){
-//  
-//  var Result = {};
-//  
-//  var options = {
-//    hostname: '192.168.0.97',
-//    port: 1925,
-//    path: '/5/ambilight/processed',
-//    method: 'GET',
-//    headers: {
-//      'Content-Type': 'text/html',
-//      'Content-Length': Buffer.byteLength("")
-//    }
-//  };
-//  
-//  var req = http.request(options, (res) => {
-//    res.setEncoding('utf8');
-//    res.on('data', (chunk) => { Result = JSON.parse("" + chunk);});
-//    res.on('end', () => { console.log('response: ENDED');});
-//  });
-//  
-//  
-//  req.on('error', function(e) { console.log('problem with request: ' + e.message); });
-//  
-//  // write data to request body
-//  req.write(JSON.stringify(Result));
-//  req.end();
-//  };
+exports.returnVolume = function (){                               this.returnJSONObj(sArrayPaths[1] ); return Result; };
+exports.returnActivitiesTv = function (){                         this.returnJSONObj(sArrayPaths[1] ); return Result; };
+exports.returnAmbilightCached = function (){                      this.returnJSONObj(sArrayPaths[2] ); return Result; };
+exports.returnAmbilightLounge = function (){                      this.returnJSONObj(sArrayPaths[3] ); return Result; };
+exports.returnAmbilightMeasured = function (){                    this.returnJSONObj(sArrayPaths[4] ); return Result; };
+exports.returnAmbilightMode = function (){                        this.returnJSONObj(sArrayPaths[5] ); return Result; };
+exports.returnAmbilightProcessed = function (){                   this.returnJSONObj(sArrayPaths[6] ); return Result; };
+exports.returnAmbilightTopology = function (){                    this.returnJSONObj(sArrayPaths[7] ); return Result; };
+exports.returnApplications = function (){                         this.returnJSONObj(sArrayPaths[8] ); return Result; };
+exports.returnAudioVolume = function (){                          this.returnJSONObj(sArrayPaths[9] ); return Result; };
+exports.returnChanneldbTv = function (){                          this.returnJSONObj(sArrayPaths[10]); return Result; };
+exports.returnContext = function (){                              this.returnJSONObj(sArrayPaths[11]); return Result; };
+exports.returnNetworkDevices = function (){                       this.returnJSONObj(sArrayPaths[14]); return Result; };
+exports.returnPowerstate = function (){                           this.returnJSONObj(sArrayPaths[15]); return Result; };
+exports.returnSystem = function (){                               this.returnJSONObj(sArrayPaths[16]); return Result; };
+exports.returnSystemCountry = function (){                        this.returnJSONObj(sArrayPaths[17]); return Result; };
+exports.returnSystemDeviceIdEncrypted = function (){              this.returnJSONObj(sArrayPaths[18]); return Result; };
+exports.returnSystemEpgsource = function (){                      this.returnJSONObj(sArrayPaths[19]); return Result; };
+exports.returnSystemMenulanguage = function (){                   this.returnJSONObj(sArrayPaths[20]); return Result; };
+exports.returnSystemModelEncrypted = function (){                 this.returnJSONObj(sArrayPaths[21]); return Result; };
+exports.returnSystemName = function (){                           this.returnJSONObj(sArrayPaths[22]); return Result; };
+exports.returnSystemSoftwareversionEncrypted = function (){       this.returnJSONObj(sArrayPaths[23]); return Result; };
+exports.returnSystemSerialnumberEncrypted = function (){          this.returnJSONObj(sArrayPaths[24]); return Result; };
+exports.returnSystemTimeStamp = function (){                      this.returnJSONObj(sArrayPaths[25]); return Result; };
 
 
 
