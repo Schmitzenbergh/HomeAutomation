@@ -44,24 +44,16 @@ setTimeout(function(){ require('./server');
   setInterval(function(){  
     console.log(counter++);
     //console.log(JSON.stringify(VarHolder));
-    //light.getInfoAll();
-    //sensor.getInfoAll();
+    light.getInfoAll();
+    sensor.getInfoAll();
 
-    //if(( counter % 300) == 0 ){
-    //  light.saveInfoAll();
-    //  sensor.saveInfoAll();
-    //}
-
-  //Object.assign()
-  //tempObj = { ,
-  //'test': tv.returnPowerstate()}
-    tv.returnJSONObjAllToDb(); 
-    console.log(fs.readFileSync( pathprivate + "./db.json", 'UTF8'));
-
-
+    if(( counter % 300) == 0 ){
+      light.saveInfoAll();
+      sensor.saveInfoAll();
+    }
   
 
-  }, 5000);
+  }, 1000);
 
 
 }, 3000);

@@ -7,8 +7,7 @@
 *          - Full Test                                                                             *
 *          - DEBUG COPYPASTE: http://192.168.0.97:1925/5/audio/volume                              *
 *          - Merge oDb.system.timestamp and oDb.system.epgsource to oDb.system                     *
-*   	                                                                                             *
-*   	                                                                                             *
+*          - values for pointer                                                                    *
 *   	                                                                                             *
 *   INCLUDE:                                                                                       *
 *   	     - tv = require( path + './tv.js' );                                                     *
@@ -23,23 +22,27 @@
 *          - tv.pushBufferobjInputKeyVolumeDown();                                                 *
 *          - tv.pushBufferobj('/5/input/key', { "key": "VolumeDown" });                            *
 *                                                                                                  *
-*   JSON:                                                                                          *        
-*          - tv.returnJSONObjAll());                                                               *   
-*   	                                                                                             *
+*   JSON:                                                                                          *
+*          - Collect:                                                                              *
+*              tv.returnJSONObjAll());                                                             *
+*          - Write to file:                                                                        *
+*              tv.returnJSONObjAllToDb();                                                          *
+*   	     - Read from file:                                                                       *
+*              console.log(fs.readFileSync( pathprivate + "./db.json", 'UTF8'));                   *
+*                                                                                                  *
 *  DEPENDENCY:                                                                                     *
 *          - independent (only Node.js Built-in Modules)                                           *
 *   	                                                                                             *
+*                                                                                                  *
 ***************************************************************************************************/
 var http = require("http");
-
-
 
 /******************\
 | Predefined Paths |###############################################################################################################################################################################
 |
 | These paths are tested, still searching for other available parths
 |
-\************************************************************************************************************************************************************************************************ */
+\*************************************************************************************************************************************************************************************************/
 var sArrayPaths = [];
  sArrayPaths[0]=undefined;                                        //   EMPTY
  sArrayPaths[1]='/5/activities/tv';                               // GET -      // {"channelList":{"id":"alltv","version":"60"},"channel":{"name":"NPO 1 HD","preset":1,"ccid":1000147}}
@@ -96,7 +99,7 @@ exports.pushBufferobj = function(path, jObj, callback){
 
 
 /***************************\
-| PreDefined POST Functions |###############################################################################################################################################################################
+| PreDefined POST Functions |####################################################################################################################################################################
 |
 | Some predefined functions, without callback
 |
@@ -159,7 +162,7 @@ exports.pushBufferobjPowerstateStandby = function (){             this.pushBuffe
 
 
 /**************\
-| GET Function |###############################################################################################################################################################################
+| GET Function |#################################################################################################################################################################################
 |
 | Added own get function to make this module independent, this function will return an object.
 |
@@ -193,7 +196,7 @@ exports.returnJSONObj = function(path, retValue){
 
 
 /**************************\
-| PreDefined GET Functions |###############################################################################################################################################################################
+| PreDefined GET Functions |#####################################################################################################################################################################
 |
 | Some predefined get functions, this function will return an object.
 |
@@ -226,10 +229,10 @@ exports.returnSystemTimeStamp = function (){                      this.returnJSO
 
 /****************************\
 | PreDefined GETALL Function |###############################################################################################################################################################################
-|                                                                                                                                                                                                           |
-| Returns an JSON object with all available values included                                                                                                                                                 |
-|                                                                                                                                                                                                           |
-\***********************************************************************************************************************************************************************************************/
+|
+| Returns an JSON object with all available values included
+|
+\***********************************************************************************************************************************************************************************************************/
 exports.returnJSONObjAll = function(){
 
     var oDb = {};
@@ -264,8 +267,14 @@ exports.returnJSONObjAll = function(){
     return oDb;
 }
 
+
+
+/****************************\
+| PreDefined GETALL Function |###############################################################################################################################################################################
+|
+| Returns an JSON db file with all available values included
+|
+\***********************************************************************************************************************************************************************************************************/
 exports.returnJSONObjAllToDb = function(){
   fs.writeFileSync( pathprivate + "./db-tv.json", JSON.stringify(this.returnJSONObjAll()) );
 };
-
-
