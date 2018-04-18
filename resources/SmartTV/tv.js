@@ -6,7 +6,11 @@
 *   TODO's:                                                                                        *
 *   - Full Test                                                                                    *
 *   - DEBUG COPYPASTE: http://192.168.0.97:1925/5/audio/volume                                     *
-*                                                                                                  *
+*   - Merge oDb.system.timestamp and oDb.system.epgsource to oDb.system                            *                                                                     *
+*   	                                                                                             *
+*   	                                                                                             *
+*   	                                                                                             *
+*   	                                                                                             *
 *   GET:                                                                                           *
 *          - returnJSONObj (path)                                                                  *
 *          - console.log(tv.getJSON('/5/activities/tv'));                                          *
@@ -27,7 +31,10 @@ var http = require("http");
 
 /******************\
 | Predefined Paths |###############################################################################################################################################################################
-\******************/
+|
+| These paths are tested, still searching for other available parths
+|
+\************************************************************************************************************************************************************************************************ */
 var sArrayPaths = [];
  sArrayPaths[0]=undefined;                                        //   EMPTY
  sArrayPaths[1]='/5/activities/tv';                               // GET -      // {"channelList":{"id":"alltv","version":"60"},"channel":{"name":"NPO 1 HD","preset":1,"ccid":1000147}}
@@ -60,7 +67,10 @@ sArrayPaths[25]='/5/system/timestamp';                            // GET -      
 
 /***************\
 | POST Function |###############################################################################################################################################################################
-\***************/
+|
+| Added own post function to make this module independent, this function will return an object.
+|
+\***********************************************************************************************************************************************************************************************/
 exports.pushBufferobj = function(path, jObj, callback){
 
     var postOptions = {
@@ -82,7 +92,10 @@ exports.pushBufferobj = function(path, jObj, callback){
 
 /***************************\
 | PreDefined POST Functions |###############################################################################################################################################################################
-\***************************/
+|
+| Some predefined functions, without callback
+|
+\***********************************************************************************************************************************************************************************************/
 exports.pushBufferobjAmbilightCached = function (){               this.pushBufferobj(sArrayPaths[2] ,{"layer1":{"bottom":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0}},"right":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0},"2":{"b":0,"g":0,"r":0},"3":{"b":0,"g":0,"r":0}},"left":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0},"2":{"b":0,"g":0,"r":0},"3":{"b":0,"g":0,"r":0}},"top":{"0":{"b":0,"g":0,"r":0},"1":{"b":0,"g":0,"r":0},"2":{"b":0,"g":0,"r":0},"3":{"b":0,"g":0,"r":0},"4":{"b":0,"g":0,"r":0},"5":{"b":0,"g":0,"r":0},"6":{"b":0,"g":0,"r":0},"7":{"b":0,"g":0,"r":0}}}}, function(callback){ console.log(callback) }); }
 exports.pushBufferobjAmbiLightLounge = function (){               this.pushBufferobj(sArrayPaths[3] ,{"speed":0,"colordelta":{"brightness":0,"saturation":0,"hue":0},"color":{"brightness":0,"saturation":0,"hue":0},"mode":"Default"}, function(callback){ console.log(callback) }); }
 exports.pushBufferobjAmbiLightMode = function (){                 this.pushBufferobj(sArrayPaths[5] ,{"current":"internal"}, function(callback){ console.log(callback) }); }
@@ -142,8 +155,13 @@ exports.pushBufferobjPowerstateStandby = function (){             this.pushBuffe
 
 /**************\
 | GET Function |###############################################################################################################################################################################
-\**************/
-exports.returnJSONObj = function(path){
+|
+| Added own get function to make this module independent, this function will return an object.
+|
+\***********************************************************************************************************************************************************************************************/
+exports.returnJSONObj = function(path, retValue){
+
+    if (!retValue) RetValue = 0;
 
     var getOptions = {
       hostname: '192.168.0.97',
@@ -158,44 +176,88 @@ exports.returnJSONObj = function(path){
 
     var req = http.request( getOptions, function(res) {
       res.on('data', (chunk) => {
-        Result = JSON.parse(chunk);
+        Result[retValue] = JSON.parse(chunk);
+        //Result[retValue] = chunk;
       });//res.on('end', () => { /**/ });
     });
     req.end();
 
-    return Result;
+    return Result[retValue];
 }
 
 
 
 /**************************\
 | PreDefined GET Functions |###############################################################################################################################################################################
-\**************************/
-exports.returnVolume = function (){                               this.returnJSONObj(sArrayPaths[1] ); return Result; };
-exports.returnActivitiesTv = function (){                         this.returnJSONObj(sArrayPaths[1] ); return Result; };
-exports.returnAmbilightCached = function (){                      this.returnJSONObj(sArrayPaths[2] ); return Result; };
-exports.returnAmbilightLounge = function (){                      this.returnJSONObj(sArrayPaths[3] ); return Result; };
-exports.returnAmbilightMeasured = function (){                    this.returnJSONObj(sArrayPaths[4] ); return Result; };
-exports.returnAmbilightMode = function (){                        this.returnJSONObj(sArrayPaths[5] ); return Result; };
-exports.returnAmbilightProcessed = function (){                   this.returnJSONObj(sArrayPaths[6] ); return Result; };
-exports.returnAmbilightTopology = function (){                    this.returnJSONObj(sArrayPaths[7] ); return Result; };
-exports.returnApplications = function (){                         this.returnJSONObj(sArrayPaths[8] ); return Result; };
-exports.returnAudioVolume = function (){                          this.returnJSONObj(sArrayPaths[9] ); return Result; };
-exports.returnChanneldbTv = function (){                          this.returnJSONObj(sArrayPaths[10]); return Result; };
-exports.returnContext = function (){                              this.returnJSONObj(sArrayPaths[11]); return Result; };
-exports.returnNetworkDevices = function (){                       this.returnJSONObj(sArrayPaths[14]); return Result; };
-exports.returnPowerstate = function (){                           this.returnJSONObj(sArrayPaths[15]); return Result; };
-exports.returnSystem = function (){                               this.returnJSONObj(sArrayPaths[16]); return Result; };
-exports.returnSystemCountry = function (){                        this.returnJSONObj(sArrayPaths[17]); return Result; };
-exports.returnSystemDeviceIdEncrypted = function (){              this.returnJSONObj(sArrayPaths[18]); return Result; };
-exports.returnSystemEpgsource = function (){                      this.returnJSONObj(sArrayPaths[19]); return Result; };
-exports.returnSystemMenulanguage = function (){                   this.returnJSONObj(sArrayPaths[20]); return Result; };
-exports.returnSystemModelEncrypted = function (){                 this.returnJSONObj(sArrayPaths[21]); return Result; };
-exports.returnSystemName = function (){                           this.returnJSONObj(sArrayPaths[22]); return Result; };
-exports.returnSystemSoftwareversionEncrypted = function (){       this.returnJSONObj(sArrayPaths[23]); return Result; };
-exports.returnSystemSerialnumberEncrypted = function (){          this.returnJSONObj(sArrayPaths[24]); return Result; };
-exports.returnSystemTimeStamp = function (){                      this.returnJSONObj(sArrayPaths[25]); return Result; };
+|
+| Some predefined get functions, this function will return an object.
+|
+\***********************************************************************************************************************************************************************************************/
+exports.returnActivitiesTv = function (){                         this.returnJSONObj(sArrayPaths[1] ,1 ); return Result[1] ; };
+exports.returnAmbilightCached = function (){                      this.returnJSONObj(sArrayPaths[2] ,2 ); return Result[2] ; };
+exports.returnAmbilightLounge = function (){                      this.returnJSONObj(sArrayPaths[3] ,3 ); return Result[3] ; };
+exports.returnAmbilightMeasured = function (){                    this.returnJSONObj(sArrayPaths[4] ,4 ); return Result[4] ; };
+exports.returnAmbilightMode = function (){                        this.returnJSONObj(sArrayPaths[5] ,5 ); return Result[5] ; };
+exports.returnAmbilightProcessed = function (){                   this.returnJSONObj(sArrayPaths[6] ,6 ); return Result[6] ; };
+exports.returnAmbilightTopology = function (){                    this.returnJSONObj(sArrayPaths[7] ,7 ); return Result[7] ; };
+exports.returnApplications = function (){                         this.returnJSONObj(sArrayPaths[8] ,8 ); return Result[8] ; };
+exports.returnAudioVolume = function (){                          this.returnJSONObj(sArrayPaths[9] ,9 ); return Result[9] ; };
+exports.returnChanneldbTv = function (){                          this.returnJSONObj(sArrayPaths[10],10 ); return Result[10]; };
+exports.returnContext = function (){                              this.returnJSONObj(sArrayPaths[11],11 ); return Result[11]; };
+exports.returnNetworkDevices = function (){                       this.returnJSONObj(sArrayPaths[14],14 ); return Result[14]; };
+exports.returnPowerstate = function (){                           this.returnJSONObj(sArrayPaths[15],15 ); return Result[15]; };
+exports.returnSystem = function (){                               this.returnJSONObj(sArrayPaths[16],16 ); return Result[16]; };
+exports.returnSystemCountry = function (){                        this.returnJSONObj(sArrayPaths[17],17 ); return Result[17]; };
+exports.returnSystemDeviceIdEncrypted = function (){              this.returnJSONObj(sArrayPaths[18],18 ); return Result[18]; };
+exports.returnSystemEpgsource = function (){                      this.returnJSONObj(sArrayPaths[19],19 ); return Result[19]; };
+exports.returnSystemMenulanguage = function (){                   this.returnJSONObj(sArrayPaths[20],20 ); return Result[20]; };
+exports.returnSystemModelEncrypted = function (){                 this.returnJSONObj(sArrayPaths[21],21 ); return Result[21]; };
+exports.returnSystemName = function (){                           this.returnJSONObj(sArrayPaths[22],22 ); return Result[22]; };
+exports.returnSystemSoftwareversionEncrypted = function (){       this.returnJSONObj(sArrayPaths[23],23 ); return Result[23]; };
+exports.returnSystemSerialnumberEncrypted = function (){          this.returnJSONObj(sArrayPaths[24],24 ); return Result[24]; };
+exports.returnSystemTimeStamp = function (){                      this.returnJSONObj(sArrayPaths[25],25 ); return Result[25]; };
 
 
 
-exports = Result = {};
+/****************************\
+| PreDefined GETALL Function |###############################################################################################################################################################################
+|                                                                                                                                                                                                           |
+| Returns an JSON object with all available values included                                                                                                                                                 |
+|                                                                                                                                                                                                           |
+\***********************************************************************************************************************************************************************************************/
+exports.returnJSONObjAll = function(){
+
+    var oDb = {};
+
+    oDb.activities          = tv.returnActivitiesTv                  ();
+    oDb.ambilight = {};                                                                    
+    oDb.ambilight.cached    = tv.returnAmbilightCached               ();
+    oDb.ambilight.lounge    = tv.returnAmbilightLounge               ();
+    oDb.ambilight.measured  = tv.returnAmbilightMeasured             ();
+    oDb.ambilight.mode      = tv.returnAmbilightMode                 ();
+    oDb.ambilight.processed = tv.returnAmbilightProcessed            ();
+    oDb.ambilight.topology  = tv.returnAmbilightTopology             ();
+    oDb.audio = {};                                                                          
+    oDb.audio.volume        = tv.returnAudioVolume                   ();
+    oDb.channeldb = {};                                                                  
+    oDb.channeldb.tv        = tv.returnChanneldbTv                   ();
+    oDb.context             = tv.returnContext                       ();
+    oDb.network = {};                
+    oDb.network.devices     = tv.returnNetworkDevices                ();
+    oDb.powersstate         = tv.returnPowerstate                    ();
+    oDb.system              = tv.returnSystem                        ();
+
+  //combine later
+  //oDb.system.epgsource    = tv.returnSystemEpgsource               ();
+    oDb.epgsource           = tv.returnSystemEpgsource               ();
+
+  //combine later
+  //oDb.system.timestamp    = tv.returnSystemTimeStamp               ();
+    oDb.timestamp           = tv.returnSystemTimeStamp               ();
+
+    return oDb;
+}
+
+
+
+exports = Result = [];

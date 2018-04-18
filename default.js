@@ -30,6 +30,9 @@ httpRequests = require( pathlib + 'httpRequests.js' );
 httpPost = require( pathlib + 'httpPost.js' );
 httpGet = require( pathlib + 'httpGet.js' );
 
+
+
+
 /*******\
 | Start |###############################################################################################################################################################################
 \*******/
@@ -49,12 +52,27 @@ setTimeout(function(){ require('./server');
     //  sensor.saveInfoAll();
     //}
 
+  //Object.assign()
+  //tempObj = { ,
+  //'test': tv.returnPowerstate()}
+ 
 
-  
-  tv.pushBufferobjAudioVolume();
+  //fs.writeFileSync( "./JSONdb.var", JSON.stringify(tv.returnPowerstate()) );
+  //fs.appendFileSync( "./JSONdb.var", JSON.stringify(tv.returnActivitiesTv()) );
+ 
+ 
+  //console.log( fs.readFileSync( "./JSONdb.var", 'UTF8'));
+  //tempObj[0] = tv.returnPowerstate();
+  //tempObj[1] = tv.returnAmbilightCached();
+//
+  //console.log(tempObj);
 
 
-  }, 1000);
+//Object.assign(tv.returnActivitiesTv
+//Object.create(person)
+ console.log(tv.returnJSONObjAll()); 
+
+  }, 5000);
 
 
 }, 3000);
