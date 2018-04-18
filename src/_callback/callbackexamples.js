@@ -99,6 +99,80 @@ var req = http.request(options, callback).end();
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
+function myNew(next){
+    console.log("Im the one who initates callback");
+    next("nope", "success");
+}
+
+
+myNew(function(err, res){
+    console.log("I got back from callback",err, res);
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+callBackFunction (data, function ( err, response ){
+     console.log(response)
+}) 
+
+// callbackfunction 
+function callBackFuntion (data, callback){
+    //write your logic and return your result as
+callback("",result) //if not error
+callback(error, "") //if error
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+#### Default.js
+
+modRequest = require( '/lib/request.js' );
+console.log(JSON.stringify(modRequest.httpGET()));
+
+
+#### Request.js
+
+var Result;
+
+exports.httpGET = function(){
+  
+  var req = http.request( options, function(res) {
+    res.on('data', (chunk) => {
+      Result = JSON.parse(chunk);
+    });
+    res.on('end', () => { /**/ });
+  });
+  req.end();
+  
+  return Result;
+};
+
+exports = Result;
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function myNew(next){
+    console.log("Im the one who initates callback");
+    next("nope", "success");
+}
+
+
+myNew(function(err, res){
+    console.log("I got back from callback",err, res);
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
 
 
 

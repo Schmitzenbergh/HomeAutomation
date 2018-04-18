@@ -26,7 +26,9 @@ avr = require( pathavrhk171s + 'default.js');
 tv = require( pathsmarttv + 'tv.js' );
 server = require( pathserver + 'server.js' );
 
-modRequest = require( pathlib + 'request.js' );
+httpRequests = require( pathlib + 'httpRequests.js' );
+httpPost = require( pathlib + 'httpPost.js' );
+httpGet = require( pathlib + 'httpGet.js' );
 
 /*******\
 | Start |###############################################################################################################################################################################
@@ -48,23 +50,21 @@ setTimeout(function(){ require('./server');
     //}
 
 
-  //console.log(JSON.stringify(modRequest.httpGET()));
-  //console.log(test.httpGET());
+  //console.log(tv.getJSON('/5/activities/tv'));
+  console.log(tv.returnVolume().layer1);
+
+  //console.log(tv.getJSON().channel);
+  
+  
+  
+  //tv.pushBufferobjInputKeyVolumeDown();
+  //tv.pushBufferobj('/5/input/key', { "key": "VolumeDown" });
+
+  
+  //httpRequest.postBufferobj();
 
 
-function myNew(next){
-    console.log("Im the one who initates callback");
-    next("nope", "success");
-}
-
-
-myNew(function(err, res){
-    console.log("I got back from callback",err, res);
-});
-
-
-
-  }, 2000);
+  }, 1000);
 
 
 }, 3000);
