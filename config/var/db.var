@@ -20,6 +20,7 @@ pathsmarttv         = pathresources + './SmartTV/';
 pathserver          = pathroot + './';
 pathlib             = pathroot + './lib/';
 pathsrc             = pathroot + './src/';
+pathprivate         = pathroot + './private/';
 
 //Array:
 

@@ -4,12 +4,14 @@
 *   Tested on Philips Smart Tv (55PFS8209/12)                                                      *
 *                                                                                                  *
 *   TODO's:                                                                                        *
-*   - Full Test                                                                                    *
-*   - DEBUG COPYPASTE: http://192.168.0.97:1925/5/audio/volume                                     *
-*   - Merge oDb.system.timestamp and oDb.system.epgsource to oDb.system                            *                                                                     *
+*          - Full Test                                                                             *
+*          - DEBUG COPYPASTE: http://192.168.0.97:1925/5/audio/volume                              *
+*          - Merge oDb.system.timestamp and oDb.system.epgsource to oDb.system                     *
 *   	                                                                                             *
 *   	                                                                                             *
 *   	                                                                                             *
+*   INCLUDE:                                                                                       *
+*   	     - tv = require( path + './tv.js' );                                                     *
 *   	                                                                                             *
 *   GET:                                                                                           *
 *          - returnJSONObj (path)                                                                  *
@@ -20,11 +22,14 @@
 *          - pushBufferobj (path, jObj, callback)                                                  *
 *          - tv.pushBufferobjInputKeyVolumeDown();                                                 *
 *          - tv.pushBufferobj('/5/input/key', { "key": "VolumeDown" });                            *
+*                                                                                                  *
+*   JSON:                                                                                          *        
+*          - tv.returnJSONObjAll());                                                               *   
 *   	                                                                                             *
 *  DEPENDENCY:                                                                                     *
-*          - independent (Node.js Built-in Modules)                                                *
+*          - independent (only Node.js Built-in Modules)                                           *
 *   	                                                                                             *
-***************************************************************************************************/       
+***************************************************************************************************/
 var http = require("http");
 
 
@@ -255,9 +260,12 @@ exports.returnJSONObjAll = function(){
   //oDb.system.timestamp    = tv.returnSystemTimeStamp               ();
     oDb.timestamp           = tv.returnSystemTimeStamp               ();
 
+  
     return oDb;
 }
 
+exports.returnJSONObjAllToDb = function(){
+  fs.writeFileSync( pathprivate + "./db-tv.json", JSON.stringify(this.returnJSONObjAll()) );
+};
 
 
-exports = Result = [];

@@ -55,22 +55,11 @@ setTimeout(function(){ require('./server');
   //Object.assign()
   //tempObj = { ,
   //'test': tv.returnPowerstate()}
- 
-
-  //fs.writeFileSync( "./JSONdb.var", JSON.stringify(tv.returnPowerstate()) );
-  //fs.appendFileSync( "./JSONdb.var", JSON.stringify(tv.returnActivitiesTv()) );
- 
- 
-  //console.log( fs.readFileSync( "./JSONdb.var", 'UTF8'));
-  //tempObj[0] = tv.returnPowerstate();
-  //tempObj[1] = tv.returnAmbilightCached();
-//
-  //console.log(tempObj);
+    tv.returnJSONObjAllToDb(); 
+    console.log(fs.readFileSync( pathprivate + "./db.json", 'UTF8'));
 
 
-//Object.assign(tv.returnActivitiesTv
-//Object.create(person)
- console.log(tv.returnJSONObjAll()); 
+  
 
   }, 5000);
 
