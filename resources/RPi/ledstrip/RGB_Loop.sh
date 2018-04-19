@@ -47,9 +47,6 @@ while [[ $loops -ne 0 ]]; do
 		if [[ $r -lt $rgbmin ]]; then r=$rgbmin; fi	
 		/usr/local/bin/pigs p 17 "$r";  echo "r=$r";
 	done;
-
-
-
 	
 	while [ "$g" -lt "$rgbmax" ]; do g=$[$g+$rgbstep];
 		
@@ -64,9 +61,6 @@ while [[ $loops -ne 0 ]]; do
 		/usr/local/bin/pigs p 22 "$g";  echo "g=$g";
 	done;
 	
-
-
-	
 	while [ "$b" -lt "$rgbmax" ]; do b=$[$b+$rgbstep];
 		
 		if [[ $b -gt $rgbmax ]]; then b=$rgbmax; fi
@@ -79,26 +73,6 @@ while [[ $loops -ne 0 ]]; do
 		if [[ $b -lt $rgbmin ]]; then b=$rgbmin; fi	
 		/usr/local/bin/pigs p 24 "$b";  echo "b=$b";
 	done;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	loops=$[$loops-1];
 	

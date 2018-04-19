@@ -22,7 +22,7 @@ require('./config/var/db.var');
 
 sensor = require( pathhuesensor + 'sensor.js' );
 light = require( pathhuelight + 'light.js' );
-avr = require( pathavrhk171s + 'default.js');
+avr = require( pathavrhk171s + 'avr.js');
 tv = require( pathsmarttv + 'tv.js' );
 server = require( pathserver + 'server.js' );
 
