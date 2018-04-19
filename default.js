@@ -37,7 +37,8 @@ httpGet = require( pathlib + 'httpGet.js' );
 | Start |###############################################################################################################################################################################
 \*******/
 
-setTimeout(function(){ require('./server'); 
+setTimeout(function(){ 
+  require('./server'); 
 
 //light.loadInfoAll();
 //sensor.loadInfoAll();

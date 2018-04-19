@@ -1,1 +1,0 @@
-CFLAGS="-Wall -march=native -maccumulate-outgoing-args -momit-leaf-frame-pointer -Wno-strict-aliasing -Werror"    ./autogen.sh --disable-gtk-doc     | tee boot.log
